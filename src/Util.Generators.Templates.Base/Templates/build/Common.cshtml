@@ -1,0 +1,17 @@
+﻿@* 构建配置文件 *@
+@model Util.Generators.Contexts.EntityContext
+@{
+    Model.Output.FileNameNoExtension = "common";
+    Model.Output.Extension = ".props";
+}
+<Project>
+    <Import Project="version.props" />
+    <PropertyGroup>
+        <NetTargetFramework>net6.0</NetTargetFramework>
+    </PropertyGroup>
+    <PropertyGroup>
+        <Product>@Model.ProjectName</Product>
+        <Authors>ncc;何镇汐</Authors>
+        <Copyright>ncc;何镇汐</Copyright>
+    </PropertyGroup>
+</Project>

@@ -1,0 +1,16 @@
+﻿@* 数据访问层查询参数对象 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var query = service.GetQuery();
+    Model.Output.FileNameNoExtension = query;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetDataProjectPath("Queries",true)}";
+}
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync( "~/Templates/src/Data.EntityFrameworkCore/Query/TreeQuery.Part.cshtml",Model )
+}
+else {
+    @Html.PartialAsync( "~/Templates/src/Data.EntityFrameworkCore/Query/Query.Part.cshtml",Model )
+}

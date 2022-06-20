@@ -1,0 +1,49 @@
+﻿@* 应用层Web Api项目入口程序 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "Program";
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
+}
+using Util;
+using Util.Aop;
+using Util.Logging.Serilog;
+using Util.Data.EntityFrameworkCore;
+using Util.Dates;
+using @service.GetDataNamespace();
+using @service.GetDataNamespace(Model.ProjectContext.TargetDbType);
+
+//创建Web应用程序生成器
+var builder = WebApplication.CreateBuilder( args );
+
+//配置服务
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+//配置Util
+builder.Host.AddUtil( options => options
+    .UseAop()
+    @if ( service.Utc() ) {
+    @:.UseUtc()
+    }
+    .UseSerilog( t => t.AddExceptionless() )
+    .@service.UseUnitOfWork()<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( builder.Configuration.GetConnectionString( "DefaultConnection" ) )
+);
+
+//构建Web应用程序
+var app = builder.Build();
+
+//配置请求管道
+if ( app.Environment.IsDevelopment() ) {
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+app.UseHttpLogging();
+app.UseAuthorization();
+app.MapControllers();
+
+//运行应用
+app.Run();

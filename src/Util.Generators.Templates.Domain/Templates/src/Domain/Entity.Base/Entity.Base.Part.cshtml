@@ -1,0 +1,38 @@
+﻿@* 实体基础属性 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    var description = Model.Description;
+}
+using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Util.Domain;
+using Util.Domain.Auditing;
+using Util.Domain.Entities;
+
+namespace @service.GetDomainNamespace( "Models" ) {
+    /// <summary>
+    /// @description
+    /// </summary>
+    [Description( "@description" )]
+    public partial class @entity : @(service.GetAggregateRootAndInterfaces()){
+        /// <summary>
+        /// 初始化@(description)
+        /// </summary>
+        public @(entity)() : this( @service.GetKeyDefault() ) {
+        }
+
+        /// <summary>
+        /// 初始化@(description)
+        /// </summary>
+        /// <param name="id">@(description)标识</param>
+        public @(entity)( @service.GetKeyType() id ) : base( id ) {
+        }
+@Html.PartialAsync( "~/Templates/src/Domain/Entity.Base/Properties.Part.cshtml",Model )
+
+@Html.PartialAsync( "~/Templates/src/Domain/Entity.Base/AddChanges.Part.cshtml",Model )
+    }
+}

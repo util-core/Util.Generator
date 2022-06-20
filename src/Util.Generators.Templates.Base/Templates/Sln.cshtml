@@ -1,0 +1,107 @@
+﻿@* 解决方案文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    //数据访问层项目
+    var dataProjectId = service.GetDataProjectId();
+    var dataProjectName = service.GetDataProjectName();
+    var databaseProjectId = service.GetDataProjectId(Model.ProjectContext.TargetDbType);
+    var databaseProjectName = service.GetDataProjectName(Model.ProjectContext.TargetDbType);
+    //应用层项目
+    var applicationProjectId = service.GetApplicationProjectId();
+    var applicationProjectName = service.GetApplicationProjectName();
+    var webApiProjectId = service.GetWebApiProjectId();
+    var webApiProjectName = service.GetWebApiProjectName();
+    //UI层项目
+    var uiProjectId = service.GetUiProjectId();
+    var uiProjectName = service.GetUiProjectName();
+    //测试项目
+    var domainTestProjectId = service.GetDomainTestProjectId();
+    var domainTestProjectName = service.GetDomainTestProjectName();
+    var databaseTestProjectId = service.GetDataTestProjectId(Model.ProjectContext.TargetDbType);
+    var databaseTestProjectName = service.GetDataTestProjectName(Model.ProjectContext.TargetDbType);
+    var applicationTestProjectId = service.GetApplicationTestProjectId();
+    var applicationTestProjectName = service.GetApplicationTestProjectName();
+    var webApiTestProjectId = service.GetWebApiTestProjectId();
+    var webApiTestProjectName = service.GetWebApiTestProjectName();
+    Model.Output.FileNameNoExtension = Model.ProjectName;
+    Model.Output.Extension = ".sln";
+}
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{@VsProjectType.SolutionFolder}") = "src", "src", "{@VsProjectId.Src}"
+EndProject
+Project("{@VsProjectType.SolutionFolder}") = "01-Presentation", "01-Presentation", "{@VsProjectId.Presentation}"
+EndProject
+Project("{@VsProjectType.SolutionFolder}") = "02-Application", "02-Application", "{@VsProjectId.Application}"
+EndProject
+Project("{@VsProjectType.SolutionFolder}") = "03-Domain", "03-Domain", "{@VsProjectId.Domain}"
+EndProject
+Project("{@VsProjectType.SolutionFolder}") = "04-Infrastructure", "04-Infrastructure", "{@VsProjectId.Infrastructure}"
+EndProject
+Project("{@VsProjectType.SolutionFolder}") = "test", "test", "{@VsProjectId.Test}"
+EndProject
+Project("{@VsProjectType.CSharpSdk}") = "@uiProjectName", "src\@uiProjectName\@(uiProjectName).csproj", "{@uiProjectId}" 
+EndProject
+@foreach( var schema in service.GetSchemas() ) {
+<text>Project("{@VsProjectType.CSharpSdk}") = "@service.GetDomainProjectName( schema )", "src\@service.GetDomainProjectName( schema )\@(service.GetDomainProjectName( schema )).csproj", "{@service.GetDomainProjectId( schema )}" 
+EndProject
+</text>
+}
+Project("{@VsProjectType.CSharpSdk}") = "@dataProjectName", "src\@dataProjectName\@(dataProjectName).csproj", "{@dataProjectId}" 
+EndProject
+Project("{@VsProjectType.CSharpSdk}") = "@databaseProjectName", "src\@databaseProjectName\@(databaseProjectName).csproj", "{@databaseProjectId}"
+EndProject
+Project("{@VsProjectType.CSharpSdk}") = "@applicationProjectName", "src\@applicationProjectName\@(applicationProjectName).csproj", "{@applicationProjectId}" 
+EndProject
+Project("{@VsProjectType.CSharpSdk}") = "@webApiProjectName", "src\@webApiProjectName\@(webApiProjectName).csproj", "{@webApiProjectId}" 
+EndProject
+Project("{@VsProjectType.CSharpSdk}") = "@domainTestProjectName", "test\@domainTestProjectName\@(domainTestProjectName).csproj", "{@domainTestProjectId}" 
+EndProject
+Project("{@VsProjectType.CSharpSdk}") = "@databaseTestProjectName", "test\@databaseTestProjectName\@(databaseTestProjectName).csproj", "{@databaseTestProjectId}" 
+EndProject
+Project("{@VsProjectType.CSharpSdk}") = "@applicationTestProjectName", "test\@applicationTestProjectName\@(applicationTestProjectName).csproj", "{@applicationTestProjectId}" 
+EndProject
+Project("{@VsProjectType.CSharpSdk}") = "@webApiTestProjectName", "test\@webApiTestProjectName\@(webApiTestProjectName).csproj", "{@webApiTestProjectId}" 
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+    @foreach( var schema in service.GetSchemas() ) {
+        @Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",service.GetDomainProjectId( schema ) )
+    }
+    @Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",service.GetDataProjectId() )
+    @Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",databaseProjectId )
+    @Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",applicationProjectId )
+    @Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",webApiProjectId )
+@Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",uiProjectId )
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+    EndGlobalSection
+    GlobalSection(NestedProjects) = preSolution
+{@VsProjectId.Presentation} = {@VsProjectId.Src}
+{@VsProjectId.Application} = {@VsProjectId.Src}
+{@VsProjectId.Domain} = {@VsProjectId.Src}
+{@VsProjectId.Infrastructure} = {@VsProjectId.Src}
+@foreach( var schema in service.GetSchemas() ) {
+<text>{@service.GetDomainProjectId( schema )} = {@VsProjectId.Domain}
+</text>
+}
+{@dataProjectId} = {@VsProjectId.Infrastructure}
+{@databaseProjectId} = {@VsProjectId.Infrastructure}
+{@applicationProjectId} = {@VsProjectId.Application}
+{@webApiProjectId} = {@VsProjectId.Application}
+{@uiProjectId} = {@VsProjectId.Presentation}
+{@domainTestProjectId} = {@VsProjectId.Test}
+{@databaseTestProjectId} = {@VsProjectId.Test}
+{@applicationTestProjectId} = {@VsProjectId.Test}
+{@webApiTestProjectId} = {@VsProjectId.Test}
+    EndGlobalSection
+EndGlobal

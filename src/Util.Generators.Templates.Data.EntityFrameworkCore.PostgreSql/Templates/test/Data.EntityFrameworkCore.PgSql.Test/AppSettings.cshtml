@@ -1,0 +1,15 @@
+﻿@* 数据访问层测试项目配置文件 - PostgreSql *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var testProjectName = service.GetDataTestProjectName(Util.Data.DatabaseType.PgSql);
+    Model.Output.FileNameNoExtension = "appsettings";
+    Model.Output.Extension = ".json";
+    Model.Output.RelativeRootPath = $"test/{testProjectName}";
+}
+{
+    "ConnectionStrings": {
+        "connection": ""
+    }
+}

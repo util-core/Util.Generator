@@ -1,0 +1,9 @@
+﻿@* 目录构建配置文件 *@
+@model Util.Generators.Contexts.EntityContext
+@{
+    Model.Output.FileNameNoExtension = "Directory.Build";
+    Model.Output.Extension = ".props";
+}
+<Project>
+    <Import Project="build\common.props" />
+</Project>

@@ -1,0 +1,12 @@
+*.suo
+*.user
+.vs
+*.log
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
+output/
+node_modules/
+BenchmarkDotNet.Artifacts

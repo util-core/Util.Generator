@@ -1,0 +1,17 @@
+﻿@* 数据访问层仓储实现类 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    var repository = $"{entity}Repository";
+    Model.Output.FileNameNoExtension = repository;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetDataProjectPath("Repositories",true)}";
+}
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync( "~/Templates/src/Data.EntityFrameworkCore/Repository/TreeRepository.Part.cshtml",Model )
+}
+else {
+    @Html.PartialAsync( "~/Templates/src/Data.EntityFrameworkCore/Repository/Repository.Part.cshtml",Model )
+}

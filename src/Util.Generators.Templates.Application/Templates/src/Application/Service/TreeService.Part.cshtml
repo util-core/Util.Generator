@@ -1,0 +1,47 @@
+﻿@* 应用层树形服务 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    var iApplicationService = service.GetIApplicationService();
+    var applicationService = service.GetApplicationService();
+    var unitOfWork = service.GetIUnitOfWork();
+    var repository = $"I{entity}Repository";
+    var query = $"{entity}Query";
+    var description = $"{Model.Description}服务";
+}
+using System;
+using System.Linq;
+using Util.Applications.Trees;
+using @service.GetDomainNamespace( "Models" );
+using @service.GetDomainNamespace( "Repositories" );
+using @service.GetDataNamespace();
+using @service.GetApplicationNamespace("Services.Abstractions",true);
+using @service.GetApplicationNamespace("Dtos",true);
+using @service.GetDataNamespace("Queries",true);
+
+namespace @service.GetApplicationNamespace( "Services.Implements",true ) {
+    /// <summary>
+    /// @description
+    /// </summary>
+    public class @applicationService : @service.GetTreeServiceBase(), @iApplicationService {
+        /// <summary>
+        /// 初始化@(description)
+        /// </summary>
+        /// <param name="serviceProvider">服务提供器</param>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <param name="repository">仓储</param>
+        public @(applicationService)( IServiceProvider serviceProvider,@unitOfWork unitOfWork, @repository repository ) : base( serviceProvider,unitOfWork,repository ) {
+        }
+
+        /// <summary>
+        /// 过滤
+        /// </summary>
+        /// <param name="queryable">查询对象</param>
+        /// <param name="query">查询参数</param>
+        protected override IQueryable<@entity> Filter( IQueryable<@entity> queryable, @query query ) {
+            return base.Filter( queryable,query );
+        }
+    }
+}

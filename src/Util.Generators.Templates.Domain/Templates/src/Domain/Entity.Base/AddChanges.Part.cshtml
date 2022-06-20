@@ -1,0 +1,21 @@
+﻿@* 领域层实体 - 变更列表 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+}
+        /// <summary>
+        /// 添加变更列表
+        /// </summary>
+        protected override void AddChanges( @entity other ) {
+            @foreach (var property in Model.Properties) {
+                if ( property.IsKey )
+                    continue;
+                if ( property.IsVersion )
+                    continue;
+                if ( property.IsDelete )
+                    continue;
+            @:AddChange( t => t.@property.Name, other.@property.Name );
+            }
+        }

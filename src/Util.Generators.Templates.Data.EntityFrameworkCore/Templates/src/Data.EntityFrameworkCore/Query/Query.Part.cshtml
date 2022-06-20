@@ -1,0 +1,43 @@
+﻿@* 数据访问层查询参数对象 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var query = service.GetQuery();
+    var description = $"{Model.Description}查询参数";
+}
+using System;
+using System.ComponentModel;
+using Util.Data.Queries;
+
+namespace @service.GetDataNamespace( "Queries",true ) {
+    /// <summary>
+    /// @description
+    /// </summary>
+    public class @query : QueryParameter {
+@foreach (var property in Model.Properties) {
+    if ( property.IsDelete )
+        continue;
+    if ( property.IsVersion )
+        continue;
+    if ( property.SystemType == Util.Generators.SystemType.DateTime ) {
+<text>        /// <summary>
+        /// 起始@(property.Description)
+        /// </summary>
+        public DateTime? Begin@(property.Name) { get; set; }
+        /// <summary>
+        /// 结束@(property.Description)
+        /// </summary>
+        public DateTime? End@(property.Name) { get; set; }
+</text>
+        continue;
+    }
+<text>        /// <summary>
+        /// @property.Description
+        ///</summary>
+        [Description( "@property.Description" )]
+        public @property.NullableTypeName @property.Name { get; set; }
+</text>
+}
+    }
+}

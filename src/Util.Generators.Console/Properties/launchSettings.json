@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Util.Generators.Console": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+﻿@* 应用层Web Api项目文件 *@
+@using Util.Generators.Helpers
+@using Version = Util.Generators.Helpers.Version
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var projectName = service.GetWebApiProjectName();
+    var application = service.GetApplicationProjectName();
+    Model.Output.FileNameNoExtension = projectName;
+    Model.Output.Extension = ".csproj";
+    Model.Output.RelativeRootPath = $"src/{projectName}";
+}
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <TargetFramework>$(NetTargetFramework)</TargetFramework>
+        <RootNamespace>@service.ProjectName</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="@Version.EntityFrameworkCoreDesign">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="@Version.Swashbuckle" />
+        <PackageReference Include="Util.Application.WebApi" Version="@service.UtilVersion" />
+        <PackageReference Include="Util.Logging.Serilog.Exceptionless" Version="@service.UtilVersion" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\@application\@(application).csproj" />
+    </ItemGroup>
+</Project>

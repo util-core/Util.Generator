@@ -1,0 +1,16 @@
+﻿@* 应用层数据传输对象 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var dto = service.GetDto();
+    Model.Output.FileNameNoExtension = dto;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetApplicationProjectPath("Dtos",true)}";
+}
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync( "~/Templates/src/Application/Dto/TreeDto.Part.cshtml",Model )
+}
+else {
+    @Html.PartialAsync( "~/Templates/src/Application/Dto/Dto.Part.cshtml",Model )
+}

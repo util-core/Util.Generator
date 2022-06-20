@@ -1,0 +1,15 @@
+﻿@* 构建版本配置文件 *@
+@model Util.Generators.Contexts.EntityContext
+@{
+    Model.Output.FileNameNoExtension = "version";
+    Model.Output.Extension = ".props";
+}
+<Project>
+    <PropertyGroup>
+        <VersionMajor>1</VersionMajor>
+        <VersionMinor>0</VersionMinor>
+        <VersionPatch>0</VersionPatch>
+        <VersionPrefix>$(VersionMajor).$(VersionMinor).$(VersionPatch)</VersionPrefix>
+        <VersionSuffix></VersionSuffix>
+    </PropertyGroup>
+</Project>

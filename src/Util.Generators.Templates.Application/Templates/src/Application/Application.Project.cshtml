@@ -1,0 +1,27 @@
+﻿@* 应用层项目文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var projectName = service.GetApplicationProjectName();
+    var databaseProjectName = service.GetDataProjectName( Model.ProjectContext.TargetDbType );
+    Model.Output.FileNameNoExtension = projectName;
+    Model.Output.Extension = ".csproj";
+    Model.Output.RelativeRootPath = $"src/{projectName}";
+}
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>$(NetTargetFramework)</TargetFramework>
+        <RootNamespace>@service.GetApplicationNamespace()</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Util.Application" Version="@service.UtilVersion" />
+        <PackageReference Include="Util.Application.EntityFrameworkCore" Version="@service.UtilVersion" />
+    </ItemGroup>
+    <ItemGroup>
+    @foreach( var schema in service.GetSchemas() ) {
+        <ProjectReference Include="..\@service.GetDomainProjectName(schema)\@(service.GetDomainProjectName(schema)).csproj" />
+    }
+        <ProjectReference Include="..\@databaseProjectName\@(databaseProjectName).csproj" />
+    </ItemGroup>
+</Project>

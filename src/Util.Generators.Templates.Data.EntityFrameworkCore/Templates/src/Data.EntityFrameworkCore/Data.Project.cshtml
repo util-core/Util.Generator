@@ -1,0 +1,23 @@
+﻿@* 数据访问层项目文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var projectName = service.GetDataProjectName();
+    Model.Output.FileNameNoExtension = projectName;
+    Model.Output.Extension = ".csproj";
+    Model.Output.RelativeRootPath = $"src/{projectName}";
+}
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>$(NetTargetFramework)</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Util.Data.EntityFrameworkCore" Version="@service.UtilVersion" />
+    </ItemGroup>
+    <ItemGroup>
+    @foreach( var schema in service.GetSchemas() ) {
+        <ProjectReference Include="..\@service.GetDomainProjectName(schema)\@(service.GetDomainProjectName(schema)).csproj" />
+    }
+    </ItemGroup>
+</Project>

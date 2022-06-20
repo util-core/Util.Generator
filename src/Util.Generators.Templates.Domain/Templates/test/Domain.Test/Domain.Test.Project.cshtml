@@ -1,0 +1,35 @@
+﻿@* 领域层测试项目文件 *@
+@using Util.Generators.Helpers
+@using Version = Util.Generators.Helpers.Version
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var testProjectName = service.GetDomainTestProjectName();
+    Model.Output.FileNameNoExtension = testProjectName;
+    Model.Output.Extension = ".csproj";
+    Model.Output.RelativeRootPath = $"test/{testProjectName}";
+}
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>$(NetTargetFramework)</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Moq" Version="@Version.Moq" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="@Version.TestSdk" />
+        <PackageReference Include="xunit" Version="@Version.Xunit" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="@Version.XunitRunner">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="@Version.Coverlet">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="AutoBogus" Version="@Version.AutoBogus" />
+    </ItemGroup>
+    <ItemGroup>
+        @foreach( var schema in service.GetSchemas() ) {
+            <ProjectReference Include="..\..\src\@service.GetDomainProjectName(schema)\@(service.GetDomainProjectName(schema)).csproj" />
+        }
+    </ItemGroup>
+</Project>

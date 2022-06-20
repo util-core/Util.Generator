@@ -1,0 +1,24 @@
+﻿@* 领域层项目文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = service.GetDomainProjectName();
+    Model.Output.Extension = ".csproj";
+    Model.Output.RelativeRootPath = $"src/{service.GetDomainProjectName()}";
+}
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>$(NetTargetFramework)</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Util.Domain" Version="@service.UtilVersion" />
+    </ItemGroup>
+    <ItemGroup>
+    @foreach (var entity in service.GetEntities()) {
+    <Compile Update="Models/@(entity.PascalName).*.cs">
+        <DependentUpon>@(entity.PascalName).cs</DependentUpon>
+    </Compile>
+    }
+    </ItemGroup>
+</Project>

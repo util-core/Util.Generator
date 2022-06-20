@@ -1,0 +1,119 @@
+﻿@* 应用层Web Api控制器 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    var controller = $"{entity}Controller";
+    var iApplicationService = service.GetIApplicationService();
+    var applicationService = service.GetApplicationService();
+    var dto = service.GetDto();
+    var query = service.GetQuery();
+    var controllerDescription = $"{Model.Description}控制器";
+    var serviceDescription = $"{Model.Description}服务";
+    Model.Output.FileNameNoExtension = controller;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectPath("Controllers",true)}";
+}
+@if ( service.IsTreeEntity() ) {
+    return;
+}
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Util.Applications.Controllers;
+using @service.GetApplicationNamespace("Services.Abstractions",true);
+using @service.GetApplicationNamespace("Dtos",true);
+using @service.GetDataNamespace("Queries",true);
+
+namespace @service.GetWebApiNamespace( "Controllers",true ) {
+    /// <summary>
+    /// @controllerDescription
+    /// </summary>
+    public class @controller : CrudControllerBase<@dto,@query> {
+        /// <summary>
+        /// 初始化@(controllerDescription)
+        /// </summary>
+        /// <param name="service">@serviceDescription</param>
+        public @(controller)( @iApplicationService service ) : base( service ) {
+            @applicationService = service;
+        }
+
+        /// <summary>
+        /// @serviceDescription
+        /// </summary>
+        public @iApplicationService @applicationService { get; }
+
+        /// <summary>
+        /// 获取单个实体
+        /// </summary>
+        /// <param name="id">标识</param>
+        [HttpGet( "{id}" )]
+        public new async Task<IActionResult> GetAsync( string id ) {
+            return await base.GetAsync( id );
+        }
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="query">查询参数</param>
+        [HttpGet( "Query" )]
+        public new async Task<IActionResult> QueryAsync( [FromQuery] @query query ) {
+            return await base.QueryAsync( query );
+        }
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="query">查询参数</param>
+        [HttpGet]
+        public new async Task<IActionResult> PageQueryAsync( [FromQuery] @query query ) {
+            return await base.PageQueryAsync( query );
+        }
+
+        /// <summary>
+        /// 获取项列表
+        /// </summary>
+        /// <param name="query">查询参数</param>
+        [HttpGet( "Items" )]
+        public new async Task<IActionResult> GetItemsAsync( [FromQuery] @query query ) {
+            return await base.GetItemsAsync( query );
+        }
+
+        /// <summary>
+        /// 创建
+        /// </summary>
+        /// <param name="request">创建参数</param>
+        [HttpPost]
+        public new async Task<IActionResult> CreateAsync( @dto request ) {
+            return await base.CreateAsync( request );
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="id">标识</param>
+        /// <param name="request">修改参数</param>
+        [HttpPut( "{id?}" )]
+        public new async Task<IActionResult> UpdateAsync( string id, @dto request ) {
+            return await base.UpdateAsync( id, request );
+        }
+
+        /// <summary>
+        /// 删除，注意：该方法用于删除单个实体，批量删除请使用POST提交，否则可能失败
+        /// </summary>
+        /// <param name="id">标识</param>
+        [HttpDelete( "{id}" )]
+        public new async Task<IActionResult> DeleteAsync( string id ) {
+            return await base.DeleteAsync( id );
+        }
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="ids">标识列表，多个Id用逗号分隔，范例：1,2,3</param>
+        [HttpPost( "delete" )]
+        public new async Task<IActionResult> BatchDeleteAsync( [FromBody] string ids ) {
+            return await base.BatchDeleteAsync( ids );
+        }
+    }
+}

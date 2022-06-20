@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+	  <TargetFramework>$(NetTargetFramework)</TargetFramework>
+	  <RootNamespace>Util.Generators</RootNamespace>
+	  <AssemblyName>Util.Generators.Console</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Util.Generators.Templates.Application\06-Util.Generators.Templates.Application.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Base\04-Util.Generators.Templates.Base.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.MySql\10-Util.Generators.Templates.Data.EntityFrameworkCore.MySql.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.Oracle\12-Util.Generators.Templates.Data.EntityFrameworkCore.Oracle.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.PostgreSql\09-Util.Generators.Templates.Data.EntityFrameworkCore.PostgreSql.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.Sqlite\11-Util.Generators.Templates.Data.EntityFrameworkCore.Sqlite.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.SqlServer\08-Util.Generators.Templates.Data.EntityFrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore\07-Util.Generators.Templates.Data.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Domain\05-Util.Generators.Templates.Domain.csproj" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

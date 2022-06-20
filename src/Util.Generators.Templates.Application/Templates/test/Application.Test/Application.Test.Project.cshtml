@@ -1,0 +1,52 @@
+﻿@* 应用层测试项目文件 *@
+@using Util.Generators.Helpers
+@using Version = Util.Generators.Helpers.Version
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var testProject = service.GetApplicationTestProjectName();
+    var dataProject = service.GetDataProjectName(Model.ProjectContext.TargetDbType);
+    var applicationProject = service.GetApplicationProjectName();
+    Model.Output.FileNameNoExtension = testProject;
+    Model.Output.Extension = ".csproj";
+    Model.Output.RelativeRootPath = $"test/{testProject}";
+}
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>$(NetTargetFramework)</TargetFramework>
+        <RootNamespace>@service.GetApplicationTestNamespace()</RootNamespace>
+        <XunitStartupFullName>@(service.GetApplicationTestNamespace()).Startup</XunitStartupFullName>
+    </PropertyGroup>
+    <ItemGroup>
+        <Content Include="appsettings.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="appsettings.Development.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="@Version.Hosting" />
+        <PackageReference Include="Xunit.DependencyInjection" Version="@Version.XunitDependencyInjection" />
+        <PackageReference Include="Xunit.DependencyInjection.Logging" Version="@Version.XunitLogging" />
+        <PackageReference Include="AutoBogus" Version="@Version.AutoBogus" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="@Version.EntityFrameworkCoreTools">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="@Version.TestSdk" />
+        <PackageReference Include="xunit" Version="@Version.Xunit" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="@Version.XunitRunner">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="@Version.Coverlet">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\@dataProject\@(dataProject).csproj" />
+        <ProjectReference Include="..\..\src\@applicationProject\@(applicationProject).csproj" />
+    </ItemGroup>
+</Project>

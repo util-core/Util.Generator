@@ -1,0 +1,61 @@
+﻿@* 数据访问层测试 - 仓储测试 - SqlServer *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    var repositoryTest = $"{entity}RepositoryTest";
+    var iRepository = $"I{entity}Repository";
+    var iUnitOfWork = service.GetIUnitOfWork();
+    var fakeService = $"{entity}FakeService";
+    var description = Model.Description;
+    Model.Output.FileNameNoExtension = repositoryTest;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"test/{service.GetDataTestProjectPath(Util.Data.DatabaseType.SqlServer,"Repositories",true)}";
+}
+using System.Threading.Tasks;
+using Xunit;
+using Util.Data.EntityFrameworkCore;
+using @service.GetDomainNamespace( "Models" );
+using @service.GetDomainNamespace( "Repositories" );
+using @service.GetDomainTestNamespace( "Fakes" );
+
+namespace @service.GetDataTestNamespace( Util.Data.DatabaseType.SqlServer,"Repositories",true ) {
+    /// <summary>
+    /// @(description)仓储测试
+    /// </summary>
+    public class @repositoryTest {
+        /// <summary>
+        /// 工作单元
+        /// </summary>
+        private readonly @iUnitOfWork _unitOfWork;
+        /// <summary>
+        /// 仓储
+        /// </summary>
+        private readonly @iRepository _repository;
+
+        /// <summary>
+        /// 测试初始化
+        /// </summary>
+        public @(repositoryTest)( @iUnitOfWork unitOfWork,@iRepository repository ) {
+            _unitOfWork = unitOfWork;
+            _repository = repository;
+        }
+
+        /// <summary>
+        /// 测试添加实体
+        /// </summary>
+        [Fact]
+        public async Task TestAddAsync() {
+            //添加实体
+            var entity = @(fakeService).Get@(entity)();
+            entity.Init();
+            await _repository.AddAsync( entity );
+            await _unitOfWork.CommitAsync();
+            _unitOfWork.ClearCache();
+
+            //验证
+            Assert.True( await _repository.ExistsAsync( t => t.Id == entity.Id ) );
+        }
+    }
+}

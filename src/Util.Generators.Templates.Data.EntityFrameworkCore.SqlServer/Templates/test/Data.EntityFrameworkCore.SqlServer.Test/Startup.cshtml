@@ -1,0 +1,60 @@
+﻿@* 数据访问层测试 - 测试启动配置 - SqlServer *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "Startup";
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"test/{service.GetDataTestProjectPath(Util.Data.DatabaseType.SqlServer )}";
+}
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Xunit.DependencyInjection;
+using Xunit.DependencyInjection.Logging;
+using Util;
+using Util.Helpers;
+using Util.Aop;
+using Util.Data.EntityFrameworkCore;
+
+namespace @service.GetDataTestNamespace( Util.Data.DatabaseType.SqlServer ) {
+    /// <summary>
+    /// 启动配置
+    /// </summary>
+    public class Startup {
+        /// <summary>
+        /// 配置主机
+        /// </summary>
+        public void ConfigureHost( IHostBuilder hostBuilder ) {
+            hostBuilder.ConfigureDefaults( null )
+                .AddUtil( options => {
+                    Environment.SetDevelopment();
+                    options.UseAop()
+                        .UseSqlServerUnitOfWork<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( Config.GetConnectionString( "connection" ) );
+                });
+        }
+
+        /// <summary>
+        /// 配置服务
+        /// </summary>
+        public void ConfigureServices( IServiceCollection services ) {
+            InitDatabase( services );
+        }
+
+        /// <summary>
+        /// 初始化数据库
+        /// </summary>
+        private void InitDatabase( IServiceCollection services ) {
+            var unitOfWork = services.BuildServiceProvider().GetService<@service.GetIUnitOfWork()>();
+            unitOfWork.EnsureDeleted();
+            unitOfWork.EnsureCreated();
+        }
+
+        /// <summary>
+        /// 配置日志提供程序
+        /// </summary>
+        public void Configure( ILoggerFactory loggerFactory, ITestOutputHelperAccessor accessor ) {
+            loggerFactory.AddProvider( new XunitTestOutputLoggerProvider( accessor, ( s, logLevel ) => logLevel >= LogLevel.Trace ) );
+        }
+    }
+}

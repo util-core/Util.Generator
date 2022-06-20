@@ -1,0 +1,40 @@
+﻿@* 树形实体基础属性 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    var description = Model.Description;
+}
+using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Util.Domain;
+using Util.Domain.Auditing;
+using Util.Domain.Trees;
+
+namespace @service.GetDomainNamespace( "Models" ) {
+    /// <summary>
+    /// @description
+    /// </summary>
+    [Description( "@description" )]
+    public partial class @entity : @(service.GetTreeEntityAndInterfaces()){
+        /// <summary>
+        /// 初始化@(description)
+        /// </summary>
+        public @(entity)() : this( @service.GetKeyDefault(), "", 0 ) {
+        }
+
+        /// <summary>
+        /// 初始化@(description)
+        /// </summary>
+        /// <param name="id">@(description)标识</param>
+        /// <param name="path">路径</param>
+        /// <param name="level">层级</param>
+        public @(entity)( @service.GetKeyType() id, string path, int level ) : base( id, path, level ) {
+        }
+@Html.PartialAsync( "~/Templates/src/Domain/Entity.Base/TreeEntity.Properties.Part.cshtml",Model )
+
+@Html.PartialAsync( "~/Templates/src/Domain/Entity.Base/AddChanges.Part.cshtml",Model )
+    }
+}

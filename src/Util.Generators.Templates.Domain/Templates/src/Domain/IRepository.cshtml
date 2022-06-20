@@ -1,0 +1,16 @@
+﻿@* 领域层仓储接口 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var repository = $"I{service.EntityName}Repository";
+    Model.Output.FileNameNoExtension = repository;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetDomainProjectPath("Repositories")}";
+}
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync( "~/Templates/src/Domain/IRepository/ITreeRepository.Part.cshtml",Model )
+}
+else {
+    @Html.PartialAsync( "~/Templates/src/Domain/IRepository/IRepository.Part.cshtml",Model )
+}

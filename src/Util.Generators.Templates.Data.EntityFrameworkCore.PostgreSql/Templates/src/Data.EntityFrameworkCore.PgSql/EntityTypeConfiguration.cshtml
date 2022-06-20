@@ -1,0 +1,53 @@
+﻿@* 数据访问层实体类型配置 - PostgreSql *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    var configuration = $"{entity}Configuration";
+    var description = Model.Description;
+    Model.Output.FileNameNoExtension = configuration;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetDataProjectPath(Util.Data.DatabaseType.PgSql,"EntityTypeConfigurations",true)}";
+}
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using @service.GetDomainNamespace( "Models" );
+
+namespace @service.GetDataNamespace( Util.Data.DatabaseType.PgSql, "EntityTypeConfigurations",true ) {
+    /// <summary>
+    /// @(description)类型配置
+    /// </summary>
+    public class @configuration : IEntityTypeConfiguration<@entity> {
+        /// <summary>
+        /// 配置
+        /// </summary>
+        /// <param name="builder">实体类型生成器</param>
+        public void Configure( EntityTypeBuilder<@entity> builder ) {
+            ConfigTable( builder );
+            ConfigId( builder );
+            ConfigProperties( builder );
+        }
+
+        /// <summary>
+        /// 配置表
+        /// </summary>
+        private void ConfigTable( EntityTypeBuilder<@entity> builder ) {
+            @if ( service.IsSupportSchema( Model.Schema ) ) {
+            @:builder.ToTable( "@Model.Name", "@Model.Schema" ).HasComment( "@description" );
+            }
+            else {
+            @:builder.ToTable( "@Model.Name" ).HasComment( "@description" );
+            }
+        }
+
+        /// <summary>
+        /// 配置标识
+        /// </summary>
+        private void ConfigId( EntityTypeBuilder<@entity> builder ) {
+            @service.GetIdConfiguration()
+        }
+
+@Html.PartialAsync( "~/Templates/src/Data.EntityFrameworkCore.PgSql/EntityTypeConfiguration/Properties.Part.cshtml", Model )
+    }
+}

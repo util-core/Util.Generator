@@ -1,0 +1,24 @@
+﻿@* 数据访问层实体类型配置 - 属性配置 - PostgreSql *@
+@using Util.Data
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+}
+        /// <summary>
+        /// 配置属性
+        /// </summary>
+        private void ConfigProperties( EntityTypeBuilder<@entity> builder ) {
+            @foreach ( var property in Model.Properties ) {
+                if ( property.IsKey )
+                    continue;
+                if ( property.IsVersion )
+                    continue;
+                if ( property.IsExtraProperties )
+                    continue;
+                if ( property.IsDelete )
+                    continue;
+                @service.GetConfiguration( property,DatabaseType.PgSql )
+            }
+        }

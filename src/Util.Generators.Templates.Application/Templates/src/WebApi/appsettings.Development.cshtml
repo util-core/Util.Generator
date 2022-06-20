@@ -1,0 +1,51 @@
+﻿@* 应用层Web Api项目开发配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "appsettings.Development";
+    Model.Output.Extension = ".json";
+    Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
+}
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "",
+    "TestConnection": ""
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Trace",
+      "System": "Warning",
+      "Microsoft": "Warning",
+      "Microsoft.AspNetCore": "Warning",
+      "Microsoft.AspNetCore.HttpLogging": "Information",
+      "Microsoft.EntityFrameworkCore.Database.Command": "Information"
+    }
+  },
+  "Serilog": {
+    "WriteTo": [
+      {
+        "Name": "File",
+        "Args": {
+          "path": "c:\\log\\log.txt",
+          "rollingInterval": "Day",
+          "rollOnFileSizeLimit": true,
+          "fileSizeLimitBytes": 102400,
+          "retainedFileCountLimit": 10,
+          "outputTemplate": "{LogLevel}: {TraceId}  >>  [{SourceContext}] [{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{Duration}]{NewLine}{Message}{NewLine}{Exception}"
+        }
+      },
+      {
+        "Name": "Seq",
+        "Args": {
+          "serverUrl": "http://seq.a.com:5341"
+        }
+      }
+    ]
+  },
+  "Exceptionless": {
+    "ApiKey": "I59SQ2gLSMWQNWdhrWReOG5yO5yP0pc7aE7liuta",
+    "ServerUrl": "http://192.168.31.77/",
+    "QueueMaxAttempts": 1
+  }
+}

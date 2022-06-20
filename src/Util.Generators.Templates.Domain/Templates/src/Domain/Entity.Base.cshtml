@@ -1,0 +1,16 @@
+﻿@* 领域层实体 - 基础属性 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    Model.Output.FileNameNoExtension = $"{entity}.Base";
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetDomainProjectPath("Models")}";
+}
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync( "~/Templates/src/Domain/Entity.Base/TreeEntity.Base.Part.cshtml",Model )
+}
+else {
+    @Html.PartialAsync( "~/Templates/src/Domain/Entity.Base/Entity.Base.Part.cshtml",Model )
+}

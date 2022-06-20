@@ -1,0 +1,60 @@
+﻿@* 应用层测试 - 模拟数据服务 *@
+@using Util.Generators
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var dto = service.GetDto();
+    var dtos = service.GetDtos();
+    var fakeService = service.GetDtoFakeService();
+    var description = Model.Description;
+    Model.Output.FileNameNoExtension = fakeService;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"test/{service.GetApplicationTestProjectPath("Fakes",true )}";
+}
+using System.Collections.Generic;
+using System.Linq;
+using AutoBogus;
+using @service.GetApplicationNamespace( "Dtos",true );
+
+namespace @service.GetApplicationTestNamespace( "Fakes",true ) {
+    /// <summary>
+    /// @(description)模拟数据服务
+    /// </summary>
+    public static class @fakeService {
+        /// <summary>
+        /// 获取@(description)
+        /// </summary>
+        public static @dto Get@(dto)() {
+            return Get@(dtos)(1).First();
+        }
+
+        /// <summary>
+        /// 获取@(description)列表
+        /// </summary>
+        /// <param name="count">行数</param>
+        public static List<@dto> Get@(dtos)( int count ) {
+            return new AutoFaker<@dto>()
+            @foreach( var property in Model.Properties ) {
+            @if ( property.IsExtraProperties ) {
+                continue;
+            }
+            @if ( property.IsVersion ) {
+                continue;
+            }
+            @if ( property.MaxLength == -1 ) {
+                continue;
+            }
+            @if ( property.IsKey ) {
+                @:.Ignore( t => t.Id )
+                continue;
+            }
+            @if ( property.SystemType == SystemType.String ) {
+                @:.RuleFor( t => t.@property.Name,t => t.Random.String2( 1,@property.GetSafeMaxLength() ) )
+                continue;
+            }
+            }
+                .Generate( count );
+        }
+    }
+}

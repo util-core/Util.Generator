@@ -1,0 +1,16 @@
+﻿@* 应用层应用服务 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var applicationService = service.GetApplicationService();
+    Model.Output.FileNameNoExtension = applicationService;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetApplicationProjectPath("Services/Implements",true)}";
+}
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync( "~/Templates/src/Application/Service/TreeService.Part.cshtml",Model )
+}
+else {
+    @Html.PartialAsync( "~/Templates/src/Application/Service/Service.Part.cshtml",Model )
+}

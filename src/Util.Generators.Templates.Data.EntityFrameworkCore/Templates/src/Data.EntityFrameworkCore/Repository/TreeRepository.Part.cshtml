@@ -1,0 +1,29 @@
+﻿@* 数据访问层树形仓储实现类 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    var repository = $"{entity}Repository";
+    var iRepository = $"I{repository}";
+    var unitOfWork = service.GetIUnitOfWork();
+    var description = Model.Description;
+}
+using Util.Data;
+using Util.Data.EntityFrameworkCore.Trees;
+using @service.GetDomainNamespace( "Models" );
+using @service.GetDomainNamespace( "Repositories" );
+
+namespace @service.GetDataNamespace("Repositories",true) {
+    /// <summary>
+    /// @(description)仓储
+    /// </summary>
+    public class @repository : @service.GetTreeRepositoryBase(),@iRepository {
+        /// <summary>
+        /// 初始化@(description)仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        public @(repository)( @unitOfWork unitOfWork ) : base( unitOfWork ) {
+        }
+    }
+}

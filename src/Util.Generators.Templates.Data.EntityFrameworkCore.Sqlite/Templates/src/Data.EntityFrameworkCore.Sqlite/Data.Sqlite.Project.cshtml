@@ -1,0 +1,22 @@
+﻿@* 数据访问层项目文件 - Sqlite *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var dataProjectName = service.GetDataProjectName();
+    var projectName = service.GetDataProjectName( Util.Data.DatabaseType.Sqlite );
+    Model.Output.FileNameNoExtension = projectName;
+    Model.Output.Extension = ".csproj";
+    Model.Output.RelativeRootPath = $"src/{projectName}";
+}
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>$(NetTargetFramework)</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Util.Data.EntityFrameworkCore.Sqlite" Version="@service.UtilVersion" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\@dataProjectName\@(dataProjectName).csproj" />
+    </ItemGroup>
+</Project>

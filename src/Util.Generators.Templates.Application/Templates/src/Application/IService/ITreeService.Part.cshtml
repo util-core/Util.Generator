@@ -1,0 +1,20 @@
+﻿@* 应用层树形服务接口 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var iApplicationService = service.GetIApplicationService();
+    var description = $"{Model.Description}服务";
+}
+using System;
+using Util.Applications.Trees;
+using @service.GetApplicationNamespace("Dtos",true);
+using @service.GetDataNamespace("Queries",true);
+
+namespace @service.GetApplicationNamespace( "Services.Abstractions",true ) {
+    /// <summary>
+    /// @description
+    /// </summary>
+    public interface @iApplicationService : @service.GetITreeService() {
+    }
+}

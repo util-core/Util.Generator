@@ -1,0 +1,25 @@
+﻿@* 树形实体属性集合 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+}
+@foreach (var property in Model.Properties) {
+    if ( property.IsKey )
+        continue;
+    if ( property.IsExtraProperties )
+        continue;
+    if ( property.IsVersion )
+        continue;
+    if ( service.IsTreeEntityProperty( property ) )
+        continue;
+<text>
+        /// <summary>
+        /// @property.Description
+        ///</summary>
+        [Description( "@property.Description" )]
+        @if ( service.HasDataAnnotations( property ) ) {
+            @service.GetDataAnnotations( property )
+        }
+        public @property.TypeName @property.Name { get; set; }</text>
+}
