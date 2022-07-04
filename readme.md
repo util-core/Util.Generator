@@ -7,6 +7,6 @@
     <img src="https://github.com/dotnetcore/Home/blob/master/img/jetbrains.svg" title="JetBrains" />
 </a>
 
-# Util应用框架配置代码生成器
+# Util应用框架配套代码生成器
 
 将Util.Generators.Console项目设置为启动项目,修改该项目下的appsettings.json,设置连接字符串,运行即可.
