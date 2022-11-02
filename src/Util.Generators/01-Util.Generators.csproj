@@ -18,8 +18,8 @@
 
 	<ItemGroup>
 	  <PackageReference Include="Humanizer.Core" Version="2.14.1" />
-	  <PackageReference Include="Util.Data.Dapper.All" Version="6.0.154" />
-	  <PackageReference Include="Util.Logging.Serilog" Version="6.0.154" />
+	  <PackageReference Include="Util.Data.Dapper.All" Version="6.0.14" />
+	  <PackageReference Include="Util.Logging.Serilog" Version="6.0.14" />
 	</ItemGroup>
 
 	<ItemGroup>
