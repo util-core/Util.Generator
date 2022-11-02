@@ -58,15 +58,15 @@ namespace Util.Generators.Contexts {
         /// </summary>
         public string ProjectName => ProjectContext.Name;
         /// <summary>
-        /// 复数名称
+        /// 项目复数名称
         /// </summary>
         public string PluralName => Name.Pluralize().Pascalize();
         /// <summary>
-        /// Pascal名称
+        /// 项目Pascal名称
         /// </summary>
         public string PascalName => Name.Pascalize();
         /// <summary>
-        /// 驼峰名称
+        /// 项目驼峰名称
         /// </summary>
         public string CamelName => Name.Camelize();
 

@@ -1,4 +1,6 @@
-﻿namespace Util.Generators.Helpers {
+﻿using Humanizer;
+
+namespace Util.Generators.Helpers {
     /// <summary>
     /// 生成服务 - Ui层相关方法
     /// </summary>
@@ -67,6 +69,116 @@
         public string GetClientAppName() {
             var result = _context.ProjectContext.ClientAppName;
             return result.IsEmpty() ? ProjectName.ToLower() : result;
+        }
+
+        #endregion
+
+        #region GetClientModuleFileName(获取前端模块文件名)
+
+        /// <summary>
+        /// 获取前端模块文件名
+        /// </summary>
+        public string GetClientModuleFileName() {
+            return $"{ClientAppName.Singularize().Kebaberize()}.module";
+        }
+
+        #endregion
+
+        #region GetClientModuleFolderName(获取前端模块目录名)
+
+        /// <summary>
+        /// 获取前端模块目录名
+        /// </summary>
+        public string GetClientModuleFolderName() {
+            return $"{ClientAppName.Pluralize().Kebaberize()}";
+        }
+
+        #endregion
+
+        #region GetClientModuleClassName(获取前端模块类名)
+
+        /// <summary>
+        /// 获取前端模块类名
+        /// </summary>
+        public string GetClientModuleClassName() {
+            return $"{ClientAppName.Singularize().Pascalize()}Module";
+        }
+
+        #endregion
+
+        #region GetClientRoutingModuleFileName(获取前端路由模块文件名)
+
+        /// <summary>
+        /// 获取前端路由模块文件名
+        /// </summary>
+        public string GetClientRoutingModuleFileName() {
+            return $"{ClientAppName.Singularize().Kebaberize()}-routing.module";
+        }
+
+        #endregion
+
+        #region GetClientRoutingModuleClassName(获取前端路由模块类名)
+
+        /// <summary>
+        /// 获取前端路由模块类名
+        /// </summary>
+        public string GetClientRoutingModuleClassName() {
+            return $"{ClientAppName.Singularize().Pascalize()}RoutingModule";
+        }
+
+        #endregion
+
+        #region GetClientEntityName(获取前端实体名)
+
+        /// <summary>
+        /// 获取前端实体名
+        /// </summary>
+        public string GetClientEntityName() {
+            return _context.Name.Singularize().Kebaberize();
+        }
+
+        #endregion
+
+        #region GetClientViewModelFileName(获取前端视图模型文件名)
+
+        /// <summary>
+        /// 获取前端视图模型文件名
+        /// </summary>
+        public string GetClientViewModelFileName() {
+            return $"{GetClientEntityName()}-view-model";
+        }
+
+        #endregion
+
+        #region GetClientViewModelClassName(获取前端视图模型类名)
+
+        /// <summary>
+        /// 获取前端视图模型类名
+        /// </summary>
+        public string GetClientViewModelClassName() {
+            return $"{_context.Name.Singularize().Pascalize()}ViewModel";
+        }
+
+        #endregion
+
+        #region GetClientQueryFileName(获取前端查询参数文件名)
+
+        /// <summary>
+        /// 获取前端查询参数文件名
+        /// </summary>
+        public string GetClientQueryFileName() {
+            return $"{GetClientEntityName()}-query";
+        }
+
+        #endregion
+
+        #region GetClientQueryClassName(获取前端查询参数类名)
+
+        /// <summary>
+        /// 获取前端查询参数类名
+        /// </summary>
+        public string GetClientQueryClassName() {
+            return $"{_context.Name.Singularize().Pascalize()}Query";
         }
 
         #endregion

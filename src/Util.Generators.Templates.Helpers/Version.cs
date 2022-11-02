@@ -6,11 +6,11 @@
         /// <summary>
         /// Util框架版本号
         /// </summary>
-        public static string Util => "6.0.0";
+        public static string Util => "6.0.13";
         /// <summary>
         /// Microsoft.AspNetCore.TestHost版本号
         /// </summary>
-        public static string TestHost => "6.0.6";
+        public static string TestHost => "6.0.10";
         /// <summary>
         /// Microsoft.Extensions.Hosting版本号
         /// </summary>
@@ -18,23 +18,23 @@
         /// <summary>
         /// Microsoft.EntityFrameworkCore.Tools版本号
         /// </summary>
-        public static string EntityFrameworkCoreTools => "6.0.6";
+        public static string EntityFrameworkCoreTools => "6.0.10";
         /// <summary>
         /// Microsoft.EntityFrameworkCore.Design版本号
         /// </summary>
-        public static string EntityFrameworkCoreDesign => "6.0.6";
+        public static string EntityFrameworkCoreDesign => "6.0.10";
         /// <summary>
         /// Microsoft.NET.Test.Sdk版本号
         /// </summary>
-        public static string TestSdk => "17.2.0";
+        public static string TestSdk => "17.3.2";
         /// <summary>
         /// Microsoft.AspNetCore.SpaServices.Extensions版本号
         /// </summary>
-        public static string SpaServices => "6.0.6";
+        public static string SpaServices => "6.0.10";
         /// <summary>
         /// xunit版本号
         /// </summary>
-        public static string Xunit => "2.4.1";
+        public static string Xunit => "2.4.2";
         /// <summary>
         /// xunit.runner.visualstudio版本号
         /// </summary>
@@ -50,7 +50,7 @@
         /// <summary>
         /// Moq版本号
         /// </summary>
-        public static string Moq => "4.18.1";
+        public static string Moq => "4.18.2";
         /// <summary>
         /// NSwag.AspNetCore版本号
         /// </summary>
@@ -58,11 +58,11 @@
         /// <summary>
         /// Swashbuckle.AspNetCore版本号
         /// </summary>
-        public static string Swashbuckle => "6.3.1";
+        public static string Swashbuckle => "6.4.0";
         /// <summary>
         /// Xunit.DependencyInjection版本号
         /// </summary>
-        public static string XunitDependencyInjection => "8.5.0";
+        public static string XunitDependencyInjection => "8.6.1";
         /// <summary>
         /// Xunit.DependencyInjection.Logging版本号
         /// </summary>

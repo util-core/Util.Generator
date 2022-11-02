@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
 		<ProjectReference Include="..\Util.Generators.Templates.Helpers\03-Util.Generators.Templates.Helpers.csproj" />
 	</ItemGroup>
 

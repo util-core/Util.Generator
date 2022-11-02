@@ -4,6 +4,10 @@
     /// </summary>
     public static class NpmVersion {
         /// <summary>
+        /// util-angular版本号
+        /// </summary>
+        public static string UtilAngular => "0.1.5";
+        /// <summary>
         /// typescript版本号
         /// </summary>
         public static string Typescript => "4.6.2";
@@ -26,15 +30,15 @@
         /// <summary>
         /// angular相关依赖包版本号
         /// </summary>
-        public static string Angular => "13.3.0";
+        public static string Angular => "14.2.0";
         /// <summary>
         /// angular-eslint相关依赖包版本号
         /// </summary>
-        public static string AngularEslint => "13.1.0";
+        public static string AngularEslint => "14.0.3";
         /// <summary>
         /// @angular-architects/module-federation版本号
         /// </summary>
-        public static string AngularArchitectsModuleFederation => "14.2.3";
+        public static string AngularArchitectsModuleFederation => "14.3.10";
         /// <summary>
         /// angular-oauth2-oidc版本号
         /// </summary>
@@ -42,15 +46,15 @@
         /// <summary>
         /// ngx-build-plus版本号
         /// </summary>
-        public static string NgxBuildPlus => "13.0.1";
+        public static string NgxBuildPlus => "14.0.0";
         /// <summary>
         /// ng-zorro-antd版本号
         /// </summary>
-        public static string NgZorro => "13.1.1";
+        public static string NgZorro => "14.0.0";
         /// <summary>
         /// ng-alain版本号
         /// </summary>
-        public static string NgAlain => "13.5.0";
+        public static string NgAlain => "14.0.0";
         /// <summary>
         /// ng-alain-plugin-theme版本号
         /// </summary>
@@ -58,7 +62,7 @@
         /// <summary>
         /// delon相关依赖包版本号
         /// </summary>
-        public static string Delon => "13.5.0";
+        public static string Delon => "14.0.0";
         /// <summary>
         /// ajv版本号
         /// </summary>
@@ -163,5 +167,13 @@
         /// stylelint-order版本号
         /// </summary>
         public static string StylelintOrder => "5.0.0";
+        /// <summary>
+        /// lodash版本号
+        /// </summary>
+        public static string Lodash => "4.17.21";
+        /// <summary>
+        /// moment版本号
+        /// </summary>
+        public static string Moment => "2.29.4";
     }
 }

@@ -12,13 +12,14 @@ using System.ComponentModel.DataAnnotations;
 using Util.Domain;
 using Util.Domain.Auditing;
 using Util.Domain.Entities;
+using Util.Domain.Extending;
 
 namespace @service.GetDomainNamespace( "Models" ) {
     /// <summary>
     /// @description
     /// </summary>
     [Description( "@description" )]
-    public partial class @entity : @(service.GetAggregateRootAndInterfaces()){
+    public partial class @entity : @(service.GetAggregateRootAndInterfaces()) {
         /// <summary>
         /// 初始化@(description)
         /// </summary>

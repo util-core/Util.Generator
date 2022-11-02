@@ -55,6 +55,10 @@ namespace Util.Generators.Helpers {
         /// </summary>
         public string Schema => GetSchema(_context.Schema );
         /// <summary>
+        /// 前端应用名称
+        /// </summary>
+        public string ClientAppName => _context.ProjectContext.ClientAppName;
+        /// <summary>
         /// Util框架版本号
         /// </summary>
         public string UtilVersion => Version.Util;

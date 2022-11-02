@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Util.Domain;
 using Util.Domain.Auditing;
+using Util.Domain.Extending;
 using Util.Domain.Trees;
 
 namespace @service.GetDomainNamespace( "Models" ) {
@@ -18,7 +19,7 @@ namespace @service.GetDomainNamespace( "Models" ) {
     /// @description
     /// </summary>
     [Description( "@description" )]
-    public partial class @entity : @(service.GetTreeEntityAndInterfaces()){
+    public partial class @entity : @(service.GetTreeEntityAndInterfaces()) {
         /// <summary>
         /// 初始化@(description)
         /// </summary>

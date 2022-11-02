@@ -17,7 +17,7 @@
         /// <summary>
         /// @property.Description
         ///</summary>
-        [Description( "@property.Description" )]
+        [DisplayName( "@property.Description" )]
         @if ( service.HasDataAnnotations( property ) ) {
             @service.GetDataAnnotations( property )
         }

@@ -49,6 +49,10 @@ namespace @service.GetApplicationTestNamespace( "Fakes",true ) {
                 @:.Ignore( t => t.Id )
                 continue;
             }
+            @if ( property.IsTree ) {
+                @:.Ignore( t => t.@property.Name )
+                continue;
+            }
             @if ( property.SystemType == SystemType.String ) {
                 @:.RuleFor( t => t.@property.Name,t => t.Random.String2( 1,@property.GetSafeMaxLength() ) )
                 continue;

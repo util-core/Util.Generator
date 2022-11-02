@@ -35,12 +35,8 @@ namespace @service.GetApplicationNamespace( "Services.Implements",true ) {
         public @(applicationService)( IServiceProvider serviceProvider,@unitOfWork unitOfWork, @repository repository ) : base( serviceProvider,unitOfWork,repository ) {
         }
 
-        /// <summary>
-        /// 过滤
-        /// </summary>
-        /// <param name="queryable">查询对象</param>
-        /// <param name="query">查询参数</param>
-        protected override IQueryable<@entity> Filter( IQueryable<@entity> queryable, @query query ) {
+        /// <inheritdoc />
+        protected override IQueryable<@entity> Filter( IQueryable<@entity> queryable, @query param ) {
             return queryable;
         }
     }

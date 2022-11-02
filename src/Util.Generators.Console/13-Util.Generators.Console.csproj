@@ -5,6 +5,7 @@
 	  <TargetFramework>$(NetTargetFramework)</TargetFramework>
 	  <RootNamespace>Util.Generators</RootNamespace>
 	  <AssemblyName>Util.Generators.Console</AssemblyName>
+	  <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,8 +26,7 @@
     <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.SqlServer\08-Util.Generators.Templates.Data.EntityFrameworkCore.SqlServer.csproj" />
     <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore\07-Util.Generators.Templates.Data.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Util.Generators.Templates.Domain\05-Util.Generators.Templates.Domain.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Ui.NgZorro\13-Util.Generators.Templates.Ui.NgZorro.csproj" />
   </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

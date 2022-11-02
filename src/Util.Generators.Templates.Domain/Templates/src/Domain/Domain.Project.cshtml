@@ -16,9 +16,9 @@
     </ItemGroup>
     <ItemGroup>
     @foreach (var entity in service.GetEntities()) {
-    <Compile Update="Models/@(entity.PascalName).*.cs">
-        <DependentUpon>@(entity.PascalName).cs</DependentUpon>
-    </Compile>
+        <Compile Update="Models/@(entity.PascalName).*.cs">
+            <DependentUpon>@(entity.PascalName).cs</DependentUpon>
+        </Compile>
     }
     </ItemGroup>
 </Project>

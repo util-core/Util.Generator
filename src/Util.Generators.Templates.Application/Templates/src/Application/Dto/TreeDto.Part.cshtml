@@ -7,7 +7,6 @@
     var description = $"{Model.Description}参数";
 }
 using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Util.Applications.Trees;
 
@@ -15,7 +14,7 @@ namespace @service.GetApplicationNamespace( "Dtos",true ) {
     /// <summary>
     /// @description
     /// </summary>
-    public class @dto : TreeDtoBase {
+    public class @dto : TreeDtoBase<@dto> {
 @foreach (var property in Model.Properties) {
     if ( property.IsKey )
         continue;
@@ -28,7 +27,7 @@ namespace @service.GetApplicationNamespace( "Dtos",true ) {
 <text>        /// <summary>
         /// @property.Description
         ///</summary>
-        [Description( "@property.Description" )]
+        [Display( Name = "@property.Description" )]
         @if ( service.HasDataAnnotations( property ) ) {
             @service.GetDataAnnotations( property )
         }

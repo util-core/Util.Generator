@@ -1,4 +1,4 @@
-﻿@* 应用层Web Api控制器 *@
+﻿@* 应用层Web Api控制器 - 树形 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
@@ -11,17 +11,9 @@
     var query = service.GetQuery();
     var controllerDescription = $"{Model.Description}控制器";
     var serviceDescription = $"{Model.Description}服务";
-    Model.Output.FileNameNoExtension = controller;
-    Model.Output.Extension = ".cs";
-    Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectPath("Controllers",true)}";
-}
-@if ( service.IsTreeEntity() ) {
-    @Html.PartialAsync( "~/Templates/src/WebApi/Controller.Tree.Part.cshtml",Model )
-    return;
 }
 using Microsoft.AspNetCore.Mvc;
 using Util.Applications.Controllers;
-using Util.Applications.Models;
 using @service.GetApplicationNamespace("Services.Abstractions",true);
 using @service.GetApplicationNamespace("Dtos",true);
 using @service.GetDataNamespace("Queries",true);
@@ -30,7 +22,7 @@ namespace @service.GetWebApiNamespace( "Controllers",true ) {
     /// <summary>
     /// @controllerDescription
     /// </summary>
-    public class @controller : CrudControllerBase<@dto,@query> {
+    public class @controller : TreeTableControllerBase<@dto,@query> {
         /// <summary>
         /// 初始化@(controllerDescription)
         /// </summary>
@@ -57,27 +49,9 @@ namespace @service.GetWebApiNamespace( "Controllers",true ) {
         /// 查询
         /// </summary>
         /// <param name="query">查询参数</param>
-        [HttpGet( "Query" )]
+        [HttpGet]
         public new async Task<IActionResult> QueryAsync( [FromQuery] @query query ) {
             return await base.QueryAsync( query );
-        }
-
-        /// <summary>
-        /// 分页查询
-        /// </summary>
-        /// <param name="query">查询参数</param>
-        [HttpGet]
-        public new async Task<IActionResult> PageQueryAsync( [FromQuery] @query query ) {
-            return await base.PageQueryAsync( query );
-        }
-
-        /// <summary>
-        /// 获取项列表
-        /// </summary>
-        /// <param name="query">查询参数</param>
-        [HttpGet( "Items" )]
-        public new async Task<IActionResult> GetItemsAsync( [FromQuery] @query query ) {
-            return await base.GetItemsAsync( query );
         }
 
         /// <summary>
@@ -115,15 +89,6 @@ namespace @service.GetWebApiNamespace( "Controllers",true ) {
         [HttpPost( "delete" )]
         public async Task<IActionResult> BatchDeleteAsync( [FromBody] string ids ) {
             return await base.DeleteAsync( ids );
-        }
-
-        /// <summary>
-        /// 批量保存
-        /// </summary>
-        /// <param name="request">保存参数</param>
-        [HttpPost( "save" )]
-        public new async Task<IActionResult> SaveAsync( SaveModel request ) {
-            return await base.SaveAsync( request );
         }
     }
 }

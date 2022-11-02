@@ -113,6 +113,18 @@ namespace Util.Generators.Contexts {
         public bool IsNumber => IsInteger || IsFloat;
 
         /// <summary>
+        /// 是否树形属性
+        /// </summary>
+        public bool IsTree => Entity.Properties.Exists( t => t.Name == "ParentId" ) && 
+                              Entity.Properties.Exists( t => t.Name == "Path" ) && (
+            Name == "ParentId" || Name == "Path" || Name == "Level" || Name == "SortId" );
+
+        /// <summary>
+        /// 属性驼峰名称
+        /// </summary>
+        public string CamelName => Name.Camelize();
+
+        /// <summary>
         /// 获取属性最大安全长度
         /// </summary>
         public int GetSafeMaxLength() {

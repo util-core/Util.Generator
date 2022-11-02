@@ -40,8 +40,8 @@ namespace @service.GetApplicationNamespace( "Services.Implements",true ) {
         /// </summary>
         /// <param name="queryable">查询对象</param>
         /// <param name="query">查询参数</param>
-        protected override IQueryable<@entity> Filter( IQueryable<@entity> queryable, @query query ) {
-            return base.Filter( queryable,query );
+        protected override IQueryable<@entity> Filter( IQueryable<@entity> queryable, @query param ) {
+            return queryable;
         }
     }
 }

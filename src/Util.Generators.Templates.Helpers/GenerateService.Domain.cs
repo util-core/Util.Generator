@@ -100,33 +100,24 @@ namespace Util.Generators.Helpers {
         private string GetEntityInterfaces() {
             var result = new StringBuilder();
             result.Append( GetIDelete() );
-            //result.Append( GetITenant() );
             result.Append( GetIAudited() );
+            result.Append( GetIExtraProperties() );
             return result.ToString();
         }
 
         /// <summary>
         /// 获取逻辑删除接口
         /// </summary>
-        private string GetIDelete() {
+        protected string GetIDelete() {
             if( _context.Properties.Any( t => t.Name == "IsDeleted" ) )
                 return ",IDelete";
             return string.Empty;
         }
 
         /// <summary>
-        /// 获取租户接口
-        /// </summary>
-        private string GetITenant() {
-            if( Exists( t => t.Name == "TenantId" ) )
-                return ",ITenant";
-            return string.Empty;
-        }
-
-        /// <summary>
         /// 获取审计接口
         /// </summary>
-        private string GetIAudited() {
+        protected string GetIAudited() {
             if( HasCreationAudited() && HasModificationAudited() )
                 return ",IAudited";
             if( HasCreationAudited() )
@@ -139,15 +130,24 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 是否存在创建审计
         /// </summary>
-        private bool HasCreationAudited() {
+        protected bool HasCreationAudited() {
             return Exists( t => t.Name == "CreationTime" ) && Exists( t => t.Name == "CreatorId" );
         }
 
         /// <summary>
         /// 是否存在修改审计
         /// </summary>
-        private bool HasModificationAudited() {
+        protected bool HasModificationAudited() {
             return Exists( t => t.Name == "LastModificationTime" ) && Exists( t => t.Name == "LastModifierId" );
+        }
+
+        /// <summary>
+        /// 获取扩展属性接口
+        /// </summary>
+        protected string GetIExtraProperties() {
+            if ( _context.Properties.Any( t => t.Name == "ExtraProperties" ) )
+                return ",IExtraProperties";
+            return string.Empty;
         }
 
         #endregion
@@ -187,8 +187,16 @@ namespace Util.Generators.Helpers {
             if( property.IsBool )
                 return;
             string message = string.Format( GetRequiredMessage(), property.Description );
-            string dataAnnotation = $"        [Required(ErrorMessage = \"{message}\")]\r\n";
-            result.Append( dataAnnotation );
+            result.Append( GetRequired( message ) );
+        }
+
+        /// <summary>
+        /// 获取必填项验证特性
+        /// </summary>
+        private string GetRequired( string message ) {
+            if ( message.IsEmpty() )
+                return $"        [Required]\r\n";
+            return $"        [Required(ErrorMessage = \"{message}\")]\r\n";
         }
 
         /// <summary>

@@ -20,6 +20,8 @@ namespace @service.GetDataNamespace( "Queries",true ) {
         continue;
     if ( property.IsVersion )
         continue;
+    if ( property.IsExtraProperties )
+        continue;
     if ( property.SystemType == Util.Generators.SystemType.DateTime ) {
 <text>        /// <summary>
         /// 起始@(property.Description)

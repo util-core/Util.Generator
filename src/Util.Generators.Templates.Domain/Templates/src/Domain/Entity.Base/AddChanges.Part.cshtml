@@ -16,6 +16,8 @@
                     continue;
                 if ( property.IsDelete )
                     continue;
+                if ( property.IsExtraProperties )
+                    continue;
             @:AddChange( t => t.@property.Name, other.@property.Name );
             }
         }
