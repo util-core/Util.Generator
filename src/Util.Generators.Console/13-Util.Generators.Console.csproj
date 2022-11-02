@@ -26,7 +26,6 @@
     <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.SqlServer\08-Util.Generators.Templates.Data.EntityFrameworkCore.SqlServer.csproj" />
     <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore\07-Util.Generators.Templates.Data.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Util.Generators.Templates.Domain\05-Util.Generators.Templates.Domain.csproj" />
-    <ProjectReference Include="..\Util.Generators.Templates.Ui.NgZorro\13-Util.Generators.Templates.Ui.NgZorro.csproj" />
   </ItemGroup>
 
 </Project>
