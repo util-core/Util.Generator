@@ -34,5 +34,15 @@ namespace @service.GetApplicationNamespace( "Dtos",true ) {
         public @property.TypeName @property.Name { get; set; }
 </text>
 }
+
+        /// <inheritdoc />
+        public override string GetText() {
+            @if ( service.Exists( t => t.Name == "Name" ) ) {
+            @:return Name;
+            }
+            else {
+            @:return null;
+            }
+        }
     }
 }

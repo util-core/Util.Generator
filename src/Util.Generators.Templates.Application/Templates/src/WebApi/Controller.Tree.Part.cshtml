@@ -13,7 +13,7 @@
     var serviceDescription = $"{Model.Description}服务";
 }
 using Microsoft.AspNetCore.Mvc;
-using Util.Applications.Controllers;
+using Util.Ui.NgZorro.Controllers;
 using @service.GetApplicationNamespace("Services.Abstractions",true);
 using @service.GetApplicationNamespace("Dtos",true);
 using @service.GetDataNamespace("Queries",true);
@@ -22,7 +22,7 @@ namespace @service.GetWebApiNamespace( "Controllers",true ) {
     /// <summary>
     /// @controllerDescription
     /// </summary>
-    public class @controller : TreeTableControllerBase<@dto,@query> {
+    public class @controller : NgZorroTreeControllerBase<@dto,@query> {
         /// <summary>
         /// 初始化@(controllerDescription)
         /// </summary>
@@ -46,12 +46,21 @@ namespace @service.GetWebApiNamespace( "Controllers",true ) {
         }
 
         /// <summary>
-        /// 查询
+        /// 树形表格查询
         /// </summary>
         /// <param name="query">查询参数</param>
         [HttpGet]
         public new async Task<IActionResult> QueryAsync( [FromQuery] @query query ) {
             return await base.QueryAsync( query );
+        }
+
+        /// <summary>
+        /// 树形查询
+        /// </summary>
+        /// <param name="query">查询参数</param>
+        [HttpGet("tree")]
+        public new async Task<IActionResult> TreeQueryAsync( [FromQuery] @query query ) {
+            return await base.TreeQueryAsync( query );
         }
 
         /// <summary>

@@ -6,7 +6,7 @@
         /// <summary>
         /// Util框架版本号
         /// </summary>
-        public static string Util => "6.0.14";
+        public static string Util => "6.0.15";
         /// <summary>
         /// Microsoft.AspNetCore.TestHost版本号
         /// </summary>
