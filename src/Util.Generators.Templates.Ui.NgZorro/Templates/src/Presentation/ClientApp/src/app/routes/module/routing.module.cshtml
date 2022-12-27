@@ -1,0 +1,29 @@
+﻿@* Ui层项目 - 路由模块文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = service.GetClientRoutingModuleFileName();
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}";
+}
+import { NgModule } from '@@angular/core';
+import { RouterModule, Routes } from '@@angular/router';
+
+
+//路由配置
+export const routes: Routes = [
+    {
+        path: '',
+        children: [
+        ]
+    }
+];
+
+/**
+* @(Model.ProjectContext.ClientAppName)路由模块
+*/
+@@NgModule( {
+    imports: [RouterModule.forChild( routes )]
+} )
+export class @service.GetClientRoutingModuleClassName() { }

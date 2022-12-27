@@ -1,0 +1,22 @@
+﻿@* Ui层项目 - prettier配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = ".prettierrc";
+    Model.Output.Extension = ".js";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+}
+module.exports = {
+  singleQuote: true,
+  useTabs: false,
+  printWidth: 140,
+  tabWidth: 2,
+  semi: true,
+  htmlWhitespaceSensitivity: 'strict',
+  arrowParens: 'avoid',
+  bracketSpacing: true,
+  proseWrap: 'preserve',
+  trailingComma: 'none',
+  endOfLine: 'lf'
+};

@@ -1,0 +1,18 @@
+﻿@* Ui层项目配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "appsettings";
+    Model.Output.Extension = ".json";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}";
+}
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Error",
+      "System": "Error",
+      "Microsoft": "Error"
+    }
+  }
+}

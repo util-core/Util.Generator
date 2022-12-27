@@ -1,0 +1,21 @@
+﻿@* Ui层项目 - webpack配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var name = service.GetClientAppName();
+    Model.Output.FileNameNoExtension = "webpack.config";
+    Model.Output.Extension = ".js";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+}
+const { shareAll, withModuleFederationPlugin } = require('@@angular-architects/module-federation/webpack');
+
+module.exports = withModuleFederationPlugin({
+    name: 'permission',
+    exposes: {
+        './Module': './src/app/routes/@name/@(name).module.ts'
+    },
+    shared: {
+        ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' })
+    }
+});

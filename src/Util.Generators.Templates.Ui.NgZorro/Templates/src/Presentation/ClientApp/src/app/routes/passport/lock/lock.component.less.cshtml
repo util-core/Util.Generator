@@ -1,0 +1,21 @@
+﻿@* Ui层项目 - 锁屏组件文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "lock.component";
+    Model.Output.Extension = ".less";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/passport/lock";
+}
+:host ::ng-deep {
+    .ant-card-body {
+        position: relative;
+        margin-top: 80px;
+    }
+    .avatar {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        margin-left: -20px;
+    }
+}

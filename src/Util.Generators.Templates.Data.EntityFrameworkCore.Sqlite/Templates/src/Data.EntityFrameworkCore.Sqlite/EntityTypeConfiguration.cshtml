@@ -33,7 +33,7 @@ namespace @service.GetDataNamespace( Util.Data.DatabaseType.Sqlite, "EntityTypeC
         /// 配置表
         /// </summary>
         private void ConfigTable( EntityTypeBuilder<@entity> builder ) {
-            builder.ToTable( "@Model.Name" ).HasComment( "@description" );
+            builder.ToTable( "@Model.Name",t => t.HasComment( "@description" ) );
         }
 
         /// <summary>

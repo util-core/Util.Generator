@@ -1,0 +1,26 @@
+﻿@* Ui层项目 - prettier忽略文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = ".prettierignore";
+    Model.Output.Extension = "";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+}
+**/*.md
+**/*.svg
+**/test.ts
+
+.stylelintrc
+.prettierrc
+
+src/assets/*
+src/index.html
+node_modules/
+.vscode/
+coverage/
+dist/
+package.json
+tslint.json
+
+_cli-tpl/**/*

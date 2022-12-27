@@ -1,0 +1,70 @@
+﻿@* Ui层项目 - 业务路由模块文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "routes-routing.module";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes";
+}
+import { NgModule } from '@@angular/core';
+import { RouterModule, Routes } from '@@angular/router';
+import { AuthGuard } from '@@core';
+import { environment } from '@@env/environment';
+// layout
+import { LayoutBasicComponent } from '../layout/basic/basic.component';
+import { LayoutPassportComponent } from '../layout/passport/passport.component';
+// dashboard pages
+import { DashboardComponent } from './dashboard/dashboard.component';
+// single pages
+import { CallbackComponent } from './passport/callback.component';
+import { UserLockComponent } from './passport/lock/lock.component';
+import {routes as permissionRoutes} from "./permission/permission-routing.module";
+
+const routes: Routes = [
+  {
+    path: '',
+    component: LayoutBasicComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘', titleI18n: 'dashboard' } },
+      { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
+      { path: 'permission', children: permissionRoutes }
+      // 业务子模块
+      // { path: 'widgets', loadChildren: () => import('./widgets/widgets.module').then(m => m.WidgetsModule) },
+    ]
+  },
+  // 空白布局
+  // {
+  //     path: 'blank',
+  //     component: LayoutBlankComponent,
+  //     children: [
+  //     ]
+  // },
+  // passport
+  {
+    path: 'passport',
+    component: LayoutPassportComponent,
+    children: [
+      { path: 'lock', component: UserLockComponent, data: { title: '锁屏', titleI18n: 'lock' } },
+    ]
+  },
+  // 单页不包裹Layout
+  { path: 'passport/callback/:type', component: CallbackComponent },
+  { path: '**', redirectTo: 'exception/404' },
+];
+
+@@NgModule({
+  imports: [
+    RouterModule.forRoot(
+      routes, {
+        useHash: environment.useHash,
+        // NOTICE: If you use `reuse-tab` component and turn on keepingScroll you can set to `disabled`
+        // Pls refer to https://ng-alain.com/components/reuse-tab
+        scrollPositionRestoration: 'top',
+      }
+    )],
+  exports: [RouterModule],
+})
+export class RouteRoutingModule { }

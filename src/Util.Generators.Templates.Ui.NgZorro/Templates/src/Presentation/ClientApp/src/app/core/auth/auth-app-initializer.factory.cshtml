@@ -1,0 +1,18 @@
+﻿@* Ui层项目 - 授权初始化工厂文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "auth-app-initializer.factory";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/core/auth";
+}
+import { AuthService } from './auth.service'
+
+/**
+* 授权初始化工厂
+* @@param authService 授权服务
+*/
+export function authAppInitializerFactory(authService: AuthService): () => Promise<void> {
+    return () => authService.runInitialLoginSequence();
+}

@@ -1,0 +1,22 @@
+﻿@* Ui层项目 - ng-alain配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "ng-alain";
+    Model.Output.Extension = ".json";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+}
+{
+  "$schema": "./node_modules/ng-alain/schema.json",
+  "theme": {
+    "list": [
+      {
+        "theme": "dark"
+      },
+      {
+        "theme": "compact"
+      }
+    ]
+  }
+}

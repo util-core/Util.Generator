@@ -1,0 +1,16 @@
+﻿@* Ui层项目 - delon共享模块文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "shared-delon.module";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/shared";
+}
+import { PageHeaderModule } from '@@delon/abc/page-header';
+import { ResultModule } from '@@delon/abc/result';
+import { SEModule } from '@@delon/abc/se';
+import { STModule } from '@@delon/abc/st';
+import { SVModule } from '@@delon/abc/sv';
+
+export const SHARED_DELON_MODULES = [PageHeaderModule, STModule, SEModule, SVModule, ResultModule];

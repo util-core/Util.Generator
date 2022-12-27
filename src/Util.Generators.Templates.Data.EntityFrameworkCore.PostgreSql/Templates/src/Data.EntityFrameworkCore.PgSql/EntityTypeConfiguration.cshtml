@@ -34,10 +34,10 @@ namespace @service.GetDataNamespace( Util.Data.DatabaseType.PgSql, "EntityTypeCo
         /// </summary>
         private void ConfigTable( EntityTypeBuilder<@entity> builder ) {
             @if ( service.IsSupportSchema( Model.Schema ) ) {
-            @:builder.ToTable( "@Model.Name", "@Model.Schema" ).HasComment( "@description" );
+            @:builder.ToTable( "@Model.Name", "@Model.Schema",t => t.HasComment( "@description" ) );
             }
             else {
-            @:builder.ToTable( "@Model.Name" ).HasComment( "@description" );
+            @:builder.ToTable( "@Model.Name",t => t.HasComment( "@description" ) );
             }
         }
 

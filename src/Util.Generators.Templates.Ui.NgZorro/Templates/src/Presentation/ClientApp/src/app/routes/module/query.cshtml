@@ -1,0 +1,27 @@
+﻿@* Ui层项目 - 查询参数文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = service.GetClientQueryFileName();
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}/{service.GetClientEntityName()}/model";
+}
+import { QueryParameter } from "util-angular";
+
+/**
+* @(Model.Description)查询参数
+*/
+export class @service.GetClientQueryClassName() extends QueryParameter {
+@foreach (var property in Model.Properties) {
+    if ( property.IsExtraProperties )
+        continue;
+    if ( property.IsDelete )
+        continue;
+<text>   /**
+    * @property.Description
+    */
+    @property.CamelName;
+</text>
+}
+}

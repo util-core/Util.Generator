@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-Util.Generators.Template
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-Util.Generators.Templates.Base", "src\Util.Generators.Templates.Base\04-Util.Generators.Templates.Base.csproj", "{37EDBFA3-05CF-4CD7-A654-38626A467D0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "13-Util.Generators.Console", "src\Util.Generators.Console\13-Util.Generators.Console.csproj", "{06A48671-E3EB-455C-812F-4EF61FBC10BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "14-Util.Generators.Console", "src\Util.Generators.Console\14-Util.Generators.Console.csproj", "{06A48671-E3EB-455C-812F-4EF61FBC10BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05-Util.Generators.Templates.Domain", "src\Util.Generators.Templates.Domain\05-Util.Generators.Templates.Domain.csproj", "{9DB87618-E14B-48EE-937E-C2F6BAA1A517}"
 EndProject
@@ -41,9 +41,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Util.Generators.Razor.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10-Util.Generators.Templates.Data.EntityFrameworkCore.MySql", "src\Util.Generators.Templates.Data.EntityFrameworkCore.MySql\10-Util.Generators.Templates.Data.EntityFrameworkCore.MySql.csproj", "{CF03CB44-C457-47BE-80A7-7CCDDDC796E4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "13-Util.Generators.Templates.Ui.NgZorro", "src\Util.Generators.Templates.Ui.NgZorro\13-Util.Generators.Templates.Ui.NgZorro.csproj", "{5DF5DD60-18B5-448C-805E-CDC135569336}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11-Util.Generators.Templates.Data.EntityFrameworkCore.Sqlite", "src\Util.Generators.Templates.Data.EntityFrameworkCore.Sqlite\11-Util.Generators.Templates.Data.EntityFrameworkCore.Sqlite.csproj", "{66E69A07-0C60-4260-873E-4D33E3F33FE1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "12-Util.Generators.Templates.Data.EntityFrameworkCore.Oracle", "src\Util.Generators.Templates.Data.EntityFrameworkCore.Oracle\12-Util.Generators.Templates.Data.EntityFrameworkCore.Oracle.csproj", "{40EE46F8-087E-49CF-A815-E1E489B14E30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12-Util.Generators.Templates.Data.EntityFrameworkCore.Oracle", "src\Util.Generators.Templates.Data.EntityFrameworkCore.Oracle\12-Util.Generators.Templates.Data.EntityFrameworkCore.Oracle.csproj", "{40EE46F8-087E-49CF-A815-E1E489B14E30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +109,10 @@ Global
 		{CF03CB44-C457-47BE-80A7-7CCDDDC796E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF03CB44-C457-47BE-80A7-7CCDDDC796E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF03CB44-C457-47BE-80A7-7CCDDDC796E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF5DD60-18B5-448C-805E-CDC135569336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF5DD60-18B5-448C-805E-CDC135569336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF5DD60-18B5-448C-805E-CDC135569336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF5DD60-18B5-448C-805E-CDC135569336}.Release|Any CPU.Build.0 = Release|Any CPU
 		{66E69A07-0C60-4260-873E-4D33E3F33FE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{66E69A07-0C60-4260-873E-4D33E3F33FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66E69A07-0C60-4260-873E-4D33E3F33FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -134,6 +140,7 @@ Global
 		{F5060D3F-8057-4FC3-B8CD-8185EE2C0373} = {0604DBED-D675-4C50-86CE-7E7E722A2F5A}
 		{23778AA4-D10C-47A0-B033-5296E5072B90} = {0604DBED-D675-4C50-86CE-7E7E722A2F5A}
 		{CF03CB44-C457-47BE-80A7-7CCDDDC796E4} = {BA2FA4CC-D872-425B-9FC5-82CBA38C0332}
+		{5DF5DD60-18B5-448C-805E-CDC135569336} = {BA2FA4CC-D872-425B-9FC5-82CBA38C0332}
 		{66E69A07-0C60-4260-873E-4D33E3F33FE1} = {BA2FA4CC-D872-425B-9FC5-82CBA38C0332}
 		{40EE46F8-087E-49CF-A815-E1E489B14E30} = {BA2FA4CC-D872-425B-9FC5-82CBA38C0332}
 	EndGlobalSection

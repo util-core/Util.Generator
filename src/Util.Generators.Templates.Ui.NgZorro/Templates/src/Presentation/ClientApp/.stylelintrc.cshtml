@@ -1,0 +1,47 @@
+﻿@* Ui层项目 - stylelint配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = ".stylelintrc";
+    Model.Output.Extension = "";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+}
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-rational-order",
+    "stylelint-config-prettier"
+  ],
+  "customSyntax": "postcss-less",
+  "plugins": [
+    "stylelint-order",
+    "stylelint-declaration-block-no-ignored-properties"
+  ],
+  "rules": {
+    "function-no-unknown": null,
+    "no-descending-specificity": null,
+    "plugin/declaration-block-no-ignored-properties": true,
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": [
+          "/^g2-/",
+          "/^nz-/",
+          "/^app-/"
+        ]
+      }
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": [
+          "ng-deep"
+        ]
+      }
+    ]
+  },
+  "ignoreFiles": [
+    "src/assets/**/*"
+  ]
+}

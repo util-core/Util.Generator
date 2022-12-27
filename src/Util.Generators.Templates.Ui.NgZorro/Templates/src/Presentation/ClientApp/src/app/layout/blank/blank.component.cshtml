@@ -1,0 +1,20 @@
+﻿@* Ui层项目 - 空白布局组件文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "blank.component";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/layout/blank";
+}
+import { Component } from '@@angular/core';
+
+@@Component({
+    selector: 'layout-blank',
+    template: `<router-outlet></router-outlet> `,
+    host: {
+        '[class.alain-blank]': 'true'
+    }
+})
+export class LayoutBlankComponent {
+}

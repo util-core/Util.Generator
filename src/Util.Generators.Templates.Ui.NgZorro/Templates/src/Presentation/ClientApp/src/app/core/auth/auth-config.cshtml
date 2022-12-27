@@ -1,0 +1,32 @@
+﻿@* Ui层项目 - 授权配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "auth-config";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/core/auth";
+}
+import { AuthConfig } from 'angular-oauth2-oidc';
+
+/**
+* 授权配置
+*/
+export const authConfig: AuthConfig = {
+    //认证服务器地址
+    issuer: 'https://auth.a.com',
+    //客户端标识
+    clientId: 'systems.permission',
+    //认证服务登录成功后返回的地址
+    redirectUri: `${location.origin}/`,
+    //认证服务注销成功后返回的地址
+    postLogoutRedirectUri: `${location.origin}/`,
+    //使用授权码 + PKCE流程
+    responseType: 'code',
+    //权限范围
+    scope: 'openid profile api1',
+    //使用静默刷新
+    useSilentRefresh: true,
+    //显示调试信息
+    showDebugInformation: true
+};

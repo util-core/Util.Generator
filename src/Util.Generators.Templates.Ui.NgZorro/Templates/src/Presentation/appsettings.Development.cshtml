@@ -1,0 +1,32 @@
+﻿@* Ui层项目开发配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "appsettings.Development";
+    Model.Output.Extension = ".json";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}";
+}
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning",
+      "Util.Ui.TagHelpers.TagHelperBase": "Trace"
+    }
+  },
+  "Serilog": {
+    "WriteTo": [
+      {
+        "Name": "File",
+        "Args": {
+          "path": "c:\\log\\log.txt",
+          "rollingInterval": "Day",
+          "rollOnFileSizeLimit": true,
+          "fileSizeLimitBytes": 102400,
+          "retainedFileCountLimit": 10,
+          "outputTemplate": "{LogLevel}  >>  [{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] {NewLine}{Message}{NewLine}{Exception}{NewLine}"
+        }
+      }
+    ]
+  }
+}

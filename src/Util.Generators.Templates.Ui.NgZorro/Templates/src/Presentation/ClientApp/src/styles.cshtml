@@ -1,0 +1,17 @@
+﻿@* Ui层项目 - 样式入口文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "styles";
+    Model.Output.Extension = ".less";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src";
+}
+@*styles.less*@
+@@import '@@delon/theme/system/index';
+@@import '@@delon/abc/index';
+@@import '@@delon/chart/index';
+@@import '@@delon/theme/layout-default/style/index';
+@@import '@@delon/theme/layout-blank/style/index';
+@@import './styles/index';
+@@import './styles/theme';

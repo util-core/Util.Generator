@@ -1,0 +1,17 @@
+﻿@* Ui层项目 - 授权模块配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "auth-module-config";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/core/auth";
+}
+import { OAuthModuleConfig } from 'angular-oauth2-oidc';
+
+export const authModuleConfig: OAuthModuleConfig = {
+    resourceServer: {
+        allowedUrls: ['https://demo.duendesoftware.com/api'],
+        sendAccessToken: true
+    }
+};

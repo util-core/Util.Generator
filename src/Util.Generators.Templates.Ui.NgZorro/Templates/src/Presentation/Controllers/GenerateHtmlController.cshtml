@@ -1,0 +1,29 @@
+﻿@* Ui层项目Razor页面生成html控制器 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "GenerateHtmlController";
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/Controllers";
+}
+using Microsoft.AspNetCore.Mvc;
+using Util.Ui.Razor;
+
+namespace @service.GetUiNamespace("Controllers") {
+    /// <summary>
+    /// 查找全部Razor页面生成Html
+    /// </summary>
+    [Route( "api/html" )]
+    [ApiController]
+    public class GenerateHtmlController : ControllerBase {
+        /// <summary>
+        /// 生成Html页面
+        /// </summary>
+        [HttpGet]
+        public async Task<string> GenerateAsync() {
+            await HtmlGenerator.GenerateAsync();
+            return "ok";
+        }
+    }
+}

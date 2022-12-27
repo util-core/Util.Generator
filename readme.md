@@ -10,3 +10,5 @@
 # Util应用框架配套代码生成器
 
 将Util.Generators.Console项目设置为启动项目,修改该项目下的appsettings.json,设置连接字符串,运行即可.
+
+注意: UI部分的代码生成模板尚不可用

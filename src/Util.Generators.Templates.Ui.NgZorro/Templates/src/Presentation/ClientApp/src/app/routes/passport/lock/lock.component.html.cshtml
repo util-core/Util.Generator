@@ -1,0 +1,30 @@
+﻿@* Ui层项目 - 锁屏组件文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "lock.component";
+    Model.Output.Extension = ".html";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/passport/lock";
+}
+<div class="ant-card width-lg" style="margin: 0 auto">
+    <div class="ant-card-body">
+        <div class="avatar">
+            <nz-avatar [nzSrc]="user.avatar" nzIcon="user" nzSize="large"></nz-avatar>
+        </div>
+        <form nz-form [formGroup]="f" (ngSubmit)="submit()" role="form" class="mt-md">
+            <nz-form-item>
+                <nz-form-control [nzErrorTip]="'请输入密码！'">
+                    <nz-input-group nzSuffixIcon="lock">
+                        <input type="password" nz-input formControlName="password" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-row nzType="flex" nzAlign="middle">
+                <nz-col [nzOffset]="12" [nzSpan]="12" style="text-align: right">
+                    <button nz-button [disabled]="!f.valid" nzType="primary">锁屏</button>
+                </nz-col>
+            </nz-row>
+        </form>
+    </div>
+</div>

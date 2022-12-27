@@ -35,7 +35,7 @@ namespace Util.Generators.Helpers {
         /// </summary>
         /// <param name="schema">架构</param>
         public string GetDomainProjectName( string schema ) {
-            if ( IsSupportSchema( schema ) )
+            if( IsSupportSchema( schema ) )
                 return $"{_context.ProjectContext.Name}.Domain.{GetSchema( schema )}";
             return $"{_context.ProjectContext.Name}.Domain";
         }
@@ -82,7 +82,7 @@ namespace Util.Generators.Helpers {
         /// 获取聚合根
         /// </summary>
         private string GetAggregateRoot() {
-            switch ( _context.Key.SystemType ) {
+            switch( _context.Key.SystemType ) {
                 case SystemType.String:
                     return $"AggregateRoot<{EntityName},string>";
                 case SystemType.Int:
@@ -109,7 +109,7 @@ namespace Util.Generators.Helpers {
         /// 获取逻辑删除接口
         /// </summary>
         protected string GetIDelete() {
-            if ( _context.Properties.Any( t => t.Name == "IsDeleted" ) )
+            if( _context.Properties.Any( t => t.Name == "IsDeleted" ) )
                 return ",IDelete";
             return string.Empty;
         }
@@ -118,11 +118,11 @@ namespace Util.Generators.Helpers {
         /// 获取审计接口
         /// </summary>
         protected string GetIAudited() {
-            if ( HasCreationAudited() && HasModificationAudited() )
+            if( HasCreationAudited() && HasModificationAudited() )
                 return GetIAuditedResult();
-            if ( HasCreationAudited() )
+            if( HasCreationAudited() )
                 return GetICreationAuditedResult();
-            if ( HasModificationAudited() )
+            if( HasModificationAudited() )
                 return GetIModificationAuditedResult();
             return string.Empty;
         }
@@ -148,7 +148,7 @@ namespace Util.Generators.Helpers {
             var property = _context.Properties.Find( t => t.Name == "CreatorId" );
             if ( property == null )
                 return null;
-            if ( property.SystemType == SystemType.Guid )
+            if( property.SystemType == SystemType.Guid )
                 return ",IAudited";
             return $",IAudited<{property.TypeName}>";
         }
@@ -218,9 +218,9 @@ namespace Util.Generators.Helpers {
         /// 添加必填项验证
         /// </summary>
         private void AddRequired( StringBuilder result, Property property ) {
-            if ( property.IsRequired == false )
+            if( property.IsRequired == false )
                 return;
-            if ( property.IsBool )
+            if( property.IsBool )
                 return;
             string message = string.Format( GetRequiredMessage(), property.Description );
             result.Append( GetRequired( message ) );
@@ -239,11 +239,11 @@ namespace Util.Generators.Helpers {
         /// 添加字符串最大长度验证
         /// </summary>
         private void AddMaxLength( StringBuilder result, Property property ) {
-            if ( property.SystemType != SystemType.String )
+            if( property.SystemType != SystemType.String )
                 return;
-            if ( property.MaxLength == null )
+            if( property.MaxLength == null )
                 return;
-            if ( property.MaxLength <= 0 )
+            if( property.MaxLength <= 0 )
                 return;
             string dataAnnotation = $"        [MaxLength( {property.GetSafeMaxLength()} )]\r\n";
             result.Append( dataAnnotation );
@@ -270,7 +270,7 @@ namespace Util.Generators.Helpers {
         /// 获取仓储基类
         /// </summary>
         public string GetRepositoryBase() {
-            if ( _context.Key.SystemType == SystemType.Guid )
+            if( _context.Key.SystemType == SystemType.Guid )
                 return $"RepositoryBase<{EntityName}>";
             return $"RepositoryBase<{EntityName},{GetKeyType()}>";
         }

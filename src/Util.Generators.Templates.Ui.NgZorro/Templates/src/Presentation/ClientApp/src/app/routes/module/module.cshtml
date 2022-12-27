@@ -1,0 +1,27 @@
+﻿@* Ui层项目 - 模块文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = service.GetClientModuleFileName();
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}";
+}
+import { NgModule } from '@@angular/core';
+import { SharedModule } from '@@shared';
+import { @service.GetClientRoutingModuleClassName() } from './@service.GetClientRoutingModuleFileName()';
+
+/**
+* @(Model.ProjectContext.ClientAppName)模块
+*/
+@@NgModule( {
+    declarations: [
+    ],
+    imports: [
+        SharedModule,@service.GetClientRoutingModuleClassName()
+    ],
+    providers: [
+    ]
+} )
+export class @service.GetClientModuleClassName() {
+}

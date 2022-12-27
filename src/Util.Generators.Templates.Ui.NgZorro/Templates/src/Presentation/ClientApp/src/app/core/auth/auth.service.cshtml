@@ -1,0 +1,120 @@
+﻿@* Ui层项目 - 授权服务文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "auth.service";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/core/auth";
+}
+import { Injectable } from '@@angular/core';
+import { Router } from '@@angular/router';
+import { OAuthService, OAuthEvent } from 'angular-oauth2-oidc';
+import { BehaviorSubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
+
+/**
+ * 授权服务
+ */
+@@Injectable({ providedIn: 'root' })
+export class AuthService {
+    /**
+     * 是否已认证
+     */
+    private _isAuthenticatedSubject = new BehaviorSubject(false);
+    /**
+     * 是否已认证
+     */
+    public isAuthenticated = this._isAuthenticatedSubject.asObservable();
+    /**
+     * 是否加载完成
+     */
+    private _isDoneLoadingSubject = new BehaviorSubject(false);
+    /**
+     * 是否加载完成
+     */
+    public isDoneLoading = this._isDoneLoadingSubject.asObservable();
+
+    /**
+     * 初始化授权服务
+     * @@param oauthService OAuth服务
+     * @@param router 路由
+     */
+    constructor(private oauthService: OAuthService, private router: Router) {
+        this.subscribeEvents();
+    }
+
+    /**
+     * 订阅事件
+     */
+    private subscribeEvents() {
+        window.addEventListener('storage', (event) => {
+            if (event.key !== 'access_token' && event.key !== null) {
+                return;
+            }
+            this._isAuthenticatedSubject.next(this.oauthService.hasValidAccessToken());
+            if (!this.oauthService.hasValidAccessToken()) {
+                this.login();
+            }
+        });
+        this.oauthService.events.subscribe(_ => {
+            this._isAuthenticatedSubject.next(this.oauthService.hasValidAccessToken());
+        });
+        this.oauthService.events
+            .pipe(filter((e: OAuthEvent) => ['token_received'].includes(e.type)))
+            .subscribe(e => this.oauthService.loadUserProfile());
+        this.oauthService.events
+            .pipe(filter((e: OAuthEvent) => ['session_terminated', 'session_error'].includes(e.type)))
+            .subscribe(e => this.login());
+        this.oauthService.setupAutomaticSilentRefresh();
+    }
+
+    /**
+     * 登录
+     * @@param targetUrl 目标地址
+     */
+    public login(targetUrl?: string) {
+        this.oauthService.initLoginFlow(targetUrl || this.router.url);
+    }
+
+    /**
+     * 登出
+     */
+    public logout() {
+        this.oauthService.logOut();
+    }
+
+    /**
+     * 刷新令牌
+     */
+    public refresh() {
+        this.oauthService.refreshToken();
+    }
+
+    /**
+     * 是否拥有有效访问令牌
+     */
+    public hasValidToken() {
+        return this.oauthService.hasValidAccessToken();
+    }
+
+    /**
+     * 初始化登录状态
+     */
+    public runInitialLoginSequence(): Promise<void> {
+        return this.oauthService.loadDiscoveryDocument()
+            .then(() => this.oauthService.tryLogin())
+            .then(() => {
+                this._isDoneLoadingSubject.next(true);
+                let stateUrl = this.oauthService.state;
+                if (!stateUrl)
+                    return;
+                if (stateUrl === 'undefined' || stateUrl === 'null')
+                    return;
+                if (stateUrl.startsWith('/') === false)
+                    stateUrl = decodeURIComponent(stateUrl);
+                this.router.navigateByUrl(stateUrl);
+            })
+            .catch(() => this._isDoneLoadingSubject.next(true));
+    }
+}
