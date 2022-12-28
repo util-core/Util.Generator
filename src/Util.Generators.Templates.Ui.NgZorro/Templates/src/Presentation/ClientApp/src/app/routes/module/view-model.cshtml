@@ -7,18 +7,20 @@
     Model.Output.Extension = ".ts";
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}/{service.GetClientEntityName()}/model";
 }
-import { ViewModel } from "util-angular";
+import { @(service.IsTreeEntity() ? "TreeViewModel" : "ViewModel") } from "util-angular";
 
 /**
 * @(Model.Description)参数
 */
-export class @service.GetClientViewModelClassName() extends ViewModel {
+export class @service.GetClientViewModelClassName() extends @(service.IsTreeEntity() ? "TreeViewModel" : "ViewModel") {
 @foreach (var property in Model.Properties) {
     if ( property.IsKey )
         continue;
     if ( property.IsExtraProperties )
         continue;
     if ( property.IsDelete )
+        continue;
+    if (service.IsTreeEntity() && property.IsTree)
         continue;
 <text>   /**
     * @property.Description

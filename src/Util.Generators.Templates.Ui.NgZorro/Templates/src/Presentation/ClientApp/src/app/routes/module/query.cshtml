@@ -7,16 +7,20 @@
     Model.Output.Extension = ".ts";
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}/{service.GetClientEntityName()}/model";
 }
-import { QueryParameter } from "util-angular";
+import { @(service.IsTreeEntity() ? "TreeQueryParameter" : "QueryParameter") } from "util-angular";
 
 /**
 * @(Model.Description)查询参数
 */
-export class @service.GetClientQueryClassName() extends QueryParameter {
+export class @service.GetClientQueryClassName() extends @(service.IsTreeEntity() ? "TreeQueryParameter" : "QueryParameter") {
 @foreach (var property in Model.Properties) {
     if ( property.IsExtraProperties )
         continue;
     if ( property.IsDelete )
+        continue;
+    if (service.IsTreeEntity() && property.IsTree)
+        continue;
+    if (service.IsTreeEntity() && property.Name == "enabled")
         continue;
 <text>   /**
     * @property.Description
