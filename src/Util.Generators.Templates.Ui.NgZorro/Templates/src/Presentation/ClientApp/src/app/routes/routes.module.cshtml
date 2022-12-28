@@ -8,14 +8,14 @@
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes";
 }
 import { NgModule, Type } from '@@angular/core';
-import { SharedModule } from '@@shared';
+import { SharedModule } from '@@shared/shared.module';
 // dashboard pages
 import { DashboardComponent } from './dashboard/dashboard.component';
 // single pages
 import { CallbackComponent } from './passport/callback.component';
 import { UserLockComponent } from './passport/lock/lock.component';
 import { RouteRoutingModule } from './routes-routing.module';
-import { PermissionModule } from "./permission/permission.module";
+import { @service.GetClientModuleClassName() } from "./@service.GetClientModuleFolderName()/@service.GetClientModuleFileName()";
 
 const COMPONENTS: Array<Type<void>> = [
     DashboardComponent,
@@ -24,7 +24,7 @@ const COMPONENTS: Array<Type<void>> = [
 ];
 
 @@NgModule({
-    imports: [SharedModule, RouteRoutingModule,PermissionModule],
+    imports: [SharedModule, RouteRoutingModule, @service.GetClientModuleClassName()],
     declarations: COMPONENTS,
 })
 export class RoutesModule {
