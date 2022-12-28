@@ -150,6 +150,30 @@ namespace Util.Generators.Helpers {
 
         #endregion
 
+        #region GetClientListFileName(获取前端视图列表页面)
+
+        /// <summary>
+        /// 获取前端视图列表页面
+        /// </summary>
+        public string GetClientListFileName()
+        {
+            return $"{GetClientEntityName()}-list.component";
+        }
+
+        #endregion
+
+        #region GetClientEditFileName(获取前端视图编辑页面)
+
+        /// <summary>
+        /// 获取前端视图编辑页面
+        /// </summary>
+        public string GetClientEditFileName()
+        {
+            return $"{GetClientEntityName()}-edit.component";
+        }
+
+        #endregion
+
         #region GetClientViewModelClassName(获取前端视图模型类名)
 
         /// <summary>
