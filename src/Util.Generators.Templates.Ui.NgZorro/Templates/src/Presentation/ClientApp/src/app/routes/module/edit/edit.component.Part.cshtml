@@ -41,5 +41,11 @@ export class @(entity)EditComponent extends DialogEditComponentBase<@(entity)Vie
     protected getBaseUrl() {
         return "@service.GetClientEntityName()";
     }
-
+    
+    /**/
+     * 是否远程加载
+     */
+    isRequestLoad() {
+        return false;
+    }
 }
