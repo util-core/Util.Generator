@@ -73,6 +73,20 @@ namespace Util.Generators.Helpers {
 
         #endregion
 
+        #region GetClientAppTitleName(获取应用名称驼峰)
+
+        /// <summary>
+        /// 获取应用名称驼峰
+        /// </summary>
+        public string GetClientAppTitleName()
+        {
+            var result = _context.ProjectContext.ClientAppName;
+            result = result.IsEmpty() ? ProjectName.ToLower() : result;
+            return result.Pluralize().Titleize();
+        }
+
+        #endregion
+
         #region GetClientModuleFileName(获取前端模块文件名)
 
         /// <summary>
