@@ -1,0 +1,16 @@
+﻿@* Ui层项目 - 视图模型文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "Index";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}/{service.GetClientEntityName()}";
+}
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync("~/Templates/src/Presentation/Pages/Routes/Index/Index.Tree.Part.cshtml", Model)
+}
+else {
+    @Html.PartialAsync("~/Templates/src/Presentation/Pages/Routes/Index/Index.Part.cshtml", Model)
+
+}

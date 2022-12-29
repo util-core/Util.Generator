@@ -1,0 +1,51 @@
+﻿@* Ui层项目 - 视图模型文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+}
+import { Component, Injector } from '@@angular/core';
+import { environment } from "@@env/environment";
+import { DialogEditComponentBase } from "util-angular";
+import { @(entity)ViewModel } from './model/@service.GetClientEntityName()-view-model';
+
+/**
+ * 应用程序编辑页
+ */
+@@Component( {
+    selector: '@service.GetClientEntityName()-edit',
+    templateUrl: environment.production ? './html/edit.component.html' : '/view/routes/@service.ClientAppName/@service.GetClientEntityName()/edit'
+} )
+export class @(entity)EditComponent extends DialogEditComponentBase<@(entity)ViewModel> {
+
+    /**
+     * 初始化应用程序编辑页
+     * @@param injector 注入器
+     */
+    constructor( injector: Injector ) {
+        super( injector );
+    }
+
+    /**
+     * 创建模型
+     */
+    protected createModel() {
+        let result = new @(entity)ViewModel();
+        return result;
+    }
+
+    /**
+     * 获取基地址
+     */
+    protected getBaseUrl() {
+        return "@service.GetClientEntityName()";
+    }
+    
+    /**/
+     * 是否远程加载
+     */
+    isRequestLoad() {
+        return false;
+    }
+}

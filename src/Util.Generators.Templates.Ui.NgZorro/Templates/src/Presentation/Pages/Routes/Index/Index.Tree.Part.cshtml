@@ -1,0 +1,44 @@
+﻿@* Ui层项目组件导入文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "Index";
+    Model.Output.Extension = ".cshtml";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/Pages/Routes/{service.GetClientAppTitleName()}/{service.EntityName}";
+}
+@("@page")
+@("@model") @(service.EntityName)Dto
+<util-page-header2 title="@(service.EntityDescription)"></util-page-header2>
+<util-card borderless="true">
+    @*查询表单*@
+    <partial name="Index.Query" />
+    @*工具按钮*@
+    <util-button type="Primary" icon="Plus" on-click="openCreateDialog()">新建</util-button>
+    <util-button type="Primary" Danger="true" icon="Delete" on-click="delete()">删除</util-button>
+    @*提示语*@
+    <util-alert type="Info" show-icon="true" class="my-md">
+        已选择<strong class='text-primary mx-xs'>{{getCheckedLength()}}</strong>行
+    </util-alert>
+    @*表格*@
+    <util-tree-table id="tb_@(service.GetClientEntityName())" show-checkbox="true" query-param="queryParam" url="@(service.GetClientEntityName())" sort="CreationTime desc" show-pagination="false" expand-all="true">
+        @foreach (var property in Model.Properties)
+        {
+            if (property.IsKey)
+                continue;
+            if (property.IsDelete)
+                continue;
+            if (property.IsExtraProperties)
+                continue;
+            if (property.IsVersion)
+                continue;
+        <util-td for="@(property.Name)" ellipsis="true"></util-td>
+        }
+        <util-td title="操作">
+            <util-button class="mr-sm" type="Primary" shape="Circle" icon="Plus" tooltip-title="创建下级模块" on-click="openCreateDialog(row)"></util-button>
+            <util-button class="mr-sm" type="Primary" shape="Circle" icon="Edit" tooltip-title="编辑" on-click="openEditDialog(row)"></util-button>
+            <util-button class="mr-sm" danger="true" shape="Circle" icon="Delete" tooltip-title="删除" on-click="delete(row.id)"></util-button>
+            <util-button shape="Circle" icon="Eye" tooltip-title="详情" on-click="openDetailDialog(row)"></util-button>
+        </util-td>
+    </util-tree-table>
+</util-card>

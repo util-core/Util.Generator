@@ -9,7 +9,7 @@
 }
 import { NgModule } from '@@angular/core';
 import { RouterModule, Routes } from '@@angular/router';
-import { AuthGuard } from '@@core';
+//import { AuthGuard } from '@@core';
 import { environment } from '@@env/environment';
 // layout
 import { LayoutBasicComponent } from '../layout/basic/basic.component';
@@ -19,18 +19,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 // single pages
 import { CallbackComponent } from './passport/callback.component';
 import { UserLockComponent } from './passport/lock/lock.component';
-import {routes as permissionRoutes} from "./permission/permission-routing.module";
+import { routes as @service.GetClientModuleFolderName()Routes } from "./@service.GetClientModuleFolderName()/@service.GetClientRoutingModuleFileName()";
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutBasicComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘', titleI18n: 'dashboard' } },
       { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
-      { path: 'permission', children: permissionRoutes }
+      { path: '@service.GetClientModuleFolderName()', children: @service.GetClientModuleFolderName()Routes }
       // 业务子模块
       // { path: 'widgets', loadChildren: () => import('./widgets/widgets.module').then(m => m.WidgetsModule) },
     ]

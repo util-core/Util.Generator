@@ -73,6 +73,20 @@ namespace Util.Generators.Helpers {
 
         #endregion
 
+        #region GetClientAppTitleName(获取应用名称驼峰)
+
+        /// <summary>
+        /// 获取应用名称驼峰
+        /// </summary>
+        public string GetClientAppTitleName()
+        {
+            var result = _context.ProjectContext.ClientAppName;
+            result = result.IsEmpty() ? ProjectName.ToLower() : result;
+            return result.Pluralize().Titleize();
+        }
+
+        #endregion
+
         #region GetClientModuleFileName(获取前端模块文件名)
 
         /// <summary>
@@ -146,6 +160,30 @@ namespace Util.Generators.Helpers {
         /// </summary>
         public string GetClientViewModelFileName() {
             return $"{GetClientEntityName()}-view-model";
+        }
+
+        #endregion
+
+        #region GetClientListFileName(获取前端视图列表页面)
+
+        /// <summary>
+        /// 获取前端视图列表页面
+        /// </summary>
+        public string GetClientListFileName()
+        {
+            return $"{GetClientEntityName()}-list.component";
+        }
+
+        #endregion
+
+        #region GetClientEditFileName(获取前端视图编辑页面)
+
+        /// <summary>
+        /// 获取前端视图编辑页面
+        /// </summary>
+        public string GetClientEditFileName()
+        {
+            return $"{GetClientEntityName()}-edit.component";
         }
 
         #endregion

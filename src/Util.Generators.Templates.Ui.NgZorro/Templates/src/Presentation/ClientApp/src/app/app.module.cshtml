@@ -44,7 +44,7 @@ const GLOBAL_THIRD_MODULES: Array<Type<void>> = [];
 // #endregion
 
 // #region Startup Service
-import { StartupService } from '@@core';
+import { StartupService } from './core/startup/startup.service';
 export function StartupServiceFactory(startupService: StartupService): () => Observable<void> {
     return () => startupService.load();
 }
