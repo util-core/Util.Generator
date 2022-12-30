@@ -65,6 +65,9 @@
 	  <Content Update="Templates\src\Presentation\ClientApp\ng-alain.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\app-config.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\app.component.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
@@ -146,7 +149,34 @@
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\exception\exception.module.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\detail.component.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\detail\detail.component.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\detail\detail.tree.component.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\edit.component.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\edit\edit.tree.component.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\edit\edit.component.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\list\list.component.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\list\list.tree.component.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\query.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\list.component.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\view-model.cshtml">
@@ -255,6 +285,36 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\Controllers\GenerateHtmlController.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Detail.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Detail\Detail.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Detail\Detail.Tree.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Edit.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Edit\Edit.Tree.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Edit\Edit.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Index.Query.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Index\Index.Tree.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Index\Index.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\Pages\Routes\Index.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\Pages\_ViewImports.cshtml">

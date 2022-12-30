@@ -16,12 +16,8 @@
     @*工具按钮*@
     <util-button type="Primary" icon="Plus" on-click="openCreateDialog()">新建</util-button>
     <util-button type="Primary" Danger="true" icon="Delete" on-click="delete()">删除</util-button>
-    @*提示语*@
-    <util-alert type="Info" show-icon="true" class="my-md">
-        已选择<strong class='text-primary mx-xs'>{{getCheckedLength()}}</strong>行
-    </util-alert>
     @*表格*@
-    <util-tree-table id="tb_@(service.GetClientEntityName())" show-checkbox="true" query-param="queryParam" url="@(service.GetClientEntityName())" sort="CreationTime desc" show-pagination="false" expand-all="true">
+    <util-tree-table id="tb_@service.EntityName" show-checkbox="true" query-param="queryParam" url="@(service.EntityName)" sort="CreationTime desc" show-pagination="false" expand-all="true">
         @foreach (var property in Model.Properties)
         {
             if (property.IsKey)
@@ -31,6 +27,10 @@
             if (property.IsExtraProperties)
                 continue;
             if (property.IsVersion)
+                continue;
+            if (property.IsIAudited)
+                continue;
+            if (property.IsTree)
                 continue;
         <util-td for="@(property.Name)" ellipsis="true"></util-td>
         }

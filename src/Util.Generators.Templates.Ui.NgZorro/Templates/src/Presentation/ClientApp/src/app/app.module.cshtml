@@ -65,6 +65,8 @@ import { GlobalConfigModule } from './global-config.module';
 import { LayoutModule } from './layout/layout.module';
 import { RoutesModule } from './routes/routes.module';
 import { SharedModule } from './shared/shared.module';
+import { Util, AppConfig } from 'util-angular';
+import { appConfig } from './app-config';
 
 @@NgModule({
     declarations: [
@@ -85,8 +87,18 @@ import { SharedModule } from './shared/shared.module';
     ],
     providers: [
         ...LANG_PROVIDES,
-        ...APPINIT_PROVIDES
+        ...APPINIT_PROVIDES,
+        { provide: AppConfig, useValue: appConfig }
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+     /**
+     * 初始化应用根模块
+     * @@param injector 注入器
+     */
+     constructor(injector: Injector) {
+       Util.init(injector);
+     }
+}

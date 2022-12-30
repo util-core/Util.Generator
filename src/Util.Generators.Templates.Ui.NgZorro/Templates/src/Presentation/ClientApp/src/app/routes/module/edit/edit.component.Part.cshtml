@@ -15,7 +15,7 @@ import { @(entity)ViewModel } from './model/@service.GetClientEntityName()-view-
  */
 @@Component( {
     selector: '@service.GetClientEntityName()-edit',
-    templateUrl: environment.production ? './html/edit.component.html' : '/view/routes/@service.ClientAppName/@service.GetClientEntityName()/edit'
+    templateUrl: environment.production ? './html/edit.component.html' : '/view/routes/@service.ClientAppName/@service.EntityName/edit'
 } )
 export class @(entity)EditComponent extends DialogEditComponentBase<@(entity)ViewModel> {
 
@@ -39,10 +39,10 @@ export class @(entity)EditComponent extends DialogEditComponentBase<@(entity)Vie
      * 获取基地址
      */
     protected getBaseUrl() {
-        return "@service.GetClientEntityName()";
+        return "@service.EntityName";
     }
     
-    /**/
+    /**
      * 是否远程加载
      */
     isRequestLoad() {

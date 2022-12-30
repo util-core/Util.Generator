@@ -80,9 +80,21 @@ namespace Util.Generators.Contexts {
         /// </summary>
         public bool IsVersion => Name == "Version" && SystemType == Generators.SystemType.Binary;
         /// <summary>
+        /// 是否是审计字段
+        /// </summary>
+        public bool IsIAudited => Name == "CreatorId"||Name == "LastModificationTime"||Name == "LastModifierId";
+        /// <summary>
         /// 是否逻辑删除
         /// </summary>
         public bool IsDelete => Name == "IsDeleted" && SystemType == Generators.SystemType.Bool;
+        /// <summary>
+        /// 是否父编号
+        /// </summary>
+        public bool IsParentId => Name == "ParentId" && SystemType == Generators.SystemType.Guid;
+        /// <summary>
+        /// 是否排序号
+        /// </summary>
+        public bool IsSortId => Name == "SortId" && SystemType == Generators.SystemType.Int;
         /// <summary>
         /// 是否扩展属性
         /// </summary>

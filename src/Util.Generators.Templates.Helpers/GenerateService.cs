@@ -5,11 +5,13 @@ using Humanizer;
 using Util.Generators.Contexts;
 using Util.Generators.Properties;
 
-namespace Util.Generators.Helpers {
+namespace Util.Generators.Helpers
+{
     /// <summary>
     /// 生成服务
     /// </summary>
-    public partial class GenerateService {
+    public partial class GenerateService
+    {
 
         #region 字段
 
@@ -30,8 +32,9 @@ namespace Util.Generators.Helpers {
         /// 初始化生成服务
         /// </summary>
         /// <param name="context">实体上下文</param>
-        public GenerateService( EntityContext context ) {
-            _context = context ?? throw new ArgumentNullException( nameof( context ) );
+        public GenerateService(EntityContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         #endregion
@@ -53,7 +56,7 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 架构
         /// </summary>
-        public string Schema => GetSchema(_context.Schema );
+        public string Schema => GetSchema(_context.Schema);
         /// <summary>
         /// 前端应用名称
         /// </summary>
@@ -71,9 +74,10 @@ namespace Util.Generators.Helpers {
         /// 获取项目标识
         /// </summary>
         /// <param name="key">键</param>
-        private string GetProjectId( string key ) {
-            if( _projectIds.ContainsKey( key ) == false )
-                _projectIds.Add( key, Guid.NewGuid().ToString().ToUpperInvariant() );
+        private string GetProjectId(string key)
+        {
+            if (_projectIds.ContainsKey(key) == false)
+                _projectIds.Add(key, Guid.NewGuid().ToString().ToUpperInvariant());
             return _projectIds[key];
         }
 
@@ -81,8 +85,9 @@ namespace Util.Generators.Helpers {
         /// 是否存在指定属性
         /// </summary>
         /// <param name="condition">条件</param>
-        public bool Exists( Func<Property,bool> condition ) {
-            return _context.Properties.Any( condition );
+        public bool Exists(Func<Property, bool> condition)
+        {
+            return _context.Properties.Any(condition);
         }
 
         #endregion
@@ -92,17 +97,19 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 是否支持架构
         /// </summary>
-        public bool IsSupportSchema() {
-            return IsSupportSchema( _context.Schema );
+        public bool IsSupportSchema()
+        {
+            return IsSupportSchema(_context.Schema);
         }
 
         /// <summary>
         /// 是否支持架构
         /// </summary>
-        public bool IsSupportSchema( string schema ) {
-            if( schema.IsEmpty() )
+        public bool IsSupportSchema(string schema)
+        {
+            if (schema.IsEmpty())
                 return false;
-            if( schema == "dbo" )
+            if (schema == "dbo")
                 return false;
             return true;
         }
@@ -115,7 +122,8 @@ namespace Util.Generators.Helpers {
         /// 获取架构
         /// </summary>
         /// <param name="schema">架构名</param>
-        public string GetSchema( string schema ) {
+        public string GetSchema(string schema)
+        {
             return schema.Pluralize().Pascalize();
         }
 
@@ -126,8 +134,9 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 获取架构列表
         /// </summary>
-        public List<string> GetSchemas() {
-            if( _context.ProjectContext.Schemas.Count == 0 )
+        public List<string> GetSchemas()
+        {
+            if (_context.ProjectContext.Schemas.Count == 0)
                 return new List<string> { "dbo" };
             return _context.ProjectContext.Schemas;
         }
@@ -139,8 +148,21 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 获取实体上下文列表
         /// </summary>
-        public List<EntityContext> GetEntities() {
+        public List<EntityContext> GetEntities()
+        {
             return _context.ProjectContext.Entities;
+        }
+
+        #endregion
+
+        #region GetEntities(获取架构下的实体)
+
+        /// <summary>
+        /// 获取架构下的实体
+        /// </summary>
+        public List<EntityContext> GetEntities(string scheme)
+        {
+            return _context.ProjectContext.Entities.Where(t => t.Schema == scheme).ToList();
         }
 
         #endregion
@@ -150,8 +172,10 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 获取标识属性默认值
         /// </summary>
-        public string GetKeyDefault() {
-            switch( _context.Key.SystemType ) {
+        public string GetKeyDefault()
+        {
+            switch (_context.Key.SystemType)
+            {
                 case SystemType.String:
                     return "string.Empty";
                 case SystemType.Guid:
@@ -168,7 +192,8 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 获取标识类型
         /// </summary>
-        public string GetKeyType() {
+        public string GetKeyType()
+        {
             return _context.Key.TypeName;
         }
 
@@ -179,7 +204,8 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 获取必填项消息
         /// </summary>
-        public string GetRequiredMessage() {
+        public string GetRequiredMessage()
+        {
             return _context.ProjectContext.GeneratorContext.Message.RequiredMessage ?? GeneratorResource.RequiredMessage;
         }
 
@@ -190,7 +216,8 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 是否使用Utc
         /// </summary>
-        public bool Utc() {
+        public bool Utc()
+        {
             return _context.ProjectContext.Utc;
         }
 

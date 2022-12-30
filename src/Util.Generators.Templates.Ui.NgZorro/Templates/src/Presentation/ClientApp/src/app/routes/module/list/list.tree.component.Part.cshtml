@@ -7,7 +7,7 @@
 }
 import { Component, Injector } from '@@angular/core';
 import { environment } from "@@env/environment";
-import { TableQueryComponentBase } from "util-angular";
+import { TreeTableQueryComponentBase } from "util-angular";
 import { @(entity)Query } from './model/@service.GetClientEntityName()-query';
 import { @(entity)ViewModel } from './model/@service.GetClientEntityName()-view-model';
 import { @(entity)EditComponent } from './@service.GetClientEntityName()-edit.component';
@@ -18,7 +18,7 @@ import { @(entity)DetailComponent } from './@service.GetClientEntityName()-detai
  */
 @@Component( {
     selector: '@service.GetClientEntityName()-list',
-    templateUrl: environment.production ? './html/index.component.html' : '/view/routes/@service.ClientAppName/@service.GetClientEntityName()',
+    templateUrl: environment.production ? './html/index.component.html' : '/view/routes/@service.ClientAppName/@service.EntityName',
 })
 export class @(entity)ListComponent extends TreeTableQueryComponentBase<@(entity)ViewModel,@(entity)Query>
 {

@@ -94,24 +94,35 @@ export class StartupService {
         text: 'Main',
         group: true,
         children: [
-          {
-            text: 'Dashboard',
-            link: '/dashboard',
-            icon: { type: 'icon', value: 'appstore' }
-          }
-        ]
+              {
+                text: 'Dashboard',
+                link: '/dashboard',
+                icon: { type: 'icon', value: 'appstore' }
+              }
+            ]
         },
+        @foreach (var scheme in service.GetSchemas())
         {
-            text: '权限',
+            <text>
+        {
+            text: '@service.GetClientModuleFolderName()',
             group: true,
             children: [
+            @foreach (var entity in service.GetEntities(scheme))
+            {
+                <text>
                 {
-                    text: '声明',
-                    link: '/permission/claim',
+                    text: '@entity.Description',
+                    link: '/@service.GetClientModuleFolderName()/@service.GetClientEntityName(entity)',
                     icon: { type: 'icon', value: 'appstore' }
-                }
+                },
+                </text>
+            }
             ]
+        },
+            </text>
         }
+        
     ]);
     // Can be set page suffix title, https://ng-alain.com/theme/title
     this.titleService.suffix = app.name;

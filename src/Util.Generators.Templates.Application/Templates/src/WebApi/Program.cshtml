@@ -23,6 +23,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//配置cors
+builder.Services.AddCors(options => options.AddPolicy("cors", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
 //配置Util
 builder.Host.AddUtil( options => options
     .UseAop()
@@ -41,6 +44,7 @@ if ( app.Environment.IsDevelopment() ) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+    app.UseCors("cors");
 app.UseHttpLogging();
 app.UseAuthorization();
 app.MapControllers();
