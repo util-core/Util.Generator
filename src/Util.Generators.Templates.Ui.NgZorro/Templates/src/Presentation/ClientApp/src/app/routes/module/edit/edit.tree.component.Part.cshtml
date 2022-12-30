@@ -8,6 +8,7 @@
 import { Component, Injector } from '@@angular/core';
 import { environment } from "@@env/environment";
 import { TreeDialogEditComponentBase } from "util-angular";
+import { @(entity)Query } from './model/@service.GetClientEntityName()-query';
 import { @(entity)ViewModel } from './model/@service.GetClientEntityName()-view-model';
 
 /**
@@ -15,9 +16,14 @@ import { @(entity)ViewModel } from './model/@service.GetClientEntityName()-view-
  */
 @@Component( {
     selector: '@service.GetClientEntityName()-edit',
-    templateUrl: environment.production ? './html/edit.component.html' : '/view/routes/@service.ClientAppName/@service.GetClientEntityName()/edit'
+    templateUrl: environment.production ? './html/edit.component.html' : '/view/routes/@service.ClientAppName/@service.EntityName/edit'
 } )
 export class @(entity)EditComponent extends TreeDialogEditComponentBase<@(entity)ViewModel> {
+    
+    /**
+    * 父下拉菜单查询参数
+    */
+    queryParam: @(entity)Query = new @(entity)Query();
 
     /**
      * 初始化应用程序编辑页
@@ -39,10 +45,10 @@ export class @(entity)EditComponent extends TreeDialogEditComponentBase<@(entity
      * 获取基地址
      */
     protected getBaseUrl() {
-        return "@service.GetClientEntityName()";
+    return "@service.EntityName";
     }
 
-    /**/
+    /**
      * 是否远程加载
      */
     isRequestLoad() {

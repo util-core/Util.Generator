@@ -21,7 +21,7 @@
         已选择<strong class='text-primary mx-xs'>{{getCheckedLength()}}</strong>行
     </util-alert>
     @*表格*@
-    <util-table id="tb_@(service.GetClientEntityName())" show-checkbox="true" show-line-number="true" query-param="queryParam" url="@(service.GetClientEntityName())" sort="CreationTime desc">
+    <util-table id="tb_@service.EntityName" show-checkbox="true" show-line-number="true" query-param="queryParam" url="@(service.EntityName)" sort="CreationTime desc">
         @foreach (var property in Model.Properties)
         {
             if (property.IsKey)
@@ -31,6 +31,8 @@
             if (property.IsExtraProperties)
                 continue;
             if (property.IsVersion)
+                continue;
+            if (property.IsIAudited)
                 continue;
         <util-td for="@(property.Name)" ellipsis="true"></util-td>
         }

@@ -11,7 +11,7 @@
 @("@model") @(service.EntityName)Dto
 
 @*标题*@
-<util-page-header2 title="编辑@(service.EntityDescription)" auto-breadcrumb="false"></util-page-header2>
+<util-page-header2 title="编辑@(service.EntityDescription)" auto-breadcrumb="false" [syncTitle]="false"></util-page-header2>
 @*表单*@
 <util-card borderless="true">
     <util-form label-span="4" control-span="20" gutter="16">
@@ -24,6 +24,8 @@
             if (property.IsExtraProperties)
                 continue;
             if (property.IsVersion)
+                continue;
+            if (property.IsIAudited)
                 continue;
             if (property.IsDateTime)
             {

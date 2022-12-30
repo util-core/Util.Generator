@@ -1,4 +1,5 @@
 ﻿using Humanizer;
+using Util.Generators.Contexts;
 
 namespace Util.Generators.Helpers {
     /// <summary>
@@ -153,6 +154,18 @@ namespace Util.Generators.Helpers {
 
         #endregion
 
+        #region GetClientEntityName(获取前端实体名)
+
+        /// <summary>
+        /// 获取前端实体名
+        /// </summary>
+        public string GetClientEntityName(EntityContext entityContext)
+        {
+            return entityContext.Name.Singularize().Kebaberize();
+        }
+
+        #endregion
+
         #region GetClientViewModelFileName(获取前端视图模型文件名)
 
         /// <summary>
@@ -184,6 +197,18 @@ namespace Util.Generators.Helpers {
         public string GetClientEditFileName()
         {
             return $"{GetClientEntityName()}-edit.component";
+        }
+
+        #endregion
+
+        #region GetClientDetailFileName(获取前端视图详情页面)
+
+        /// <summary>
+        /// 获取前端视图详情页面
+        /// </summary>
+        public string GetClientDetailFileName()
+        {
+            return $"{GetClientEntityName()}-detail.component";
         }
 
         #endregion

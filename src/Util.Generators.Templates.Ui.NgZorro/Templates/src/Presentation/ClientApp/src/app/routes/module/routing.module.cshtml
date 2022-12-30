@@ -9,13 +9,24 @@
 }
 import { NgModule } from '@@angular/core';
 import { RouterModule, Routes } from '@@angular/router';
-
+@foreach (var entity in service.GetEntities())
+{
+    <text>
+import { @(entity.Name)ListComponent } from './@service.GetClientEntityName(entity)/@(service.GetClientEntityName(entity))-list.component';
+    </text>
+}
 
 //路由配置
 export const routes: Routes = [
     {
         path: '',
         children: [
+@foreach (var entity in service.GetEntities())
+{
+    <text>
+        { path: '@service.GetClientEntityName(entity)', component: @(entity.Name)ListComponent },
+    </text>
+}
         ]
     }
 ];

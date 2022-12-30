@@ -10,17 +10,39 @@
 import { NgModule } from '@@angular/core';
 import { SharedModule } from '@@shared/shared.module';
 import { @service.GetClientRoutingModuleClassName() } from './@service.GetClientRoutingModuleFileName()';
+@foreach (var entity in service.GetEntities())
+{
+    <text>
+import { @(entity.Name)ListComponent } from './@service.GetClientEntityName(entity)/@(service.GetClientEntityName(entity))-list.component';
+import { @(entity.Name)EditComponent } from './@service.GetClientEntityName(entity)/@(service.GetClientEntityName(entity))-edit.component';
+import { @(entity.Name)DetailComponent } from './@service.GetClientEntityName(entity)/@(service.GetClientEntityName(entity))-detail.component';
+    </text>
+}
 
 /**
 * @(Model.ProjectContext.ClientAppName)模块
 */
 @@NgModule( {
     declarations: [
+@foreach (var entity in service.GetEntities())
+{
+    <text>
+        @(entity.Name)ListComponent, @(entity.Name)EditComponent, @(entity.Name)DetailComponent,
+    </text>
+}
     ],
     imports: [
         SharedModule,@service.GetClientRoutingModuleClassName()
     ],
     providers: [
+    ],
+    entryComponents: [
+@foreach (var entity in service.GetEntities())
+{
+    <text>
+        @(entity.Name)EditComponent, @(entity.Name)DetailComponent,
+    </text>
+}
     ]
 } )
 export class @service.GetClientModuleClassName() {

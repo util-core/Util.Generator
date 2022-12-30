@@ -7,7 +7,6 @@
     Model.Output.Extension = ".cshtml";
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/Pages/Routes/{service.GetClientAppTitleName()}/{service.EntityName}";
 }
-@("@page")
 @("@model") @(service.EntityName)Query
 
 @*查询表单*@
@@ -23,6 +22,12 @@
                 continue;
             if (property.IsVersion)
                 continue;
+            if (property.IsSortId)
+                continue;
+            if (property.IsIAudited)
+                continue;
+            if (property.IsTree)
+                continue;
             if (property.IsDateTime)
             {
         <util-column sm="8" xs="24">
@@ -36,7 +41,7 @@
             if (property.IsBool)
             {
         <util-column sm="8" xs="24">
-            <util-switch for="@property.Name" />
+            <util-select for="@property.Name" />
         </util-column>
                 continue;
             }

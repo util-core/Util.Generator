@@ -3,7 +3,7 @@
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
-    Model.Output.FileNameNoExtension = service.GetClientEditFileName();
+    Model.Output.FileNameNoExtension = service.GetClientDetailFileName();
     Model.Output.Extension = ".ts";
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}/{service.GetClientEntityName()}";
 }
