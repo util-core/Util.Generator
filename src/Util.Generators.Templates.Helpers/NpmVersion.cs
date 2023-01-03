@@ -6,7 +6,7 @@
         /// <summary>
         /// util-angular版本号
         /// </summary>
-        public static string UtilAngular => "0.1.5";
+        public static string UtilAngular => "0.3.5";
         /// <summary>
         /// typescript版本号
         /// </summary>
