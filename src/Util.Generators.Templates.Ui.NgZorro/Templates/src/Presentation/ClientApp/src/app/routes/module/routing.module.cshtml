@@ -5,15 +5,13 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = service.GetClientRoutingModuleFileName();
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}";
+    Model.Output.RelativeRootPath = $"src/{service.GetClientModulePath()}";
 }
 import { NgModule } from '@@angular/core';
 import { RouterModule, Routes } from '@@angular/router';
-@foreach (var entity in service.GetEntities())
-{
-    <text>
-import { @(entity.Name)ListComponent } from './@service.GetClientEntityName(entity)/@(service.GetClientEntityName(entity))-list.component';
-    </text>
+@foreach (var entity in service.GetEntities()) {
+<text>import { @service.GetClientListClassName(entity) } from './@service.GetClientEntityFileName(entity)/@(service.GetClientListFileName( entity ))';
+</text>
 }
 
 //路由配置
@@ -21,19 +19,17 @@ export const routes: Routes = [
     {
         path: '',
         children: [
-@foreach (var entity in service.GetEntities())
-{
-    <text>
-        { path: '@service.GetClientEntityName(entity)', component: @(entity.Name)ListComponent },
-    </text>
+@foreach (var entity in service.GetEntities()) {
+<text>           { path: '@service.GetClientEntityFileName(entity)', component: @service.GetClientListClassName() },
+</text>
 }
-        ]
+       ]
     }
 ];
 
 /**
-* @(Model.ProjectContext.ClientAppName)路由模块
-*/
+ * @(Model.ProjectContext.ClientAppName)路由模块
+ */
 @@NgModule( {
     imports: [RouterModule.forChild( routes )]
 } )

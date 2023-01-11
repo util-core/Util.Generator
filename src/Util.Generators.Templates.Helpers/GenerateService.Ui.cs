@@ -44,6 +44,39 @@ namespace Util.Generators.Helpers {
 
         #endregion        
 
+        #region GetUiPagesPath(获取Ui层Pages页面路径)
+
+        /// <summary>
+        /// 获取Ui层Pages页面路径
+        /// </summary>
+        public string GetUiPagesPath() {
+            return $"{GetUiProjectName()}/Pages/Routes/{ClientAppName.Pluralize().Pascalize()}/{EntityName}";
+        }
+
+        #endregion
+
+        #region GetClientModulePath(获取前端模块路径)
+
+        /// <summary>
+        /// 获取前端模块路径
+        /// </summary>
+        public string GetClientModulePath() {
+            return $"{GetUiProjectName()}/ClientApp/src/app/routes/{GetClientModuleFolderName()}";
+        }
+
+        #endregion
+
+        #region GetClientComponentPath(获取前端组件路径)
+
+        /// <summary>
+        /// 获取前端组件路径
+        /// </summary>
+        public string GetClientComponentPath() {
+            return $"{GetClientModulePath()}/{GetClientEntityFileName()}";
+        }
+
+        #endregion
+
         #region GetUiNamespace(获取Ui层命名空间)
 
         /// <summary>
@@ -68,22 +101,8 @@ namespace Util.Generators.Helpers {
         /// 获取前端应用名称
         /// </summary>
         public string GetClientAppName() {
-            var result = _context.ProjectContext.ClientAppName;
-            return result.IsEmpty() ? ProjectName.ToLower() : result;
-        }
-
-        #endregion
-
-        #region GetClientAppTitleName(获取应用名称驼峰)
-
-        /// <summary>
-        /// 获取应用名称驼峰
-        /// </summary>
-        public string GetClientAppTitleName()
-        {
-            var result = _context.ProjectContext.ClientAppName;
-            result = result.IsEmpty() ? ProjectName.ToLower() : result;
-            return result.Pluralize().Titleize();
+            var result = _context.ProjectContext.ClientAppName.Camelize();
+            return result.IsEmpty() ? ProjectName.Camelize() : result;
         }
 
         #endregion
@@ -143,13 +162,21 @@ namespace Util.Generators.Helpers {
 
         #endregion
 
-        #region GetClientEntityName(获取前端实体名)
+        #region GetClientEntityFileName(获取前端实体文件名)
 
         /// <summary>
-        /// 获取前端实体名
+        /// 获取前端实体文件名
         /// </summary>
-        public string GetClientEntityName() {
-            return _context.Name.Singularize().Kebaberize();
+        /// <param name="entity">实体上下文</param>
+        public string GetClientEntityFileName( EntityContext entity ) {
+            return entity.Name.Singularize().Kebaberize();
+        }
+
+        /// <summary>
+        /// 获取前端实体文件名
+        /// </summary>
+        public string GetClientEntityFileName() {
+            return GetClientEntityFileName( _context );
         }
 
         #endregion
@@ -159,9 +186,8 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 获取前端实体名
         /// </summary>
-        public string GetClientEntityName(EntityContext entityContext)
-        {
-            return entityContext.Name.Singularize().Kebaberize();
+        public string GetClientEntityName() {
+            return _context.Name.Singularize().Camelize();
         }
 
         #endregion
@@ -172,43 +198,7 @@ namespace Util.Generators.Helpers {
         /// 获取前端视图模型文件名
         /// </summary>
         public string GetClientViewModelFileName() {
-            return $"{GetClientEntityName()}-view-model";
-        }
-
-        #endregion
-
-        #region GetClientListFileName(获取前端视图列表页面)
-
-        /// <summary>
-        /// 获取前端视图列表页面
-        /// </summary>
-        public string GetClientListFileName()
-        {
-            return $"{GetClientEntityName()}-list.component";
-        }
-
-        #endregion
-
-        #region GetClientEditFileName(获取前端视图编辑页面)
-
-        /// <summary>
-        /// 获取前端视图编辑页面
-        /// </summary>
-        public string GetClientEditFileName()
-        {
-            return $"{GetClientEntityName()}-edit.component";
-        }
-
-        #endregion
-
-        #region GetClientDetailFileName(获取前端视图详情页面)
-
-        /// <summary>
-        /// 获取前端视图详情页面
-        /// </summary>
-        public string GetClientDetailFileName()
-        {
-            return $"{GetClientEntityName()}-detail.component";
+            return $"{GetClientEntityFileName()}-view-model";
         }
 
         #endregion
@@ -230,7 +220,64 @@ namespace Util.Generators.Helpers {
         /// 获取前端查询参数文件名
         /// </summary>
         public string GetClientQueryFileName() {
-            return $"{GetClientEntityName()}-query";
+            return $"{GetClientEntityFileName()}-query";
+        }
+
+        #endregion
+
+        #region GetClientListFileName(获取前端列表页文件名)
+
+        /// <summary>
+        /// 获取前端列表页文件名
+        /// </summary>
+        /// <param name="entity">实体上下文</param>
+        public string GetClientListFileName( EntityContext entity ) {
+            return $"{GetClientEntityFileName( entity )}-list.component";
+        }
+
+        /// <summary>
+        /// 获取前端列表页文件名
+        /// </summary>
+        public string GetClientListFileName() {
+            return GetClientListFileName( _context );
+        }
+
+        #endregion
+
+        #region GetClientEditFileName(获取前端编辑页文件名)
+
+        /// <summary>
+        /// 获取前端编辑页文件名
+        /// </summary>
+        /// <param name="entity">实体上下文</param>
+        public string GetClientEditFileName( EntityContext entity ) {
+            return $"{GetClientEntityFileName( entity )}-edit.component";
+        }
+
+        /// <summary>
+        /// 获取前端编辑页文件名
+        /// </summary>
+        public string GetClientEditFileName() {
+            return GetClientEditFileName( _context );
+        }
+
+        #endregion
+
+        #region GetClientDetailFileName(获取前端详情页文件名)
+
+        /// <summary>
+        /// 获取前端详情页文件名
+        /// </summary>
+        /// <param name="entity">实体上下文</param>
+        public string GetClientDetailFileName( EntityContext entity ) {
+            return $"{GetClientEntityFileName( entity )}-detail.component";
+        }
+
+        /// <summary>
+        /// 获取前端详情页文件名
+        /// </summary>
+        public string GetClientDetailFileName() {
+            return GetClientDetailFileName( _context );
         }
 
         #endregion
@@ -242,6 +289,122 @@ namespace Util.Generators.Helpers {
         /// </summary>
         public string GetClientQueryClassName() {
             return $"{_context.Name.Singularize().Pascalize()}Query";
+        }
+
+        #endregion
+
+        #region GetClientListClassName(获取前端列表组件类名)
+
+        /// <summary>
+        /// 获取前端列表组件类名
+        /// </summary>
+        /// <param name="entity">实体上下文</param>
+        public string GetClientListClassName( EntityContext entity ) {
+            return $"{entity.Name.Singularize().Pascalize()}ListComponent";
+        }
+
+        /// <summary>
+        /// 获取前端列表组件类名
+        /// </summary>
+        public string GetClientListClassName() {
+            return GetClientListClassName( _context );
+        }
+
+        #endregion
+
+        #region GetClientEditClassName(获取前端编辑组件类名)
+
+        /// <summary>
+        /// 获取前端编辑组件类名
+        /// </summary>
+        /// <param name="entity">实体上下文</param>
+        public string GetClientEditClassName( EntityContext entity ) {
+            return $"{entity.Name.Singularize().Pascalize()}EditComponent";
+        }
+
+        /// <summary>
+        /// 获取前端编辑组件类名
+        /// </summary>
+        public string GetClientEditClassName() {
+            return GetClientEditClassName( _context );
+        }
+
+        #endregion
+
+        #region GetClientDetailClassName(获取前端详情组件类名)
+
+        /// <summary>
+        /// 获取前端详情组件类名
+        /// </summary>
+        /// <param name="entity">实体上下文</param>
+        public string GetClientDetailClassName( EntityContext entity ) {
+            return $"{entity.Name.Singularize().Pascalize()}DetailComponent";
+        }
+
+        /// <summary>
+        /// 获取前端详情组件类名
+        /// </summary>
+        public string GetClientDetailClassName() {
+            return GetClientDetailClassName( _context );
+        }
+
+        #endregion
+
+        #region GetClientTableId(获取前端表格标识)
+
+        /// <summary>
+        /// 获取前端表格标识
+        /// </summary>
+        public string GetClientTableId() {
+            return $"tb_{GetClientEntityName()}";
+        }
+
+        #endregion
+
+        #region GetClientSort(获取前端排序属性)
+
+        /// <summary>
+        /// 获取前端排序属性
+        /// </summary>
+        public string GetClientSort() {
+            if ( _context.HasSortId )
+                return "sort=\"SortId\"";
+            if ( _context.HasCreationTime )
+                return "sort=\"CreationTime desc\"";
+            return null;
+        }
+
+        #endregion
+
+        #region GetClientViewTemplateUrl(获取前端视图模板地址)
+
+        /// <summary>
+        /// 获取前端视图模板地址
+        /// </summary>
+        public string GetClientViewTemplateUrl() {
+            return $"/view/routes/{ClientAppName.Pluralize().Camelize()}/{GetClientEntityName()}";
+        }
+
+        #endregion
+
+        #region GetClientRoutesName(获取前端路由变量名)
+
+        /// <summary>
+        /// 获取前端路由变量名
+        /// </summary>
+        public string GetClientRoutesName() {
+            return $"{GetClientAppName()}Routes";
+        }
+
+        #endregion
+
+        #region GetClientModuleRoutePath(获取前端模块路由路径)
+
+        /// <summary>
+        /// 获取前端模块路由路径
+        /// </summary>
+        public string GetClientModuleRoutePath() {
+            return GetClientAppName().Kebaberize();
         }
 
         #endregion

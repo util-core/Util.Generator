@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Util.Data;
 using Util.Generators.Contexts;
 
@@ -151,6 +152,26 @@ namespace Util.Generators.Helpers {
                 result = $"{GetDataProjectName( database )}.{module}";
             if( isAddSchema && IsSupportSchema() )
                 result += $".{Schema}";
+            return result;
+        }
+
+        #endregion
+
+        #region GetQueryNamespaces(获取查询参数命名空间集合)
+
+        /// <summary>
+        /// 获取查询参数命名空间集合
+        /// </summary>
+        public List<string> GetQueryNamespaces() {
+            var result = new List<string>();
+            var queryNamespace = $"{_context.ProjectContext.Name}.Data.Queries";
+            if ( IsSupportSchema() == false ) {
+                result.Add( queryNamespace );
+                return result;
+            }
+            foreach ( var schema in GetSchemas() ) {
+                result.Add( $"{queryNamespace}.{schema}" );
+            }
             return result;
         }
 

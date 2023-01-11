@@ -80,25 +80,29 @@ namespace Util.Generators.Contexts {
         /// </summary>
         public bool IsVersion => Name == "Version" && SystemType == Generators.SystemType.Binary;
         /// <summary>
-        /// 是否是审计字段
-        /// </summary>
-        public bool IsIAudited => Name == "CreatorId"||Name == "LastModificationTime"||Name == "LastModifierId";
-        /// <summary>
         /// 是否逻辑删除
         /// </summary>
-        public bool IsDelete => Name == "IsDeleted" && SystemType == Generators.SystemType.Bool;
+        public bool IsDeleted => Name == "IsDeleted" && SystemType == Generators.SystemType.Bool;
         /// <summary>
-        /// 是否父编号
+        /// 是否创建时间
         /// </summary>
-        public bool IsParentId => Name == "ParentId" && SystemType == Generators.SystemType.Guid;
+        public bool IsCreationTime => Name == "CreationTime" && SystemType == Generators.SystemType.DateTime;
         /// <summary>
         /// 是否排序号
         /// </summary>
-        public bool IsSortId => Name == "SortId" && SystemType == Generators.SystemType.Int;
+        public bool IsSortId => Name == "SortId";
+        /// <summary>
+        /// 是否父标识
+        /// </summary>
+        public bool IsParentId => Name == "ParentId";
         /// <summary>
         /// 是否扩展属性
         /// </summary>
         public bool IsExtraProperties => Name == "ExtraProperties";
+        /// <summary>
+        /// 是否审计属性
+        /// </summary>
+        public bool IsAudited => Name == "CreatorId" || Name == "CreationTime" || Name == "LastModifierId" || Name == "LastModificationTime";
         /// <summary>
         /// 是否布尔值
         /// </summary>

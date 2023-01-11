@@ -119,18 +119,11 @@ namespace Util.Generators {
         /// 是否跳过
         /// </summary>
         protected virtual bool IsSkip( EntityContext entityContext ) {
-            if ( IsRelationTable( entityContext ) ) {
+            if ( entityContext.IsRelationTable ) {
                 _logger.SkipRelationTable( entityContext );
                 return true;
             }
             return false;
-        }
-
-        /// <summary>
-        /// 是否多对多关联表
-        /// </summary>
-        protected virtual bool IsRelationTable( EntityContext entityContext ) {
-            return entityContext.Properties.Count == 2 && entityContext.Properties.All( t => t.IsKey );
         }
     }
 }

@@ -5,27 +5,38 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = service.GetClientQueryFileName();
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}/{service.GetClientEntityName()}/model";
+    Model.Output.RelativeRootPath = $"src/{service.GetClientComponentPath()}/model";
 }
-import { @(service.IsTreeEntity() ? "TreeQueryParameter" : "QueryParameter") } from "util-angular";
+import { QueryParameter } from "util-angular";
 
 /**
 * @(Model.Description)查询参数
 */
-export class @service.GetClientQueryClassName() extends @(service.IsTreeEntity() ? "TreeQueryParameter" : "QueryParameter") {
+export class @service.GetClientQueryClassName() extends QueryParameter {
 @foreach (var property in Model.Properties) {
+    if ( property.IsKey )
+        continue;
     if ( property.IsExtraProperties )
         continue;
-    if ( property.IsDelete )
+    if ( property.IsVersion )
         continue;
-    if (service.IsTreeEntity() && property.IsTree)
+    if ( property.IsDeleted )
         continue;
-    if (service.IsTreeEntity() && property.Name == "enabled")
-        continue;
+if ( property.SystemType == Util.Generators.SystemType.DateTime ) {
 <text>   /**
+    * 起始@(property.Description)
+    */
+    begin@(property.Name);
+    /**
+    * 结束@(property.Description)
+    */
+    end@(property.Name)
+</text>
+ continue;
+}<text>   /**
     * @property.Description
     */
     @property.CamelName;
-</text>
+ </text>
 }
 }

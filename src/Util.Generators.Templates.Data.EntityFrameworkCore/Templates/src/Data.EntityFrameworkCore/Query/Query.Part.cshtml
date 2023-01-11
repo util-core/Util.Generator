@@ -16,7 +16,9 @@ namespace @service.GetDataNamespace( "Queries",true ) {
     /// </summary>
     public class @query : QueryParameter {
 @foreach (var property in Model.Properties) {
-    if ( property.IsDelete )
+    if ( property.IsKey )
+        continue;
+    if ( property.IsDeleted )
         continue;
     if ( property.IsVersion )
         continue;
@@ -26,12 +28,10 @@ namespace @service.GetDataNamespace( "Queries",true ) {
 <text>        /// <summary>
         /// 起始@(property.Description)
         /// </summary>
-        [Description( "起始@(property.Description)" )]
         public DateTime? Begin@(property.Name) { get; set; }
         /// <summary>
         /// 结束@(property.Description)
         /// </summary>
-        [Description( "结束@(property.Description)" )]
         public DateTime? End@(property.Name) { get; set; }
 </text>
         continue;

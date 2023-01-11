@@ -5,17 +5,17 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = service.GetClientModuleFileName();
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}";
+    Model.Output.RelativeRootPath = $"src/{service.GetClientModulePath()}";
 }
 import { NgModule } from '@@angular/core';
-import { SharedModule } from '@@shared/shared.module';
+import { SharedModule } from '@@shared';
 import { @service.GetClientRoutingModuleClassName() } from './@service.GetClientRoutingModuleFileName()';
 @foreach (var entity in service.GetEntities())
 {
     <text>
-import { @(entity.Name)ListComponent } from './@service.GetClientEntityName(entity)/@(service.GetClientEntityName(entity))-list.component';
-import { @(entity.Name)EditComponent } from './@service.GetClientEntityName(entity)/@(service.GetClientEntityName(entity))-edit.component';
-import { @(entity.Name)DetailComponent } from './@service.GetClientEntityName(entity)/@(service.GetClientEntityName(entity))-detail.component';
+import { @service.GetClientListClassName(entity) } from './@service.GetClientEntityFileName(entity)/@(service.GetClientListFileName( entity ))';
+import { @service.GetClientEditClassName(entity) } from './@service.GetClientEntityFileName(entity)/@(service.GetClientEditFileName( entity ))';
+import { @service.GetClientDetailClassName(entity) } from './@service.GetClientEntityFileName(entity)/@(service.GetClientDetailFileName( entity ))';
     </text>
 }
 
@@ -26,23 +26,14 @@ import { @(entity.Name)DetailComponent } from './@service.GetClientEntityName(en
     declarations: [
 @foreach (var entity in service.GetEntities())
 {
-    <text>
-        @(entity.Name)ListComponent, @(entity.Name)EditComponent, @(entity.Name)DetailComponent,
-    </text>
+<text>      @service.GetClientListClassName(entity),@service.GetClientEditClassName(entity),@service.GetClientDetailClassName(entity),
+</text>
 }
     ],
     imports: [
         SharedModule,@service.GetClientRoutingModuleClassName()
     ],
     providers: [
-    ],
-    entryComponents: [
-@foreach (var entity in service.GetEntities())
-{
-    <text>
-        @(entity.Name)EditComponent, @(entity.Name)DetailComponent,
-    </text>
-}
     ]
 } )
 export class @service.GetClientModuleClassName() {

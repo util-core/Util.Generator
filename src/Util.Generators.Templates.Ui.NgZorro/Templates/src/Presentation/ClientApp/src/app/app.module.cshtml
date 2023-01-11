@@ -44,7 +44,7 @@ const GLOBAL_THIRD_MODULES: Array<Type<void>> = [];
 // #endregion
 
 // #region Startup Service
-import { StartupService } from './core/startup/startup.service';
+import { StartupService } from '@@core';
 export function StartupServiceFactory(startupService: StartupService): () => Observable<void> {
     return () => startupService.load();
 }
@@ -65,8 +65,6 @@ import { GlobalConfigModule } from './global-config.module';
 import { LayoutModule } from './layout/layout.module';
 import { RoutesModule } from './routes/routes.module';
 import { SharedModule } from './shared/shared.module';
-import { Util, AppConfig } from 'util-angular';
-import { appConfig } from './app-config';
 
 @@NgModule({
     declarations: [
@@ -87,18 +85,8 @@ import { appConfig } from './app-config';
     ],
     providers: [
         ...LANG_PROVIDES,
-        ...APPINIT_PROVIDES,
-        { provide: AppConfig, useValue: appConfig }
+        ...APPINIT_PROVIDES
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-
-     /**
-     * 初始化应用根模块
-     * @@param injector 注入器
-     */
-     constructor(injector: Injector) {
-       Util.init(injector);
-     }
-}
+export class AppModule { }

@@ -1,32 +1,31 @@
-﻿@* Ui层项目 - 视图模型文件 *@
+﻿@* Ui层项目 - 树形编辑组件文件 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
-    var entity = service.EntityName;
+    var description = $"{Model.Description}编辑页";
 }
 import { Component, Injector } from '@@angular/core';
 import { environment } from "@@env/environment";
 import { TreeDialogEditComponentBase } from "util-angular";
-import { @(entity)Query } from './model/@service.GetClientEntityName()-query';
-import { @(entity)ViewModel } from './model/@service.GetClientEntityName()-view-model';
+import { @service.GetClientQueryClassName() } from './model/@service.GetClientQueryFileName()';
+import { @service.GetClientViewModelClassName() } from './model/@service.GetClientViewModelFileName()';
 
 /**
- * 应用程序编辑页
+ * @description
  */
 @@Component( {
-    selector: '@service.GetClientEntityName()-edit',
-    templateUrl: environment.production ? './html/edit.component.html' : '/view/routes/@service.ClientAppName/@service.EntityName/edit'
+    selector: '@service.GetClientEntityFileName()-edit',
+    templateUrl: environment.production ? './html/edit.component.html' : '@service.GetClientViewTemplateUrl()/edit'
 } )
-export class @(entity)EditComponent extends TreeDialogEditComponentBase<@(entity)ViewModel> {
-    
+export class @service.GetClientEditClassName() extends TreeDialogEditComponentBase<@service.GetClientViewModelClassName()> {
     /**
-    * 父下拉菜单查询参数
-    */
-    queryParam: @(entity)Query = new @(entity)Query();
+     * 下拉列表加载参数
+     */
+    queryParam: @service.GetClientQueryClassName();
 
     /**
-     * 初始化应用程序编辑页
+     * 初始化@(description)
      * @@param injector 注入器
      */
     constructor( injector: Injector ) {
@@ -34,10 +33,26 @@ export class @(entity)EditComponent extends TreeDialogEditComponentBase<@(entity
     }
 
     /**
+     * 初始化
+     */
+    ngOnInit() {
+        super.ngOnInit();
+        this.queryParam = this.createQuery();
+    }
+
+    /**
+     * 创建下拉列表加载参数
+     */
+    protected createQuery() {
+        let result = new @(service.GetClientQueryClassName())();
+        return result;
+    }
+
+    /**
      * 创建模型
      */
     protected createModel() {
-        let result = new @(entity)ViewModel();
+        let result = new @service.GetClientViewModelClassName();
         return result;
     }
 
@@ -45,13 +60,6 @@ export class @(entity)EditComponent extends TreeDialogEditComponentBase<@(entity
      * 获取基地址
      */
     protected getBaseUrl() {
-    return "@service.EntityName";
-    }
-
-    /**
-     * 是否远程加载
-     */
-    isRequestLoad() {
-        return false;
+        return "@service.GetClientEntityName()";
     }
 }

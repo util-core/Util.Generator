@@ -85,6 +85,12 @@
 	  <Content Update="Templates\test\Application.Test\ApplicationServiceTest.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\test\Application.Test\ApplicationServiceTest\TreeServiceTest.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\test\Application.Test\ApplicationServiceTest\ServiceTest.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\test\Application.Test\AppSettings.Development.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>

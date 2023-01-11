@@ -93,9 +93,24 @@ namespace Util.Generators.Contexts {
         }
 
         /// <summary>
-        /// 是否具有逻辑删除
+        /// 是否包含逻辑删除
         /// </summary>
-        public bool HasIsDelete => Properties.Any( t => t.IsDelete );
+        public bool HasIsDeleted => Properties.Any( t => t.IsDeleted );
+
+        /// <summary>
+        /// 是否包含创建时间
+        /// </summary>
+        public bool HasCreationTime => Properties.Any( t => t.IsCreationTime );
+
+        /// <summary>
+        /// 是否包含排序号
+        /// </summary>
+        public bool HasSortId => Properties.Any( t => t.IsSortId );
+
+        /// <summary>
+        /// 是否多对多关联表
+        /// </summary>
+        public bool IsRelationTable => Properties.Count == 2 && Properties.All( t => t.IsKey );
 
         /// <summary>
         /// 获取带架构的名称

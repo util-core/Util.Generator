@@ -99,5 +99,23 @@ namespace @service.GetWebApiNamespace( "Controllers",true ) {
         public async Task<IActionResult> BatchDeleteAsync( [FromBody] string ids ) {
             return await base.DeleteAsync( ids );
         }
+
+        /// <summary>
+        /// 启用
+        /// </summary>
+        /// <param name="ids">标识列表</param>
+        [HttpPost( "enable" )]
+        public new async Task<IActionResult> EnableAsync( [FromBody] string ids ) {
+            return await base.EnableAsync( ids );
+        }
+
+        /// <summary>
+        /// 禁用
+        /// </summary>
+        /// <param name="ids">标识列表</param>
+        [HttpPost( "disable" )]
+        public new async Task<IActionResult> DisableAsync( [FromBody] string ids ) {
+            return await base.DisableAsync( ids );
+        }
     }
 }

@@ -1,11 +1,8 @@
-﻿@* Ui层项目组件导入文件 *@
+﻿@* Ui层项目 - 编辑页文件 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
-    Model.Output.FileNameNoExtension = "Edit";
-    Model.Output.Extension = ".cshtml";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/Pages/Routes/{service.GetClientAppTitleName()}/{service.EntityName}";
 }
 @("@page")
 @("@model") @(service.EntityName)Dto
@@ -19,13 +16,13 @@
         {
             if (property.IsKey)
                 continue;
-            if (property.IsDelete)
+            if (property.IsDeleted)
                 continue;
             if (property.IsExtraProperties)
                 continue;
             if (property.IsVersion)
                 continue;
-            if (property.IsIAudited)
+            if (property.IsAudited)
                 continue;
             if (property.IsDateTime)
             {

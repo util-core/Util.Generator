@@ -68,8 +68,7 @@ import { environment } from '@@env/environment';
         </nz-dropdown-menu>
       </ng-template>
       <ng-template #contentTpl>
-          <reuse-tab #reuseTab></reuse-tab>
-          <router-outlet (activate)="reuseTab.activate($event)" (attach)="reuseTab.activate($event)"></router-outlet>
+        <router-outlet></router-outlet>
       </ng-template>
     </layout-default>
 

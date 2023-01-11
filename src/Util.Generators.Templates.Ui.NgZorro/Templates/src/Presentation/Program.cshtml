@@ -18,7 +18,7 @@ var builder = WebApplication.CreateBuilder( args );
 //配置Util服务
 ServiceRegistrarConfig.Instance.DisableDependencyServiceRegistrar();
 builder.Host.AddUtil( options => options
-    .UseNgZorro()
+    .UseNgZorro( t => t.EnableDefaultOptionText = true )
     .UseSerilog()
 );
 
@@ -26,7 +26,7 @@ builder.Host.AddUtil( options => options
 var app = builder.Build();
 
 //配置请求管道
-app.UseNgZorro( "http://localhost:10070" );
+app.UseNgZorro( "http://localhost:5000" );
 
 //运行应用
 app.Run();

@@ -1,0 +1,50 @@
+﻿@* 树形应用服务测试 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var entity = service.EntityName;
+    var dto = service.GetDto();
+    var applicationServiceTest = $"{entity}ServiceTest";
+    var applicationService = service.GetIApplicationService();
+    var fakeService = service.GetDtoFakeService();
+    var description = Model.Description;
+}
+using System.Threading.Tasks;
+using Xunit;
+using @service.GetApplicationTestNamespace( "Fakes",true );
+using @service.GetApplicationNamespace( "Services.Abstractions",true );
+
+namespace @service.GetApplicationTestNamespace( "Services",true ) {
+    /// <summary>
+    /// @(description)服务测试
+    /// </summary>
+    public class @applicationServiceTest {
+        /// <summary>
+        /// @(description)服务
+        /// </summary>
+        private readonly @applicationService _service;
+
+        /// <summary>
+        /// 测试初始化
+        /// </summary>
+        public @(applicationServiceTest)( @applicationService service ) {
+            _service = service;
+        }
+
+        /// <summary>
+        /// 测试创建
+        /// </summary>
+        [Fact]
+        public async Task TestCreateAsync() {
+            //创建
+            var dto = @(fakeService).Get@(dto)();
+            var id = await _service.CreateAsync( dto );
+
+            //验证
+            var result = await _service.GetByIdAsync( id );
+            Assert.NotNull( result );
+            Assert.Equal( id, result.Id );
+        }
+    }
+}

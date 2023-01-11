@@ -5,6 +5,7 @@
 @{
     var service = new GenerateService( Model );
     var projectName = service.GetUiProjectName();
+    var application = service.GetApplicationProjectName();
     Model.Output.FileNameNoExtension = projectName;
     Model.Output.Extension = ".csproj";
     Model.Output.RelativeRootPath = $"src/{projectName}";
@@ -25,13 +26,12 @@
 		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="@Version.SpaServices" />
 		<PackageReference Include="Util.Logging.Serilog.Exceptionless" Version="@Version.Util" />
 		<PackageReference Include="Util.Ui.NgZorro" Version="@Version.Util" />
-        <PackageReference Include="Util.Ui.NgAlain" Version="@Version.Util" />
-    </ItemGroup>
+	</ItemGroup>
 
-    <ItemGroup>
-        <Content Remove="$(SpaRoot)**" />
-        <None Remove="$(SpaRoot)**" />
-        <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+	<ItemGroup>
+		<Content Remove="$(SpaRoot)**" />
+		<None Remove="$(SpaRoot)**" />
+		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
         <None Remove="$(SpaRoot).angular\**" />
         <None Remove="$(SpaRoot)dist\**" />
         <None Remove="$(SpaRoot).browserslistrc" />
@@ -44,9 +44,9 @@
         <None Remove="$(SpaRoot).prettierrc.js" />
         <None Remove="$(SpaRoot).npmignore" />
     </ItemGroup>
-
+	
     <ItemGroup>
-		<ProjectReference Include="..\@(service.ProjectName).Application\@(service.ProjectName).Application.csproj" />
+		<ProjectReference Include="..\@application\@(application).csproj" />
     </ItemGroup>
 
 	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">

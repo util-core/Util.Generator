@@ -5,22 +5,20 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = service.GetClientViewModelFileName();
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes/{service.GetClientModuleFolderName()}/{service.GetClientEntityName()}/model";
+    Model.Output.RelativeRootPath = $"src/{service.GetClientComponentPath()}/model";
 }
-import { @(service.IsTreeEntity() ? "TreeViewModel" : "ViewModel") } from "util-angular";
+import { ViewModel } from "util-angular";
 
 /**
 * @(Model.Description)参数
 */
-export class @service.GetClientViewModelClassName() extends @(service.IsTreeEntity() ? "TreeViewModel" : "ViewModel") {
+export class @service.GetClientViewModelClassName() extends ViewModel {
 @foreach (var property in Model.Properties) {
     if ( property.IsKey )
         continue;
     if ( property.IsExtraProperties )
         continue;
-    if ( property.IsDelete )
-        continue;
-    if (service.IsTreeEntity() && property.IsTree)
+    if ( property.IsDeleted )
         continue;
 <text>   /**
     * @property.Description

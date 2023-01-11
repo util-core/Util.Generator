@@ -1,13 +1,13 @@
-﻿@* Ui层项目组件导入文件 *@
+﻿@* Ui层项目 - 列表页查询条件文件 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "Index.Query";
     Model.Output.Extension = ".cshtml";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/Pages/Routes/{service.GetClientAppTitleName()}/{service.EntityName}";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiPagesPath()}";
 }
-@("@model") @(service.EntityName)Query
+@("@")model @service.GetQuery()
 
 @*查询表单*@
 <util-form class="search__form">
@@ -16,37 +16,37 @@
             <util-row gutter="24">
                 @foreach (var property in Model.Properties)
                 {
-                if (property.IsKey)
-                    continue;
-                if (property.IsDelete)
-                    continue;
-                if (property.IsExtraProperties)
-                    continue;
-                if (property.IsVersion)
-                    continue;
-                if (property.IsSortId)
-                    continue;
-                if (property.IsIAudited)
-                    continue;
-                if (property.IsTree)
-                    continue;
-                if (property.IsDateTime)
-                {
+                    if (property.IsKey)
+                        continue;
+                    if (property.IsDeleted)
+                        continue;
+                    if (property.IsExtraProperties)
+                        continue;
+                    if (property.IsVersion)
+                        continue;
+                    if (property.IsSortId)
+                        continue;
+                    if (property.IsAudited)
+                        continue;
+                    if (property.IsTree)
+                        continue;
+                    if (property.IsDateTime)
+                    {
                 <util-column sm="8" xs="24">
                     <util-date-picker for="Begin@(property.Name)"/>
                 </util-column>
                 <util-column sm="8" xs="24">
                     <util-date-picker for="End@(property.Name)"/>
                 </util-column>
-                    continue;
-                }
-                if (property.IsBool)
-                {
+                        continue;
+                    }
+                    if (property.IsBool)
+                    {
                 <util-column sm="8" xs="24">
                     <util-select for="@property.Name"/>
                 </util-column>
-                    continue;
-                }
+                        continue;
+                    }
                 <util-column sm="8" xs="24">
                     <util-input for="@property.Name"/>
                 </util-column>

@@ -51,7 +51,7 @@ namespace @service.GetDomainTestNamespace( "Fakes" ) {
                 @:.Ignore( t => t.@property.Name )
                     continue;
                 }
-                @if ( property.IsDelete ) {
+                @if ( property.IsDeleted ) {
                 @:.RuleFor( t => t.IsDeleted, false )
                     continue;
                 } 

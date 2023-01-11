@@ -1,30 +1,28 @@
-﻿@* Ui层项目 - 视图模型文件 *@
+﻿@* Ui层项目 - 树形列表组件文件 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
-    var entity = service.EntityName;
+    var description = $"{Model.Description}列表页";
 }
 import { Component, Injector } from '@@angular/core';
 import { environment } from "@@env/environment";
 import { TreeTableQueryComponentBase } from "util-angular";
-import { @(entity)Query } from './model/@service.GetClientEntityName()-query';
-import { @(entity)ViewModel } from './model/@service.GetClientEntityName()-view-model';
-import { @(entity)EditComponent } from './@service.GetClientEntityName()-edit.component';
-import { @(entity)DetailComponent } from './@service.GetClientEntityName()-detail.component';
+import { @service.GetClientQueryClassName() } from './model/@service.GetClientQueryFileName()';
+import { @service.GetClientViewModelClassName() } from './model/@service.GetClientViewModelFileName()';
+import { @service.GetClientEditClassName() } from './@service.GetClientEditFileName()';
+import { @service.GetClientDetailClassName() } from './@service.GetClientDetailFileName()';
 
 /**
- * 模块列表页
+ * @description
  */
 @@Component( {
     selector: '@service.GetClientEntityName()-list',
-    templateUrl: environment.production ? './html/index.component.html' : '/view/routes/@service.ClientAppName/@service.EntityName',
+    templateUrl: environment.production ? './html/index.component.html' : '@service.GetClientViewTemplateUrl()',
 })
-export class @(entity)ListComponent extends TreeTableQueryComponentBase<@(entity)ViewModel,@(entity)Query>
-{
-
+export class @service.GetClientListClassName() extends TreeTableQueryComponentBase<@service.GetClientViewModelClassName(), @service.GetClientQueryClassName()> {
     /**
-     * 初始化模块列表页
+     * 初始化@(description)
      * @@param injector 注入器
      */
     constructor(injector: Injector) {
@@ -35,7 +33,7 @@ export class @(entity)ListComponent extends TreeTableQueryComponentBase<@(entity
      * 创建查询参数
      */
     protected createQuery() {
-        let result = new @(entity)Query();
+        let result = new @service.GetClientQueryClassName();
         return result;
     }
 
@@ -43,7 +41,7 @@ export class @(entity)ListComponent extends TreeTableQueryComponentBase<@(entity
      * 获取创建弹出层组件
      */
     getCreateDialogComponent() {
-        return @(entity)EditComponent;
+        return @service.GetClientEditClassName();
     }
 
     /**
@@ -71,6 +69,6 @@ export class @(entity)ListComponent extends TreeTableQueryComponentBase<@(entity
      * 获取详情弹出框组件
      */
     getDetailDialogComponent() {
-        return @(entity)DetailComponent;
+        return @service.GetClientDetailClassName();
     }
 }

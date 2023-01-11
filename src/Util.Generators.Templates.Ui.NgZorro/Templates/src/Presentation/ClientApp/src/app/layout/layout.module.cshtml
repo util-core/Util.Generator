@@ -33,7 +33,6 @@ import { HeaderFullScreenComponent } from './basic/widgets/fullscreen.component'
 import { HeaderSearchComponent } from './basic/widgets/search.component';
 import { HeaderUserComponent } from './basic/widgets/user.component';
 import { LayoutBlankComponent } from './blank/blank.component';
-import { ReuseTabModule } from '@@delon/abc/reuse-tab';
 
 const COMPONENTS = [LayoutBasicComponent, LayoutBlankComponent];
 
@@ -69,7 +68,6 @@ const PASSPORT = [
     NzBadgeModule,
     NzAvatarModule,
     NzIconModule,
-    ReuseTabModule
   ],
   declarations: [...COMPONENTS, ...HEADERCOMPONENTS, ...PASSPORT],
   exports: [...COMPONENTS, ...PASSPORT],

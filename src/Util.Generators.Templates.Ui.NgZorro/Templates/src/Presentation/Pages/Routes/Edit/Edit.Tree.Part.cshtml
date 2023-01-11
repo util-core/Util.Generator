@@ -1,48 +1,46 @@
-﻿@* Ui层项目组件导入文件 *@
+﻿@* UiUi层项目 - 树形编辑页文件 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
-    Model.Output.FileNameNoExtension = "Edit";
-    Model.Output.Extension = ".cshtml";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/Pages/Routes/{service.GetClientAppTitleName()}/{service.EntityName}";
+    var description = service.EntityDescription;
 }
 @("@page")
 @("@model") @(service.EntityName)Dto
 
 @*标题*@
-<util-page-header2 title="编辑@(service.EntityDescription)" auto-breadcrumb="false" [syncTitle]="false"></util-page-header2>
+<util-page-header2 title="编辑@(description)" auto-breadcrumb="false" [syncTitle]="false"></util-page-header2>
 @*表单*@
 <util-card borderless="true">
     <util-form label-span="4" control-span="20" gutter="16">
-        <util-tree-select for="ParentId" query-param="queryParam" url="@(service.EntityName)/tree" sort="CreationTime desc" default-expand-all="true" label-text="父模块" control-span="8"></util-tree-select>
+        <util-tree-select for="ParentId" query-param="queryParam" url="@service.GetClientEntityName()/tree" @service.GetClientSort() default-expand-all="true" label-text="父@(description)" control-span="8"></util-tree-select>
         @foreach (var property in Model.Properties)
         {
             if (property.IsParentId)
                 continue;
             if (property.IsKey)
                 continue;
-            if (property.IsDelete)
+            if (property.IsDeleted)
                 continue;
             if (property.IsExtraProperties)
                 continue;
             if (property.IsVersion)
                 continue;
-            if (property.IsIAudited)
+            if (property.IsAudited)
                 continue;
             if (property.IsTree)
                 continue;
             if (property.IsDateTime)
             {
-                <util-date-picker for="@property.Name"/>
+        <util-date-picker for="@property.Name"/>
                 continue;
             }
             if (property.IsBool)
             {
-                <util-switch for="@property.Name"/>
+        <util-switch for="@property.Name"/>
                 continue;
             }
-            <util-input for="@property.Name"/>
+        <util-input for="@property.Name"/>
         }
         <util-row justify="End">
             <util-button on-click="close()">取消</util-button>

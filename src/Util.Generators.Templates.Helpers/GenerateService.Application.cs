@@ -1,4 +1,6 @@
-﻿namespace Util.Generators.Helpers {
+﻿using System.Collections.Generic;
+
+namespace Util.Generators.Helpers {
     /// <summary>
     /// 生成服务 - 应用层相关方法
     /// </summary>
@@ -110,6 +112,26 @@
             if( isAddSchema && IsSupportSchema() )
                 return $"{projectName}.{module}.{Schema}";
             return $"{projectName}.{module}";
+        }
+
+        #endregion
+
+        #region GetDtoNamespaces(获取Dto命名空间集合)
+
+        /// <summary>
+        /// 获取Dto命名空间集合
+        /// </summary>
+        public List<string> GetDtoNamespaces() {
+            var result = new List<string>();
+            var dtoNamespace = $"{_context.ProjectContext.Name}.Applications.Dtos";
+            if ( IsSupportSchema() == false ) {
+                result.Add( dtoNamespace );
+                return result;
+            }
+            foreach ( var schema in GetSchemas() ) {
+                result.Add( $"{dtoNamespace}.{schema}" );
+            }
+            return result;
         }
 
         #endregion
