@@ -20,7 +20,7 @@ export const routes: Routes = [
         path: '',
         children: [
 @foreach (var entity in service.GetEntities()) {
-<text>           { path: '@service.GetClientEntityFileName(entity)', component: @service.GetClientListClassName() },
+<text>           { path: '@service.GetClientEntityFileName(entity)', component: @service.GetClientListClassName(entity) },
 </text>
 }
        ]
