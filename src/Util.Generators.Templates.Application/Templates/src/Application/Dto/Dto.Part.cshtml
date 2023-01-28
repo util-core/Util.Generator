@@ -25,8 +25,7 @@ namespace @service.GetApplicationNamespace( "Dtos",true ) {
         continue;
 <text>        /// <summary>
         /// @property.Description
-        ///</summary>
-        [Display( Name = "@property.Description" )]
+        ///</summary>@service.GetPropertyI18nDisplay(property)
         @if ( service.HasDataAnnotations( property ) ) {
             @service.GetDataAnnotations( property )
         }

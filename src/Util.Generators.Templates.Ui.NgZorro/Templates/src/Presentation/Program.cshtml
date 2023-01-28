@@ -18,7 +18,10 @@ var builder = WebApplication.CreateBuilder( args );
 //配置Util服务
 ServiceRegistrarConfig.Instance.DisableDependencyServiceRegistrar();
 builder.Host.AddUtil( options => options
-    .UseNgZorro( t => t.EnableDefaultOptionText = true )
+    .UseNgZorro( t => {
+        t.EnableDefaultOptionText = true;
+        t.EnableI18n = true;
+    } )
     .UseSerilog()
 );
 

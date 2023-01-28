@@ -7,36 +7,9 @@
     Model.Output.Extension = ".ts";
     Model.Output.RelativeRootPath = $"src/{service.GetClientComponentPath()}/model";
 }
-import { QueryParameter } from "util-angular";
-
-/**
-* @(Model.Description)查询参数
-*/
-export class @service.GetClientQueryClassName() extends QueryParameter {
-@foreach (var property in Model.Properties) {
-    if ( property.IsKey )
-        continue;
-    if ( property.IsExtraProperties )
-        continue;
-    if ( property.IsVersion )
-        continue;
-    if ( property.IsDeleted )
-        continue;
-if ( property.SystemType == Util.Generators.SystemType.DateTime ) {
-<text>   /**
-    * 起始@(property.Description)
-    */
-    begin@(property.Name);
-    /**
-    * 结束@(property.Description)
-    */
-    end@(property.Name)
-</text>
- continue;
-}<text>   /**
-    * @property.Description
-    */
-    @property.CamelName;
- </text>
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync("~/Templates/src/Presentation/ClientApp/src/app/routes/module/query/query.tree.Part.cshtml", Model)
 }
+else {
+    @Html.PartialAsync("~/Templates/src/Presentation/ClientApp/src/app/routes/module/query/query.Part.cshtml", Model)
 }

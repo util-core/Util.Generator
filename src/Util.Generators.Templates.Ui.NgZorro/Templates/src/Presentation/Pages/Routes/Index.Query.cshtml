@@ -9,7 +9,6 @@
 }
 @("@")model @service.GetQuery()
 
-@*查询表单*@
 <util-form class="search__form">
     <util-row align="Top">
         <util-column flex="1 1 0px">
@@ -55,10 +54,9 @@
         </util-column>
         <util-column flex="200px">
             <util-row justify="End">
-                <util-button id="btnQuery" type="Primary" icon="Search" on-click="query(btnQuery)">查询</util-button>
-                <util-button id="btnRefresh" icon="Sync" on-click="refresh(btnRefresh)">刷新</util-button>
+                <util-button id="btnQuery" type="Primary" icon="Search" on-click="query(btnQuery)" text-query="true"></util-button>
+                <util-button id="btnRefresh" icon="Sync" on-click="refresh(btnRefresh)" text-refresh="true"></util-button>
             </util-row>
         </util-column>
     </util-row>
 </util-form>
-<util-divider></util-divider>

@@ -26,11 +26,11 @@ namespace Util.Generators.Razor.Tests {
         /// </summary>
         [Fact]
         public void TestRender() {
-            var path = Platform.GetPhysicalPath( "Templates/Test1/Template.cshtml" );
+            var path = Common.GetPhysicalPath( "Templates/Test1/Template.cshtml" );
             var template = new RazorTemplate( _templateEngine, new FileInfo( path ) );
             var generatorContext = new GeneratorContext {
-                TemplateRootPath = Platform.GetPhysicalPath( "~/Templates" ),
-                OutputRootPath = Platform.GetPhysicalPath( "~/Output" )
+                TemplateRootPath = Common.GetPhysicalPath( "~/Templates" ),
+                OutputRootPath = Common.GetPhysicalPath( "~/Output" )
             };
             var projectContext = new ProjectContext( generatorContext ) { Name = "test" };
             var entityContext = new EntityContext( projectContext, "Hello" );

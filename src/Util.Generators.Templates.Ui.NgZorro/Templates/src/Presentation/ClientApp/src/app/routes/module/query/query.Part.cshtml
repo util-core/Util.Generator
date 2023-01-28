@@ -1,0 +1,43 @@
+﻿@* Ui层项目 - 查询参数文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+}
+import { QueryParameter } from "util-angular";
+
+/**
+* @(Model.Description)查询参数
+*/
+export class @service.GetClientQueryClassName() extends QueryParameter {
+@foreach (var property in Model.Properties) {
+    if ( property.IsKey )
+        continue;
+    if ( property.IsCreatorId )
+        continue;
+    if ( property.IsLastModifierId )
+        continue;
+    if ( property.IsDeleted )
+        continue;
+    if ( property.IsVersion )
+        continue;
+    if ( property.IsExtraProperties )
+        continue;
+if ( property.SystemType == Util.Generators.SystemType.DateTime ) {
+<text>   /**
+    * 起始@(property.Description)
+    */
+    begin@(property.Name);
+    /**
+    * 结束@(property.Description)
+    */
+    end@(property.Name)
+</text>
+ continue;
+}<text>   /**
+    * @property.Description
+    */
+    @property.CamelName;
+ </text>
+}
+}

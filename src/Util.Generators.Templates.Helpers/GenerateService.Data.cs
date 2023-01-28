@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Humanizer;
 using Util.Data;
 using Util.Generators.Contexts;
 
@@ -97,6 +98,17 @@ namespace Util.Generators.Helpers {
             var name = ProjectName.RemoveEnd( "." );
             var lastIndex = name.LastIndexOf( ".", StringComparison.OrdinalIgnoreCase );
             return lastIndex > 0 ? name.Substring( lastIndex + 1, name.Length - lastIndex -1 ) : name;
+        }
+
+        #endregion
+
+        #region GetDesignTimeDbContextFactory(获取设计时数据上下文工厂)
+
+        /// <summary>
+        /// 获取设计时数据上下文工厂
+        /// </summary>
+        public string GetDesignTimeDbContextFactory() {
+            return $"{GetSafeProjectName().Singularize()}DesignTimeDbContextFactory";
         }
 
         #endregion

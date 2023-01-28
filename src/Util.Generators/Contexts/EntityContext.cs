@@ -103,6 +103,11 @@ namespace Util.Generators.Contexts {
         public bool HasCreationTime => Properties.Any( t => t.IsCreationTime );
 
         /// <summary>
+        /// 是否包含树形属性
+        /// </summary>
+        public bool HasTree => Properties.Any( t => t.IsTree );
+
+        /// <summary>
         /// 是否包含排序号
         /// </summary>
         public bool HasSortId => Properties.Any( t => t.IsSortId );

@@ -1,5 +1,6 @@
 ﻿@* 数据访问层项目文件 - PostgreSql *@
 @using Util.Generators.Helpers
+@using Version = Util.Generators.Helpers.Version
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
@@ -15,6 +16,10 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Util.Data.EntityFrameworkCore.PostgreSql" Version="@service.UtilVersion" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="@Version.EntityFrameworkCoreDesign">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\@dataProjectName\@(dataProjectName).csproj" />

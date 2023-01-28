@@ -7,7 +7,7 @@
     var description = $"{Model.Description}查询参数";
 }
 using System;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Util.Data.Queries;
 
 namespace @service.GetDataNamespace( "Queries",true ) {
@@ -17,6 +17,10 @@ namespace @service.GetDataNamespace( "Queries",true ) {
     public class @query : QueryParameter {
 @foreach (var property in Model.Properties) {
     if ( property.IsKey )
+        continue;
+    if ( property.IsCreatorId )
+        continue;
+    if ( property.IsLastModifierId )
         continue;
     if ( property.IsDeleted )
         continue;
@@ -28,10 +32,12 @@ namespace @service.GetDataNamespace( "Queries",true ) {
 <text>        /// <summary>
         /// 起始@(property.Description)
         /// </summary>
+        [Display( Name = "@service.GetPropertyI18nKey(property,"begin")" )]
         public DateTime? Begin@(property.Name) { get; set; }
         /// <summary>
         /// 结束@(property.Description)
         /// </summary>
+        [Display( Name = "@service.GetPropertyI18nKey(property,"end")" )]
         public DateTime? End@(property.Name) { get; set; }
 </text>
         continue;
@@ -39,7 +45,7 @@ namespace @service.GetDataNamespace( "Queries",true ) {
 <text>        /// <summary>
         /// @property.Description
         ///</summary>
-        [Description( "@property.Description" )]
+        [Display( Name = "@service.GetPropertyI18nKey(property)" )]
         public @property.NullableTypeName @property.Name { get; set; }
 </text>
 }

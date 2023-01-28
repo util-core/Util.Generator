@@ -1,0 +1,56 @@
+﻿@* Ui层项目 - 中文语言文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "zh-CN";
+    Model.Output.Extension = ".json";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/assets/i18n";
+}
+{
+  "util": {
+    "yes": "是",
+    "no": "否",
+    "ok": "确定",
+    "cancel": "取消",
+    "create": "创建",
+    "update": "编辑",
+    "delete": "删除",
+    "detail": "详情",
+    "query": "查询",
+    "refresh": "刷新",
+    "save": "保存",
+    "operation": "操作",
+    "lineNumber": "序号",
+    "enabled": "启用",
+    "notEnabled": "未启用",
+    "enable": "启用",
+    "disable": "禁用",
+    "expanded": "展开",
+    "sortId": "排序号",
+    "icon": "图标",
+    "tips": "提示",
+    "parentName": "父名称",
+    "succeeded": "操作成功",
+    "deleteSuccessed": "删除成功",
+    "deleteConfirmation": "您确定删除选中的记录吗?",
+    "enableConfirmation": "您确定启用选中的记录吗?",
+    "disableConfirmation": "您确定禁用选中的记录吗?",
+    "saveConfirmation": "您确定保存吗?",
+    "noDeleteItemSelected": "请选择待删除的记录",
+    "notSelected": "请选择要操作的记录",
+    "noNeedSave": "没有需要保存的记录",
+    "tableTotalTemplate": "{{start}}-{{end}} 共 {{total}} 条",
+    "requiredMessage": "{0}必须填写",
+    "minLengthMessage": "{0}最小长度为 {1} 位",
+    "minMessage": "{0}最小值为 {1}",
+    "maxMessage": "{0}最大值为 {1}",
+    "emailMessage": "请输入有效的电子邮件",
+    "phoneMessage": "请输入有效的手机号",
+    "idCardMessage": "请输入有效的身份证号"
+  },
+  "app": {
+    "rowsSelected": "已选择<strong class='text-primary mx-xs'>{{length}}</strong>行"
+  },
+@service.GetClientI18nContent()
+}

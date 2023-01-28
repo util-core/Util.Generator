@@ -1,0 +1,56 @@
+﻿@* Ui层项目 - 英文语言文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "en-US";
+    Model.Output.Extension = ".json";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/assets/i18n";
+}
+{
+  "util": {
+    "yes": "Yes",
+    "no": "No",
+    "ok": "Ok",
+    "cancel": "Cancel",
+    "create": "Create",
+    "update": "Update",
+    "delete": "Delete",
+    "detail": "Detail",
+    "query": "Query",
+    "refresh": "Refresh",
+    "save": "Save",
+    "operation": "Operation",
+    "lineNumber": "Line Number",
+    "enabled": "Enabled",
+    "notEnabled": "Not Enabled",
+    "enable": "Enable",
+    "disable": "Disable",
+    "expanded": "Expanded",
+    "sortId": "SortId",
+    "icon": "Icon",
+    "tips": "Tips",
+    "parentName": "Parent Name",
+    "succeeded": "Operation succeeded",
+    "deleteSuccessed": "Delete succeeded",
+    "deleteConfirmation": "Are you sure to delete the selected record?",
+    "enableConfirmation": "Are you sure to enable the selected record?",
+    "disableConfirmation": "Are you sure to disable the selected record?",
+    "saveConfirmation": "Are you sure to save?",
+    "noDeleteItemSelected": "Please select the record to be deleted",
+    "notSelected": "Please select the record to operate",
+    "noNeedSave": "There are no records to save",
+    "tableTotalTemplate": "{{start}}-{{end}} total: {{total}}",
+    "requiredMessage": "{0} is required",
+    "minLengthMessage": "The minimum length of {0} is {1} bits",
+    "minMessage": "The minimum value of {0} is {1}",
+    "maxMessage": "The maximum value of {0} is {1}",
+    "emailMessage": "Please enter a valid email",
+    "phoneMessage": "Please enter a valid mobile number",
+    "idCardMessage": "Please enter a valid ID card"
+  },
+  "app": {
+    "rowsSelected": "<strong class='text-primary mx-xs'>{{length}}</strong> Rows Selected"
+  },
+@service.GetClientI18nContent(false)
+}

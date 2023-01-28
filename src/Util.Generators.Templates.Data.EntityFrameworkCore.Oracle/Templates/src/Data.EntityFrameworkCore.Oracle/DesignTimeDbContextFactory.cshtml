@@ -1,0 +1,41 @@
+﻿@* 数据访问层设计时数据上下文工厂 - Oracle *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var factory = service.GetDesignTimeDbContextFactory();
+    var unitOfWork = service.GetUnitOfWork();
+    Model.Output.FileNameNoExtension = factory;
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetDataProjectName( Util.Data.DatabaseType.Oracle )}";
+}
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Util.Helpers;
+
+namespace @service.GetDataNamespace( Util.Data.DatabaseType.Oracle ) {
+    /// <summary>
+    /// 设计时数据上下文工厂 - 仅用于自动迁移
+    /// </summary>
+    public class @factory : IDesignTimeDbContextFactory<@unitOfWork> {
+        /// <summary>
+        /// 创建数据上下文
+        /// </summary>
+        public @unitOfWork CreateDbContext( string[] args ) {
+            var services = Ioc.GetServices();
+            services.AddDbContext<@unitOfWork>( t => t.UseOracle( GetConnectionString() ) );
+            return Ioc.Create<@unitOfWork>();
+        }
+
+        /// <summary>
+        /// 获取连接字符串
+        /// </summary>
+        private string GetConnectionString() {
+            var basePath = Common.JoinPath( Common.GetParentDirectory(), "@service.GetWebApiProjectName()" );
+            var config = Util.Helpers.Config.CreateConfiguration( basePath );
+            return config.GetConnectionString( "DefaultConnection" );
+        }
+    }
+}

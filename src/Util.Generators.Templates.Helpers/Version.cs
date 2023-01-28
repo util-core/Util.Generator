@@ -6,11 +6,11 @@
         /// <summary>
         /// Util框架版本号
         /// </summary>
-        public static string Util => "7.0.21";
+        public static string Util => "7.0.10";
         /// <summary>
         /// Microsoft.AspNetCore.TestHost版本号
         /// </summary>
-        public static string TestHost => "7.0.1";
+        public static string TestHost => "7.0.2";
         /// <summary>
         /// Microsoft.Extensions.Hosting版本号
         /// </summary>
@@ -18,11 +18,11 @@
         /// <summary>
         /// Microsoft.EntityFrameworkCore.Tools版本号
         /// </summary>
-        public static string EntityFrameworkCoreTools => "7.0.1";
+        public static string EntityFrameworkCoreTools => "7.0.2";
         /// <summary>
         /// Microsoft.EntityFrameworkCore.Design版本号
         /// </summary>
-        public static string EntityFrameworkCoreDesign => "7.0.1";
+        public static string EntityFrameworkCoreDesign => "7.0.2";
         /// <summary>
         /// Microsoft.NET.Test.Sdk版本号
         /// </summary>
@@ -30,7 +30,7 @@
         /// <summary>
         /// Microsoft.AspNetCore.SpaServices.Extensions版本号
         /// </summary>
-        public static string SpaServices => "7.0.1";
+        public static string SpaServices => "7.0.2";
         /// <summary>
         /// xunit版本号
         /// </summary>
@@ -50,7 +50,7 @@
         /// <summary>
         /// Moq版本号
         /// </summary>
-        public static string Moq => "4.18.3";
+        public static string Moq => "4.18.4";
         /// <summary>
         /// NSwag.AspNetCore版本号
         /// </summary>
@@ -58,11 +58,11 @@
         /// <summary>
         /// Swashbuckle.AspNetCore版本号
         /// </summary>
-        public static string Swashbuckle => "6.4.0";
+        public static string Swashbuckle => "6.5.0";
         /// <summary>
         /// Xunit.DependencyInjection版本号
         /// </summary>
-        public static string XunitDependencyInjection => "8.6.1";
+        public static string XunitDependencyInjection => "8.7.0";
         /// <summary>
         /// Xunit.DependencyInjection.Logging版本号
         /// </summary>

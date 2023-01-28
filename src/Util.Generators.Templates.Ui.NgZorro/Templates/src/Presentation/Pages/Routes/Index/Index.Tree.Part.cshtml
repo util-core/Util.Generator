@@ -7,22 +7,23 @@
 }
 @("@")page
 @("@")model @service.GetDto()
-<util-page-header2 title="@description"></util-page-header2>
+<util-page-header2 title="@service.GetEntityI18nKey()"></util-page-header2>
 <util-card borderless="true">
-    @*查询表单*@
+    @@*查询表单*@@
     <partial name="Index.Query" />
-    @*工具按钮*@
-    <util-button type="Primary" icon="Plus" on-click="openCreateDialog()">创建@(description)</util-button>
-    <util-button type="Primary" icon="CheckCircle" on-click="enable()">启用</util-button>
-    <util-button type="Primary" icon="CloseCircle" on-click="disable()">禁用</util-button>
-    <util-button type="Primary" danger="true" icon="Delete" on-click="delete()">删除</util-button>
-    @*提示语*@
+    @@*工具按钮*@@
+    <util-button type="Primary" icon="Plus" on-click="openCreateDialog()" text-create="true"></util-button>
+    <util-button type="Primary" icon="CheckCircle" on-click="enable()" text-enable="true"></util-button>
+    <util-button type="Primary" icon="CloseCircle" on-click="disable()" text-disable="true"></util-button>
+    <util-button type="Primary" danger="true" icon="Delete" on-click="delete()" text-delete="true"></util-button>
+    @@*提示语*@@
     <util-alert type="Info" show-icon="true" class="my-md">
-        已选择<strong class='text-primary mx-xs'>{{getCheckedLength()}}</strong>行
+        <util-i18n key="app.rowsSelected" param="length:getCheckedLength()" />
     </util-alert>
 </util-card>
-@*表格*@
-<util-tree-table id="@service.GetClientTableId()" show-checkbox="true" query-param="queryParam" url="@service.GetClientEntityName()" @service.GetClientSort()>
+@@*表格*@@
+<util-tree-table id="@service.GetClientTableId()" show-checkbox="true" query-param="queryParam" url="@service.GetClientEntityName()" @service.GetClientSort()
+        expand-all="true" load-mode="Sync">
     @foreach ( var property in Model.Properties ) {
         if ( property.IsKey )
             continue;
@@ -36,10 +37,10 @@
             continue;
     <util-td for="@property.Name"></util-td>
     }
-    <util-td title="操作">
-        <util-button class="mr-sm" type="Primary" shape="Circle" icon="Plus" tooltip-title="创建下级@(description)" on-click="openCreateDialog(row)"></util-button>
-        <util-button class="mr-sm" type="Primary" shape="Circle" icon="Edit" tooltip-title="编辑" on-click="openEditDialog(row)"></util-button>
-        <util-button class="mr-sm" type="Primary" danger="true" shape="Circle" icon="Delete" tooltip-title="删除" on-click="delete(row.id)"></util-button>
-        <util-button shape="Circle" icon="Eye" tooltip-title="详情" on-click="openDetailDialog(row)"></util-button>
+    <util-td title-operation="true">
+        <util-button class="mr-sm" type="Primary" shape="Circle" icon="Plus" tooltip-title="@service.GetCreateSubTreeEntityI18nKey()" on-click="openCreateDialog(row)"></util-button>
+        <util-button class="mr-sm" type="Primary" shape="Circle" icon="Edit" tooltip-title-update="true" on-click="openEditDialog(row)"></util-button>
+        <util-button class="mr-sm" type="Primary" danger="true" shape="Circle" icon="Delete" tooltip-title-delete="true" on-click="delete(row.id)"></util-button>
+        <util-button shape="Circle" icon="Eye" tooltip-title-detail="true" on-click="openDetailDialog(row)"></util-button>
     </util-td>
 </util-tree-table>

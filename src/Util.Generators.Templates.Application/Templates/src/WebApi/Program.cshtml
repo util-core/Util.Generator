@@ -7,11 +7,13 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
 }
+using Microsoft.AspNetCore.HttpLogging;
 using Util;
 using Util.Aop;
 using Util.Logging.Serilog;
 using Util.Data.EntityFrameworkCore;
 using Util.Dates;
+using @service.GetWebApiNamespace();
 using @service.GetDataNamespace();
 using @service.GetDataNamespace(Model.ProjectContext.TargetDbType);
 
@@ -19,9 +21,15 @@ using @service.GetDataNamespace(Model.ProjectContext.TargetDbType);
 var builder = WebApplication.CreateBuilder( args );
 
 //配置服务
+builder.Services.AddLocalization();
+builder.Services.AddHealthChecks();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpLogging( options => options.LoggingFields = HttpLoggingFields.All );
+
+//配置数据库迁移服务
+builder.Services.AddHostedService<MigrationHostedService>();
 
 //配置Util
 builder.Host.AddUtil( options => options
@@ -33,15 +41,24 @@ builder.Host.AddUtil( options => options
     .@service.UseUnitOfWork()<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( builder.Configuration.GetConnectionString( "DefaultConnection" ) )
 );
 
+//配置cors
+builder.Services.AddCors( options => options.AddPolicy( "cors", policy => {
+    policy.WithOrigins( "https://localhost:5000" );
+    policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+} ) );
+
 //构建Web应用程序
 var app = builder.Build();
 
 //配置请求管道
+app.MapHealthChecks( "/health" );
 if ( app.Environment.IsDevelopment() ) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors( "cors" );
 app.UseHttpLogging();
+app.UseRequestLocalization( "zh-CN", "en-US" );
 app.UseAuthorization();
 app.MapControllers();
 

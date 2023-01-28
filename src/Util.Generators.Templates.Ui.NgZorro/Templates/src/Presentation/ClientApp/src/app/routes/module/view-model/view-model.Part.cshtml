@@ -1,0 +1,26 @@
+﻿@* Ui层项目 - 视图模型文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+}
+import { ViewModel } from "util-angular";
+
+/**
+* @(Model.Description)参数
+*/
+export class @service.GetClientViewModelClassName() extends ViewModel {
+@foreach (var property in Model.Properties) {
+    if ( property.IsKey )
+        continue;
+    if ( property.IsExtraProperties )
+        continue;
+    if ( property.IsDeleted )
+        continue;
+<text>   /**
+    * @property.Description
+    */
+    @property.CamelName;
+</text>
+}
+}

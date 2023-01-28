@@ -1,0 +1,80 @@
+﻿@* 应用层Web Api项目 - 数据库自动迁移服务 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var unitOfWork = service.GetIUnitOfWork();
+    Model.Output.FileNameNoExtension = "MigrationHostedService";
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
+}
+using Util.Helpers;
+using Util.Data.EntityFrameworkCore.Migrations;
+using @service.GetDataNamespace();
+
+namespace @service.GetWebApiNamespace() {
+    /// <summary>
+    /// 数据库自动迁移服务,开发阶段使用
+    ///</summary>
+    public class MigrationHostedService : IHostedService {
+        /// <summary>
+        /// 主机环境
+        ///</summary>
+        private readonly IWebHostEnvironment _environment;
+        /// <summary>
+        /// 迁移服务
+        ///</summary>
+        private readonly IMigrationService _migrationService;
+        /// <summary>
+        /// 工作单元
+        ///</summary>
+        private readonly @unitOfWork _unitOfWork;
+
+        /// <summary>
+        /// 初始化迁移服务
+        ///</summary>
+        ///<param name="environment">主机环境</param>
+        ///<param name="migrationService">迁移服务</param>
+        ///<param name="unitOfWork">工作单元</param>
+        public MigrationHostedService( IWebHostEnvironment environment, IMigrationService migrationService, @unitOfWork unitOfWork ) {
+            _environment = environment ?? throw new ArgumentNullException( nameof( environment ) );
+            _migrationService = migrationService ?? throw new ArgumentNullException( nameof( migrationService ) );
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException( nameof( unitOfWork ) );
+        }
+
+        /// <summary>
+        /// 启动
+        ///</summary>
+        public async Task StartAsync( CancellationToken cancellationToken ) {
+            if ( _environment.IsDevelopment() == false )
+                return;
+            await _migrationService
+                .MigrationName( GetMigrationName() )
+                .DbContextRootPath( GetDbContextRootPath() )
+                .DbContext( _unitOfWork )
+                .MigrateAsync( cancellationToken );
+        }
+
+        /// <summary>
+        /// 获取迁移名称
+        ///</summary>
+        private string GetMigrationName() {
+            var result = Config.GetValue( "App:MigrationName" );
+            return result.IsEmpty() ? "Init" : result;
+        }
+
+        /// <summary>
+        /// 获取数据上下文根目录路径
+        ///</summary>
+        private string GetDbContextRootPath() {
+            return Common.JoinPath( Common.GetParentDirectory(), "@service.GetDataProjectName(service.GetCurrentDbType())" );
+        }
+
+        /// <summary>
+        /// 停止
+        ///</summary>
+        public Task StopAsync( CancellationToken cancellationToken ) {
+            return Task.CompletedTask;
+        }
+    }
+}

@@ -6,18 +6,18 @@
 }
 @("@")page
 @("@")model @service.GetDto()
-<util-page-header2 title="@service.EntityDescription"></util-page-header2>
+<util-page-header2 title="@service.GetEntityI18nKey()"></util-page-header2>
 <util-card borderless="true">
-    @*查询表单*@
+    @@*查询表单*@@
     <partial name="Index.Query" />
-    @*工具按钮*@
-    <util-button type="Primary" icon="Plus" on-click="openCreateDialog()">新建</util-button>
-    <util-button type="Primary" Danger="true" icon="Delete" on-click="delete()">删除</util-button>
-    @*提示语*@
+    @@*工具按钮*@@
+    <util-button type="Primary" icon="Plus" on-click="openCreateDialog()" text-create="true"></util-button>
+    <util-button type="Primary" Danger="true" icon="Delete" on-click="delete()" text-delete="true"></util-button>
+    @@*提示语*@@
     <util-alert type="Info" show-icon="true" class="my-md">
-        已选择<strong class='text-primary mx-xs'>{{getCheckedLength()}}</strong>行
+        <util-i18n key="app.rowsSelected" param="length:getCheckedLength()" />
     </util-alert>
-    @*表格*@
+    @@*表格*@@
     <util-table id="@service.GetClientTableId()" show-checkbox="true" show-line-number="true" query-param="queryParam" url="@service.GetClientEntityName()" @service.GetClientSort()>
         @foreach ( var property in Model.Properties ) {
             if ( property.IsKey )
@@ -32,12 +32,12 @@
                 continue;
         <util-td for="@property.Name"></util-td>
         }
-        <util-td title="操作">
-            <util-button type="Link" size="Small" tooltip-title="编辑" on-click="openEditDialog(row)">编辑</util-button>
+        <util-td title-operation="true" width="300">
+            <util-button type="Link" size="Small" on-click="openEditDialog(row)" text-update="true"></util-button>
             <util-divider type="Vertical"></util-divider>
-            <util-a on-click="openDetailDialog(row)">查看</util-a>
+            <util-a on-click="openDetailDialog(row)" text-detail="true"></util-a>
             <util-divider type="Vertical"></util-divider>
-            <util-button type="Link" size="Small" danger="true" tooltip-title="删除" on-click="delete(row.id)">删除</util-button>
+            <util-button type="Link" size="Small" danger="true" on-click="delete(row.id)" text-delete="true"></util-button>
         </util-td>
     </util-table>
 </util-card>

@@ -74,7 +74,7 @@ namespace Util.Generators.Contexts {
         protected virtual string GetPhysicalPath( string path ) {
             if ( IsAbsolutePath( path ) )
                 return path;
-            return Util.Helpers.Platform.GetPhysicalPath( path );
+            return Util.Helpers.Common.GetPhysicalPath( path );
         }
 
         /// <summary>

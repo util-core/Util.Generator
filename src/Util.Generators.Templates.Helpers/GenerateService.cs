@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Humanizer;
+using Util.Data;
 using Util.Generators.Contexts;
 using Util.Generators.Properties;
 
@@ -143,6 +144,14 @@ namespace Util.Generators.Helpers {
             return _context.ProjectContext.Entities.Where( t => t.IsRelationTable == false ).ToList();
         }
 
+        /// <summary>
+        /// 获取实体上下文列表
+        /// </summary>
+        /// <param name="schema">架构名称</param>
+        public List<EntityContext> GetEntities( string schema ) {
+            return GetEntities().Where( t => t.Schema == schema ).ToList();
+        }
+
         #endregion
 
         #region GetKeyDefault(获取标识属性默认值)
@@ -192,6 +201,17 @@ namespace Util.Generators.Helpers {
         /// </summary>
         public bool Utc() {
             return _context.ProjectContext.Utc;
+        }
+
+        #endregion
+
+        #region GetCurrentDbType(获取当前数据库类型)
+
+        /// <summary>
+        /// 获取当前数据库类型
+        /// </summary>
+        public DatabaseType GetCurrentDbType() {
+            return _context.ProjectContext.TargetDbType;
         }
 
         #endregion

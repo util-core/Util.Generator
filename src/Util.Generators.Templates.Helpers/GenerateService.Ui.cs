@@ -1,4 +1,6 @@
 ﻿using Humanizer;
+using System.Collections.Generic;
+using System.Linq;
 using Util.Generators.Contexts;
 
 namespace Util.Generators.Helpers {
@@ -37,7 +39,7 @@ namespace Util.Generators.Helpers {
         /// <param name="module">模块</param>
         /// <param name="isAddSchema">是否添加架构</param>
         public string GetUiProjectPath( string module, bool isAddSchema = false ) {
-            if( isAddSchema && IsSupportSchema() )
+            if ( isAddSchema && IsSupportSchema() )
                 return $"{GetUiProjectName()}/{module}/{Schema}";
             return $"{GetUiProjectName()}/{module}";
         }
@@ -88,7 +90,7 @@ namespace Util.Generators.Helpers {
             var projectName = $"{_context.ProjectContext.Name}";
             if ( module.IsEmpty() )
                 return projectName;
-            if( isAddSchema && IsSupportSchema() )
+            if ( isAddSchema && IsSupportSchema() )
                 return $"{projectName}.{module}.{Schema}";
             return $"{projectName}.{module}";
         }
@@ -405,6 +407,20 @@ namespace Util.Generators.Helpers {
         /// </summary>
         public string GetClientModuleRoutePath() {
             return GetClientAppName().Kebaberize();
+        }
+
+        #endregion
+
+        #region GetClientSchemas(获取前端架构列表)
+
+        /// <summary>
+        /// 获取前端架构列表
+        /// </summary>
+        public List<string> GetClientSchemas() {
+            var result = new List<string> { _context.ProjectContext.ClientAppName };
+            if ( _context.ProjectContext.Schemas.Count > 0 )
+                result = _context.ProjectContext.Schemas;
+            return result.ToList();
         }
 
         #endregion

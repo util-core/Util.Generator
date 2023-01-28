@@ -88,6 +88,14 @@ namespace Util.Generators.Contexts {
         /// </summary>
         public bool IsCreationTime => Name == "CreationTime" && SystemType == Generators.SystemType.DateTime;
         /// <summary>
+        /// 是否创建人标识
+        /// </summary>
+        public bool IsCreatorId => Name == "CreatorId";
+        /// <summary>
+        /// 是否修改人标识
+        /// </summary>
+        public bool IsLastModifierId => Name == "LastModifierId";
+        /// <summary>
         /// 是否排序号
         /// </summary>
         public bool IsSortId => Name == "SortId";

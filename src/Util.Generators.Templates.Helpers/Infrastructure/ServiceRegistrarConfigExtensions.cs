@@ -10,7 +10,7 @@ namespace Util.Generators.Helpers.Infrastructure {
         /// </summary>
         /// <param name="config">服务注册器配置</param>
         public static ServiceRegistrarConfig EnableGeneratorTemplateServiceRegistrar( this ServiceRegistrarConfig config ) {
-            config.Enable( GeneratorTemplateServiceRegistrar.GetId() );
+            ServiceRegistrarConfig.Enable( GeneratorTemplateServiceRegistrar.ServiceName );
             return config;
         }
 
@@ -19,7 +19,7 @@ namespace Util.Generators.Helpers.Infrastructure {
         /// </summary>
         /// <param name="config">服务注册器配置</param>
         public static ServiceRegistrarConfig DisableGeneratorTemplateServiceRegistrar( this ServiceRegistrarConfig config ) {
-            config.Disable( GeneratorTemplateServiceRegistrar.GetId() );
+            ServiceRegistrarConfig.Disable( GeneratorTemplateServiceRegistrar.ServiceName );
             return config;
         }
     }

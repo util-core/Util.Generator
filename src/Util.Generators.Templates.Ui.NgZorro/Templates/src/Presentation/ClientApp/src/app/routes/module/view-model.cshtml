@@ -7,23 +7,9 @@
     Model.Output.Extension = ".ts";
     Model.Output.RelativeRootPath = $"src/{service.GetClientComponentPath()}/model";
 }
-import { ViewModel } from "util-angular";
-
-/**
-* @(Model.Description)参数
-*/
-export class @service.GetClientViewModelClassName() extends ViewModel {
-@foreach (var property in Model.Properties) {
-    if ( property.IsKey )
-        continue;
-    if ( property.IsExtraProperties )
-        continue;
-    if ( property.IsDeleted )
-        continue;
-<text>   /**
-    * @property.Description
-    */
-    @property.CamelName;
-</text>
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync("~/Templates/src/Presentation/ClientApp/src/app/routes/module/view-model/view-model.tree.Part.cshtml", Model)
 }
+else {
+    @Html.PartialAsync("~/Templates/src/Presentation/ClientApp/src/app/routes/module/view-model/view-model.Part.cshtml", Model)
 }
