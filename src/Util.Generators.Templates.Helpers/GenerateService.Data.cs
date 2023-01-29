@@ -4,31 +4,27 @@ using Humanizer;
 using Util.Data;
 using Util.Generators.Contexts;
 
-namespace Util.Generators.Helpers
-{
+namespace Util.Generators.Helpers {
     /// <summary>
     /// 生成服务 - 数据访问层相关方法
     /// </summary>
-    public partial class GenerateService
-    {
+    public partial class GenerateService {
 
         #region GetDataProjectId(获取数据访问层项目标识)
 
         /// <summary>
         /// 获取数据访问层项目标识
         /// </summary>
-        public string GetDataProjectId()
-        {
-            return GetProjectId("data");
+        public string GetDataProjectId() {
+            return GetProjectId( "data" );
         }
 
         /// <summary>
         /// 获取数据访问层项目标识
         /// </summary>
         /// <param name="database">数据库类型</param>
-        public string GetDataProjectId(DatabaseType database)
-        {
-            return GetProjectId($"data.{database}");
+        public string GetDataProjectId( DatabaseType database ) {
+            return GetProjectId( $"data.{database}" );
         }
 
         #endregion
@@ -39,9 +35,8 @@ namespace Util.Generators.Helpers
         /// 获取数据访问层项目名称
         /// </summary>
         /// <param name="database">数据库类型</param>
-        public string GetDataProjectName(DatabaseType? database = null)
-        {
-            if (database == null)
+        public string GetDataProjectName( DatabaseType? database = null ) {
+            if( database == null )
                 return $"{_context.ProjectContext.Name}.Data";
             return $"{_context.ProjectContext.Name}.Data.{database}";
         }
@@ -55,9 +50,8 @@ namespace Util.Generators.Helpers
         /// </summary>
         /// <param name="module">模块</param>
         /// <param name="isAddSchema">是否添加架构</param>
-        public string GetDataProjectPath(string module, bool isAddSchema = false)
-        {
-            return GetDataProjectPath(null, module, isAddSchema);
+        public string GetDataProjectPath( string module, bool isAddSchema = false ) {
+            return GetDataProjectPath( null, module, isAddSchema );
         }
 
         /// <summary>
@@ -66,11 +60,10 @@ namespace Util.Generators.Helpers
         /// <param name="database">数据库类型</param>
         /// <param name="module">模块</param>
         /// <param name="isAddSchema">是否添加架构</param>
-        public string GetDataProjectPath(DatabaseType? database, string module, bool isAddSchema = false)
-        {
-            if (isAddSchema && IsSupportSchema())
-                return $"{GetDataProjectName(database)}/{module}/{Schema}";
-            return $"{GetDataProjectName(database)}/{module}";
+        public string GetDataProjectPath( DatabaseType? database,string module, bool isAddSchema = false ) {
+            if( isAddSchema && IsSupportSchema() )
+                return $"{GetDataProjectName( database )}/{module}/{Schema}";
+            return $"{GetDataProjectName( database )}/{module}";
         }
 
         #endregion
@@ -80,8 +73,7 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 获取工作单元接口名称
         /// </summary>
-        public string GetIUnitOfWork()
-        {
+        public string GetIUnitOfWork() {
             return $"I{GetUnitOfWork()}";
         }
 
@@ -92,10 +84,9 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 获取工作单元实现类名称
         /// </summary>
-        public string GetUnitOfWork()
-        {
+        public string GetUnitOfWork() {
             var result = _context.ProjectContext.UnitOfWorkName;
-            if (result.IsEmpty() == false)
+            if ( result.IsEmpty() == false )
                 return result;
             return $"{GetSafeProjectName()}UnitOfWork";
         }
@@ -103,11 +94,10 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 获取安全项目名称,如果项目名称包含.,则取最后一个.后面的内容
         /// </summary>
-        private string GetSafeProjectName()
-        {
-            var name = ProjectName.RemoveEnd(".");
-            var lastIndex = name.LastIndexOf(".", StringComparison.OrdinalIgnoreCase);
-            return lastIndex > 0 ? name.Substring(lastIndex + 1, name.Length - lastIndex -1) : name;
+        private string GetSafeProjectName() {
+            var name = ProjectName.RemoveEnd( "." );
+            var lastIndex = name.LastIndexOf( ".", StringComparison.OrdinalIgnoreCase );
+            return lastIndex > 0 ? name.Substring( lastIndex + 1, name.Length - lastIndex -1 ) : name;
         }
 
         #endregion
@@ -117,8 +107,7 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 获取设计时数据上下文工厂
         /// </summary>
-        public string GetDesignTimeDbContextFactory()
-        {
+        public string GetDesignTimeDbContextFactory() {
             return $"{GetSafeProjectName().Singularize()}DesignTimeDbContextFactory";
         }
 
@@ -129,9 +118,8 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 获取数据访问层命名空间
         /// </summary>
-        public string GetDataNamespace()
-        {
-            return GetDataNamespace(null);
+        public string GetDataNamespace() {
+            return GetDataNamespace( null );
         }
 
         /// <summary>
@@ -139,9 +127,8 @@ namespace Util.Generators.Helpers
         /// </summary>
         /// <param name="module">模块</param>
         /// <param name="isAddSchema">是否添加架构</param>
-        public string GetDataNamespace(string module, bool isAddSchema = false)
-        {
-            return GetDataNamespaceImpl(null, module, isAddSchema);
+        public string GetDataNamespace( string module, bool isAddSchema = false ) {
+            return GetDataNamespaceImpl( null, module, isAddSchema );
         }
 
         /// <summary>
@@ -149,9 +136,8 @@ namespace Util.Generators.Helpers
         /// </summary>
         /// <param name="database">数据库类型</param>
         /// <param name="isAddSchema">是否添加架构</param>
-        public string GetDataNamespace(DatabaseType database, bool isAddSchema = false)
-        {
-            return GetDataNamespace(database, null, isAddSchema);
+        public string GetDataNamespace( DatabaseType database, bool isAddSchema = false ) {
+            return GetDataNamespace( database, null, isAddSchema );
         }
 
         /// <summary>
@@ -160,9 +146,8 @@ namespace Util.Generators.Helpers
         /// <param name="database">数据库类型</param>
         /// <param name="module">模块</param>
         /// <param name="isAddSchema">是否添加架构</param>
-        public string GetDataNamespace(DatabaseType database, string module, bool isAddSchema = false)
-        {
-            return GetDataNamespaceImpl(database, module, isAddSchema);
+        public string GetDataNamespace( DatabaseType database, string module,bool isAddSchema = false ) {
+            return GetDataNamespaceImpl( database, module, isAddSchema );
         }
 
         /// <summary>
@@ -171,14 +156,13 @@ namespace Util.Generators.Helpers
         /// <param name="database">数据库类型</param>
         /// <param name="module">模块</param>
         /// <param name="isAddSchema">是否添加架构</param>
-        private string GetDataNamespaceImpl(DatabaseType? database, string module, bool isAddSchema)
-        {
+        private string GetDataNamespaceImpl( DatabaseType? database, string module, bool isAddSchema ) {
             string result;
-            if (module.IsEmpty())
-                result = GetDataProjectName(database);
+            if( module.IsEmpty() )
+                result = GetDataProjectName( database );
             else
-                result = $"{GetDataProjectName(database)}.{module}";
-            if (isAddSchema && IsSupportSchema())
+                result = $"{GetDataProjectName( database )}.{module}";
+            if( isAddSchema && IsSupportSchema() )
                 result += $".{Schema}";
             return result;
         }
@@ -190,18 +174,15 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 获取查询参数命名空间集合
         /// </summary>
-        public List<string> GetQueryNamespaces()
-        {
+        public List<string> GetQueryNamespaces() {
             var result = new List<string>();
             var queryNamespace = $"{_context.ProjectContext.Name}.Data.Queries";
-            if (IsSupportSchema() == false)
-            {
-                result.Add(queryNamespace);
+            if ( IsSupportSchema() == false ) {
+                result.Add( queryNamespace );
                 return result;
             }
-            foreach (var schema in GetSchemas())
-            {
-                result.Add($"{queryNamespace}.{schema}");
+            foreach ( var schema in GetSchemas() ) {
+                result.Add( $"{queryNamespace}.{schema}" );
             }
             return result;
         }
@@ -213,14 +194,13 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 获取实体类型标识配置
         /// </summary>
-        public string GetIdConfiguration()
-        {
-            var builder = new PropertyConfigurationBuilder(_context.Key);
-            return builder.Property("Id")
-                .Line(4).HasColumnName()
-                .Line(4).HasComment()
-                .Line(4, _context.Key.SystemType == SystemType.String).HasMaxLength()
-                .Line(4, _context.Key.IsInteger && _context.Key.IsAutoIncrement).IsAutoIncrement()
+        public string GetIdConfiguration() {
+            var builder = new PropertyConfigurationBuilder( _context.Key );
+            return builder.Property( "Id" )
+                .Line( 4 ).HasColumnName()
+                .Line( 4 ).HasComment()
+                .Line( 4,_context.Key.SystemType == SystemType.String ).HasMaxLength()
+                .Line( 4, _context.Key.IsInteger && _context.Key.IsAutoIncrement ).IsAutoIncrement()
                 .Semicolon()
                 .Build();
         }
@@ -233,16 +213,15 @@ namespace Util.Generators.Helpers
         /// 获取实体类型版本配置
         /// </summary>
         /// <param name="type">数据库类型</param>
-        public string GetVersionConfiguration(DatabaseType type)
-        {
-            if (_context.Version == null)
+        public string GetVersionConfiguration( DatabaseType type ) {
+            if( _context.Version == null )
                 return null;
-            var builder = new PropertyConfigurationBuilder(_context.Version);
+            var builder = new PropertyConfigurationBuilder( _context.Version );
             return builder
                 .Property()
-                .Line(4).HasColumnName()
-                .Line(4).Version(type)
-                .Line(4).HasComment()
+                .Line( 4 ).HasColumnName()
+                .Line( 4 ).Version( type )
+                .Line( 4 ).HasComment()
                 .Semicolon()
                 .Build();
         }
@@ -254,15 +233,14 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 获取实体类型属性配置
         /// </summary>
-        public string GetConfiguration(Property property, DatabaseType? dbType = null)
-        {
-            var builder = new PropertyConfigurationBuilder(property);
+        public string GetConfiguration( Property property,DatabaseType? dbType = null ) {
+            var builder = new PropertyConfigurationBuilder( property );
             return builder
-                .Indent(3).Property()
+                .Indent( 3 ).Property()
                 .Line(4).HasColumnName()
-                .Line(4).HasComment()
-                .Line(4, property.IsFloat && property.Precision > 0).HasPrecision()
-                .Line(4, IsPgSqlDate(property, dbType)).HasColumnTypeIf("timestamp", IsPgSqlDate(property, dbType))
+                .Line( 4 ).HasComment()
+                .Line( 4, property.IsFloat && property.Precision > 0 ).HasPrecision()
+                .Line( 4, IsPgSqlDate(property,dbType) ).HasColumnTypeIf( "timestamp", IsPgSqlDate( property, dbType ) )
                 .Semicolon()
                 .Line()
                 .Build();
@@ -271,28 +249,8 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 是否pgsql非utc日期
         /// </summary>
-        private bool IsPgSqlDate(Property property, DatabaseType? dbType)
-        {
+        private bool IsPgSqlDate( Property property, DatabaseType? dbType ) {
             return property.IsDateTime && dbType == DatabaseType.PgSql && Utc() == false;
-        }
-
-        #endregion
-
-        #region GetOracleExtraPropertiesConfiguration(对Oracle特殊处理，富文本字段)
-
-        /// <summary>
-        /// 对Oracle特殊处理，富文本字段
-        /// </summary>
-        public string GetOracleExtraPropertiesConfiguration(Property property, DatabaseType? dbType = null)
-        {
-            var builder = new PropertyConfigurationBuilder(property);
-            return builder
-                .Indent(3).Property("ExtraProperties", true)
-                .Line(4).HasComment()
-                .Line(4).HasColumnType("CLOB")
-                .Semicolon()
-                .Line()
-                .Build();
         }
 
         #endregion
@@ -302,8 +260,7 @@ namespace Util.Generators.Helpers
         /// <summary>
         /// 配置工作单元
         /// </summary>
-        public string UseUnitOfWork()
-        {
+        public string UseUnitOfWork() {
             return $"Use{_context.ProjectContext.TargetDbType}UnitOfWork";
         }
 

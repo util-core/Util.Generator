@@ -14,11 +14,8 @@
                     continue;
                 if ( property.IsVersion )
                     continue;
-                if (property.IsExtraProperties)
-                {
-                    @service.GetOracleExtraPropertiesConfiguration( property )
+                if ( property.IsExtraProperties )
                     continue;
-                }
                 if ( property.IsDeleted )
                     continue;
                 @service.GetConfiguration( property )
