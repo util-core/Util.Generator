@@ -19,6 +19,7 @@ namespace Util.Generators.Helpers {
             var result = new StringBuilder();
             foreach ( var schema in GetClientSchemas() )
                 AppendI18nSchemaContent( result, schema, isChinese );
+            result.RemoveEnd( $",{Common.Line}" );
             return result.ToString();
         }
 
@@ -32,7 +33,7 @@ namespace Util.Generators.Helpers {
                 AppendI18nEntityContent( result, entity, isChinese );
             result.RemoveEnd( $",{Common.Line}" );
             result.AppendLine();
-            result.Append( "  }" );
+            result.AppendLine( "  }," );
         }
 
         /// <summary>
