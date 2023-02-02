@@ -83,7 +83,7 @@ namespace Util.Generators {
             _logger.BeginGenerateProject( projectContext.Name );
             foreach ( var entity in projectContext.Entities )
                 GenerateEntity( entity, templates );
-            _resourceManager.Imports( _context.TemplateRootPath, _context.OutputRootPath, projectContext.Name );
+            _resourceManager.Imports( _context.TemplateRootPath, _context.OutputRootPath, projectContext );
             _logger.EndGenerateProject( projectContext.Name );
         }
 

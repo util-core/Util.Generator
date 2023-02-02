@@ -1,4 +1,6 @@
-﻿namespace Util.Generators.Resources {
+﻿using Util.Generators.Contexts;
+
+namespace Util.Generators.Resources {
     /// <summary>
     /// 静态资源管理器
     /// </summary>
@@ -8,7 +10,7 @@
         /// </summary>
         /// <param name="templateRootPath">模板根目录路径</param>
         /// <param name="outputRootPath">输出根目录路径</param>
-        /// <param name="project">项目名称</param>
-        void Imports( string templateRootPath, string outputRootPath,string project );
+        /// <param name="project">项目上下文</param>
+        void Imports( string templateRootPath, string outputRootPath,ProjectContext project );
     }
 }

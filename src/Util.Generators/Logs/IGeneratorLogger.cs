@@ -100,6 +100,11 @@ namespace Util.Generators.Logs {
         /// <param name="entity">实体上下文</param>
         void EndGenerateEntity( EntityContext entity );
         /// <summary>
+        /// 过滤资源
+        /// </summary>
+        /// <param name="path">资源路径</param>
+        void FilterResource( string path );
+        /// <summary>
         /// 开始导入资源
         /// </summary>
         /// <param name="templateRootPath">模板根目录路径</param>

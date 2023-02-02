@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Util.Generators.Configuration;
 using Util.Generators.Properties;
 using Util.Validation;
 
@@ -30,7 +31,7 @@ namespace Util.Generators.Contexts {
         /// <summary>
         /// 消息上下文
         /// </summary>
-        public MessageContext Message { get; set; }
+        public MessageOptions Message { get; set; }
         /// <summary>
         /// 项目上下文列表
         /// </summary>

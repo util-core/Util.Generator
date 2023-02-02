@@ -203,5 +203,29 @@ namespace Util.Generators.Helpers {
         }
 
         #endregion
+
+        #region GetDefaultConnection(获取默认连接字符串)
+
+        /// <summary>
+        /// 获取默认连接字符串
+        /// </summary>
+        public string GetDefaultConnection() {
+            if ( IsGenerateConnection() == false )
+                return null;
+            return _context.ProjectContext.ConnectionString.Replace( Generator, "" ).Replace( "\\", "\\\\" );
+        }
+
+        /// <summary>
+        /// 是否生成连接字符串
+        /// </summary>
+        private bool IsGenerateConnection() {
+            if ( _context.ProjectContext.DbType != _context.ProjectContext.TargetDbType )
+                return false;
+            if ( _context.ProjectContext.ConnectionString.Contains( Generator ) == false )
+                return false;
+            return true;
+        }
+
+        #endregion
     }
 }

@@ -40,9 +40,14 @@ namespace Util.Generators.Tests.Configuration {
             Assert.Null( project.TargetDbType );
             Assert.Equal( "ConnectionString_Test", project.ConnectionString );
             Assert.Equal( "UnitOfWorkName_Test", project.UnitOfWorkName );
-            Assert.Equal( "ClientAppName_Test", project.ClientAppName );
+            Assert.Equal( ProjectType.WebApi, project.ProjectType );
+            Assert.Equal( "123", project.ApiPort );
+            Assert.Equal( "ClientAppName_Test", project.Client.AppName );
+            Assert.Equal( "1", project.Client.Port );
             Assert.True( project.Enabled );
             Assert.True( project.Utc );
+            Assert.True( project.I18n );
+            Assert.Equal( "1", project.Extend );
         }
 
         /// <summary>
@@ -56,9 +61,14 @@ namespace Util.Generators.Tests.Configuration {
             Assert.Equal( DatabaseType.SqlServer, project.TargetDbType );
             Assert.Equal( "ConnectionString_Test2", project.ConnectionString );
             Assert.Equal( "UnitOfWorkName_Test2", project.UnitOfWorkName );
-            Assert.Equal( "ClientAppName_Test2", project.ClientAppName );
+            Assert.Equal( ProjectType.Ui, project.ProjectType );
+            Assert.Equal( "456", project.ApiPort );
+            Assert.Equal( "ClientAppName_Test2", project.Client.AppName );
+            Assert.Equal( "2", project.Client.Port );
             Assert.False( project.Enabled );
             Assert.False( project.Utc );
+            Assert.False( project.I18n );
+            Assert.Equal( "2", project.Extend );
         }
 
         /// <summary>

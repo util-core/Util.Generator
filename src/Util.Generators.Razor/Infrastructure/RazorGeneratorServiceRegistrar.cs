@@ -32,7 +32,7 @@ namespace Util.Generators.Razor.Infrastructure {
         /// <param name="serviceContext">服务上下文</param>
         public Action Register( ServiceContext serviceContext ) {
             serviceContext.HostBuilder.ConfigureServices( ( context, services ) => {
-                services.TryAddSingleton<IGenerator, Generators.Generator>();
+                services.TryAddSingleton<IGenerator, Generator>();
                 services.TryAddSingleton<IGeneratorContextBuilder, GeneratorContextBuilder>();
                 services.TryAddSingleton<IGeneratorOptionsBuilder, GeneratorOptionsBuilder>();
                 services.TryAddSingleton<ITemplateFinder, RazorTemplateFinder>();

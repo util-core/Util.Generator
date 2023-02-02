@@ -12,7 +12,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:10086",
+      "applicationUrl": "http://localhost:@service.GetApiPort()",
       "sslPort": 0
     }
   },
@@ -34,7 +34,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": "true",
-      "applicationUrl": "http://localhost:10086"
+      "applicationUrl": "http://localhost:@service.GetApiPort()"
     }
   }
 }

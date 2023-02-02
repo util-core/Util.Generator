@@ -51,9 +51,7 @@ namespace Util.Generators.Contexts {
             var result = new GeneratorContext {
                 TemplateRootPath = GetPhysicalPath( options.TemplatePath ),
                 OutputRootPath = GetPhysicalPath( options.OutputPath ),
-                Message = new MessageContext {
-                    RequiredMessage = options.Messages.RequiredMessage
-                }
+                Message = options.Messages.Clone()
             };
             _logger.LogGeneratorContextBaseInfo( result );
             AddProjectContexts( result, options.Projects.Select( t => t.Value ) );
@@ -106,10 +104,16 @@ namespace Util.Generators.Contexts {
             var result = new ProjectContext( generatorContext ) {
                 Name = projectOptions.Name,
                 UnitOfWorkName = projectOptions.UnitOfWorkName,
-                ClientAppName = projectOptions.ClientAppName,
+                Client = projectOptions.Client.Clone(),
+                DbType = projectOptions.DbType,
                 TargetDbType = projectOptions.TargetDbType ?? projectOptions.DbType,
+                ConnectionString = projectOptions.ConnectionString,
                 Enabled = projectOptions.Enabled,
-                Utc = projectOptions.Utc
+                Utc = projectOptions.Utc,
+                I18n = projectOptions.I18n,
+                ProjectType = projectOptions.ProjectType,
+                ApiPort = projectOptions.ApiPort,
+                Extend = projectOptions.Extend
             };
             if ( projectOptions.Enabled == false )
                 return result;

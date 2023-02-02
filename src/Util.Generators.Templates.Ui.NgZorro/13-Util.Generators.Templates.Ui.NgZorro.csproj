@@ -32,9 +32,6 @@
 	  <Content Update="Templates\src\Presentation\appsettings.Development.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="Templates\src\Presentation\ClientApp\.browserslistrc.cshtml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\.eslintignore.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
@@ -59,9 +56,6 @@
 	  <Content Update="Templates\src\Presentation\ClientApp\.stylelintrc.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="Templates\src\Presentation\ClientApp\karma.conf.cshtml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\ng-alain.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
@@ -84,6 +78,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\core\core.module.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\core\i18n\i18n.service.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\core\index.cshtml">
@@ -255,12 +252,6 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\typings.d.cshtml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Update="Templates\src\Presentation\ClientApp\src\test.cshtml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Update="Templates\src\Presentation\ClientApp\src\polyfills.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\main.cshtml">

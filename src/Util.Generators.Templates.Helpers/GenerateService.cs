@@ -37,6 +37,15 @@ namespace Util.Generators.Helpers {
 
         #endregion
 
+        #region 常量
+
+        /// <summary>
+        /// .Generator
+        /// </summary>
+        internal const string Generator = ".Generator";
+
+        #endregion
+
         #region 属性
 
         /// <summary>
@@ -58,7 +67,7 @@ namespace Util.Generators.Helpers {
         /// <summary>
         /// 前端应用名称
         /// </summary>
-        public string ClientAppName => _context.ProjectContext.ClientAppName;
+        public string ClientAppName => _context.ProjectContext.Client.AppName;
         /// <summary>
         /// Util框架版本号
         /// </summary>
@@ -212,6 +221,17 @@ namespace Util.Generators.Helpers {
         /// </summary>
         public DatabaseType GetCurrentDbType() {
             return _context.ProjectContext.TargetDbType;
+        }
+
+        #endregion
+
+        #region GetApiPort(获取Web Api项目端口)
+
+        /// <summary>
+        /// 获取Web Api项目端口
+        /// </summary>
+        public string GetApiPort() {
+            return _context.ProjectContext.ApiPort ?? "12000";
         }
 
         #endregion

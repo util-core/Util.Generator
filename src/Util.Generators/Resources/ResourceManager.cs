@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Util.Generators.Contexts;
 using Util.Generators.Logs;
+using Util.Generators.Templates;
 
 namespace Util.Generators.Resources {
     /// <summary>
@@ -13,6 +15,10 @@ namespace Util.Generators.Resources {
         /// </summary>
         private static readonly List<Resource> _resources = new();
         /// <summary>
+        /// 模板过滤器管理器
+        /// </summary>
+        private readonly ITemplateFilterManager _filterManager;
+        /// <summary>
         /// 生成器日志
         /// </summary>
         private readonly IGeneratorLogger _logger;
@@ -20,8 +26,10 @@ namespace Util.Generators.Resources {
         /// <summary>
         /// 初始化静态资源管理器
         /// </summary>
+        /// <param name="filterManager">模板过滤器管理器</param>
         /// <param name="logger">生成器日志</param>
-        public ResourceManager( IGeneratorLogger logger = null ) {
+        public ResourceManager( ITemplateFilterManager filterManager, IGeneratorLogger logger = null ) {
+            _filterManager = filterManager ?? throw new ArgumentNullException( nameof( filterManager ) );
             _logger = logger ?? NullGeneratorLogger.Instance;
         }
 
@@ -39,16 +47,20 @@ namespace Util.Generators.Resources {
         }
 
         /// <inheritdoc />
-        public virtual void Imports( string templateRootPath, string outputRootPath, string project ) {
+        public virtual void Imports( string templateRootPath, string outputRootPath, ProjectContext project ) {
             foreach ( var resource in _resources ) {
-                _logger.ImportResource( templateRootPath, outputRootPath, project, resource );
+                _logger.ImportResource( templateRootPath, outputRootPath, project.Name, resource );
                 var path = GetResourcePath( templateRootPath, resource.From );
+                if ( _filterManager.IsFilter( path, project ) ) {
+                    _logger.FilterResource( path );
+                    continue;
+                }
                 if ( Directory.Exists( path ) ) {
-                    ImportDirectory( templateRootPath, outputRootPath, project, resource.From, resource.To );
+                    ImportDirectory( templateRootPath, outputRootPath, project.Name, resource.From, resource.To );
                     continue;
                 }
                 if ( File.Exists( path ) ) {
-                    ImportFile( templateRootPath, outputRootPath, project, resource.From, resource.To, path );
+                    ImportFile( templateRootPath, outputRootPath, project.Name, resource.From, resource.To, path );
                     continue;
                 }
             }

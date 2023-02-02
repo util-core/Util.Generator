@@ -1,4 +1,5 @@
 ﻿@* 解决方案文件 *@
+@using Util.Generators.Configuration
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
@@ -14,6 +15,7 @@
     var webApiProjectId = service.GetWebApiProjectId();
     var webApiProjectName = service.GetWebApiProjectName();
     //UI层项目
+    var isGenerateUi = Model.ProjectContext.ProjectType == ProjectType.Ui;
     var uiProjectId = service.GetUiProjectId();
     var uiProjectName = service.GetUiProjectName();
     //测试项目
@@ -44,7 +46,13 @@ Project("{@VsProjectType.SolutionFolder}") = "04-Infrastructure", "04-Infrastruc
 EndProject
 Project("{@VsProjectType.SolutionFolder}") = "test", "test", "{@VsProjectId.Test}"
 EndProject
-Project("{@VsProjectType.CSharpSdk}") = "@uiProjectName", "src\@uiProjectName\@(uiProjectName).csproj", "{@uiProjectId}" 
+@if ( isGenerateUi ){
+<text>
+Project("{@VsProjectType.CSharpSdk}") = "@uiProjectName", "src\@uiProjectName\@(uiProjectName).csproj", "{@uiProjectId}"
+EndProject
+</text>
+}
+Project("{@VsProjectType.CSharpSdk}") = "@webApiProjectName", "src\@webApiProjectName\@(webApiProjectName).csproj", "{@webApiProjectId}"
 EndProject
 @foreach( var schema in service.GetSchemas() ) {
 <text>Project("{@VsProjectType.CSharpSdk}") = "@service.GetDomainProjectName( schema )", "src\@service.GetDomainProjectName( schema )\@(service.GetDomainProjectName( schema )).csproj", "{@service.GetDomainProjectId( schema )}" 
@@ -56,8 +64,6 @@ EndProject
 Project("{@VsProjectType.CSharpSdk}") = "@databaseProjectName", "src\@databaseProjectName\@(databaseProjectName).csproj", "{@databaseProjectId}"
 EndProject
 Project("{@VsProjectType.CSharpSdk}") = "@applicationProjectName", "src\@applicationProjectName\@(applicationProjectName).csproj", "{@applicationProjectId}" 
-EndProject
-Project("{@VsProjectType.CSharpSdk}") = "@webApiProjectName", "src\@webApiProjectName\@(webApiProjectName).csproj", "{@webApiProjectId}" 
 EndProject
 Project("{@VsProjectType.CSharpSdk}") = "@domainTestProjectName", "test\@domainTestProjectName\@(domainTestProjectName).csproj", "{@domainTestProjectId}" 
 EndProject
@@ -80,7 +86,9 @@ Global
     @Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",databaseProjectId )
     @Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",applicationProjectId )
     @Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",webApiProjectId )
-@Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml",uiProjectId )
+@if ( isGenerateUi ) {
+    @Html.PartialAsync( "~/Templates/Sln.Cpu.Part.cshtml", uiProjectId )
+}
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,7 +106,11 @@ Global
 {@databaseProjectId} = {@VsProjectId.Infrastructure}
 {@applicationProjectId} = {@VsProjectId.Application}
 {@webApiProjectId} = {@VsProjectId.Application}
+@if ( isGenerateUi ) {
+<text>
 {@uiProjectId} = {@VsProjectId.Presentation}
+</text>
+}
 {@domainTestProjectId} = {@VsProjectId.Test}
 {@databaseTestProjectId} = {@VsProjectId.Test}
 {@applicationTestProjectId} = {@VsProjectId.Test}

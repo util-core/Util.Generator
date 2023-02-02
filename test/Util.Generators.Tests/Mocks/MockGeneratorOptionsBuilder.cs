@@ -21,31 +21,51 @@ namespace Util.Generators.Tests.Mocks {
                     {"Test",new ProjectOptions {
                         Name = "Test",
                         UnitOfWorkName = "UnitOfWork",
-                        ClientAppName = "ClientApp",
                         DbType = DatabaseType.SqlServer,
                         TargetDbType = DatabaseType.PgSql,
                         ConnectionString = "TestConnection",
                         Enabled = true,
-                        Utc = true
+                        Utc = true,
+                        I18n = true,
+                        Client = {
+                            AppName =  "ClientApp",
+                            Port =  "1"
+                        },
+                        ProjectType = ProjectType.WebApi,
+                        ApiPort = "123",
+                        Extend = "Extend1"
                     }},
                     {"Test2",new ProjectOptions {
                         Name = "Test2",
                         UnitOfWorkName = "UnitOfWork2",
-                        ClientAppName = "ClientApp2",
                         DbType = DatabaseType.PgSql,
                         ConnectionString = "TestConnection2",
                         Enabled = true,
-                        Utc = true
+                        Utc = true,
+                        I18n = true,
+                        Client = {
+                            AppName =  "ClientApp2",
+                            Port =  "2"
+                        },
+                        ProjectType = ProjectType.Ui,
+                        ApiPort = "456",
+                        Extend = "Extend2"
                     }},
                     {"Test3",new ProjectOptions {
                         Name = "Test3",
                         UnitOfWorkName = "UnitOfWork3",
-                        ClientAppName = "ClientApp3",
                         DbType = DatabaseType.SqlServer,
                         TargetDbType = DatabaseType.PgSql,
                         ConnectionString = "TestConnection3",
                         Enabled = false,
-                        Utc = false
+                        Utc = false,
+                        I18n = false,
+                        Client = {
+                            AppName =  "ClientApp3",
+                            Port =  "3"
+                        },
+                        ProjectType = ProjectType.WebApi,
+                        ApiPort = "789",
                     }},
                 }
             };
@@ -67,17 +87,21 @@ namespace Util.Generators.Tests.Mocks {
                     {"Test",new ProjectOptions {
                         Name = "Test",
                         UnitOfWorkName = "UnitOfWork",
-                        ClientAppName = "ClientApp",
                         DbType = DatabaseType.SqlServer,
-                        ConnectionString = "TestConnection"
+                        ConnectionString = "TestConnection",
+                        Client = {
+                            AppName =  "ClientApp",
+                        }
                     }},
                     {"Test2",new ProjectOptions {
                         Name = "Test2",
                         UnitOfWorkName = "UnitOfWork2",
-                        ClientAppName = "ClientApp2",
                         DbType = DatabaseType.PgSql,
                         TargetDbType = DatabaseType.SqlServer,
-                        ConnectionString = "TestConnection2"
+                        ConnectionString = "TestConnection2",
+                        Client = {
+                            AppName =  "ClientApp2",
+                        }
                     }}
                 }
             };

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Util.Generators.Contexts;
+using Util.Helpers;
 
 namespace Util.Generators.Helpers {
     /// <summary>
@@ -103,8 +104,31 @@ namespace Util.Generators.Helpers {
         /// 获取前端应用名称
         /// </summary>
         public string GetClientAppName() {
-            var result = _context.ProjectContext.ClientAppName.Camelize();
+            var result = _context.ProjectContext.Client.AppName.Camelize();
             return result.IsEmpty() ? ProjectName.Camelize() : result;
+        }
+
+        #endregion
+
+        #region GetUiPort(获取UI项目端口)
+
+        /// <summary>
+        /// 获取UI项目端口
+        /// </summary>
+        public string GetUiPort() {
+            var clientPort = Convert.ToInt( GetClientPort() );
+            return (clientPort + 100).ToString();
+        }
+
+        #endregion
+
+        #region GetClientPort(获取前端应用端口)
+
+        /// <summary>
+        /// 获取前端应用端口
+        /// </summary>
+        public string GetClientPort() {
+            return _context.ProjectContext.Client.Port ?? "5000";
         }
 
         #endregion
@@ -417,7 +441,7 @@ namespace Util.Generators.Helpers {
         /// 获取前端架构列表
         /// </summary>
         public List<string> GetClientSchemas() {
-            var result = new List<string> { _context.ProjectContext.ClientAppName };
+            var result = new List<string> { _context.ProjectContext.Client.AppName };
             if ( _context.ProjectContext.Schemas.Count > 0 )
                 result = _context.ProjectContext.Schemas;
             return result.ToList();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Util.Data;
+using Util.Generators.Configuration;
 using Util.Generators.Properties;
 using Util.Validation;
 
@@ -18,6 +19,7 @@ namespace Util.Generators.Contexts {
             GeneratorContext = generatorContext ?? throw new ArgumentNullException( nameof( generatorContext ) );
             Entities = new List<EntityContext>();
             Schemas = new List<string>();
+            Client = new ClientOptions();
             Id = Util.Helpers.Id.Create();
         }
 
@@ -33,9 +35,19 @@ namespace Util.Generators.Contexts {
         public string Name { get; set; }
 
         /// <summary>
+        /// 数据库类型
+        /// </summary>
+        public DatabaseType DbType { get; set; }
+
+        /// <summary>
         /// 目标数据库类型
         /// </summary>
         public DatabaseType TargetDbType { get; set; }
+
+        /// <summary>
+        /// 数据库连接字符串
+        /// </summary>
+        public string ConnectionString { get; set; }
 
         /// <summary>
         /// 工作单元名称
@@ -43,19 +55,39 @@ namespace Util.Generators.Contexts {
         public string UnitOfWorkName { get; set; }
 
         /// <summary>
-        /// 前端应用名称
-        /// </summary>
-        public string ClientAppName { get; set; }
-
-        /// <summary>
         /// 是否启用
         /// </summary>
         public bool Enabled { get; set; }
 
         /// <summary>
-        /// 是否使用Utc
+        /// 是否启用Utc
         /// </summary>
         public bool Utc { get; set; }
+
+        /// <summary>
+        /// 是否启用多语言
+        /// </summary>
+        public bool I18n { get; set; }
+
+        /// <summary>
+        /// Web Api项目端口
+        /// </summary>
+        public string ApiPort { get; set; }
+
+        /// <summary>
+        /// 项目类型
+        /// </summary>
+        public ProjectType? ProjectType { get; set; }
+
+        /// <summary>
+        /// 客户端配置
+        /// </summary>
+        public ClientOptions Client { get; set; }
+
+        /// <summary>
+        /// 扩展
+        /// </summary>
+        public object Extend { get; set; }
 
         /// <summary>
         /// 生成器上下文
@@ -71,6 +103,13 @@ namespace Util.Generators.Contexts {
         /// 架构列表
         /// </summary>
         public List<string> Schemas { get; }
+
+        /// <summary>
+        /// 获取扩展
+        /// </summary>
+        public T GetExtend<T>() {
+            return Util.Helpers.Convert.To<T>( Extend );
+        }
 
         /// <summary>
         /// 验证
@@ -91,14 +130,28 @@ namespace Util.Generators.Contexts {
                 Id = Id,
                 Name = Name,
                 UnitOfWorkName = UnitOfWorkName,
-                ClientAppName = ClientAppName,
+                DbType = DbType,
                 TargetDbType = TargetDbType,
+                ConnectionString = ConnectionString,
+                Client = Client.Clone(),
                 Enabled = Enabled,
-                Utc = Utc
+                Utc = Utc,
+                I18n = I18n,
+                ProjectType = ProjectType,
+                ApiPort = ApiPort,
+                Extend = CloneExtend()
             };
             result.Schemas.AddRange( Schemas );
             Entities.ForEach( entity => result.Entities.Add( entity.Clone( result ) ) );
             return result;
+        }
+
+        /// <summary>
+        /// 复制扩展
+        /// </summary>
+        private object CloneExtend() {
+            var json = Util.Helpers.Json.ToJson( Extend );
+            return Util.Helpers.Json.ToObject<object>( json );
         }
     }
 }

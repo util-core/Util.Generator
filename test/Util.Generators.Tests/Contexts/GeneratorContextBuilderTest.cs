@@ -2,6 +2,7 @@
 using System.Data;
 using Util.Data;
 using Util.Data.Metadata;
+using Util.Generators.Configuration;
 using Util.Generators.Contexts;
 using Util.Generators.Logs;
 using Util.Generators.Tests.Mocks;
@@ -66,14 +67,27 @@ namespace Util.Generators.Tests.Contexts {
         }
 
         /// <summary>
-        /// 测试项目前端应用名称
+        /// 测试项目客户端
         /// </summary>
         [Fact]
-        public void TestProjectContext_ClientAppName() {
+        public void TestProjectContext_Client() {
             var projectContext = _context.Projects[0];
-            Assert.Equal( "ClientApp", projectContext.ClientAppName );
+            Assert.Equal( "ClientApp", projectContext.Client.AppName );
+            Assert.Equal( "1", projectContext.Client.Port );
             var projectContext2 = _context.Projects[1];
-            Assert.Equal( "ClientApp2", projectContext2.ClientAppName );
+            Assert.Equal( "ClientApp2", projectContext2.Client.AppName );
+            Assert.Equal( "2", projectContext2.Client.Port );
+        }
+
+        /// <summary>
+        /// 测试项目数据库类型
+        /// </summary>
+        [Fact]
+        public void TestProjectContext_DbType() {
+            var projectContext = _context.Projects[0];
+            Assert.Equal( DatabaseType.SqlServer, projectContext.DbType );
+            var projectContext2 = _context.Projects[1];
+            Assert.Equal( DatabaseType.PgSql, projectContext2.DbType );
         }
 
         /// <summary>
@@ -85,6 +99,17 @@ namespace Util.Generators.Tests.Contexts {
             Assert.Equal( DatabaseType.PgSql, projectContext.TargetDbType );
             var projectContext2 = _context.Projects[1];
             Assert.Equal( DatabaseType.PgSql, projectContext2.TargetDbType );
+        }
+
+        /// <summary>
+        /// 测试项目连接字符串
+        /// </summary>
+        [Fact]
+        public void TestProjectContext_ConnectionString() {
+            var projectContext = _context.Projects[0];
+            Assert.Equal( "TestConnection", projectContext.ConnectionString );
+            var projectContext2 = _context.Projects[1];
+            Assert.Equal( "TestConnection2", projectContext2.ConnectionString );
         }
 
         /// <summary>
@@ -101,7 +126,7 @@ namespace Util.Generators.Tests.Contexts {
         }
 
         /// <summary>
-        /// 测试项目是否使用Utc
+        /// 测试项目是否启用Utc
         /// </summary>
         [Fact]
         public void TestProjectContext_Utc() {
@@ -111,6 +136,52 @@ namespace Util.Generators.Tests.Contexts {
             Assert.True( projectContext2.Utc );
             var projectContext3 = _context.Projects[2];
             Assert.False( projectContext3.Utc );
+        }
+
+        /// <summary>
+        /// 测试项目是否启用多语言
+        /// </summary>
+        [Fact]
+        public void TestProjectContext_I18n() {
+            var projectContext = _context.Projects[0];
+            Assert.True( projectContext.I18n );
+            var projectContext2 = _context.Projects[1];
+            Assert.True( projectContext2.I18n );
+            var projectContext3 = _context.Projects[2];
+            Assert.False( projectContext3.I18n );
+        }
+
+        /// <summary>
+        /// 测试项目类型
+        /// </summary>
+        [Fact]
+        public void TestProjectContext_ProjectType() {
+            var projectContext = _context.Projects[0];
+            Assert.Equal( ProjectType.WebApi, projectContext.ProjectType );
+            var projectContext2 = _context.Projects[1];
+            Assert.Equal( ProjectType.Ui, projectContext2.ProjectType );
+        }
+
+        /// <summary>
+        /// 测试Web Api项目端口
+        /// </summary>
+        [Fact]
+        public void TestProjectContext_ApiPort() {
+            var projectContext = _context.Projects[0];
+            Assert.Equal( "123", projectContext.ApiPort );
+            var projectContext2 = _context.Projects[1];
+            Assert.Equal( "456", projectContext2.ApiPort );
+        }
+
+        /// <summary>
+        /// 测试项目扩展
+        /// </summary>
+        [Fact]
+        public void TestProjectContext_Extend() {
+            var projectContext = _context.Projects[0];
+            Assert.Equal( "Extend1", projectContext.Extend );
+            var projectContext2 = _context.Projects[1];
+            Assert.Equal( "Extend2", projectContext2.Extend );
         }
 
         /// <summary>

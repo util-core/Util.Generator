@@ -1,5 +1,4 @@
 ﻿using System;
-using Util.Generators.Helpers.Filters;
 using Util.Generators.Templates;
 using Util.Infrastructure;
 
@@ -28,15 +27,16 @@ namespace Util.Generators.Helpers.Infrastructure {
         /// </summary>
         /// <param name="serviceContext">服务上下文</param>
         public Action Register( ServiceContext serviceContext ) {
-            AddFilters();
+            AddFilters(serviceContext);
             return null;
         }
 
         /// <summary>
         /// 添加模板过滤器
         /// </summary>
-        private void AddFilters() {
-            TemplateFilterManager.AddFilter( new DatabaseTemplateFilter() );
+        private void AddFilters( ServiceContext serviceContext ) {
+            var filters = serviceContext.TypeFinder.Find<ITemplateFilter>();
+            filters.ForEach( TemplateFilterManager.AddFilter );
         }
     }
 }

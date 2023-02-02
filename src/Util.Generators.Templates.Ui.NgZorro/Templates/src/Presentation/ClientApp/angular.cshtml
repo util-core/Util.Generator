@@ -20,28 +20,10 @@
       "projectType": "application",
       "schematics": {
         "@@schematics/angular:component": {
-          "skipTests": false,
-          "flat": false,
-          "inlineStyle": true,
-          "inlineTemplate": false,
-          "style": "less"
+        "style": "less"
         },
         "@@schematics/angular:application": {
-          "strict": true
-        },
-        "ng-alain:module": {
-          "routing": true,
-          "skipTests": false
-        },
-        "@@schematics/angular:module": {
-          "routing": true,
-          "skipTests": false
-        },
-        "@@schematics/angular:directive": {
-          "skipTests": false
-        },
-        "@@schematics/angular:service": {
-          "skipTests": false
+        "strict": true
         }
       },
       "root": "",
@@ -54,9 +36,10 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "less",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -66,11 +49,11 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "@@antv/g2",
               "ajv",
               "ajv-formats",
-              "date-fns",
-              "file-saver"
+              "mockjs",
+              "file-saver",
+              "extend"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -118,8 +101,8 @@
           "builder": "ngx-build-plus:dev-server",
           "options": {
             "browserTarget": "@name:build",
-            "publicHost": "https://localhost:5000",
-            "port": 5000,
+            "publicHost": "https://localhost:@service.GetClientPort()",
+            "port": @service.GetClientPort(),
             "extraWebpackConfig": "webpack.config.js"
           },
           "configurations": {
@@ -144,17 +127,15 @@
           "builder": "ngx-build-plus:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "less",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.less"
-            ],
+            "styles": [],
             "scripts": [],
             "extraWebpackConfig": "webpack.config.js"
           }
@@ -170,6 +151,5 @@
         }
       }
     }
-  },
-  "defaultProject": "@name"
+  }
 }

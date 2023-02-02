@@ -29,7 +29,7 @@ builder.Host.AddUtil( options => options
 var app = builder.Build();
 
 //配置请求管道
-app.UseNgZorro( "http://localhost:5000" );
+app.UseNgZorro( "http://localhost:@service.GetClientPort()" );
 
 //运行应用
 app.Run();

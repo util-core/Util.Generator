@@ -268,5 +268,44 @@ namespace Util.Generators.Helpers {
         }
 
         #endregion
+
+        #region GetApiTestConnection(获取Web Api测试项目连接字符串)
+
+        /// <summary>
+        /// 获取Web Api测试项目连接字符串
+        /// </summary>
+        public string GetApiTestConnection() {
+            if ( IsGenerateConnection() == false )
+                return null;
+            return _context.ProjectContext.ConnectionString.Replace( Generator, ".Api.Test" ).Replace( "\\", "\\\\" );
+        }
+
+        #endregion
+
+        #region GetApplicationTestConnection(获取应用层测试项目连接字符串)
+
+        /// <summary>
+        /// 获取应用层测试项目连接字符串
+        /// </summary>
+        public string GetApplicationTestConnection() {
+            if ( IsGenerateConnection() == false )
+                return null;
+            return _context.ProjectContext.ConnectionString.Replace( Generator, ".Application.Test" ).Replace( "\\", "\\\\" );
+        }
+
+        #endregion
+
+        #region GetDataTestConnection(获取数据访问层测试项目连接字符串)
+
+        /// <summary>
+        /// 获取数据访问层测试项目连接字符串
+        /// </summary>
+        public string GetDataTestConnection() {
+            if ( IsGenerateConnection() == false )
+                return null;
+            return _context.ProjectContext.ConnectionString.Replace( Generator, ".Data.Test" ).Replace( "\\", "\\\\" );
+        }
+
+        #endregion
     }
 }

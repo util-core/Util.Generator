@@ -212,7 +212,7 @@ namespace Util.Generators.Helpers {
         private string GetSchemaI18nKey( EntityContext entity ) {
             var key = entity.Schema;
             if ( entity.Schema.IsEmpty() )
-                key = entity.ProjectContext.ClientAppName;
+                key = entity.ProjectContext.Client.AppName;
             return key.Pluralize().Camelize();
         }
 

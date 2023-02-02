@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Util.Generators.Contexts;
 
 namespace Util.Generators.Templates {
@@ -16,7 +17,18 @@ namespace Util.Generators.Templates {
         /// </summary>
         /// <param name="filter">模板过滤器</param>
         public static void AddFilter( ITemplateFilter filter ) {
+            if ( filter == null )
+                return;
             _filters.Add( filter );
+        }
+
+        /// <summary>
+        /// 添加模板过滤器
+        /// </summary>
+        /// <param name="type">模板过滤器类型</param>
+        public static void AddFilter( Type type ) {
+            var filter = Util.Helpers.Reflection.CreateInstance<ITemplateFilter>( type );
+            AddFilter( filter );
         }
 
         /// <summary>

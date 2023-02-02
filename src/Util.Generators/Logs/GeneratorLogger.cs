@@ -173,6 +173,11 @@ namespace Util.Generators.Logs {
         }
 
         /// <inheritdoc />
+        public void FilterResource( string path ) {
+            _logger.AppendLine( $"过滤资源: {path}" ).LogDebug();
+        }
+
+        /// <inheritdoc />
         public void ImportResource( string templateRootPath, string outputRootPath, string project, Resource resource ) {
             _logger.AppendLine( "开始导入静态资源" )
                 .AppendLine( $"    模板根目录路径: {templateRootPath}" )

@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Util.Helpers;
+using Util.Logging.Serilog;
 using Xunit.DependencyInjection;
 using Xunit.DependencyInjection.Logging;
 
@@ -17,7 +18,7 @@ namespace Util.Generators.Razor.Tests {
                 .ConfigureHostConfiguration( builder => {
                     Environment.SetDevelopment();
                 } )
-                .AddUtil();
+                .AddUtil( t => t.UseSerilog() );
         }
 
         /// <summary>

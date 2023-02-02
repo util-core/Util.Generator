@@ -1,4 +1,5 @@
-﻿using Util.Generators.Contexts;
+﻿using Util.Generators.Configuration;
+using Util.Generators.Contexts;
 using Xunit;
 
 namespace Util.Generators.Tests.Contexts {
@@ -14,7 +15,10 @@ namespace Util.Generators.Tests.Contexts {
             //创建生成器上下文
             var context = new GeneratorContext {
                 TemplateRootPath = "a",
-                OutputRootPath = "b"
+                OutputRootPath = "b",
+                Message = new MessageOptions {
+                    RequiredMessage = "RequiredMessage"
+                }
             };
 
             //添加项目上下文1
@@ -57,6 +61,7 @@ namespace Util.Generators.Tests.Contexts {
             Assert.NotSame( context, clone );
             Assert.Equal( context.TemplateRootPath, clone.TemplateRootPath );
             Assert.Equal( context.OutputRootPath, clone.OutputRootPath );
+            Assert.Equal( context.Message.RequiredMessage, clone.Message.RequiredMessage );
 
             //验证项目上下文
             Assert.Equal( 2, clone.Projects.Count );
