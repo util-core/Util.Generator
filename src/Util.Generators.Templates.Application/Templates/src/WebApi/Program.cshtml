@@ -43,7 +43,7 @@ builder.Host.AddUtil( options => options
 
 //配置cors
 builder.Services.AddCors( options => options.AddPolicy( "cors", policy => {
-    policy.WithOrigins( "https://localhost:5000" );
+    policy.SetIsOriginAllowed( t => true );
     policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials();
 } ) );
 

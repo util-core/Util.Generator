@@ -116,8 +116,8 @@ namespace Util.Generators.Helpers {
         /// 获取UI项目端口
         /// </summary>
         public string GetUiPort() {
-            var clientPort = Convert.ToInt( GetClientPort() );
-            return (clientPort + 100).ToString();
+            var apiPort = Convert.ToInt( GetApiPort() );
+            return ( apiPort + 100).ToString();
         }
 
         #endregion

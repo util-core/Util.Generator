@@ -273,7 +273,7 @@ namespace Util.Generators.Tests {
             _generator.Generate();
 
             //验证
-            _mockResourceManager.Verify( t => t.Imports( templateRootPath, outputRootPath, project ) );
+            _mockResourceManager.Verify( t => t.Imports( templateRootPath, outputRootPath, projectContext ) );
         }
     }
 }
