@@ -198,7 +198,7 @@ namespace Util.Generators.Helpers {
         /// 获取必填项消息
         /// </summary>
         public string GetRequiredMessage() {
-            return _context.ProjectContext.GeneratorContext.Message.RequiredMessage ?? GeneratorResource.RequiredMessage;
+            return _context.ProjectContext.GeneratorContext.Message.RequiredMessage;
         }
 
         #endregion

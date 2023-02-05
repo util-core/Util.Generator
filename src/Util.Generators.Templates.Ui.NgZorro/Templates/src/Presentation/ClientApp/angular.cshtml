@@ -101,8 +101,8 @@
           "builder": "ngx-build-plus:dev-server",
           "options": {
             "browserTarget": "@name:build",
-            "publicHost": "https://localhost:@service.GetClientPort()",
-            "port": @service.GetClientPort(),
+            "publicHost": "https://localhost:@service.GetUiPort()",
+            "port": @service.GetUiPort(),
             "extraWebpackConfig": "webpack.config.js"
           },
           "configurations": {

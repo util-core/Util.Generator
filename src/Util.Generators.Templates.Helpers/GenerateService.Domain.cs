@@ -222,7 +222,9 @@ namespace Util.Generators.Helpers {
                 return;
             if( property.IsBool )
                 return;
-            string message = string.Format( GetRequiredMessage(), property.Description );
+            string message = GetRequiredMessage();
+            if( message.IsEmpty() == false )
+                message = string.Format( message, property.Description );
             result.Append( GetRequired( message ) );
         }
 
@@ -231,7 +233,7 @@ namespace Util.Generators.Helpers {
         /// </summary>
         private string GetRequired( string message ) {
             if ( message.IsEmpty() )
-                return $"        [Required]\r\n";
+                return "        [Required]\r\n";
             return $"        [Required(ErrorMessage = \"{message}\")]\r\n";
         }
 

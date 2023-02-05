@@ -265,5 +265,29 @@ namespace Util.Generators.Helpers {
         }
 
         #endregion
+
+        #region GetBeginPropertyName(获取起始属性名)
+
+        /// <summary>
+        /// 获取起始属性名
+        /// </summary>
+        /// <param name="property">属性</param>
+        public string GetBeginPropertyName( Property property ) {
+            return $"Begin{property.Name.Pascalize()}";
+        }
+
+        #endregion
+
+        #region GetEndPropertyName(获取结束属性名)
+
+        /// <summary>
+        /// 获取结束属性名
+        /// </summary>
+        /// <param name="property">属性</param>
+        public string GetEndPropertyName( Property property ) {
+            return $"End{property.Name.Pascalize()}";
+        }
+
+        #endregion
     }
 }

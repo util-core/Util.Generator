@@ -7,20 +7,27 @@
     Model.Output.Extension = ".ts";
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app";
 }
-import { HttpClient, HttpClientModule } from '@@angular/common/http';
-import { APP_INITIALIZER, Injector, LOCALE_ID, NgModule, Type } from '@@angular/core';
+import { HttpClientModule } from '@@angular/common/http';
+import { APP_INITIALIZER, Injector, LOCALE_ID, NgModule } from '@@angular/core';
 import { BrowserModule } from '@@angular/platform-browser';
 import { BrowserAnimationsModule } from '@@angular/platform-browser/animations';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { Observable } from 'rxjs';
+import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { GlobalConfigModule } from './global-config.module';
+import { LayoutModule } from './layout/layout.module';
+import { RoutesModule } from './routes/routes.module';
+import { SharedModule } from './shared/shared.module';
 
-// #region default language
-// Reference: https://ng-alain.com/docs/i18n
+// #region 语言设置
+import { registerLocaleData } from '@@angular/common';
 import { default as ngLang } from '@@angular/common/locales/zh';
-import { DELON_LOCALE, zh_CN as delonLang } from '@@delon/theme';
 import { zhCN as dateLang } from 'date-fns/locale';
 import { NZ_DATE_LOCALE, NZ_I18N, zh_CN as zorroLang } from 'ng-zorro-antd/i18n';
+import { DELON_LOCALE, zh_CN as delonLang, ALAIN_I18N_TOKEN } from '@@delon/theme';
+import { I18NService } from '@@core/i18n.service';
 const LANG = {
     abbr: 'zh',
     ng: ngLang,
@@ -28,23 +35,29 @@ const LANG = {
     date: dateLang,
     delon: delonLang,
 };
-// register angular
-import { registerLocaleData } from '@@angular/common';
+const I18NSERVICE_PROVIDES = [{ provide: ALAIN_I18N_TOKEN, useClass: I18NService, multi: false }];
 registerLocaleData(LANG.ng, LANG.abbr);
 const LANG_PROVIDES = [
     { provide: LOCALE_ID, useValue: LANG.abbr },
     { provide: NZ_I18N, useValue: LANG.zorro },
     { provide: NZ_DATE_LOCALE, useValue: LANG.date },
-    { provide: DELON_LOCALE, useValue: LANG.delon },
+    { provide: DELON_LOCALE, useValue: LANG.delon }
 ];
 // #endregion
 
-// #region global third module
-const GLOBAL_THIRD_MODULES: Array<Type<void>> = [];
+// #region 图标设置
+import { IconDefinition } from '@@ant-design/icons-angular';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import * as AllIcons from '@@ant-design/icons-angular/icons';
+
+const antDesignIcons = AllIcons as {
+    [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 // #endregion
 
-// #region Startup Service
-import { StartupService } from '@@core';
+// #region StartupService(启动设置)
+import { StartupService } from './core/startup/startup.service';
 export function StartupServiceFactory(startupService: StartupService): () => Observable<void> {
     return () => startupService.load();
 }
@@ -59,12 +72,17 @@ const APPINIT_PROVIDES = [
 ];
 // #endregion
 
-import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { GlobalConfigModule } from './global-config.module';
-import { LayoutModule } from './layout/layout.module';
-import { RoutesModule } from './routes/routes.module';
-import { SharedModule } from './shared/shared.module';
+// #region ngx-tinymce(富文本设置)
+import { NgxTinymceModule, TinymceOptions } from 'ngx-tinymce';
+const tinymceOptions: TinymceOptions = {
+    baseURL: '/assets/tinymce/'
+};
+// #endregion
+
+// #region util(util设置)
+import { Util, AppConfig } from 'util-angular';
+import { appConfig } from './app-config';
+// #endregion
 
 @@NgModule({
     declarations: [
@@ -74,19 +92,30 @@ import { SharedModule } from './shared/shared.module';
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        NzIconModule.forRoot(icons),
         GlobalConfigModule.forRoot(),
-        CoreModule.forRoot(),
+        CoreModule.forRoot(),        
         SharedModule,
         LayoutModule,
         RoutesModule,
         NzMessageModule,
         NzNotificationModule,
-        ...GLOBAL_THIRD_MODULES
+        NgxTinymceModule.forRoot(tinymceOptions)
     ],
     providers: [
         ...LANG_PROVIDES,
-        ...APPINIT_PROVIDES
+        ...APPINIT_PROVIDES,
+        ...I18NSERVICE_PROVIDES,
+        { provide: AppConfig, useValue: appConfig }
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+    /**
+    * 初始化应用根模块
+    * @@param injector 注入器
+    */
+    constructor(injector: Injector) {
+        Util.init(injector);
+    }
+}

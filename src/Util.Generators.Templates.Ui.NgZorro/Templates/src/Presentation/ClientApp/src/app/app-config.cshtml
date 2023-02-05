@@ -1,0 +1,17 @@
+﻿@* Ui层项目 - 应用配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "app-config";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app";
+}
+import { AppConfig } from 'util-angular';
+
+/**
+* 应用配置
+*/
+export const appConfig: AppConfig = {
+    apiEndpoint: "https://localhost:@service.GetApiPort()"
+}

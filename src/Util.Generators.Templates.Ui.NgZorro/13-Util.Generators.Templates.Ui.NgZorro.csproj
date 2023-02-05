@@ -86,7 +86,13 @@
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\core\index.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\app-config.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\basic.component.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\i18n.component.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\user.component.cshtml">
@@ -218,7 +224,7 @@
 	  <Content Update="Templates\src\Presentation\ClientApp\src\app\shared\shared.module.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="Templates\src\Presentation\ClientApp\src\assets\tmp\app-data.json">
+	  <Content Update="Templates\src\Presentation\ClientApp\src\assets\app-data.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\bootstrap.cshtml">
@@ -234,12 +240,6 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\i18n\zh-CN.cshtml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Update="Templates\src\Presentation\ClientApp\src\style-icons-auto.cshtml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Update="Templates\src\Presentation\ClientApp\src\style-icons.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\Presentation\ClientApp\src\styles.cshtml">

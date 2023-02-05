@@ -13,7 +13,7 @@ import * as MOCKDATA from '../../_mock';
 
 export const environment = {
     production: false,
-    useHash: true,
+    useHash: false,
     api: {
         baseUrl: './',
         refreshTokenEnabled: true,
@@ -21,11 +21,3 @@ export const environment = {
     },
     modules: [DelonMockModule.forRoot({ data: MOCKDATA })]
 } as Environment;
-
-/*
-* In development mode, to ignore zone related error stack frames such as
-* `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can
-* import the following file, but please comment it out in production mode
-* because it will have performance impact when throw error
-*/
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

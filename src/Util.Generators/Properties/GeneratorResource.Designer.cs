@@ -88,15 +88,6 @@ namespace Util.Generators.Properties {
         }
         
         /// <summary>
-        ///   查找类似 {0}不能为空 的本地化字符串。
-        /// </summary>
-        public static string RequiredMessage {
-            get {
-                return ResourceManager.GetString("RequiredMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 模板根目录路径不能为空 的本地化字符串。
         /// </summary>
         public static string TemplateRootPathIsEmpty {

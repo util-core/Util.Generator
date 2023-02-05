@@ -13,6 +13,7 @@
 }
 using System;
 using System.Linq;
+using Util.Data;
 using Util.Applications;
 using @service.GetDomainNamespace( "Models" );
 using @service.GetDomainNamespace( "Repositories" );
@@ -37,7 +38,7 @@ namespace @service.GetApplicationNamespace( "Services.Implements",true ) {
 
         /// <inheritdoc />
         protected override IQueryable<@entity> Filter( IQueryable<@entity> queryable, @query param ) {
-            return queryable;
+            return @service.GetQueryableFilter();
         }
     }
 }

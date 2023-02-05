@@ -35,12 +35,26 @@
             continue;
         if ( property.IsAudited )
             continue;
+        if ( property.IsPinYin )
+            continue;
+        if ( property.IsTree )
+            continue;
+        if ( property.IsDateTime )
+            continue;
     <util-td for="@property.Name"></util-td>
     }
     <util-td title-operation="true">
-        <util-button class="mr-sm" type="Primary" shape="Circle" icon="Plus" tooltip-title="@service.GetCreateSubTreeEntityI18nKey()" on-click="openCreateDialog(row)"></util-button>
-        <util-button class="mr-sm" type="Primary" shape="Circle" icon="Edit" tooltip-title-update="true" on-click="openEditDialog(row)"></util-button>
-        <util-button class="mr-sm" type="Primary" danger="true" shape="Circle" icon="Delete" tooltip-title-delete="true" on-click="delete(row.id)"></util-button>
-        <util-button shape="Circle" icon="Eye" tooltip-title-detail="true" on-click="openDetailDialog(row)"></util-button>
+        <util-a on-click="openCreateDialog(row)" text="@service.GetCreateSubTreeEntityI18nKey()"></util-a>
+        <util-divider type="Vertical"></util-divider>
+        <util-a on-click="openEditDialog(row)" text-update="true"></util-a>
+        <util-divider type="Vertical"></util-divider>
+        <util-a danger="true" on-click="delete(row.id)" text-delete="true"></util-a>
+        <util-divider type="Vertical"></util-divider>
+        <util-a dropdown-menu="menu">
+            <util-icon type="More" theme="Outline"></util-icon>
+        </util-a>
+        <util-dropdown-menu id="menu">
+            <util-menu-item on-click="openDetailDialog(row)" text-detail="true"></util-menu-item>
+        </util-dropdown-menu>
     </util-td>
 </util-tree-table>

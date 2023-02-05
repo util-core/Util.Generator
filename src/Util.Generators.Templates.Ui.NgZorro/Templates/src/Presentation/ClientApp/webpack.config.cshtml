@@ -3,7 +3,6 @@
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
-    var name = service.GetClientAppName();
     Model.Output.FileNameNoExtension = "webpack.config";
     Model.Output.Extension = ".js";
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
@@ -11,9 +10,9 @@
 const { shareAll, withModuleFederationPlugin } = require('@@angular-architects/module-federation/webpack');
 
 module.exports = withModuleFederationPlugin({
-    name: 'permission',
+    name: '@service.GetClientAppName()',
     exposes: {
-        './Module': './src/app/routes/@name/@(name).module.ts'
+        './Module': './src/app/routes/@(service.GetClientModuleFolderName())/@(service.GetClientModuleFileName()).ts'
     },
     shared: {
         ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' })

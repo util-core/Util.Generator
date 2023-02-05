@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Text;
+using Util.Generators.Contexts;
 
 namespace Util.Generators.Helpers {
     /// <summary>
@@ -200,6 +202,53 @@ namespace Util.Generators.Helpers {
             if( _context.Key.SystemType == SystemType.Guid )
                 return $"CrudServiceBase<{EntityName},{EntityName}Dto,{EntityName}Query>";
             return $"CrudServiceBase<{EntityName},{EntityName}Dto,{EntityName}Query,{GetKeyType()}>";
+        }
+
+        #endregion
+
+        #region GetQueryableFilter(获取查询过滤条件)
+
+        /// <summary>
+        /// 获取查询过滤条件
+        /// </summary>
+        public string GetQueryableFilter() {
+            var result = new StringBuilder();
+            result.Append( "queryable" );
+            foreach ( var property in _context.Properties ) {
+                if ( property.IsKey )
+                    continue;
+                if ( property.IsTree )
+                    continue;
+                if ( property.IsPinYin )
+                    continue;
+                if ( property.IsExtraProperties )
+                    continue;
+                if ( property.IsString ) {
+                    AppendStringFilter( result, property );
+                }
+                if ( property.IsDateTime ) {
+                    AppendDateTimeFilter( result, property );
+                }
+            }
+            return result.ToString();
+        }
+
+        /// <summary>
+        /// 添加字符串查询过滤条件
+        /// </summary>
+        private void AppendStringFilter( StringBuilder result,Property property ) {
+            var name = property.Name;
+            result.AppendLine();
+            result.Append( $"                .WhereIfNotEmpty( t => t.{name}.Contains( param.{name} ) )" );
+        }
+
+        /// <summary>
+        /// 添加日期查询过滤条件
+        /// </summary>
+        private void AppendDateTimeFilter( StringBuilder result, Property property ) {
+            var name = property.Name;
+            result.AppendLine();
+            result.Append( $"                .Between( t => t.{name},param.{GetBeginPropertyName( property )},param.{GetEndPropertyName( property )} )" );
         }
 
         #endregion

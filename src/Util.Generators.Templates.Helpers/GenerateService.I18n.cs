@@ -154,6 +154,20 @@ namespace Util.Generators.Helpers {
                 return;
             result.Append( $"      \"{property.Name.Singularize().Camelize()}\": " );
             result.AppendLine( $"\"{GetI18nValue( property, isChinese )}\"," );
+            if ( property.IsDateTime ) {
+                AppendI18nDateTimeContent( result, property, isChinese );
+                return;
+            }
+        }
+
+        /// <summary>
+        /// 添加i18n多语言开始和结束日期内容
+        /// </summary>
+        private void AppendI18nDateTimeContent( StringBuilder result, Property property, bool isChinese ) {
+            result.Append( $"      \"begin{property.Name.Pascalize()}\": " );
+            result.AppendLine( isChinese ? $"\"起始{GetI18nValue( property, true )}\"," : $"\"Begin{GetI18nValue( property, false )}\"," );
+            result.Append( $"      \"end{property.Name.Pascalize()}\": " );
+            result.AppendLine( isChinese ? $"\"结束{GetI18nValue( property, true )}\"," : $"\"End{GetI18nValue( property, false )}\"," );
         }
 
         /// <summary>

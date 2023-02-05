@@ -33,12 +33,12 @@ namespace @service.GetDataNamespace( "Queries",true ) {
         /// 起始@(property.Description)
         /// </summary>
         [Display( Name = "@service.GetPropertyI18nKey(property,"begin")" )]
-        public DateTime? Begin@(property.Name) { get; set; }
+        public DateTime? @service.GetBeginPropertyName(property) { get; set; }
         /// <summary>
         /// 结束@(property.Description)
         /// </summary>
         [Display( Name = "@service.GetPropertyI18nKey(property,"end")" )]
-        public DateTime? End@(property.Name) { get; set; }
+        public DateTime? @service.GetEndPropertyName(property) { get; set; }
 </text>
         continue;
     }

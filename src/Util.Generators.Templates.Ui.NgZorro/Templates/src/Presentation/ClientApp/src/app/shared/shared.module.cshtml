@@ -15,8 +15,10 @@ import { AlainThemeModule } from '@@delon/theme';
 import { DelonACLModule } from '@@delon/acl';
 import { SHARED_DELON_MODULES } from './shared-delon.module';
 import { SHARED_ZORRO_MODULES } from './shared-zorro.module';
+import { UtilModule } from 'util-angular';
+import { NgxTinymceModule } from 'ngx-tinymce';
 
-const THIRDMODULES: Array<Type<void>> = [];
+const THIRDMODULES: Array<Type<void>> = [UtilModule, NgxTinymceModule ];
 const COMPONENTS: Array<Type<void>> = [];
 const DIRECTIVES: Array<Type<void>> = [];
 
@@ -27,10 +29,10 @@ const DIRECTIVES: Array<Type<void>> = [];
         RouterModule,
         ReactiveFormsModule,
         AlainThemeModule.forChild(),
-        DelonACLModule,
-    ...SHARED_DELON_MODULES,
-    ...SHARED_ZORRO_MODULES,
-    ...THIRDMODULES
+        DelonACLModule,        
+        ...SHARED_DELON_MODULES,
+        ...SHARED_ZORRO_MODULES,
+        ...THIRDMODULES
     ],
     declarations: [
     ...COMPONENTS,
@@ -43,11 +45,11 @@ const DIRECTIVES: Array<Type<void>> = [];
         RouterModule,
         AlainThemeModule,
         DelonACLModule,
-    ...SHARED_DELON_MODULES,
-    ...SHARED_ZORRO_MODULES,
-    ...THIRDMODULES,
-    ...COMPONENTS,
-    ...DIRECTIVES
+        ...SHARED_DELON_MODULES,
+        ...SHARED_ZORRO_MODULES,
+        ...THIRDMODULES,
+        ...COMPONENTS,
+        ...DIRECTIVES
     ]
 })
 export class SharedModule {

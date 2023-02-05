@@ -117,7 +117,7 @@ namespace Util.Generators.Helpers {
         /// </summary>
         public string GetUiPort() {
             var apiPort = Convert.ToInt( GetApiPort() );
-            return ( apiPort + 100).ToString();
+            return ( apiPort + 100 ).ToString();
         }
 
         #endregion

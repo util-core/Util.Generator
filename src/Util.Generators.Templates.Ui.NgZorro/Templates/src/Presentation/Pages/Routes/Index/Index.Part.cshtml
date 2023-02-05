@@ -28,16 +28,18 @@
                 continue;
             if ( property.IsDeleted )
                 continue;
+            if ( property.IsPinYin )
+                continue;
             if ( property.IsAudited )
                 continue;
         <util-td for="@property.Name"></util-td>
         }
         <util-td title-operation="true" width="300">
-            <util-button type="Link" size="Small" on-click="openEditDialog(row)" text-update="true"></util-button>
+            <util-a on-click="openEditDialog(row)" text-update="true"></util-a>
             <util-divider type="Vertical"></util-divider>
             <util-a on-click="openDetailDialog(row)" text-detail="true"></util-a>
             <util-divider type="Vertical"></util-divider>
-            <util-button type="Link" size="Small" danger="true" on-click="delete(row.id)" text-delete="true"></util-button>
+            <util-a danger="true" on-click="delete(row.id)" text-delete="true"></util-a>
         </util-td>
     </util-table>
 </util-card>

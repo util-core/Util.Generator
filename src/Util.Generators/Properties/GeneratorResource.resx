@@ -126,9 +126,6 @@
   <data name="ProjectNameIsEmpty" xml:space="preserve">
     <value>项目名称不能为空</value>
   </data>
-  <data name="RequiredMessage" xml:space="preserve">
-    <value>{0}不能为空</value>
-  </data>
   <data name="TemplateRootPathIsEmpty" xml:space="preserve">
     <value>模板根目录路径不能为空</value>
   </data>

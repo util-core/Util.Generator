@@ -78,39 +78,50 @@ namespace Util.Generators.Contexts {
         /// <summary>
         /// 是否行版本
         /// </summary>
-        public bool IsVersion => Name == "Version" && SystemType == Generators.SystemType.Binary;
+        public bool IsVersion => Name.ToUpperInvariant() == "Version".ToUpperInvariant() && SystemType == Generators.SystemType.Binary;
         /// <summary>
         /// 是否逻辑删除
         /// </summary>
-        public bool IsDeleted => Name == "IsDeleted" && SystemType == Generators.SystemType.Bool;
+        public bool IsDeleted => Name.ToUpperInvariant() == "IsDeleted".ToUpperInvariant() && SystemType == Generators.SystemType.Bool;
         /// <summary>
         /// 是否创建时间
         /// </summary>
-        public bool IsCreationTime => Name == "CreationTime" && SystemType == Generators.SystemType.DateTime;
+        public bool IsCreationTime => Name.ToUpperInvariant() == "CreationTime".ToUpperInvariant() && SystemType == Generators.SystemType.DateTime;
         /// <summary>
         /// 是否创建人标识
         /// </summary>
-        public bool IsCreatorId => Name == "CreatorId";
+        public bool IsCreatorId => Name.ToUpperInvariant() == "CreatorId".ToUpperInvariant();
         /// <summary>
         /// 是否修改人标识
         /// </summary>
-        public bool IsLastModifierId => Name == "LastModifierId";
+        public bool IsLastModifierId => Name.ToUpperInvariant() == "LastModifierId".ToUpperInvariant();
+        /// <summary>
+        /// 是否拼音简码
+        /// </summary>
+        public bool IsPinYin => Name.ToUpperInvariant() == "PinYin".ToUpperInvariant();
         /// <summary>
         /// 是否排序号
         /// </summary>
-        public bool IsSortId => Name == "SortId";
+        public bool IsSortId => Name.ToUpperInvariant() == "SortId".ToUpperInvariant();
         /// <summary>
         /// 是否父标识
         /// </summary>
-        public bool IsParentId => Name == "ParentId";
+        public bool IsParentId => Name.ToUpperInvariant() == "ParentId".ToUpperInvariant();
         /// <summary>
         /// 是否扩展属性
         /// </summary>
-        public bool IsExtraProperties => Name == "ExtraProperties";
+        public bool IsExtraProperties => Name.ToUpperInvariant() == "ExtraProperties".ToUpperInvariant();
         /// <summary>
         /// 是否审计属性
         /// </summary>
-        public bool IsAudited => Name == "CreatorId" || Name == "CreationTime" || Name == "LastModifierId" || Name == "LastModificationTime";
+        public bool IsAudited => Name.ToUpperInvariant() == "CreatorId".ToUpperInvariant() || 
+                                 Name.ToUpperInvariant() == "CreationTime".ToUpperInvariant() || 
+                                 Name.ToUpperInvariant() == "LastModifierId".ToUpperInvariant() || 
+                                 Name.ToUpperInvariant() == "LastModificationTime".ToUpperInvariant();
+        /// <summary>
+        /// 是否字符串
+        /// </summary>
+        public bool IsString => SystemType == Generators.SystemType.String;
         /// <summary>
         /// 是否布尔值
         /// </summary>
@@ -139,9 +150,12 @@ namespace Util.Generators.Contexts {
         /// <summary>
         /// 是否树形属性
         /// </summary>
-        public bool IsTree => Entity.Properties.Exists( t => t.Name == "ParentId" ) && 
-                              Entity.Properties.Exists( t => t.Name == "Path" ) && (
-            Name == "ParentId" || Name == "Path" || Name == "Level" || Name == "SortId" );
+        public bool IsTree => Entity.Properties.Exists( t => t.Name.ToUpperInvariant() == "ParentId".ToUpperInvariant() ) && 
+                              Entity.Properties.Exists( t => t.Name.ToUpperInvariant() == "Path".ToUpperInvariant() ) && 
+                              ( Name.ToUpperInvariant() == "ParentId".ToUpperInvariant() || 
+                                Name.ToUpperInvariant() == "Path".ToUpperInvariant() || 
+                                Name.ToUpperInvariant() == "Level".ToUpperInvariant() || 
+                                Name.ToUpperInvariant() == "SortId".ToUpperInvariant() );
 
         /// <summary>
         /// 属性驼峰名称
