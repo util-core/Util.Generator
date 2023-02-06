@@ -254,6 +254,17 @@ namespace Util.Generators.Helpers {
 
         #endregion
 
+        #region GetCreateEntityI18nKey(获取创建实体多语言键)
+
+        /// <summary>
+        /// 获取创建实体多语言键
+        /// </summary>
+        public string GetCreateEntityI18nKey() {
+            return $"{GetEntityI18nKey( _context )}.create";
+        }
+
+        #endregion
+
         #region GetUpdateEntityI18nKey(获取修改实体多语言键)
 
         /// <summary>
