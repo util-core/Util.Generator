@@ -48,6 +48,9 @@
 	  <Content Update="Templates\test\Data.EntityFrameworkCore.SqlServer.Test\Data.Test.Project.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\test\Data.EntityFrameworkCore.SqlServer.Test\FakeService.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\test\Data.EntityFrameworkCore.SqlServer.Test\RepositoryTest.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>

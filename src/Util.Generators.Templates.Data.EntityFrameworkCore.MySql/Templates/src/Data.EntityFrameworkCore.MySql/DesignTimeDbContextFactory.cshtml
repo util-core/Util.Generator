@@ -25,7 +25,7 @@ namespace @service.GetDataNamespace( Util.Data.DatabaseType.MySql ) {
         /// </summary>
         public @unitOfWork CreateDbContext( string[] args ) {
             var services = Ioc.GetServices();
-            services.AddDbContext<@unitOfWork>( t => t.UseMySql( GetConnectionString() ) );
+            services.AddDbContext<@unitOfWork>( t => t.UseMySql( GetConnectionString(), ServerVersion.AutoDetect( GetConnectionString() ) ) );
             return Ioc.Create<@unitOfWork>();
         }
 

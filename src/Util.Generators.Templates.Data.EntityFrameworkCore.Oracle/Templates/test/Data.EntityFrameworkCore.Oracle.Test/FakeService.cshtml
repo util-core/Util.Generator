@@ -1,4 +1,4 @@
-﻿@* 领域层测试 - 模拟数据服务 *@
+﻿@* 数据访问层测试 - 模拟数据服务 *@
 @using Util.Generators
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
@@ -9,14 +9,14 @@
     var description = Model.Description;
     Model.Output.FileNameNoExtension = fakeService;
     Model.Output.Extension = ".cs";
-    Model.Output.RelativeRootPath = $"test/{service.GetDomainTestProjectPath("Fakes" )}";
+    Model.Output.RelativeRootPath = $"test/{service.GetDataTestProjectPath( Util.Data.DatabaseType.Oracle, "Fakes", true )}";
 }
 using System.Collections.Generic;
 using System.Linq;
 using AutoBogus;
 using @service.GetDomainNamespace( "Models" );
 
-namespace @service.GetDomainTestNamespace( "Fakes" ) {
+namespace @service.GetDataTestNamespace( Util.Data.DatabaseType.Oracle,"Fakes",true ) {
     /// <summary>
     /// @(description)模拟数据服务
     /// </summary>

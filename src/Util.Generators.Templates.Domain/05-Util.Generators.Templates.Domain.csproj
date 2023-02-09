@@ -62,9 +62,6 @@
 	  <Content Update="Templates\test\Domain.Test\Domain.Test.Project.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="Templates\test\Domain.Test\FakeService.cshtml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
 	</ItemGroup>
 
 </Project>

@@ -6,7 +6,6 @@
     var service = new GenerateService( Model );
     var testProject = service.GetDataTestProjectName(Util.Data.DatabaseType.Sqlite);
     var dataProject = service.GetDataProjectName(Util.Data.DatabaseType.Sqlite);
-    var domainTestProject = service.GetDomainTestProjectName();
     Model.Output.FileNameNoExtension = testProject;
     Model.Output.Extension = ".csproj";
     Model.Output.RelativeRootPath = $"test/{testProject}";
@@ -41,9 +40,9 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+        <PackageReference Include="AutoBogus" Version="@Version.AutoBogus" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\src\@dataProject\@(dataProject).csproj" />
-        <ProjectReference Include="..\@domainTestProject\@(domainTestProject).csproj" />
     </ItemGroup>
 </Project>
