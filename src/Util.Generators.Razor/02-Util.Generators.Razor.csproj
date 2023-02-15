@@ -17,7 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Util.Templates.Razor" Version="7.0.21" />
+		<PackageReference Include="Util.Templates.Razor" Version="7.0.22" />
 	</ItemGroup>
 
 	<ItemGroup>

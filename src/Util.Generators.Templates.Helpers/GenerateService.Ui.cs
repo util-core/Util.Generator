@@ -139,7 +139,7 @@ namespace Util.Generators.Helpers {
         /// 获取前端模块文件名
         /// </summary>
         public string GetClientModuleFileName() {
-            return $"{ClientAppName.Singularize().Kebaberize()}.module";
+            return $"{ClientAppName.Kebaberize()}.module";
         }
 
         #endregion
@@ -161,7 +161,7 @@ namespace Util.Generators.Helpers {
         /// 获取前端模块类名
         /// </summary>
         public string GetClientModuleClassName() {
-            return $"{ClientAppName.Singularize().Pascalize()}Module";
+            return $"{ClientAppName.Pascalize()}Module";
         }
 
         #endregion
@@ -172,7 +172,7 @@ namespace Util.Generators.Helpers {
         /// 获取前端路由模块文件名
         /// </summary>
         public string GetClientRoutingModuleFileName() {
-            return $"{ClientAppName.Singularize().Kebaberize()}-routing.module";
+            return $"{ClientAppName.Kebaberize()}-routing.module";
         }
 
         #endregion
@@ -183,7 +183,7 @@ namespace Util.Generators.Helpers {
         /// 获取前端路由模块类名
         /// </summary>
         public string GetClientRoutingModuleClassName() {
-            return $"{ClientAppName.Singularize().Pascalize()}RoutingModule";
+            return $"{ClientAppName.Pascalize()}RoutingModule";
         }
 
         #endregion
@@ -195,7 +195,7 @@ namespace Util.Generators.Helpers {
         /// </summary>
         /// <param name="entity">实体上下文</param>
         public string GetClientEntityFileName( EntityContext entity ) {
-            return entity.Name.Singularize().Kebaberize();
+            return entity.Name.Kebaberize();
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Util.Generators.Helpers {
         /// 获取前端实体名
         /// </summary>
         public string GetClientEntityName() {
-            return _context.Name.Singularize().Camelize();
+            return _context.Name.Camelize();
         }
 
         #endregion
@@ -235,7 +235,7 @@ namespace Util.Generators.Helpers {
         /// 获取前端视图模型类名
         /// </summary>
         public string GetClientViewModelClassName() {
-            return $"{_context.Name.Singularize().Pascalize()}ViewModel";
+            return $"{_context.Name.Pascalize()}ViewModel";
         }
 
         #endregion
@@ -314,7 +314,7 @@ namespace Util.Generators.Helpers {
         /// 获取前端查询参数类名
         /// </summary>
         public string GetClientQueryClassName() {
-            return $"{_context.Name.Singularize().Pascalize()}Query";
+            return $"{_context.Name.Pascalize()}Query";
         }
 
         #endregion
@@ -326,7 +326,7 @@ namespace Util.Generators.Helpers {
         /// </summary>
         /// <param name="entity">实体上下文</param>
         public string GetClientListClassName( EntityContext entity ) {
-            return $"{entity.Name.Singularize().Pascalize()}ListComponent";
+            return $"{entity.Name.Pascalize()}ListComponent";
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace Util.Generators.Helpers {
         /// </summary>
         /// <param name="entity">实体上下文</param>
         public string GetClientEditClassName( EntityContext entity ) {
-            return $"{entity.Name.Singularize().Pascalize()}EditComponent";
+            return $"{entity.Name.Pascalize()}EditComponent";
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace Util.Generators.Helpers {
         /// </summary>
         /// <param name="entity">实体上下文</param>
         public string GetClientDetailClassName( EntityContext entity ) {
-            return $"{entity.Name.Singularize().Pascalize()}DetailComponent";
+            return $"{entity.Name.Pascalize()}DetailComponent";
         }
 
         /// <summary>

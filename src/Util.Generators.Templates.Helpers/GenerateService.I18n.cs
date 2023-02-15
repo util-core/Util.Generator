@@ -40,7 +40,7 @@ namespace Util.Generators.Helpers {
         /// 添加i18n多语言单个实体内容
         /// </summary>
         private void AppendI18nEntityContent( StringBuilder result, EntityContext entity, bool isChinese ) {
-            result.Append( $"    \"{entity.Name.Singularize().Camelize()}\": " );
+            result.Append( $"    \"{entity.Name.Camelize()}\": " );
             result.AppendLine( "{" );
             AppendI18nDefaultEntityContent( result, entity, isChinese );
             foreach ( var property in entity.Properties )
@@ -152,7 +152,7 @@ namespace Util.Generators.Helpers {
                 return;
             if ( property.IsExtraProperties )
                 return;
-            result.Append( $"      \"{property.Name.Singularize().Camelize()}\": " );
+            result.Append( $"      \"{property.Name.Camelize()}\": " );
             result.AppendLine( $"\"{GetI18nValue( property, isChinese )}\"," );
             if ( property.IsDateTime ) {
                 AppendI18nDateTimeContent( result, property, isChinese );
@@ -217,7 +217,7 @@ namespace Util.Generators.Helpers {
         /// 获取实体多语言键
         /// </summary>
         public string GetEntityI18nKey( EntityContext entity ) {
-            return $"{GetSchemaI18nKey( entity )}.{entity.Name.Singularize().Camelize()}";
+            return $"{GetSchemaI18nKey( entity )}.{entity.Name.Camelize()}";
         }
 
         /// <summary>
