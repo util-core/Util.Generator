@@ -21,15 +21,14 @@ namespace Util.Generators {
         /// <summary>
         /// 启动服务
         /// </summary>
-        public Task StartAsync( CancellationToken cancellationToken ) {
+        public async Task StartAsync( CancellationToken cancellationToken ) {
             try {
                 Console.WriteLine( "================================= 欢迎使用［Util应用框架］代码生成器 =================================" );
-                _generator.Generate();
+                await _generator.GenerateAsync();
             }
             finally {
                 System.Console.ReadLine();
             }
-            return Task.CompletedTask;
         }
 
         /// <summary>

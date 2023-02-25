@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>$(NetTargetFramework)</TargetFramework>
+		<RootNamespace>Util.Generators</RootNamespace>
+		<AssemblyName>Util.Generators.Templates.Data.EntityFrameworkCore.Oracle</AssemblyName>
+		<PackageIcon>icon.jpg</PackageIcon>
+		<Description>Util.Generators.Templates.Data.EntityFrameworkCore.Oracle是Util应用框架代码生成模板类库,用于生成Oracle数据库的EntityFrameworkCore数据访问层</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\build\icon.jpg">
+			<Pack>True</Pack>
+			<Visible>False</Visible>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.3" />
+		<ProjectReference Include="..\Util.Generators.Templates.Helpers\01-Util.Generators.Templates.Helpers.csproj" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Templates\src\Data.EntityFrameworkCore.Oracle\Data.Oracle.Project.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\src\Data.EntityFrameworkCore.Oracle\DesignTimeDbContextFactory.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\src\Data.EntityFrameworkCore.Oracle\EntityTypeConfiguration.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\src\Data.EntityFrameworkCore.Oracle\EntityTypeConfiguration\Properties.Part.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\src\Data.EntityFrameworkCore.Oracle\UnitOfWork.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\test\Data.EntityFrameworkCore.Oracle.Test\AppSettings.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\test\Data.EntityFrameworkCore.Oracle.Test\AppSettings.Development.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\test\Data.EntityFrameworkCore.Oracle.Test\Data.Test.Project.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\test\Data.EntityFrameworkCore.Oracle.Test\FakeService.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\test\Data.EntityFrameworkCore.Oracle.Test\RepositoryTest.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\test\Data.EntityFrameworkCore.Oracle.Test\Startup.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

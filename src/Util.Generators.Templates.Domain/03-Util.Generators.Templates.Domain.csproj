@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>$(NetTargetFramework)</TargetFramework>
+		<RootNamespace>Util.Generators</RootNamespace>
+		<AssemblyName>Util.Generators.Templates.Domain</AssemblyName>
+		<PackageIcon>icon.jpg</PackageIcon>
+		<Description>Util.Generators.Templates.Domain是Util应用框架代码生成模板类库,用于生成领域层</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\build\icon.jpg">
+			<Pack>True</Pack>
+			<Visible>False</Visible>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.3" />
+		<ProjectReference Include="..\Util.Generators.Templates.Helpers\01-Util.Generators.Templates.Helpers.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="Templates\src\Domain\Domain.Project.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\Entity.Base.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\Entity.Base\AddChanges.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\Entity.Base\Entity.Base.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\Entity.Base\Properties.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\Entity.Base\TreeEntity.Base.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\Entity.Base\TreeEntity.Properties.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\Entity.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\IRepository.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\IRepository\IRepository.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\Domain\IRepository\ITreeRepository.Part.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\test\Domain.Test\Domain.Test.Project.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+</Project>

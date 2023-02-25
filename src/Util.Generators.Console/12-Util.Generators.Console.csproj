@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+	  <TargetFramework>$(NetTargetFramework)</TargetFramework>
+	  <RootNamespace>Util.Generators</RootNamespace>
+	  <AssemblyName>Util.Generators.Console</AssemblyName>
+	  <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Util.Generators.Templates.Application\04-Util.Generators.Templates.Application.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Base\02-Util.Generators.Templates.Base.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.MySql\08-Util.Generators.Templates.Data.EntityFrameworkCore.MySql.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.Oracle\10-Util.Generators.Templates.Data.EntityFrameworkCore.Oracle.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.PostgreSql\07-Util.Generators.Templates.Data.EntityFrameworkCore.PostgreSql.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.Sqlite\09-Util.Generators.Templates.Data.EntityFrameworkCore.Sqlite.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.SqlServer\06-Util.Generators.Templates.Data.EntityFrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore\05-Util.Generators.Templates.Data.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Domain\03-Util.Generators.Templates.Domain.csproj" />
+    <ProjectReference Include="..\Util.Generators.Templates.Ui.NgZorro\11-Util.Generators.Templates.Ui.NgZorro.csproj" />
+  </ItemGroup>
+
+</Project>

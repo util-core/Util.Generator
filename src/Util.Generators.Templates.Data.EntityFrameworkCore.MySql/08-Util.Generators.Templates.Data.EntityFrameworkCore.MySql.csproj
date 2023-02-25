@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>$(NetTargetFramework)</TargetFramework>
+		<RootNamespace>Util.Generators</RootNamespace>
+		<AssemblyName>Util.Generators.Templates.Data.EntityFrameworkCore.MySql</AssemblyName>
+		<PackageIcon>icon.jpg</PackageIcon>
+		<Description>Util.Generators.Templates.Data.EntityFrameworkCore.MySql是Util应用框架代码生成模板类库,用于生成MySql数据库的EntityFrameworkCore数据访问层</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\build\icon.jpg">
+			<Pack>True</Pack>
+			<Visible>False</Visible>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.3" />
+		<ProjectReference Include="..\Util.Generators.Templates.Helpers\01-Util.Generators.Templates.Helpers.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="Templates\src\Data.EntityFrameworkCore.MySql\Data.MySql.Project.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Data.EntityFrameworkCore.MySql\DesignTimeDbContextFactory.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Data.EntityFrameworkCore.MySql\EntityTypeConfiguration.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Data.EntityFrameworkCore.MySql\EntityTypeConfiguration\Properties.Part.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Data.EntityFrameworkCore.MySql\UnitOfWork.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\test\Data.EntityFrameworkCore.MySql.Test\AppSettings.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\test\Data.EntityFrameworkCore.MySql.Test\AppSettings.Development.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Update="Templates\test\Data.EntityFrameworkCore.MySql.Test\Data.Test.Project.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\test\Data.EntityFrameworkCore.MySql.Test\FakeService.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\test\Data.EntityFrameworkCore.MySql.Test\RepositoryTest.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\test\Data.EntityFrameworkCore.MySql.Test\Startup.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>

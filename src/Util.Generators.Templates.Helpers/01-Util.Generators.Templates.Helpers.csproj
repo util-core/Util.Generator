@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>$(NetTargetFramework)</TargetFramework>
+		<RootNamespace>Util.Generators.Helpers</RootNamespace>
+		<AssemblyName>Util.Generators.Templates.Helpers</AssemblyName>
+		<PackageIcon>icon.jpg</PackageIcon>
+		<Description>Util.Generators.Templates.Helpers是Util应用框架代码生成辅助操作类库</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\build\icon.jpg">
+			<Pack>True</Pack>
+			<Visible>False</Visible>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Util.Generators.Razor" Version="7.0.26" />
+	</ItemGroup>
+
+</Project>
