@@ -6,6 +6,7 @@
 		<AssemblyName>Util.Generators.Templates.Application</AssemblyName>
 		<PackageIcon>icon.jpg</PackageIcon>
 		<Description>Util.Generators.Templates.Application是Util应用框架代码生成模板类库,用于生成应用层</Description>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -17,12 +18,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.3" />
 		<ProjectReference Include="..\Util.Generators.Templates.Helpers\01-Util.Generators.Templates.Helpers.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<SupportedPlatform Include="browser" />
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup>

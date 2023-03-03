@@ -227,6 +227,8 @@ namespace Util.Generators.Helpers {
             var key = entity.Schema;
             if ( entity.Schema.IsEmpty() )
                 key = entity.ProjectContext.Client.AppName;
+            if ( key.IsEmpty() )
+                key = ProjectName;
             return key.Pluralize().Camelize();
         }
 

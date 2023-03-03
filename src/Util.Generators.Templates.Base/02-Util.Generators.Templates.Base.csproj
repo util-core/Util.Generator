@@ -6,6 +6,7 @@
 		<AssemblyName>Util.Generators.Templates.Base</AssemblyName>
 		<PackageIcon>icon.jpg</PackageIcon>
 		<Description>Util.Generators.Templates.Base是Util应用框架代码生成基础模板类库</Description>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -17,7 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<SupportedPlatform Include="browser" />
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup>

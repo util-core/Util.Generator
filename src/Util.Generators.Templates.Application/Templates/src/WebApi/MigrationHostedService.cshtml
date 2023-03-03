@@ -9,7 +9,6 @@
     Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
 }
 using Util;
-using Util.Helpers;
 using Util.Data.EntityFrameworkCore.Migrations;
 using @service.GetDataNamespace();
 
@@ -53,6 +52,7 @@ namespace @service.GetWebApiNamespace() {
                 .MigrationName( GetMigrationName() )
                 .DbContextRootPath( GetDbContextRootPath() )
                 .DbContext( _unitOfWork )
+                .RemoveForeignKeys()
                 .MigrateAsync( cancellationToken );
         }
 
@@ -60,7 +60,7 @@ namespace @service.GetWebApiNamespace() {
         /// 获取迁移名称
         ///</summary>
         private string GetMigrationName() {
-            var result = Config.GetValue( "App:MigrationName" );
+            var result = Util.Helpers.Config.GetValue( "App:MigrationName" );
             return result.IsEmpty() ? "Init" : result;
         }
 
@@ -68,7 +68,7 @@ namespace @service.GetWebApiNamespace() {
         /// 获取数据上下文根目录路径
         ///</summary>
         private string GetDbContextRootPath() {
-            return Common.JoinPath( Common.GetParentDirectory(), "@service.GetDataProjectName(service.GetCurrentDbType())" );
+            return Util.Helpers.Common.JoinPath( Util.Helpers.Common.GetParentDirectory(), "@service.GetDataProjectName(service.GetCurrentDbType())" );
         }
 
         /// <summary>
