@@ -10,7 +10,7 @@
 }
 import { Component, Injector } from '@@angular/core';
 import { environment } from "@@env/environment";
-import { DialogEditComponentBase } from "util-angular";
+import { EditComponentBase } from "util-angular";
 import { @service.GetClientViewModelClassName() } from './model/@service.GetClientViewModelFileName()';
 
 /**
@@ -20,7 +20,7 @@ import { @service.GetClientViewModelClassName() } from './model/@service.GetClie
 selector: '@service.GetClientEntityName()-detail',
 templateUrl: environment.production ? './html/detail.component.html' : '@service.GetClientViewTemplateUrl()/detail'
 } )
-export class @service.GetClientDetailClassName() extends DialogEditComponentBase<@service.GetClientViewModelClassName()> {
+export class @service.GetClientDetailClassName() extends EditComponentBase<@service.GetClientViewModelClassName()> {
     /**
      * 初始化@(description)
      * @@param injector 注入器

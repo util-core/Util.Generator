@@ -7,7 +7,7 @@
 }
 import { Component, Injector } from '@@angular/core';
 import { environment } from "@@env/environment";
-import { TreeDialogEditComponentBase } from "util-angular";
+import { TreeEditComponentBase } from "util-angular";
 import { @service.GetClientQueryClassName() } from './model/@service.GetClientQueryFileName()';
 import { @service.GetClientViewModelClassName() } from './model/@service.GetClientViewModelFileName()';
 
@@ -18,7 +18,7 @@ import { @service.GetClientViewModelClassName() } from './model/@service.GetClie
     selector: '@service.GetClientEntityFileName()-edit',
     templateUrl: environment.production ? './html/edit.component.html' : '@service.GetClientViewTemplateUrl()/edit'
 } )
-export class @service.GetClientEditClassName() extends TreeDialogEditComponentBase<@service.GetClientViewModelClassName()> {
+export class @service.GetClientEditClassName() extends TreeEditComponentBase<@service.GetClientViewModelClassName()> {
     /**
      * 下拉列表加载参数
      */

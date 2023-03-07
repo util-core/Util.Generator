@@ -6,31 +6,31 @@
         /// <summary>
         /// Util框架版本号
         /// </summary>
-        public static string Util => "7.0.27";
+        public static string Util => "7.0.28";
         /// <summary>
         /// Microsoft.AspNetCore.TestHost版本号
         /// </summary>
-        public static string TestHost => "7.0.2";
+        public static string TestHost => "7.0.3";
         /// <summary>
         /// Microsoft.Extensions.Hosting版本号
         /// </summary>
-        public static string Hosting => "7.0.0";
+        public static string Hosting => "7.0.1";
         /// <summary>
         /// Microsoft.EntityFrameworkCore.Tools版本号
         /// </summary>
-        public static string EntityFrameworkCoreTools => "7.0.2";
+        public static string EntityFrameworkCoreTools => "7.0.3";
         /// <summary>
         /// Microsoft.EntityFrameworkCore.Design版本号
         /// </summary>
-        public static string EntityFrameworkCoreDesign => "7.0.2";
+        public static string EntityFrameworkCoreDesign => "7.0.3";
         /// <summary>
         /// Microsoft.NET.Test.Sdk版本号
         /// </summary>
-        public static string TestSdk => "17.4.1";
+        public static string TestSdk => "17.5.0";
         /// <summary>
         /// Microsoft.AspNetCore.SpaServices.Extensions版本号
         /// </summary>
-        public static string SpaServices => "7.0.2";
+        public static string SpaServices => "7.0.3";
         /// <summary>
         /// xunit版本号
         /// </summary>
@@ -52,14 +52,6 @@
         /// </summary>
         public static string Moq => "4.18.4";
         /// <summary>
-        /// NSwag.AspNetCore版本号
-        /// </summary>
-        public static string NSwag => "13.9.4";
-        /// <summary>
-        /// Swashbuckle.AspNetCore版本号
-        /// </summary>
-        public static string Swashbuckle => "6.5.0";
-        /// <summary>
         /// Xunit.DependencyInjection版本号
         /// </summary>
         public static string XunitDependencyInjection => "8.7.0";
@@ -67,5 +59,9 @@
         /// Xunit.DependencyInjection.Logging版本号
         /// </summary>
         public static string XunitLogging => "8.0.1";
+        /// <summary>
+        /// Swashbuckle.AspNetCore版本号
+        /// </summary>
+        public static string Swashbuckle => "6.5.0";
     }
 }

@@ -21,7 +21,6 @@ using @service.GetDataNamespace(Model.ProjectContext.TargetDbType);
 var builder = WebApplication.CreateBuilder( args );
 
 //配置服务
-builder.Services.AddLocalization();
 builder.Services.AddHealthChecks();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -58,7 +57,6 @@ if ( app.Environment.IsDevelopment() ) {
 }
 app.UseCors( "cors" );
 app.UseHttpLogging();
-app.UseRequestLocalization( "zh-CN", "en-US" );
 app.UseAuthorization();
 app.MapControllers();
 

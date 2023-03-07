@@ -38,25 +38,25 @@ export class @service.GetClientListClassName() extends TreeTableQueryComponentBa
     }
 
     /**
-     * 获取创建弹出层组件
+     * 获取创建组件
      */
-    getCreateDialogComponent() {
+    getCreateComponent() {
         return @service.GetClientEditClassName();
     }
 
     /**
-     * 获取创建弹出层数据
+     * 获取创建数据
      */
-    protected getCreateDialogData(data?) {
+    protected getCreateData(data?) {
         return {
             parent: data
         }
     }
 
     /**
-     * 获取更新弹出框数据
+     * 获取更新数据
      */
-    protected getEditDialogData(data) {
+    protected getEditData(data) {
         if (!data)
             return null;
         return {
@@ -66,9 +66,9 @@ export class @service.GetClientListClassName() extends TreeTableQueryComponentBa
     }
 
     /**
-     * 获取详情弹出框组件
+     * 获取详情组件
      */
-    getDetailDialogComponent() {
+    getDetailComponent() {
         return @service.GetClientDetailClassName();
     }
 }
