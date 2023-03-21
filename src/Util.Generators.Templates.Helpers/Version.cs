@@ -6,11 +6,11 @@
         /// <summary>
         /// Util框架版本号
         /// </summary>
-        public static string Util => "7.0.30";
+        public static string Util => "7.0.31";
         /// <summary>
         /// Microsoft.AspNetCore.TestHost版本号
         /// </summary>
-        public static string TestHost => "7.0.3";
+        public static string TestHost => "7.0.4";
         /// <summary>
         /// Microsoft.Extensions.Hosting版本号
         /// </summary>
@@ -18,19 +18,15 @@
         /// <summary>
         /// Microsoft.EntityFrameworkCore.Tools版本号
         /// </summary>
-        public static string EntityFrameworkCoreTools => "7.0.3";
+        public static string EntityFrameworkCoreTools => "7.0.4";
         /// <summary>
         /// Microsoft.EntityFrameworkCore.Design版本号
         /// </summary>
-        public static string EntityFrameworkCoreDesign => "7.0.3";
+        public static string EntityFrameworkCoreDesign => "7.0.4";
         /// <summary>
         /// Microsoft.NET.Test.Sdk版本号
         /// </summary>
         public static string TestSdk => "17.5.0";
-        /// <summary>
-        /// Microsoft.AspNetCore.SpaServices.Extensions版本号
-        /// </summary>
-        public static string SpaServices => "7.0.3";
         /// <summary>
         /// xunit版本号
         /// </summary>
@@ -54,7 +50,7 @@
         /// <summary>
         /// Xunit.DependencyInjection版本号
         /// </summary>
-        public static string XunitDependencyInjection => "8.7.0";
+        public static string XunitDependencyInjection => "8.7.1";
         /// <summary>
         /// Xunit.DependencyInjection.Logging版本号
         /// </summary>

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@@angular/common/http';
 import { APP_INITIALIZER, Injector, LOCALE_ID, NgModule } from '@@angular/core';
 import { BrowserModule } from '@@angular/platform-browser';
 import { BrowserAnimationsModule } from '@@angular/platform-browser/animations';
+import { NgEventBus } from 'ng-event-bus';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { Observable } from 'rxjs';
@@ -106,6 +107,7 @@ import { appConfig } from './app-config';
         ...LANG_PROVIDES,
         ...APPINIT_PROVIDES,
         ...I18NSERVICE_PROVIDES,
+        NgEventBus,
         { provide: AppConfig, useValue: appConfig }
     ],
     bootstrap: [AppComponent]
