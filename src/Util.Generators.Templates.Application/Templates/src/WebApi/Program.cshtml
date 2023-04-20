@@ -8,6 +8,7 @@
     Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
 }
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Util;
 using Util.Aop;
 using Util.Logging.Serilog;
@@ -39,6 +40,13 @@ builder.Host.AddUtil( options => options
     .UseSerilog( t => t.AddExceptionless() )
     .@service.UseUnitOfWork()<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( builder.Configuration.GetConnectionString( "DefaultConnection" ) )
 );
+
+//配置认证方案
+builder.Services.AddAuthentication( JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer( options => {
+        options.Authority = "https://localhost:12000";
+        options.TokenValidationParameters.ValidateAudience = false;
+    } );
 
 //配置cors
 builder.Services.AddCors( options => options.AddPolicy( "cors", policy => {

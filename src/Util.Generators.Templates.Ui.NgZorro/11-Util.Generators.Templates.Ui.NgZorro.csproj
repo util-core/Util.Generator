@@ -65,16 +65,7 @@
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\auth\auth-module-config.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\auth\auth-guard.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\auth\auth-config.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\auth\auth-app-initializer.factory.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\auth\auth.service.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\core.module.cshtml">
@@ -224,9 +215,6 @@
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\shared\shared.module.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\assets\app-data.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\bootstrap.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -241,6 +229,9 @@
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\i18n\zh-CN.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app-data.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\styles.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -324,12 +315,6 @@
 
 	<ItemGroup>
 		<None Update="Templates\src\Presentation\ClientApp\src\assets\**">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="Templates\src\Presentation\ClientApp\_mock\index.ts">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="Templates\src\Presentation\ClientApp\_mock\_user.ts">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

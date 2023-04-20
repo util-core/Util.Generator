@@ -8,13 +8,12 @@
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app";
 }
 import { HttpClientModule } from '@@angular/common/http';
-import { APP_INITIALIZER, Injector, LOCALE_ID, NgModule } from '@@angular/core';
+import { Injector, LOCALE_ID, NgModule } from '@@angular/core';
 import { BrowserModule } from '@@angular/platform-browser';
 import { BrowserAnimationsModule } from '@@angular/platform-browser/animations';
 import { NgEventBus } from 'ng-event-bus';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
-import { Observable } from 'rxjs';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { GlobalConfigModule } from './global-config.module';
@@ -57,22 +56,6 @@ const antDesignIcons = AllIcons as {
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 // #endregion
 
-// #region StartupService(启动设置)
-import { StartupService } from './core/startup/startup.service';
-export function StartupServiceFactory(startupService: StartupService): () => Observable<void> {
-    return () => startupService.load();
-}
-const APPINIT_PROVIDES = [
-    StartupService,
-    {
-        provide: APP_INITIALIZER,
-        useFactory: StartupServiceFactory,
-        deps: [StartupService],
-        multi: true
-    }
-];
-// #endregion
-
 // #region ngx-tinymce(富文本设置)
 import { NgxTinymceModule, TinymceOptions } from 'ngx-tinymce';
 const tinymceOptions: TinymceOptions = {
@@ -105,7 +88,6 @@ import { appConfig } from './app-config';
     ],
     providers: [
         ...LANG_PROVIDES,
-        ...APPINIT_PROVIDES,
         ...I18NSERVICE_PROVIDES,
         NgEventBus,
         { provide: AppConfig, useValue: appConfig }

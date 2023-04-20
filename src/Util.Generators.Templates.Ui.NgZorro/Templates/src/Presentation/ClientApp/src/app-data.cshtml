@@ -1,0 +1,33 @@
+﻿@* Ui层项目 - 应用数据配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "app-data";
+    Model.Output.Extension = ".json";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/assets";
+}
+{
+  "app": {
+    "name": "Util管理后台",
+    "description": "Util管理后台"
+  },
+  "user": {
+    "name": "util",
+    "avatar": "./assets/tmp/img/avatar.jpg",
+    "email": "xiadao521@qq.com"
+  },
+  "menu": [
+    {
+      "text": "@service.GetClientAppName()",
+      "children": [
+@foreach ( var entity in service.GetEntities() ) {
+<text>        {
+          "text": "@entity.Description",
+          "link": "/@service.GetClientModuleRoutePath()/@service.GetClientEntityFileName(entity)"
+        }
+</text>
+}      ]
+    }
+  ]
+}

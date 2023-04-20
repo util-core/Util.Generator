@@ -9,9 +9,12 @@
 }
 import { OAuthModuleConfig } from 'angular-oauth2-oidc';
 
+/**
+* 授权模块配置
+*/
 export const authModuleConfig: OAuthModuleConfig = {
     resourceServer: {
-        allowedUrls: ['https://demo.duendesoftware.com/api'],
+        allowedUrls: ['https://localhost:@service.GetApiPort()'],
         sendAccessToken: true
     }
 };

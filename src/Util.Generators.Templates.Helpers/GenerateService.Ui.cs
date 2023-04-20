@@ -116,8 +116,8 @@ namespace Util.Generators.Helpers {
         /// 获取UI项目端口
         /// </summary>
         public string GetUiPort() {
-            var apiPort = Convert.ToInt( GetApiPort() );
-            return ( apiPort + 100 ).ToString();
+            var apiPort = Convert.ToInt( GetClientPort() );
+            return ( apiPort + 10000 ).ToString();
         }
 
         #endregion
@@ -213,7 +213,14 @@ namespace Util.Generators.Helpers {
         /// 获取前端实体名
         /// </summary>
         public string GetClientEntityName() {
-            return _context.Name.Camelize();
+            return GetClientEntityName(_context);
+        }
+
+        /// <summary>
+        /// 获取前端实体名
+        /// </summary>
+        public string GetClientEntityName( EntityContext entity ) {
+            return entity.Name.Camelize();
         }
 
         #endregion

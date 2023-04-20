@@ -11,15 +11,21 @@ import { NgModule, Optional, SkipSelf, ModuleWithProviders, APP_INITIALIZER } fr
 import { AuthConfig, OAuthModuleConfig, OAuthModule } from 'angular-oauth2-oidc';
 import { authConfig } from './auth/auth-config';
 import { authModuleConfig } from './auth/auth-module-config';
-import { authAppInitializerFactory } from './auth/auth-app-initializer.factory';
-import { AuthService } from './auth/auth.service';
+import { StartupService } from './startup/startup.service';
 
 /**
-* 核心模块
-*/
+ * 启动服务工厂
+ * @@param startupService 启动服务
+ */
+export function StartupServiceFactory(startupService: StartupService): () => Promise<void> {
+    return () => startupService.initial();
+}
+
+/**
+ * 核心模块
+ */
 @@NgModule({
-    imports: [OAuthModule.forRoot()],
-    providers: []
+    imports: [OAuthModule.forRoot()]
 })
 export class CoreModule {
     /**
@@ -38,9 +44,10 @@ export class CoreModule {
         return {
             ngModule: CoreModule,
             providers: [
-                //{ provide: APP_INITIALIZER, useFactory: authAppInitializerFactory, deps: [AuthService], multi: true },
+                StartupService,
                 { provide: AuthConfig, useValue: authConfig },
-                { provide: OAuthModuleConfig, useValue: authModuleConfig }
+                { provide: OAuthModuleConfig, useValue: authModuleConfig },                
+                { provide: APP_INITIALIZER,useFactory: StartupServiceFactory,deps: [StartupService],multi: true }
             ]
         };
     }

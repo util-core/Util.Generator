@@ -9,7 +9,7 @@
 }
 import { NgModule } from '@@angular/core';
 import { RouterModule, Routes } from '@@angular/router';
-import { AuthGuard } from '../core/auth/auth-guard';
+import { AuthGuard } from 'util-angular';
 import { environment } from '@@env/environment';
 // layout
 import { LayoutBasicComponent } from '../layout/basic/basic.component';
@@ -25,6 +25,8 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutBasicComponent,
+    //canActivate: [AuthGuard],
+    //canActivateChild: [AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘', titleI18n: 'dashboard' } },
