@@ -1,0 +1,10 @@
+﻿@* Ui层项目 - 安装npm脚本文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "install-npm";
+    Model.Output.Extension = ".ps1";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+}
+yarn --ignore-optional

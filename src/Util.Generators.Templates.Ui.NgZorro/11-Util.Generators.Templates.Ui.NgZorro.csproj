@@ -56,6 +56,12 @@
 		<Content Update="Templates\src\Presentation\ClientApp\.stylelintrc.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\install-npm.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\clear-node-modules.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\ng-alain.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>

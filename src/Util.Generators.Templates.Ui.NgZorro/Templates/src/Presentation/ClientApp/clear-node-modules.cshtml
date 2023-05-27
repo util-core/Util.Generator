@@ -1,0 +1,19 @@
+﻿@* Ui层项目 - 清理node_modules脚本文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "clear-node-modules";
+    Model.Output.Extension = ".ps1";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+}
+try{
+rimraf 2>$null
+}
+catch{
+Write-Host "install rimraf..."
+npm install -g rimraf 
+}
+Write-Host "remove node_modules..."
+rimraf node_modules
+Write-Host "remove completed."

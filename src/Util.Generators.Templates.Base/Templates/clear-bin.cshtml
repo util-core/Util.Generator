@@ -1,0 +1,9 @@
+﻿@* 清理bin和obj目录 *@
+@model Util.Generators.Contexts.EntityContext
+@{
+    Model.Output.FileNameNoExtension = "clear-bin";
+    Model.Output.Extension = ".ps1";
+}
+Write-Host "remove bin,obj..."
+Get-ChildItem .\ -include bin,obj -Recurse | foreach ($_) { remove-item $_.fullname -Force -Recurse }
+Write-Host "remove completed."

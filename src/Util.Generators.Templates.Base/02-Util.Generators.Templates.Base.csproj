@@ -39,6 +39,9 @@
 	  <Content Update="Templates\Directory.Build.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\clear-bin.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\Sln.Cpu.Part.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
