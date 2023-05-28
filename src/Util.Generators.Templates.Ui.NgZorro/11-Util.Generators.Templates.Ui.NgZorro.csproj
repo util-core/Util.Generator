@@ -56,7 +56,7 @@
 		<Content Update="Templates\src\Presentation\ClientApp\.stylelintrc.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\install-npm.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\start.cshtml">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\clear-node-modules.cshtml">
