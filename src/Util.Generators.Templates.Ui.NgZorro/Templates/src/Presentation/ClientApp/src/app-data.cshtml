@@ -21,13 +21,14 @@
     {
       "text": "@service.GetClientAppName()",
       "children": [
-@foreach ( var entity in service.GetEntities() ) {
+@for ( var i=0; i < service.GetEntities().Count;i++ ) {
+    var entity = service.GetEntities()[i];
 <text>        {
           "text": "@entity.Description",
           "link": "/@service.GetClientModuleRoutePath()/@service.GetClientEntityFileName(entity)"
-        }
-</text>
-}      ]
+        }</text> @if ( i < service.GetEntities().Count - 1 ) {<text>,
+</text>}
+}]
     }
   ]
 }

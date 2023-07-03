@@ -49,16 +49,4 @@
     <ItemGroup>
 		<ProjectReference Include="..\@application\@(application).csproj" />
     </ItemGroup>
-
-	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
-		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
-		<ItemGroup>
-			<DistFiles Include="$(SpaRoot)dist\**" />
-			<ResolvedFileToPublish Include="@@(DistFiles->'%(FullPath)')" Exclude="@@(ResolvedFileToPublish)">
-				<RelativePath>%(DistFiles.Identity)</RelativePath>
-				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-				<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			</ResolvedFileToPublish>
-		</ItemGroup>
-	</Target>
 </Project>
