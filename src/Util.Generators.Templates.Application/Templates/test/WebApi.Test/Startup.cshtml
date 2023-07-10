@@ -31,6 +31,7 @@ namespace @service.GetWebApiTestNamespace() {
         /// 配置主机
         /// </summary>
         public void ConfigureHost( IHostBuilder hostBuilder ) {
+            Environment.SetDevelopment();
             hostBuilder.ConfigureDefaults( null )
                 .ConfigureWebHostDefaults( webHostBuilder => {
                     webHostBuilder.UseTestServer()
@@ -41,14 +42,13 @@ namespace @service.GetWebApiTestNamespace() {
                         } );
                     } );
                 } )
-                .AddUtil( options => {
-                    Environment.SetDevelopment();
-                    options.UseAop()
-                        @if ( service.Utc() ) {
-                        @:.UseUtc()
-                        }
-                        .@service.UseUnitOfWork()<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( Config.GetConnectionString( "TestConnection" ) );
-                });
+                .AsBuild()
+                .AddAop()
+                @if ( service.Utc() ) {
+                @:.AddUtc()
+                }
+                .@service.AddUnitOfWork()<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( Config.GetConnectionString( "TestConnection" ) )
+                .AddUtil();
         }
 
         /// <summary>

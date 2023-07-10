@@ -3,7 +3,6 @@
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
-    var unitOfWork = service.GetIUnitOfWork();
     Model.Output.FileNameNoExtension = "MigrationHostedService";
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
@@ -14,7 +13,7 @@ using @service.GetDataNamespace();
 
 namespace @service.GetWebApiNamespace() {
     /// <summary>
-    /// 数据库自动迁移服务,开发阶段使用
+    /// 数据迁移服务,开发阶段使用
     ///</summary>
     public class MigrationHostedService : IHostedService {
         /// <summary>
@@ -25,50 +24,59 @@ namespace @service.GetWebApiNamespace() {
         /// 迁移服务
         ///</summary>
         private readonly IMigrationService _migrationService;
-        /// <summary>
-        /// 工作单元
-        ///</summary>
-        private readonly @unitOfWork _unitOfWork;
 
         /// <summary>
         /// 初始化迁移服务
         ///</summary>
         ///<param name="environment">主机环境</param>
         ///<param name="migrationService">迁移服务</param>
-        ///<param name="unitOfWork">工作单元</param>
-        public MigrationHostedService( IWebHostEnvironment environment, IMigrationService migrationService, @unitOfWork unitOfWork ) {
+        public MigrationHostedService( IWebHostEnvironment environment, IMigrationService migrationService ) {
             _environment = environment ?? throw new ArgumentNullException( nameof( environment ) );
             _migrationService = migrationService ?? throw new ArgumentNullException( nameof( migrationService ) );
-            _unitOfWork = unitOfWork ?? throw new ArgumentNullException( nameof( unitOfWork ) );
         }
 
         /// <summary>
         /// 启动
         ///</summary>
-        public async Task StartAsync( CancellationToken cancellationToken ) {
+        public Task StartAsync( CancellationToken cancellationToken ) {
             if ( _environment.IsDevelopment() == false )
-                return;
-            await _migrationService
-                .MigrationName( GetMigrationName() )
-                .DbContextRootPath( GetDbContextRootPath() )
-                .DbContext( _unitOfWork )
-                .RemoveForeignKeys()
-                .MigrateAsync( cancellationToken );
+                return Task.CompletedTask;
+            if ( Common.IsLinux )
+                return Task.CompletedTask;
+            if ( IsEnabled() == false )
+                return Task.CompletedTask;
+            InstallEfTool();
+            Migrate();
+            return Task.CompletedTask;
+        }
+        
+        /// <summary>
+        /// 是否启用EF迁移
+        /// </summary>
+        private bool IsEnabled() {
+            return Config.GetValue<bool>( "App:Migration:Enabled" );
+        }
+
+        /// <summary>
+        /// 安装和更新 dotnet-ef 工具
+        /// </summary>
+        private void InstallEfTool() {
+            _migrationService.InstallEfTool().UpdateEfTool();
+        }
+        
+        /// <summary>
+        /// 迁移
+        /// </summary>
+        private void Migrate() {
+            var path = Common.JoinPath( Common.GetParentDirectory(), "@service.GetDataProjectName(service.GetCurrentDbType())" );
+            _migrationService.AddMigration( GetMigrationName(), path ).Migrate( path );
         }
 
         /// <summary>
         /// 获取迁移名称
-        ///</summary>
+        /// </summary>
         private string GetMigrationName() {
-            var result = Util.Helpers.Config.GetValue( "App:MigrationName" );
-            return result.IsEmpty() ? "Init" : result;
-        }
-
-        /// <summary>
-        /// 获取数据上下文根目录路径
-        ///</summary>
-        private string GetDbContextRootPath() {
-            return Util.Helpers.Common.JoinPath( Util.Helpers.Common.GetParentDirectory(), "@service.GetDataProjectName(service.GetCurrentDbType())" );
+            return Config.GetValue( "App:Migration:Name" );
         }
 
         /// <summary>

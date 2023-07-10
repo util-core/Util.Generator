@@ -9,7 +9,10 @@
 }
 {
   "App": {
-    "MigrationName": "Init"
+    "Migration": {
+      "Enabled": true,
+      "Name": "Init"
+    }
   },
   "ConnectionStrings": {
     "DefaultConnection": "@service.GetDefaultConnection()",
@@ -39,14 +42,14 @@
       {
         "Name": "Seq",
         "Args": {
-          "serverUrl": "http://seq.a.com:5341"
+          "serverUrl": ""
         }
       }
     ]
   },
   "Exceptionless": {
-    "ApiKey": "I59SQ2gLSMWQNWdhrWReOG5yO5yP0pc7aE7liuta",
-    "ServerUrl": "http://192.168.31.77/",
+    "ApiKey": "",
+    "ServerUrl": "",
     "QueueMaxAttempts": 1
   }
 }

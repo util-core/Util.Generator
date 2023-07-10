@@ -7,6 +7,8 @@ using Util.Logging.Serilog;
 //启动应用
 Host.CreateDefaultBuilder( args )
     .ConfigureServices( services => services.AddHostedService<HostService>() )
-    .AddUtil( options => options.UseSerilog() )
+    .AsBuild()
+    .AddSerilog()
+    .AddUtil()
     .Build()
     .Run();

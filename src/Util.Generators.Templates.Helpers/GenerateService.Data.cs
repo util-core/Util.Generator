@@ -255,13 +255,13 @@ namespace Util.Generators.Helpers {
 
         #endregion
 
-        #region UseUnitOfWork(配置工作单元)
+        #region AddUnitOfWork(配置工作单元)
 
         /// <summary>
         /// 配置工作单元
         /// </summary>
-        public string UseUnitOfWork() {
-            return $"Use{_context.ProjectContext.TargetDbType}UnitOfWork";
+        public string AddUnitOfWork() {
+            return $"Add{_context.ProjectContext.TargetDbType}UnitOfWork";
         }
 
         #endregion

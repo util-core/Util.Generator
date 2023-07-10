@@ -27,15 +27,15 @@ namespace @service.GetApplicationTestNamespace() {
         /// 配置主机
         /// </summary>
         public void ConfigureHost( IHostBuilder hostBuilder ) {
+            Environment.SetDevelopment();
             hostBuilder.ConfigureDefaults( null )
-                .AddUtil( options => {
-                    Environment.SetDevelopment();
-                    options.UseAop()
-                        @if ( service.Utc() ) {
-                        @:.UseUtc()
-                        }
-                        .@service.UseUnitOfWork()<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( Config.GetConnectionString( "connection" ) );
-                });
+                .AsBuild()
+                .AddAop()
+                @if ( service.Utc() ) {
+                @:.AddUtc()
+                }
+                .@service.AddUnitOfWork()<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( Config.GetConnectionString( "connection" ) )
+                .AddUtil();
         }
 
         /// <summary>
