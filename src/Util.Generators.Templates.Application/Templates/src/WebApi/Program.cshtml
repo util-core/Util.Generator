@@ -8,7 +8,6 @@
     Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
 }
 using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Util;
 using Util.Aop;
 using Util.Logging.Serilog;
@@ -37,34 +36,22 @@ builder.AsBuild()
     @if ( service.Utc() ) {
     @:.AddUtc()
     }
-    .AddSerilog( options => options.AddExceptionless() )
+    .AddSerilog()
     .@service.AddUnitOfWork()<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( builder.Configuration.GetConnectionString( "DefaultConnection" ) )
     .AddUtil();
-
-//配置认证方案
-builder.Services.AddAuthentication( JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer( options => {
-        options.Authority = "https://localhost:12000";
-        options.TokenValidationParameters.ValidateAudience = false;
-    } );
-
-//配置cors
-builder.Services.AddCors( options => options.AddPolicy( "cors", policy => {
-    policy.SetIsOriginAllowed( t => true );
-    policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-} ) );
 
 //构建Web应用程序
 var app = builder.Build();
 
 //配置请求管道
-app.MapHealthChecks( "/health" );
+if ( app.Environment.IsDevelopment() )
+    app.UseDeveloperExceptionPage();
 if ( app.Environment.IsDevelopment() ) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors( "cors" );
 app.UseHttpLogging();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

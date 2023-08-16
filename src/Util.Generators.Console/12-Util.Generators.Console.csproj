@@ -17,6 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Figgle" Version="0.5.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Util.Generators.Templates.Application\04-Util.Generators.Templates.Application.csproj" />
     <ProjectReference Include="..\Util.Generators.Templates.Base\02-Util.Generators.Templates.Base.csproj" />
     <ProjectReference Include="..\Util.Generators.Templates.Data.EntityFrameworkCore.MySql\08-Util.Generators.Templates.Data.EntityFrameworkCore.MySql.csproj" />
