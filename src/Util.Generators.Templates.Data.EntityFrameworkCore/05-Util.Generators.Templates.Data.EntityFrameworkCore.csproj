@@ -51,6 +51,9 @@
 	  <Content Update="Templates\src\Data.EntityFrameworkCore\Repository\TreeRepository.Part.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\src\Data.EntityFrameworkCore\Usings.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>

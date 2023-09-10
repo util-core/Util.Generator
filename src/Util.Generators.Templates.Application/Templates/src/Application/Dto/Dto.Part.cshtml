@@ -6,16 +6,12 @@
     var dto = service.GetDto();
     var description = $"{Model.Description}参数";
 }
-using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using Util.Applications.Dtos;
+namespace @service.GetApplicationNamespace( "Dtos",true );
 
-namespace @service.GetApplicationNamespace( "Dtos",true ) {
-    /// <summary>
-    /// @description
-    /// </summary>
-    public class @dto : DtoBase {
+/// <summary>
+/// @description
+/// </summary>
+public class @dto : DtoBase {
 @foreach (var property in Model.Properties) {
     if ( property.IsKey )
         continue;
@@ -23,14 +19,13 @@ namespace @service.GetApplicationNamespace( "Dtos",true ) {
         continue;
     if ( property.IsDeleted )
         continue;
-<text>        /// <summary>
-        /// @property.Description
-        ///</summary>@service.GetPropertyI18nDisplay(property)
-        @if ( service.HasDataAnnotations( property ) ) {
-            @service.GetDataAnnotations( property )
-        }
-        public @property.TypeName @property.Name { get; set; }
+<text>    /// <summary>
+    /// @property.Description
+    ///</summary>@service.GetPropertyI18nDisplay(property)
+    @if ( service.HasDataAnnotations( property ) ) {
+        @service.GetDataAnnotations( property )
+    }
+    public @property.TypeName @property.Name { get; set; }
 </text>
 }
-    }
 }

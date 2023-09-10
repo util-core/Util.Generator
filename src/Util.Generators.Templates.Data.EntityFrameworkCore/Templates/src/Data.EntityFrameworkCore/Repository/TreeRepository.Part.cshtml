@@ -9,21 +9,19 @@
     var unitOfWork = service.GetIUnitOfWork();
     var description = Model.Description;
 }
-using Util.Data;
-using Util.Data.EntityFrameworkCore.Trees;
 using @service.GetDomainNamespace( "Models" );
 using @service.GetDomainNamespace( "Repositories" );
 
-namespace @service.GetDataNamespace("Repositories",true) {
+namespace @service.GetDataNamespace("Repositories",true);
+
+/// <summary>
+/// @(description)仓储
+/// </summary>
+public class @repository : @service.GetTreeRepositoryBase(),@iRepository {
     /// <summary>
-    /// @(description)仓储
+    /// 初始化@(description)仓储
     /// </summary>
-    public class @repository : @service.GetTreeRepositoryBase(),@iRepository {
-        /// <summary>
-        /// 初始化@(description)仓储
-        /// </summary>
-        /// <param name="unitOfWork">工作单元</param>
-        public @(repository)( @unitOfWork unitOfWork ) : base( unitOfWork ) {
-        }
+    /// <param name="unitOfWork">工作单元</param>
+    public @(repository)( @unitOfWork unitOfWork ) : base( unitOfWork ) {
     }
 }

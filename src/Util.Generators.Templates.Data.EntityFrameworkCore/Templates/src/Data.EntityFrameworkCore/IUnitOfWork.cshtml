@@ -8,12 +8,10 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"src/{service.GetDataProjectName()}";
 }
-using Util.Data;
+namespace @service.GetDataNamespace();
 
-namespace @service.GetDataNamespace() {
-    /// <summary>
-    /// 工作单元
-    /// </summary>
-    public interface @unitOfWork : IUnitOfWork {
-    }
+/// <summary>
+/// 工作单元
+/// </summary>
+public interface @unitOfWork : IUnitOfWork {
 }

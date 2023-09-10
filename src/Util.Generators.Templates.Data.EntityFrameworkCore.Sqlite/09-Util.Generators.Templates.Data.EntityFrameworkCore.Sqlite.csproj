@@ -41,6 +41,9 @@
 	  <Content Update="Templates\src\Data.EntityFrameworkCore.Sqlite\UnitOfWork.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\src\Data.EntityFrameworkCore.Sqlite\Usings.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\test\Data.EntityFrameworkCore.Sqlite.Test\AppSettings.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
@@ -57,6 +60,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\test\Data.EntityFrameworkCore.Sqlite.Test\Startup.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\test\Data.EntityFrameworkCore.Sqlite.Test\Usings.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>

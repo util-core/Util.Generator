@@ -5,19 +5,19 @@
     var service = new GenerateService( Model );
     var entity = service.EntityName;
 }
-        /// <summary>
-        /// 添加变更列表
-        /// </summary>
-        protected override void AddChanges( @entity other ) {
-            @foreach (var property in Model.Properties) {
-                if ( property.IsKey )
-                    continue;
-                if ( property.IsVersion )
-                    continue;
-                if ( property.IsDeleted )
-                    continue;
-                if ( property.IsExtraProperties )
-                    continue;
-            @:AddChange( t => t.@property.Name, other.@property.Name );
-            }
+    /// <summary>
+    /// 添加变更列表
+    /// </summary>
+    protected override void AddChanges( @entity other ) {
+        @foreach (var property in Model.Properties) {
+            if ( property.IsKey )
+                continue;
+            if ( property.IsVersion )
+                continue;
+            if ( property.IsDeleted )
+                continue;
+            if ( property.IsExtraProperties )
+                continue;
+        @:AddChange( t => t.@property.Name, other.@property.Name );
         }
+    }

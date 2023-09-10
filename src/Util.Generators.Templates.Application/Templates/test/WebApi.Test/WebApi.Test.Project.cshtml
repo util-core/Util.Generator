@@ -17,6 +17,7 @@
         <XunitStartupFullName>@(service.GetWebApiTestNamespace()).Startup</XunitStartupFullName>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="Util.Microservices" Version="@Version.Util" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="@Version.TestSdk" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="@Version.Hosting" />
         <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="@Version.TestHost" />

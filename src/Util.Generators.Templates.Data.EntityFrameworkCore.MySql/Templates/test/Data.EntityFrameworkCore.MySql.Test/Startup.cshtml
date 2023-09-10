@@ -7,46 +7,41 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"test/{service.GetDataTestProjectPath(Util.Data.DatabaseType.MySql )}";
 }
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Xunit.DependencyInjection.Logging;
 using Util;
 using Util.Helpers;
-using Util.Aop;
-using Util.Data.EntityFrameworkCore;
 
-namespace @service.GetDataTestNamespace( Util.Data.DatabaseType.MySql ) {
+namespace @service.GetDataTestNamespace( Util.Data.DatabaseType.MySql );
+
+/// <summary>
+/// 启动配置
+/// </summary>
+public class Startup {
     /// <summary>
-    /// 启动配置
+    /// 配置主机
     /// </summary>
-    public class Startup {
-        /// <summary>
-        /// 配置主机
-        /// </summary>
-        public void ConfigureHost( IHostBuilder hostBuilder ) {
-            Environment.SetDevelopment();
-            hostBuilder.ConfigureDefaults( null )
-                .AsBuild()
-                .AddAop()
-                .AddMySqlUnitOfWork<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( Config.GetConnectionString( "connection" ) )
-                .AddUtil();
-        }
+    public void ConfigureHost( IHostBuilder hostBuilder ) {
+        Util.Helpers.Environment.SetDevelopment();
+        hostBuilder.ConfigureDefaults( null )
+            .AsBuild()
+            .AddAop()
+            .AddMySqlUnitOfWork<@service.GetIUnitOfWork(),@service.GetUnitOfWork()>( Config.GetConnectionString( "connection" ) )
+            .AddUtil();
+    }
 
-        /// <summary>
-        /// 配置服务
-        /// </summary>
-        public void ConfigureServices( IServiceCollection services ) {
-            services.AddLogging( logBuilder => logBuilder.AddXunitOutput() );
-            InitDatabase( services );
-        }
+    /// <summary>
+    /// 配置服务
+    /// </summary>
+    public void ConfigureServices( IServiceCollection services ) {
+        services.AddLogging( logBuilder => logBuilder.AddXunitOutput() );
+        InitDatabase( services );
+    }
 
-        /// <summary>
-        /// 初始化数据库
-        /// </summary>
-        private void InitDatabase( IServiceCollection services ) {
-            var unitOfWork = services.BuildServiceProvider().GetService<@service.GetIUnitOfWork()>();
-            unitOfWork.EnsureDeleted();
-            unitOfWork.EnsureCreated();
-        }
+    /// <summary>
+    /// 初始化数据库
+    /// </summary>
+    private void InitDatabase( IServiceCollection services ) {
+        var unitOfWork = services.BuildServiceProvider().GetService<@service.GetIUnitOfWork()>();
+        unitOfWork.EnsureDeleted();
+        unitOfWork.EnsureCreated();
     }
 }

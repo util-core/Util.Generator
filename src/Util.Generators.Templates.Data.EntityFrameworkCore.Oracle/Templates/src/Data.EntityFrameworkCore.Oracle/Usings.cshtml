@@ -1,0 +1,27 @@
+﻿@* 数据访问层命名空间引用 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "Usings";
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetDataProjectName( Util.Data.DatabaseType.Oracle )}";
+}
+global using System;
+global using System.Threading.Tasks;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading;
+global using System.ComponentModel.DataAnnotations;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Microsoft.EntityFrameworkCore.Design;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Util.Domain;
+global using Util.Validation;
+global using Util.Data;
+global using Util.Data.EntityFrameworkCore;
+global using Util.Data.EntityFrameworkCore.Trees;
+global using Util.Data.Queries;
+global using Util.Data.Trees;

@@ -41,6 +41,9 @@
 	  <Content Update="Templates\src\Data.EntityFrameworkCore.PgSql\UnitOfWork.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\src\Data.EntityFrameworkCore.PgSql\Usings.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\test\Data.EntityFrameworkCore.PgSql.Test\AppSettings.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
@@ -59,6 +62,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\test\Data.EntityFrameworkCore.PgSql.Test\Startup.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\test\Data.EntityFrameworkCore.PgSql.Test\Usings.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>

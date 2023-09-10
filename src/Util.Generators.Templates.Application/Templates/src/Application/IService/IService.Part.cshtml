@@ -6,15 +6,13 @@
     var iApplicationService = service.GetIApplicationService();
     var description = $"{Model.Description}服务";
 }
-using System;
-using Util.Applications;
 using @service.GetApplicationNamespace("Dtos",true);
 using @service.GetDataNamespace("Queries",true);
 
-namespace @service.GetApplicationNamespace( "Services.Abstractions",true ) {
-    /// <summary>
-    /// @description
-    /// </summary>
-    public interface @iApplicationService : ICrudService<@service.GetDto(),@service.GetQuery()> {
-    }
+namespace @service.GetApplicationNamespace( "Services.Abstractions",true );
+
+/// <summary>
+/// @description
+/// </summary>
+public interface @iApplicationService : ICrudService<@service.GetDto(),@service.GetQuery()> {
 }

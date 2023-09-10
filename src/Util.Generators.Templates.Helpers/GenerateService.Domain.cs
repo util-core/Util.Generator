@@ -230,8 +230,8 @@ public partial class GenerateService {
     /// </summary>
     private string GetRequired( string message ) {
         if ( message.IsEmpty() )
-            return "        [Required]\r\n";
-        return $"        [Required(ErrorMessage = \"{message}\")]\r\n";
+            return "    [Required]\r\n";
+        return $"    [Required(ErrorMessage = \"{message}\")]\r\n";
     }
 
     /// <summary>
@@ -244,7 +244,7 @@ public partial class GenerateService {
             return;
         if( property.MaxLength <= 0 )
             return;
-        string dataAnnotation = $"        [MaxLength( {property.GetSafeMaxLength()} )]\r\n";
+        string dataAnnotation = $"    [MaxLength( {property.GetSafeMaxLength()} )]\r\n";
         result.Append( dataAnnotation );
     }
 

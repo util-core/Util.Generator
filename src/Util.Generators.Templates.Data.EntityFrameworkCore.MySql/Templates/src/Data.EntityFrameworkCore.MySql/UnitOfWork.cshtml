@@ -8,21 +8,17 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"src/{service.GetDataProjectName( Util.Data.DatabaseType.MySql )}";
 }
-using System;
-using Microsoft.EntityFrameworkCore;
-using Util.Data.EntityFrameworkCore;
+namespace @service.GetDataNamespace( Util.Data.DatabaseType.MySql );
 
-namespace @service.GetDataNamespace( Util.Data.DatabaseType.MySql ) {
+/// <summary>
+/// 工作单元
+/// </summary>
+public class @unitOfWork : MySqlUnitOfWorkBase, @service.GetIUnitOfWork() {
     /// <summary>
-    /// 工作单元
+    /// 初始化工作单元
     /// </summary>
-    public class @unitOfWork : MySqlUnitOfWorkBase, @service.GetIUnitOfWork() {
-        /// <summary>
-        /// 初始化工作单元
-        /// </summary>
-        /// <param name="serviceProvider">服务提供器</param>
-        /// <param name="options">配置项</param>
-        public @(unitOfWork)( IServiceProvider serviceProvider,DbContextOptions<@(unitOfWork)> options ) : base( serviceProvider,options ) {
-        }
+    /// <param name="serviceProvider">服务提供器</param>
+    /// <param name="options">配置项</param>
+    public @(unitOfWork)( IServiceProvider serviceProvider,DbContextOptions<@(unitOfWork)> options ) : base( serviceProvider,options ) {
     }
 }

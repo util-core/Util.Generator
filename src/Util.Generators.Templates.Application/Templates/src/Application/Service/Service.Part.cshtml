@@ -11,10 +11,6 @@
     var query = $"{entity}Query";
     var description = $"{Model.Description}服务";
 }
-using System;
-using System.Linq;
-using Util.Data;
-using Util.Applications;
 using @service.GetDomainNamespace( "Models" );
 using @service.GetDomainNamespace( "Repositories" );
 using @service.GetDataNamespace();
@@ -22,23 +18,23 @@ using @service.GetApplicationNamespace("Services.Abstractions",true);
 using @service.GetApplicationNamespace("Dtos",true);
 using @service.GetDataNamespace("Queries",true);
 
-namespace @service.GetApplicationNamespace( "Services.Implements",true ) {
-    /// <summary>
-    /// @description
-    /// </summary>
-    public class @applicationService : @service.GetCrudServiceBase(), @iApplicationService {
-        /// <summary>
-        /// 初始化@(description)
-        /// </summary>
-        /// <param name="serviceProvider">服务提供器</param>
-        /// <param name="unitOfWork">工作单元</param>
-        /// <param name="repository">仓储</param>
-        public @(applicationService)( IServiceProvider serviceProvider,@unitOfWork unitOfWork, @repository repository ) : base( serviceProvider,unitOfWork,repository ) {
-        }
+namespace @service.GetApplicationNamespace( "Services.Implements",true );
 
-        /// <inheritdoc />
-        protected override IQueryable<@entity> Filter( IQueryable<@entity> queryable, @query param ) {
-            return @service.GetQueryableFilter();
-        }
+/// <summary>
+/// @description
+/// </summary>
+public class @applicationService : @service.GetCrudServiceBase(), @iApplicationService {
+    /// <summary>
+    /// 初始化@(description)
+    /// </summary>
+    /// <param name="serviceProvider">服务提供器</param>
+    /// <param name="unitOfWork">工作单元</param>
+    /// <param name="repository">仓储</param>
+    public @(applicationService)( IServiceProvider serviceProvider,@unitOfWork unitOfWork, @repository repository ) : base( serviceProvider,unitOfWork,repository ) {
+    }
+
+    /// <inheritdoc />
+    protected override IQueryable<@entity> Filter( IQueryable<@entity> queryable, @query param ) {
+        return @service.GetQueryableFilter();
     }
 }

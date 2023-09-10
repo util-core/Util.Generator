@@ -56,6 +56,9 @@
 	  <Content Update="Templates\src\Application\Service\TreeService.Part.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\src\Application\Usings.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\src\WebApi\appsettings.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
@@ -77,6 +80,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\WebApi\Program.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Templates\src\WebApi\Usings.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="Templates\src\WebApi\WebApi.Project.cshtml">
@@ -106,6 +112,9 @@
 	  <Content Update="Templates\test\Application.Test\Startup.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="Templates\test\Application.Test\Usings.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="Templates\test\WebApi.Test\ControllerTest.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
@@ -118,10 +127,10 @@
 	  <Content Update="Templates\test\WebApi.Test\TestBase.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="Templates\test\WebApi.Test\WebApi.Test.Project.cshtml">
+	  <Content Update="Templates\test\WebApi.Test\Usings.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="Templates\test\WebApi.Test\WebApiResult.cshtml">
+	  <Content Update="Templates\test\WebApi.Test\WebApi.Test.Project.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>

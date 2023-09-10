@@ -12,110 +12,108 @@
     var controllerDescription = $"{Model.Description}控制器";
     var serviceDescription = $"{Model.Description}服务";
 }
-using Microsoft.AspNetCore.Mvc;
-using Util.Ui.NgZorro.Controllers;
 using @service.GetApplicationNamespace("Services.Abstractions",true);
 using @service.GetApplicationNamespace("Dtos",true);
 using @service.GetDataNamespace("Queries",true);
 
-namespace @service.GetWebApiNamespace( "Controllers",true ) {
+namespace @service.GetWebApiNamespace( "Controllers",true );
+
+/// <summary>
+/// @controllerDescription
+/// </summary>
+public class @controller : NgZorroTreeControllerBase<@dto,@query> {
     /// <summary>
-    /// @controllerDescription
+    /// 初始化@(controllerDescription)
     /// </summary>
-    public class @controller : NgZorroTreeControllerBase<@dto,@query> {
-        /// <summary>
-        /// 初始化@(controllerDescription)
-        /// </summary>
-        /// <param name="service">@serviceDescription</param>
-        public @(controller)( @iApplicationService service ) : base( service ) {
-            @applicationService = service;
-        }
+    /// <param name="service">@serviceDescription</param>
+    public @(controller)( @iApplicationService service ) : base( service ) {
+        @applicationService = service;
+    }
 
-        /// <summary>
-        /// @serviceDescription
-        /// </summary>
-        protected @iApplicationService @applicationService { get; }
+    /// <summary>
+    /// @serviceDescription
+    /// </summary>
+    protected @iApplicationService @applicationService { get; }
 
-        /// <summary>
-        /// 获取单个实体
-        /// </summary>
-        /// <param name="id">标识</param>
-        [HttpGet( "{id}" )]
-        public new async Task<IActionResult> GetAsync( string id ) {
-            return await base.GetAsync( id );
-        }
+    /// <summary>
+    /// 获取单个实体
+    /// </summary>
+    /// <param name="id">标识</param>
+    [HttpGet( "{id}" )]
+    public new async Task<IActionResult> GetAsync( string id ) {
+        return await base.GetAsync( id );
+    }
 
-        /// <summary>
-        /// 树形表格查询
-        /// </summary>
-        /// <param name="query">查询参数</param>
-        [HttpGet]
-        public new async Task<IActionResult> QueryAsync( [FromQuery] @query query ) {
-            return await base.QueryAsync( query );
-        }
+    /// <summary>
+    /// 树形表格查询
+    /// </summary>
+    /// <param name="query">查询参数</param>
+    [HttpGet]
+    public new async Task<IActionResult> QueryAsync( [FromQuery] @query query ) {
+        return await base.QueryAsync( query );
+    }
 
-        /// <summary>
-        /// 树形查询
-        /// </summary>
-        /// <param name="query">查询参数</param>
-        [HttpGet("tree")]
-        public new async Task<IActionResult> TreeQueryAsync( [FromQuery] @query query ) {
-            return await base.TreeQueryAsync( query );
-        }
+    /// <summary>
+    /// 树形查询
+    /// </summary>
+    /// <param name="query">查询参数</param>
+    [HttpGet("tree")]
+    public new async Task<IActionResult> TreeQueryAsync( [FromQuery] @query query ) {
+        return await base.TreeQueryAsync( query );
+    }
 
-        /// <summary>
-        /// 创建
-        /// </summary>
-        /// <param name="request">创建参数</param>
-        [HttpPost]
-        public new async Task<IActionResult> CreateAsync( @dto request ) {
-            return await base.CreateAsync( request );
-        }
+    /// <summary>
+    /// 创建
+    /// </summary>
+    /// <param name="request">创建参数</param>
+    [HttpPost]
+    public new async Task<IActionResult> CreateAsync( @dto request ) {
+        return await base.CreateAsync( request );
+    }
 
-        /// <summary>
-        /// 修改
-        /// </summary>
-        /// <param name="id">标识</param>
-        /// <param name="request">修改参数</param>
-        [HttpPut( "{id?}" )]
-        public new async Task<IActionResult> UpdateAsync( string id, @dto request ) {
-            return await base.UpdateAsync( id, request );
-        }
+    /// <summary>
+    /// 修改
+    /// </summary>
+    /// <param name="id">标识</param>
+    /// <param name="request">修改参数</param>
+    [HttpPut( "{id?}" )]
+    public new async Task<IActionResult> UpdateAsync( string id, @dto request ) {
+        return await base.UpdateAsync( id, request );
+    }
 
-        /// <summary>
-        /// 删除，注意：该方法用于删除单个实体，批量删除请使用POST提交，否则可能失败
-        /// </summary>
-        /// <param name="id">标识</param>
-        [HttpDelete( "{id}" )]
-        public new async Task<IActionResult> DeleteAsync( string id ) {
-            return await base.DeleteAsync( id );
-        }
+    /// <summary>
+    /// 删除，注意：该方法用于删除单个实体，批量删除请使用POST提交，否则可能失败
+    /// </summary>
+    /// <param name="id">标识</param>
+    [HttpDelete( "{id}" )]
+    public new async Task<IActionResult> DeleteAsync( string id ) {
+        return await base.DeleteAsync( id );
+    }
 
-        /// <summary>
-        /// 批量删除
-        /// </summary>
-        /// <param name="ids">标识列表，多个Id用逗号分隔，范例：1,2,3</param>
-        [HttpPost( "delete" )]
-        public async Task<IActionResult> BatchDeleteAsync( [FromBody] string ids ) {
-            return await base.DeleteAsync( ids );
-        }
+    /// <summary>
+    /// 批量删除
+    /// </summary>
+    /// <param name="ids">标识列表，多个Id用逗号分隔，范例：1,2,3</param>
+    [HttpPost( "delete" )]
+    public async Task<IActionResult> BatchDeleteAsync( [FromBody] string ids ) {
+        return await base.DeleteAsync( ids );
+    }
 
-        /// <summary>
-        /// 启用
-        /// </summary>
-        /// <param name="ids">标识列表</param>
-        [HttpPost( "enable" )]
-        public new async Task<IActionResult> EnableAsync( [FromBody] string ids ) {
-            return await base.EnableAsync( ids );
-        }
+    /// <summary>
+    /// 启用
+    /// </summary>
+    /// <param name="ids">标识列表</param>
+    [HttpPost( "enable" )]
+    public new async Task<IActionResult> EnableAsync( [FromBody] string ids ) {
+        return await base.EnableAsync( ids );
+    }
 
-        /// <summary>
-        /// 禁用
-        /// </summary>
-        /// <param name="ids">标识列表</param>
-        [HttpPost( "disable" )]
-        public new async Task<IActionResult> DisableAsync( [FromBody] string ids ) {
-            return await base.DisableAsync( ids );
-        }
+    /// <summary>
+    /// 禁用
+    /// </summary>
+    /// <param name="ids">标识列表</param>
+    [HttpPost( "disable" )]
+    public new async Task<IActionResult> DisableAsync( [FromBody] string ids ) {
+        return await base.DisableAsync( ids );
     }
 }

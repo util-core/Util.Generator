@@ -6,15 +6,12 @@
     var query = service.GetQuery();
     var description = $"{Model.Description}查询参数";
 }
-using System;
-using System.ComponentModel.DataAnnotations;
-using Util.Data.Trees;
+namespace @service.GetDataNamespace( "Queries",true );
 
-namespace @service.GetDataNamespace( "Queries",true ) {
-    /// <summary>
-    /// @description
-    /// </summary>
-    public class @query : @service.GetTreeQueryParameter() {
+/// <summary>
+/// @description
+/// </summary>
+public class @query : @service.GetTreeQueryParameter() {
 @foreach (var property in Model.Properties) {
     if ( property.IsKey )
         continue;
@@ -31,25 +28,24 @@ namespace @service.GetDataNamespace( "Queries",true ) {
     if ( service.IsTreeEntityProperty( property ) )
         continue;
     if ( property.SystemType == Util.Generators.SystemType.DateTime ) {
-<text>        /// <summary>
-        /// 起始@(property.Description)
-        /// </summary>
-        [Display( Name = "@service.GetPropertyI18nKey(property,"begin")" )]
-        public DateTime? @service.GetBeginPropertyName(property) { get; set; }
-        /// <summary>
-        /// 结束@(property.Description)
-        /// </summary>
-        [Display( Name = "@service.GetPropertyI18nKey(property,"end")" )]
-        public DateTime? @service.GetEndPropertyName(property) { get; set; }
+<text>    /// <summary>
+    /// 起始@(property.Description)
+    /// </summary>
+    [Display( Name = "@service.GetPropertyI18nKey(property,"begin")" )]
+    public DateTime? @service.GetBeginPropertyName(property) { get; set; }
+    /// <summary>
+    /// 结束@(property.Description)
+    /// </summary>
+    [Display( Name = "@service.GetPropertyI18nKey(property,"end")" )]
+    public DateTime? @service.GetEndPropertyName(property) { get; set; }
 </text>
-        continue;
-    }
-<text>        /// <summary>
-        /// @property.Description
-        ///</summary>
-        [Display( Name = "@service.GetPropertyI18nKey(property)" )]
-        public @property.NullableTypeName @property.Name { get; set; }
+continue;
+}
+<text>    /// <summary>
+    /// @property.Description
+    ///</summary>
+    [Display( Name = "@service.GetPropertyI18nKey(property)" )]
+    public @property.NullableTypeName @property.Name { get; set; }
 </text>
 }
-    }
 }

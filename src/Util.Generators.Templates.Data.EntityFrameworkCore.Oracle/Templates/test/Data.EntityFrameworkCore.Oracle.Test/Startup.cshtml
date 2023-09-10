@@ -7,13 +7,8 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"test/{service.GetDataTestProjectPath(Util.Data.DatabaseType.Oracle )}";
 }
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Xunit.DependencyInjection.Logging;
 using Util;
 using Util.Helpers;
-using Util.Aop;
-using Util.Data.EntityFrameworkCore;
 
 namespace @service.GetDataTestNamespace( Util.Data.DatabaseType.Oracle ) {
     /// <summary>
@@ -24,7 +19,7 @@ namespace @service.GetDataTestNamespace( Util.Data.DatabaseType.Oracle ) {
         /// 配置主机
         /// </summary>
         public void ConfigureHost( IHostBuilder hostBuilder ) {
-            Environment.SetDevelopment();
+            Util.Helpers.Environment.SetDevelopment();
             hostBuilder.ConfigureDefaults( null )
                 .AsBuild()
                 .AddAop()

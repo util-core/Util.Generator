@@ -9,33 +9,29 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"src/{service.GetDataProjectName( Util.Data.DatabaseType.Sqlite )}";
 }
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Util.Helpers;
 
-namespace @service.GetDataNamespace( Util.Data.DatabaseType.Sqlite ) {
-    /// <summary>
-    /// 设计时数据上下文工厂 - 仅用于自动迁移
-    /// </summary>
-    public class @factory : IDesignTimeDbContextFactory<@unitOfWork> {
-        /// <summary>
-        /// 创建数据上下文
-        /// </summary>
-        public @unitOfWork CreateDbContext( string[] args ) {
-            var services = Ioc.GetServices();
-            services.AddDbContext<@unitOfWork>( t => t.UseSqlite( GetConnectionString() ) );
-            return Ioc.Create<@unitOfWork>();
-        }
+namespace @service.GetDataNamespace( Util.Data.DatabaseType.Sqlite );
 
-        /// <summary>
-        /// 获取连接字符串
-        /// </summary>
-        private string GetConnectionString() {
-            var basePath = Common.JoinPath( Common.GetParentDirectory(), "@service.GetWebApiProjectName()" );
-            var config = Util.Helpers.Config.CreateConfiguration( basePath );
-            return config.GetConnectionString( "DefaultConnection" );
-        }
+/// <summary>
+/// 设计时数据上下文工厂
+/// </summary>
+public class @factory : IDesignTimeDbContextFactory<@unitOfWork> {
+    /// <summary>
+    /// 创建数据上下文
+    /// </summary>
+    public @unitOfWork CreateDbContext( string[] args ) {
+        var services = Ioc.GetServices();
+        services.AddDbContext<@unitOfWork>( t => t.UseSqlite( GetConnectionString() ) );
+        return Ioc.Create<@unitOfWork>();
+    }
+
+    /// <summary>
+    /// 获取连接字符串
+    /// </summary>
+    private string GetConnectionString() {
+        var basePath = Common.JoinPath( Common.GetParentDirectory(), "@service.GetWebApiProjectName()" );
+        var config = Config.CreateConfiguration( basePath );
+        return config.GetConnectionString( "DefaultConnection" );
     }
 }

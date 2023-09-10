@@ -7,12 +7,7 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
 }
-using Microsoft.AspNetCore.HttpLogging;
 using Util;
-using Util.Aop;
-using Util.Logging.Serilog;
-using Util.Data.EntityFrameworkCore;
-using Util.Dates;
 using @service.GetWebApiNamespace();
 using @service.GetDataNamespace();
 using @service.GetDataNamespace(Model.ProjectContext.TargetDbType);
@@ -21,7 +16,6 @@ using @service.GetDataNamespace(Model.ProjectContext.TargetDbType);
 var builder = WebApplication.CreateBuilder( args );
 
 //配置服务
-builder.Services.AddHealthChecks();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

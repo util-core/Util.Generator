@@ -1,0 +1,29 @@
+﻿@* 应用层Web Api命名空间引用 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "Usings";
+    Model.Output.Extension = ".cs";
+    Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
+}
+global using System;
+global using System.Threading.Tasks;
+global using System.Linq;
+global using Microsoft.AspNetCore.HttpLogging;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Diagnostics.HealthChecks;
+global using Util.Applications.Trees;
+global using Util.Applications.Controllers;
+global using Util.Applications.Properties;
+global using Util.Applications.Models;
+global using Util.Ui.NgZorro.Controllers;
+global using Util.Sessions;
+global using Util.Aop;
+global using Util.Logging.Serilog;
+global using Util.Data.EntityFrameworkCore;
+global using Util.Data.EntityFrameworkCore.Migrations;
+global using Util.Dates;

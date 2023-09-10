@@ -194,7 +194,7 @@ public partial class GenerateService {
             return null;
         var result = new StringBuilder();
         result.AppendLine();
-        result.Append( "        [Display( Name = \"" );
+        result.Append( "    [Display( Name = \"" );
         result.Append( GetPropertyI18nKey( property ) );
         result.Append( "\" )]" );
         return result.ToString();

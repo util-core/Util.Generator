@@ -7,23 +7,34 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/Controllers";
 }
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Util.Ui.Razor;
 
-namespace @service.GetUiNamespace("Controllers") {
+namespace @service.GetUiNamespace("Controllers");
+
+/// <summary>
+/// 查找全部Razor页面生成Html
+/// </summary>
+[Route( "api/html" )]
+[ApiController]
+public class GenerateHtmlController : ControllerBase {
     /// <summary>
-    /// 查找全部Razor页面生成Html
+    /// 生成Html页面
     /// </summary>
-    [Route( "api/html" )]
-    [ApiController]
-    public class GenerateHtmlController : ControllerBase {
-        /// <summary>
-        /// 生成Html页面
-        /// </summary>
-        [HttpGet]
-        public async Task<string> GenerateAsync() {
-            await HtmlGenerator.GenerateAsync();
-            return "ok";
+    [HttpGet]
+    public async Task<string> GenerateAsync() {
+        var message = new StringBuilder();
+        var result = await HtmlGenerator.GenerateAsync();
+        message.AppendLine( "===================== 开始生成以下Razor页面的html文件 =====================" );
+        message.AppendLine();
+        message.AppendLine();
+        foreach ( var path in result ){
+            message.AppendLine( path );
         }
+        message.AppendLine();
+        message.AppendLine();
+        message.Append( "============================ html文件生成完成 ============================" );
+        return message.ToString();
     }
 }

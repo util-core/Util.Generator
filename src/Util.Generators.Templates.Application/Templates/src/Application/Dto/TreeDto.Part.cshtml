@@ -6,15 +6,12 @@
     var dto = service.GetDto();
     var description = $"{Model.Description}参数";
 }
-using System;
-using System.ComponentModel.DataAnnotations;
-using Util.Applications.Trees;
+namespace @service.GetApplicationNamespace( "Dtos",true );
 
-namespace @service.GetApplicationNamespace( "Dtos",true ) {
-    /// <summary>
-    /// @description
-    /// </summary>
-    public class @dto : TreeDtoBase<@dto> {
+/// <summary>
+/// @description
+/// </summary>
+public class @dto : TreeDtoBase<@dto> {
 @foreach (var property in Model.Properties) {
     if ( property.IsKey )
         continue;
@@ -24,24 +21,23 @@ namespace @service.GetApplicationNamespace( "Dtos",true ) {
         continue;
     if ( service.IsTreeEntityProperty( property ) )
         continue;
-<text>        /// <summary>
-        /// @property.Description
-        ///</summary>@service.GetPropertyI18nDisplay(property)
-        @if ( service.HasDataAnnotations( property ) ) {
-            @service.GetDataAnnotations( property )
-        }
-        public @property.TypeName @property.Name { get; set; }
+<text>    /// <summary>
+    /// @property.Description
+    ///</summary>@service.GetPropertyI18nDisplay(property)
+    @if ( service.HasDataAnnotations( property ) ) {
+        @service.GetDataAnnotations( property )
+    }
+    public @property.TypeName @property.Name { get; set; }
 </text>
 }
 
-        /// <inheritdoc />
-        public override string GetText() {
-            @if ( service.Exists( t => t.Name == "Name" ) ) {
-            @:return Name;
-            }
-            else {
-            @:return null;
-            }
-        }
+    /// <inheritdoc />
+    public override string GetText() {
+    @if ( service.Exists( t => t.Name == "Name" ) ) {
+        @:return Name;
+    }
+    else {
+        @:return null;
+    }
     }
 }

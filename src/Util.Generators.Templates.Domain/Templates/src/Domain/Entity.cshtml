@@ -8,10 +8,10 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"src/{service.GetDomainProjectPath("Models")}";
 }
-namespace @service.GetDomainNamespace( "Models" ) {
-    /// <summary>
-    /// @Model.Description
-    /// </summary>
-    public partial class @entity {
-    }
+namespace @service.GetDomainNamespace( "Models" );
+
+/// <summary>
+/// @Model.Description
+/// </summary>
+public partial class @entity {
 }

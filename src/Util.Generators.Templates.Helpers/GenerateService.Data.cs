@@ -194,10 +194,10 @@ public partial class GenerateService {
     public string GetIdConfiguration() {
         var builder = new PropertyConfigurationBuilder( _context.Key );
         return builder.Property( "Id" )
-            .Line( 4 ).HasColumnName()
-            .Line( 4 ).HasComment()
-            .Line( 4,_context.Key.SystemType == SystemType.String ).HasMaxLength()
-            .Line( 4, _context.Key.IsInteger && _context.Key.IsAutoIncrement ).IsAutoIncrement()
+            .Line( 3 ).HasColumnName()
+            .Line( 3 ).HasComment()
+            .Line( 3,_context.Key.SystemType == SystemType.String ).HasMaxLength()
+            .Line( 3, _context.Key.IsInteger && _context.Key.IsAutoIncrement ).IsAutoIncrement()
             .Semicolon()
             .Build();
     }
@@ -233,11 +233,11 @@ public partial class GenerateService {
     public string GetConfiguration( Property property,DatabaseType? dbType = null ) {
         var builder = new PropertyConfigurationBuilder( property );
         return builder
-            .Indent( 3 ).Property()
-            .Line(4).HasColumnName()
-            .Line( 4 ).HasComment()
-            .Line( 4, property.IsFloat && property.Precision > 0 ).HasPrecision()
-            .Line( 4, IsPgSqlDate(property,dbType) ).HasColumnTypeIf( "timestamp", IsPgSqlDate( property, dbType ) )
+            .Indent( 2 ).Property()
+            .Line(3).HasColumnName()
+            .Line( 3 ).HasComment()
+            .Line( 3, property.IsFloat && property.Precision > 0 ).HasPrecision()
+            .Line( 3, IsPgSqlDate(property,dbType) ).HasColumnTypeIf( "timestamp", IsPgSqlDate( property, dbType ) )
             .Semicolon()
             .Line()
             .Build();

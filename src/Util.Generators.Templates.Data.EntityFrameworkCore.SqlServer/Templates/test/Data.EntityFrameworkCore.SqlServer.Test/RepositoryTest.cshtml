@@ -13,49 +13,46 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"test/{service.GetDataTestProjectPath(Util.Data.DatabaseType.SqlServer,"Repositories",true)}";
 }
-using System.Threading.Tasks;
-using Xunit;
-using Util.Data.EntityFrameworkCore;
 using @service.GetDomainNamespace( "Models" );
 using @service.GetDomainNamespace( "Repositories" );
 using @service.GetDataTestNamespace( Util.Data.DatabaseType.SqlServer,"Fakes",true );
 
-namespace @service.GetDataTestNamespace( Util.Data.DatabaseType.SqlServer,"Repositories",true ) {
+namespace @service.GetDataTestNamespace( Util.Data.DatabaseType.SqlServer,"Repositories",true );
+
+/// <summary>
+/// @(description)仓储测试
+/// </summary>
+public class @repositoryTest {
     /// <summary>
-    /// @(description)仓储测试
+    /// 工作单元
     /// </summary>
-    public class @repositoryTest {
-        /// <summary>
-        /// 工作单元
-        /// </summary>
-        private readonly @iUnitOfWork _unitOfWork;
-        /// <summary>
-        /// 仓储
-        /// </summary>
-        private readonly @iRepository _repository;
+    private readonly @iUnitOfWork _unitOfWork;
+    /// <summary>
+    /// 仓储
+    /// </summary>
+    private readonly @iRepository _repository;
 
-        /// <summary>
-        /// 测试初始化
-        /// </summary>
-        public @(repositoryTest)( @iUnitOfWork unitOfWork,@iRepository repository ) {
-            _unitOfWork = unitOfWork;
-            _repository = repository;
-        }
+    /// <summary>
+    /// 测试初始化
+    /// </summary>
+    public @(repositoryTest)( @iUnitOfWork unitOfWork,@iRepository repository ) {
+        _unitOfWork = unitOfWork;
+        _repository = repository;
+    }
 
-        /// <summary>
-        /// 测试添加实体
-        /// </summary>
-        [Fact]
-        public async Task TestAddAsync() {
-            //添加实体
-            var entity = @(fakeService).Get@(entity)();
-            entity.Init();
-            await _repository.AddAsync( entity );
-            await _unitOfWork.CommitAsync();
-            _unitOfWork.ClearCache();
+    /// <summary>
+    /// 测试添加实体
+    /// </summary>
+    [Fact]
+    public async Task TestAddAsync() {
+        //添加实体
+        var entity = @(fakeService).Get@(entity)();
+        entity.Init();
+        await _repository.AddAsync( entity );
+        await _unitOfWork.CommitAsync();
+        _unitOfWork.ClearCache();
 
-            //验证
-            Assert.True( await _repository.ExistsAsync( t => t.Id == entity.Id ) );
-        }
+        //验证
+        Assert.True( await _repository.ExistsAsync( t => t.Id == entity.Id ) );
     }
 }

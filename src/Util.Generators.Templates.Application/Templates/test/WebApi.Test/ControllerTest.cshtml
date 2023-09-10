@@ -12,50 +12,44 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"test/{service.GetWebApiTestProjectPath("Controllers",true)}";
 }
-using System.Threading.Tasks;
-using Xunit;
-using Xunit.Abstractions;
-using Xunit.DependencyInjection;
-using Util.Applications;
 using Util.Helpers;
-using Util.Http;
 using @service.GetWebApiTestNamespace("Infrastructure");
 using @service.GetWebApiTestNamespace( "Fakes",true );
 using @service.GetApplicationNamespace( "Dtos",true );
 
-namespace @service.GetWebApiTestNamespace( "Controllers",true ) {
+namespace @service.GetWebApiTestNamespace( "Controllers",true );
+
+/// <summary>
+/// @(description)控制器测试
+/// </summary>
+public class @controllerTest : TestBase {
     /// <summary>
-    /// @(description)控制器测试
+    /// 输出工具
     /// </summary>
-    public class @controllerTest : TestBase {
-        /// <summary>
-        /// 输出工具
-        /// </summary>
-        private readonly ITestOutputHelper _testOutputHelper;
+    private readonly ITestOutputHelper _testOutputHelper;
 
-        /// <summary>
-        /// 测试初始化
-        /// </summary>
-        public @(controllerTest)( ITestOutputHelperAccessor testOutputHelperAccessor,IHttpClient client ) : base( client ){
-            _testOutputHelper = testOutputHelperAccessor.Output;
-        }
+    /// <summary>
+    /// 测试初始化
+    /// </summary>
+    public @(controllerTest)( ITestOutputHelperAccessor testOutputHelperAccessor,IHttpClient client ) : base( client ){
+        _testOutputHelper = testOutputHelperAccessor.Output;
+    }
 
-        /// <summary>
-        /// 测试创建
-        /// </summary>
-        [Fact]
-        public async Task TestCreateAsync() {
-            //服务地址
-            var url = "/api/@Model.CamelName";
+    /// <summary>
+    /// 测试创建
+    /// </summary>
+    [Fact]
+    public async Task TestCreateAsync() {
+        //服务地址
+        var url = "/api/@Model.CamelName";
 
-            //创建实体
-            var dto = @(fakeService).Get@(dto)();
-            var result = await PostAsync<@dto>( url, dto );
+        //创建实体
+        var dto = @(fakeService).Get@(dto)();
+        var result = await PostAsync<@dto>( url, dto );
 
-            //验证
-            Assert.Equal( StateCode.Ok, result.Code );
-            Assert.NotEmpty( result.Data.Id );
-            _testOutputHelper.WriteLine( Json.ToJson( result ) );
-        }
+        //验证
+        Assert.Equal( StateCode.Ok, result.Code );
+        Assert.NotEmpty( result.Data.Id );
+        _testOutputHelper.WriteLine( Json.ToJson( result ) );
     }
 }

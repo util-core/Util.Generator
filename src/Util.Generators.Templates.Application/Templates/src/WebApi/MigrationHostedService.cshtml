@@ -7,84 +7,81 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"src/{service.GetWebApiProjectName()}";
 }
-using Util;
 using Util.Helpers;
-using Util.Data.EntityFrameworkCore.Migrations;
-using @service.GetDataNamespace();
 
-namespace @service.GetWebApiNamespace() {
+namespace @service.GetWebApiNamespace();
+
+/// <summary>
+/// 数据迁移服务,开发阶段使用
+///</summary>
+public class MigrationHostedService : IHostedService {
     /// <summary>
-    /// 数据迁移服务,开发阶段使用
+    /// 主机环境
     ///</summary>
-    public class MigrationHostedService : IHostedService {
-        /// <summary>
-        /// 主机环境
-        ///</summary>
-        private readonly IWebHostEnvironment _environment;
-        /// <summary>
-        /// 迁移服务
-        ///</summary>
-        private readonly IMigrationService _migrationService;
+    private readonly IWebHostEnvironment _environment;
+    /// <summary>
+    /// 迁移服务
+    ///</summary>
+    private readonly IMigrationService _migrationService;
 
-        /// <summary>
-        /// 初始化迁移服务
-        ///</summary>
-        ///<param name="environment">主机环境</param>
-        ///<param name="migrationService">迁移服务</param>
-        public MigrationHostedService( IWebHostEnvironment environment, IMigrationService migrationService ) {
-            _environment = environment ?? throw new ArgumentNullException( nameof( environment ) );
-            _migrationService = migrationService ?? throw new ArgumentNullException( nameof( migrationService ) );
-        }
+    /// <summary>
+    /// 初始化迁移服务
+    ///</summary>
+    ///<param name="environment">主机环境</param>
+    ///<param name="migrationService">迁移服务</param>
+    public MigrationHostedService( IWebHostEnvironment environment, IMigrationService migrationService ) {
+        _environment = environment ?? throw new ArgumentNullException( nameof( environment ) );
+        _migrationService = migrationService ?? throw new ArgumentNullException( nameof( migrationService ) );
+    }
 
-        /// <summary>
-        /// 启动
-        ///</summary>
-        public Task StartAsync( CancellationToken cancellationToken ) {
-            if ( _environment.IsDevelopment() == false )
-                return Task.CompletedTask;
-            if ( Common.IsLinux )
-                return Task.CompletedTask;
-            if ( IsEnabled() == false )
-                return Task.CompletedTask;
-            InstallEfTool();
-            Migrate();
+    /// <summary>
+    /// 启动
+    ///</summary>
+    public Task StartAsync( CancellationToken cancellationToken ) {
+        if ( _environment.IsDevelopment() == false )
             return Task.CompletedTask;
-        }
-        
-        /// <summary>
-        /// 是否启用EF迁移
-        /// </summary>
-        private bool IsEnabled() {
-            return Config.GetValue<bool>( "App:Migration:Enabled" );
-        }
-
-        /// <summary>
-        /// 安装和更新 dotnet-ef 工具
-        /// </summary>
-        private void InstallEfTool() {
-            _migrationService.InstallEfTool().UpdateEfTool();
-        }
-        
-        /// <summary>
-        /// 迁移
-        /// </summary>
-        private void Migrate() {
-            var path = Common.JoinPath( Common.GetParentDirectory(), "@service.GetDataProjectName(service.GetCurrentDbType())" );
-            _migrationService.AddMigration( GetMigrationName(), path ).Migrate( path );
-        }
-
-        /// <summary>
-        /// 获取迁移名称
-        /// </summary>
-        private string GetMigrationName() {
-            return Config.GetValue( "App:Migration:Name" );
-        }
-
-        /// <summary>
-        /// 停止
-        ///</summary>
-        public Task StopAsync( CancellationToken cancellationToken ) {
+        if ( Common.IsLinux )
             return Task.CompletedTask;
-        }
+        if ( IsEnabled() == false )
+            return Task.CompletedTask;
+        InstallEfTool();
+        Migrate();
+        return Task.CompletedTask;
+    }
+    
+    /// <summary>
+    /// 是否启用EF迁移
+    /// </summary>
+    private bool IsEnabled() {
+        return Config.GetValue<bool>( "App:Migration:Enabled" );
+    }
+
+    /// <summary>
+    /// 安装和更新 dotnet-ef 工具
+    /// </summary>
+    private void InstallEfTool() {
+        _migrationService.InstallEfTool().UpdateEfTool();
+    }
+    
+    /// <summary>
+    /// 迁移
+    /// </summary>
+    private void Migrate() {
+        var path = Common.JoinPath( Common.GetParentDirectory(), "@service.GetDataProjectName(service.GetCurrentDbType())" );
+        _migrationService.AddMigration( GetMigrationName(), path ).Migrate( path );
+    }
+
+    /// <summary>
+    /// 获取迁移名称
+    /// </summary>
+    private string GetMigrationName() {
+        return Config.GetValue( "App:Migration:Name" );
+    }
+
+    /// <summary>
+    /// 停止
+    ///</summary>
+    public Task StopAsync( CancellationToken cancellationToken ) {
+        return Task.CompletedTask;
     }
 }

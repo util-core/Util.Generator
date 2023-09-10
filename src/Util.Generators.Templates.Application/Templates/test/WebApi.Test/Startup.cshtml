@@ -7,18 +7,8 @@
     Model.Output.Extension = ".cs";
     Model.Output.RelativeRootPath = $"test/{service.GetWebApiTestProjectName()}";
 }
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Util;
 using Util.Helpers;
-using Util.Http;
-using Util.Aop;
-using Util.Dates;
-using Util.Data.EntityFrameworkCore;
-using Xunit.DependencyInjection.Logging;
 using @service.GetDataNamespace();
 using @service.GetDataNamespace( Model.ProjectContext.TargetDbType );
 
@@ -31,7 +21,7 @@ namespace @service.GetWebApiTestNamespace() {
         /// 配置主机
         /// </summary>
         public void ConfigureHost( IHostBuilder hostBuilder ) {
-            Environment.SetDevelopment();
+            Util.Helpers.Environment.SetDevelopment();
             hostBuilder.ConfigureDefaults( null )
                 .ConfigureWebHostDefaults( webHostBuilder => {
                     webHostBuilder.UseTestServer()

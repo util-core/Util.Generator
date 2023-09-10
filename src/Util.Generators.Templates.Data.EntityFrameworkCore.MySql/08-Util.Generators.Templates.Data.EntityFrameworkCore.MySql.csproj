@@ -41,6 +41,9 @@
 		<Content Update="Templates\src\Data.EntityFrameworkCore.MySql\UnitOfWork.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Update="Templates\src\Data.EntityFrameworkCore.MySql\Usings.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Update="Templates\test\Data.EntityFrameworkCore.MySql.Test\AppSettings.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -60,6 +63,9 @@
 		</Content>
 		<Content Update="Templates\test\Data.EntityFrameworkCore.MySql.Test\Startup.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\test\Data.EntityFrameworkCore.MySql.Test\Usings.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 

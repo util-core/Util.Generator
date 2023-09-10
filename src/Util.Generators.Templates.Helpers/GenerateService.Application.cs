@@ -236,7 +236,7 @@ public partial class GenerateService {
     private void AppendStringFilter( StringBuilder result,Property property ) {
         var name = property.Name;
         result.AppendLine();
-        result.Append( $"                .WhereIfNotEmpty( t => t.{name}.Contains( param.{name} ) )" );
+        result.Append( $"            .WhereIfNotEmpty( t => t.{name}.Contains( param.{name} ) )" );
     }
 
     /// <summary>
@@ -245,7 +245,7 @@ public partial class GenerateService {
     private void AppendDateTimeFilter( StringBuilder result, Property property ) {
         var name = property.Name;
         result.AppendLine();
-        result.Append( $"                .Between( t => t.{name},param.{GetBeginPropertyName( property )},param.{GetEndPropertyName( property )} )" );
+        result.Append( $"            .Between( t => t.{name},param.{GetBeginPropertyName( property )},param.{GetEndPropertyName( property )} )" );
     }
 
     #endregion

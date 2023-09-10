@@ -12,12 +12,12 @@
     if ( property.IsVersion )
         continue;
 <text>
-        /// <summary>
-        /// @property.Description
-        ///</summary>
-        [DisplayName( "@property.Description" )]
-        @if ( service.HasDataAnnotations( property ) ) {
-            @service.GetDataAnnotations( property )
-        }
-        public @property.TypeName @property.Name { get; set; }</text>
+    /// <summary>
+    /// @property.Description
+    ///</summary>
+    [DisplayName( "@property.Description" )]
+    @if ( service.HasDataAnnotations( property ) ) {
+        @service.GetDataAnnotations( property )
+    }
+    public @property.TypeName @property.Name { get; set; }</text>
 }

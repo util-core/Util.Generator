@@ -6,19 +6,19 @@
     var service = new GenerateService( Model );
     var entity = service.EntityName;
 }
-        /// <summary>
-        /// 配置属性
-        /// </summary>
-        private void ConfigProperties( EntityTypeBuilder<@entity> builder ) {
-            @foreach ( var property in Model.Properties ) {
-                if ( property.IsKey )
-                    continue;
-                if ( property.IsVersion )
-                    continue;
-                if ( property.IsExtraProperties )
-                    continue;
-                if ( property.IsDeleted )
-                    continue;
-                @service.GetConfiguration( property,DatabaseType.PgSql )
-            }
+    /// <summary>
+    /// 配置属性
+    /// </summary>
+    private void ConfigProperties( EntityTypeBuilder<@entity> builder ) {
+        @foreach ( var property in Model.Properties ) {
+            if ( property.IsKey )
+                continue;
+            if ( property.IsVersion )
+                continue;
+            if ( property.IsExtraProperties )
+                continue;
+            if ( property.IsDeleted )
+                continue;
+            @service.GetConfiguration( property,DatabaseType.PgSql )
         }
+    }

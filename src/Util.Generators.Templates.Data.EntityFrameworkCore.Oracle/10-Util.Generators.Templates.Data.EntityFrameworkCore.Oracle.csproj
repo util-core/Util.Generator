@@ -41,6 +41,9 @@
 		<Content Update="Templates\src\Data.EntityFrameworkCore.Oracle\UnitOfWork.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Update="Templates\src\Data.EntityFrameworkCore.Oracle\Usings.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Update="Templates\test\Data.EntityFrameworkCore.Oracle.Test\AppSettings.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -58,6 +61,9 @@
 		</Content>
 		<Content Update="Templates\test\Data.EntityFrameworkCore.Oracle.Test\Startup.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\test\Data.EntityFrameworkCore.Oracle.Test\Usings.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 

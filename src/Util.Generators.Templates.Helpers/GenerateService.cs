@@ -105,7 +105,9 @@ public partial class GenerateService {
     /// 是否支持架构
     /// </summary>
     public bool IsSupportSchema( string schema ) {
-        if( schema.IsEmpty() )
+        if ( _context.ProjectContext.EnableSchema == false )
+            return false;
+        if ( schema.IsEmpty() )
             return false;
         if( schema == "dbo" )
             return false;
@@ -132,8 +134,11 @@ public partial class GenerateService {
     /// 获取架构列表
     /// </summary>
     public List<string> GetSchemas() {
+        var result = new List<string> { "dbo" };
+        if ( IsSupportSchema() == false )
+            return result;
         if( _context.ProjectContext.Schemas.Count == 0 )
-            return new List<string> { "dbo" };
+            return result;
         return _context.ProjectContext.Schemas;
     }
 

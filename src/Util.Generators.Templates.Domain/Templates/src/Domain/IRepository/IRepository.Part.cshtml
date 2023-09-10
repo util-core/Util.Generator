@@ -6,13 +6,12 @@
     var repository = $"I{service.EntityName}Repository";
     var description = Model.Description;
 }
-using Util.Domain.Repositories;
 using @service.GetDomainNamespace( "Models" );
 
-namespace @service.GetDomainNamespace( "Repositories" ) {
-    /// <summary>
-    /// @(description)仓储
-    /// </summary>
-    public interface @repository : @service.GetIRepository() {
-    }
+namespace @service.GetDomainNamespace( "Repositories" );
+
+/// <summary>
+/// @(description)仓储
+/// </summary>
+public interface @repository : @service.GetIRepository() {
 }
