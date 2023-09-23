@@ -142,6 +142,10 @@ public partial class GenerateService {
             return;
         if ( property.IsLastModifierId )
             return;
+        if ( property.IsCreationTime )
+            return;
+        if ( property.IsLastModificationTime )
+            return;
         if ( property.IsTree )
             return;
         if ( property.IsDeleted )
@@ -149,6 +153,8 @@ public partial class GenerateService {
         if ( property.IsVersion )
             return;
         if ( property.IsExtraProperties )
+            return;
+        if ( property.IsPinYin )
             return;
         result.Append( $"      \"{property.Name.Camelize()}\": " );
         result.AppendLine( $"\"{GetI18nValue( property, isChinese )}\"," );
@@ -240,7 +246,10 @@ public partial class GenerateService {
     /// <param name="property">属性</param>
     /// <param name="prefix">属性键前缀,范例:begin,生成beginDateTime</param>
     public string GetPropertyI18nKey( Property property,string prefix = null ) {
-        return $"{GetEntityI18nKey( property.Entity )}.{GetPropertyI18nKey( property.Name, prefix )}";
+        var key = GetPropertyI18nKey( property.Name, prefix );
+        if ( property.IsPinYin || property.IsCreationTime || property.IsLastModificationTime )
+            return $"util.{key}";
+        return $"{GetEntityI18nKey( property.Entity )}.{key}";
     }
 
     /// <summary>
