@@ -98,12 +98,6 @@
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\search.component.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\clear-storage.component.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\fullscreen.component.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\layout\blank\blank.component.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
