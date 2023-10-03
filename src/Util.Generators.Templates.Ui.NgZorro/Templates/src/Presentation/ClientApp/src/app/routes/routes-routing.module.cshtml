@@ -11,14 +11,8 @@ import { NgModule } from '@@angular/core';
 import { RouterModule, Routes } from '@@angular/router';
 import { AuthGuard } from 'util-angular';
 import { environment } from '@@env/environment';
-// layout
 import { LayoutBasicComponent } from '../layout/basic/basic.component';
-import { LayoutPassportComponent } from '../layout/passport/passport.component';
-// dashboard pages
 import { DashboardComponent } from './dashboard/dashboard.component';
-// single pages
-import { CallbackComponent } from './passport/callback.component';
-import { UserLockComponent } from './passport/lock/lock.component';
 import {routes as @service.GetClientRoutesName() } from "./@service.GetClientModuleFolderName()/@service.GetClientRoutingModuleFileName()";
 
 const routes: Routes = [
@@ -34,23 +28,6 @@ const routes: Routes = [
       { path: '@service.GetClientModuleRoutePath()', children: @service.GetClientRoutesName() }
     ]
   },
-  // 空白布局
-  // {
-  //     path: 'blank',
-  //     component: LayoutBlankComponent,
-  //     children: [
-  //     ]
-  // },
-  // passport
-  {
-    path: 'passport',
-    component: LayoutPassportComponent,
-    children: [
-      { path: 'lock', component: UserLockComponent, data: { title: '锁屏', titleI18n: 'lock' } },
-    ]
-  },
-  // 单页不包裹Layout
-  { path: 'passport/callback/:type', component: CallbackComponent },
   { path: '**', redirectTo: 'exception/404' },
 ];
 

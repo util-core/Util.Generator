@@ -24,6 +24,12 @@ builder.Services.AddHttpLogging( options => options.LoggingFields = HttpLoggingF
 //配置数据库迁移服务
 builder.Services.AddHostedService<MigrationHostedService>();
 
+//配置Cors
+builder.Services.AddCors( options => options.AddPolicy( "cors", policy => {
+    policy.SetIsOriginAllowed( _ => true );
+    policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+} ) );
+
 //配置Util
 builder.AsBuild()
     .AddAop()
@@ -45,6 +51,7 @@ if ( app.Environment.IsDevelopment() ) {
     app.UseSwaggerUI();
 }
 app.UseHttpLogging();
+app.UseCors( "cors" );
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

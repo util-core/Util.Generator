@@ -25,7 +25,8 @@
     var entity = service.GetEntities()[i];
 <text>        {
           "text": "@entity.Description",
-          "link": "/@service.GetClientModuleRoutePath()/@service.GetClientEntityFileName(entity)"
+          "link": "/@service.GetClientModuleRoutePath()/@service.GetClientEntityFileName(entity)",
+          "reuse": true
         }</text> @if ( i < service.GetEntities().Count - 1 ) {<text>,
 </text>}
 }]

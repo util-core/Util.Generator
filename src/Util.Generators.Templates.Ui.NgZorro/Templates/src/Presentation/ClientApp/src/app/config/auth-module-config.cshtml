@@ -5,16 +5,17 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "auth-module-config";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/core/auth";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/config";
 }
 import { OAuthModuleConfig } from 'angular-oauth2-oidc';
+import { urlConfig } from './url-config';
 
 /**
 * 授权模块配置
 */
 export const authModuleConfig: OAuthModuleConfig = {
     resourceServer: {
-        allowedUrls: ['https://localhost:@service.GetApiPort()'],
+        allowedUrls: [urlConfig.apiEndpointUrl],
         sendAccessToken: true
     }
 };
