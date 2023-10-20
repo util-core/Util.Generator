@@ -1,6 +1,6 @@
 ﻿using Util.Helpers;
 
-namespace Util.Generators.Helpers; 
+namespace Util.Generators.Helpers;
 
 /// <summary>
 /// 版本配置
