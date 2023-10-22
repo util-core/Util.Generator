@@ -15,6 +15,6 @@ module.exports = withModuleFederationPlugin({
         './Module': './src/app/routes/@(service.GetClientModuleFolderName())/@(service.GetClientModuleFileName()).ts'
     },
     shared: {
-        ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' })
+        ...shareAll({ singleton: true, strictVersion: false, requiredVersion: 'auto' })
     }
 });
