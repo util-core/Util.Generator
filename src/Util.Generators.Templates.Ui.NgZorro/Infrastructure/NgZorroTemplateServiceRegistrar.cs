@@ -36,7 +36,7 @@ namespace Util.Generators.Infrastructure {
         /// </summary>
         private void AddResources() {
             ResourceManager.AddResource( @"src\Presentation\ClientApp\src\assets", @"src\{Project}.Ui\ClientApp\src\assets" );
-            ResourceManager.AddResource( @"src\Presentation\ClientApp\src\app\routes\permission", @"src\{Project}.Ui\ClientApp\src\app\routes\permission" );
+            ResourceManager.AddResource( @"src\Presentation\ClientApp\src\favicon.ico", @"src\{Project}.Ui\ClientApp\src\favicon.ico" );
         }
     }
 }

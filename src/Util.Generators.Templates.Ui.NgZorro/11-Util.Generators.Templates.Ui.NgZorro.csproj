@@ -298,4 +298,10 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="Templates\src\Presentation\ClientApp\src\favicon.ico">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>
