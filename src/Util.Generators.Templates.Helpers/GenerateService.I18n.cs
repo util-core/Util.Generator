@@ -1,6 +1,6 @@
 ﻿using Util.Helpers;
 
-namespace Util.Generators.Helpers; 
+namespace Util.Generators.Helpers;
 
 /// <summary>
 /// 生成服务 - 多语言相关方法
@@ -15,7 +15,7 @@ public partial class GenerateService {
     /// <param name="isChinese">是否显示中文</param>
     public string GetClientI18nContent( bool isChinese = true ) {
         var result = new StringBuilder();
-        foreach ( var schema in GetClientSchemas() )
+        foreach( var schema in GetClientSchemas() )
             AppendI18nSchemaContent( result, schema, isChinese );
         result.RemoveEnd( $",{Common.Line}" );
         return result.ToString();
@@ -25,13 +25,24 @@ public partial class GenerateService {
     /// 添加i18n多语言单个架构内容
     /// </summary>
     private void AppendI18nSchemaContent( StringBuilder result, string schema, bool isChinese ) {
-        result.Append( $"  \"{schema.Pluralize().Camelize()}\": " );
+        result.Append( $"  \"{GetSchemaI18nKey( schema )}\": " );
         result.AppendLine( "{" );
-        foreach ( var entity in GetEntities( schema ) )
+        foreach( var entity in GetEntities( schema ) )
             AppendI18nEntityContent( result, entity, isChinese );
         result.RemoveEnd( $",{Common.Line}" );
         result.AppendLine();
         result.AppendLine( "  }," );
+    }
+
+    /// <summary>
+    /// 获取架构多语言键
+    /// </summary>
+    private string GetSchemaI18nKey( string schema ) {
+        var key = schema;
+        if( key.IsEmpty() == false && key != "dbo" )
+            return key.Pluralize().Camelize();
+        key = _context.ProjectContext.Client.AppName;
+        return key.IsEmpty() ? ProjectName : key;
     }
 
     /// <summary>
@@ -41,7 +52,7 @@ public partial class GenerateService {
         result.Append( $"    \"{entity.Name.Camelize()}\": " );
         result.AppendLine( "{" );
         AppendI18nDefaultEntityContent( result, entity, isChinese );
-        foreach ( var property in entity.Properties )
+        foreach( var property in entity.Properties )
             AppendI18nPropertyContent( result, property, isChinese );
         result.RemoveEnd( $",{Common.Line}" );
         result.AppendLine();
@@ -103,7 +114,7 @@ public partial class GenerateService {
     /// 添加i18n多语言创建下级树形实体内容
     /// </summary>
     private void AppendI18nCreateSubEntityContent( StringBuilder result, EntityContext entity, bool isChinese ) {
-        if ( entity.HasTree == false )
+        if( entity.HasTree == false )
             return;
         result.Append( $"      \"createSub{entity.PascalName}\": " );
         result.Append( "\"" );
@@ -115,7 +126,7 @@ public partial class GenerateService {
     /// 添加i18n多语言树形实体父标识内容
     /// </summary>
     private void AppendI18nParentIdContent( StringBuilder result, EntityContext entity, bool isChinese ) {
-        if ( entity.HasTree == false )
+        if( entity.HasTree == false )
             return;
         result.Append( $"      \"parentId\": " );
         result.Append( "\"" );
@@ -127,7 +138,7 @@ public partial class GenerateService {
     /// 获取i18n多语言值
     /// </summary>
     private string GetI18nValue( EntityContext entity, bool isChinese ) {
-        if ( isChinese )
+        if( isChinese )
             return entity.Description;
         return entity.Name.Pascalize();
     }
@@ -136,29 +147,29 @@ public partial class GenerateService {
     /// 添加i18n多语言单个属性内容
     /// </summary>
     private void AppendI18nPropertyContent( StringBuilder result, Property property, bool isChinese ) {
-        if ( property.IsKey )
+        if( property.IsKey )
             return;
-        if ( property.IsCreatorId )
+        if( property.IsCreatorId )
             return;
-        if ( property.IsLastModifierId )
+        if( property.IsLastModifierId )
             return;
-        if ( property.IsCreationTime )
+        if( property.IsCreationTime )
             return;
-        if ( property.IsLastModificationTime )
+        if( property.IsLastModificationTime )
             return;
-        if ( property.IsTree )
+        if( property.IsTree )
             return;
-        if ( property.IsDeleted )
+        if( property.IsDeleted )
             return;
-        if ( property.IsVersion )
+        if( property.IsVersion )
             return;
-        if ( property.IsExtraProperties )
+        if( property.IsExtraProperties )
             return;
-        if ( property.IsPinYin )
+        if( property.IsPinYin )
             return;
         result.Append( $"      \"{property.Name.Camelize()}\": " );
         result.AppendLine( $"\"{GetI18nValue( property, isChinese )}\"," );
-        if ( property.IsDateTime ) {
+        if( property.IsDateTime ) {
             AppendI18nDateTimeContent( result, property, isChinese );
             return;
         }
@@ -178,7 +189,7 @@ public partial class GenerateService {
     /// 获取i18n多语言值
     /// </summary>
     private string GetI18nValue( Property property, bool isChinese ) {
-        if ( isChinese )
+        if( isChinese )
             return property.Description;
         return property.Name.Pascalize();
     }
@@ -192,11 +203,11 @@ public partial class GenerateService {
     /// </summary>
     /// <param name="property">属性</param>
     public string GetPropertyI18nDisplay( Property property ) {
-        if ( property.IsCreatorId )
+        if( property.IsCreatorId )
             return null;
-        if ( property.IsLastModifierId )
+        if( property.IsLastModifierId )
             return null;
-        if ( property.IsVersion )
+        if( property.IsVersion )
             return null;
         var result = new StringBuilder();
         result.AppendLine();
@@ -229,11 +240,10 @@ public partial class GenerateService {
     /// </summary>
     private string GetSchemaI18nKey( EntityContext entity ) {
         var key = entity.Schema;
-        if ( entity.Schema.IsEmpty() )
-            key = entity.ProjectContext.Client.AppName;
-        if ( key.IsEmpty() )
-            key = ProjectName;
-        return key.Pluralize().Camelize();
+        if( key.IsEmpty() == false && key != "dbo" )
+            return key.Pluralize().Camelize();
+        key = entity.ProjectContext.Client.AppName;
+        return key.IsEmpty() ? ProjectName : key;
     }
 
     #endregion
@@ -245,9 +255,9 @@ public partial class GenerateService {
     /// </summary>
     /// <param name="property">属性</param>
     /// <param name="prefix">属性键前缀,范例:begin,生成beginDateTime</param>
-    public string GetPropertyI18nKey( Property property,string prefix = null ) {
+    public string GetPropertyI18nKey( Property property, string prefix = null ) {
         var key = GetPropertyI18nKey( property.Name, prefix );
-        if ( property.IsPinYin || property.IsCreationTime || property.IsLastModificationTime )
+        if( property.IsPinYin || property.IsCreationTime || property.IsLastModificationTime )
             return $"util.{key}";
         return $"{GetEntityI18nKey( property.Entity )}.{key}";
     }
@@ -256,7 +266,7 @@ public partial class GenerateService {
     /// 获取属性多语言键
     /// </summary>
     private string GetPropertyI18nKey( string propertyName, string prefix ) {
-        if ( prefix.IsEmpty() )
+        if( prefix.IsEmpty() )
             return propertyName.Camelize();
         return $"{prefix.Camelize()}{propertyName.Pascalize()}";
     }
