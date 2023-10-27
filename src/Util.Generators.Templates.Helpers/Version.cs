@@ -9,7 +9,7 @@ public static class Version {
     /// <summary>
     /// Util框架版本号
     /// </summary>
-    public static string Util => "7.1.60";
+    public static string Util => "7.1.61";
     /// <summary>
     /// Microsoft.Extensions.Hosting版本号
     /// </summary>
@@ -17,19 +17,19 @@ public static class Version {
     /// <summary>
     /// Microsoft.AspNetCore.TestHost版本号
     /// </summary>
-    public static string TestHost => "7.0.12";
+    public static string TestHost => "7.0.13";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Tools版本号
     /// </summary>
-    public static string EntityFrameworkCoreTools => "7.0.12";
+    public static string EntityFrameworkCoreTools => "7.0.13";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Design版本号
     /// </summary>
-    public static string EntityFrameworkCoreDesign => "7.0.12";
+    public static string EntityFrameworkCoreDesign => "7.0.13";
     /// <summary>
     /// Microsoft.AspNetCore.Authentication.JwtBearer版本号
     /// </summary>
-    public static string JwtBearer => "7.0.12";
+    public static string JwtBearer => "7.0.13";
     /// <summary>
     /// Microsoft.NET.Test.Sdk版本号
     /// </summary>
