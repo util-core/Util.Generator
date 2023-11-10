@@ -33,10 +33,10 @@
       {
         "Name": "File",
         "Args": {
-          "path": "c:\\log\\log.txt",
+          "path": "c:\\log\\api.txt",
           "rollingInterval": "Day",
           "retainedFileCountLimit": 10,
-          "outputTemplate": "{LogLevel}: {TraceId}  >>  [{SourceContext}] [{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{Duration}]{NewLine}{Message}{NewLine}{Exception}{NewLine}"
+          "outputTemplate": "{LogLevel}: {TraceId}  >>  [{SourceContext}] [{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] {Duration}{NewLine}{Message}{NewLine}{Exception}{NewLine}"
         }
       }
     ]

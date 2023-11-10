@@ -9,7 +9,7 @@ public static class Version {
     /// <summary>
     /// Util框架版本号
     /// </summary>
-    public static string Util => "7.1.68";
+    public static string Util => "7.1.73";
     /// <summary>
     /// Microsoft.Extensions.Hosting版本号
     /// </summary>
