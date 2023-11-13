@@ -9,56 +9,50 @@
 }
 @("@")model @service.GetQuery()
 
-<util-form class="search__form">
-    <util-row align="Top">
-        <util-column flex="1 1 0px">
-            <util-row gutter="24">
-                @foreach (var property in Model.Properties)
-                {
-                    if (property.IsKey)
-                        continue;
-                    if (property.IsDeleted)
-                        continue;
-                    if (property.IsExtraProperties)
-                        continue;
-                    if (property.IsVersion)
-                        continue;
-                    if (property.IsSortId)
-                        continue;
-                    if (property.IsAudited)
-                        continue;
-                    if (property.IsPinYin)
-                        continue;
-                    if (property.IsTree)
-                        continue;
-                    if (property.IsDateTime)
-                    {
-                <util-column sm="8" xs="24">
-                    <util-date-picker for="Begin@(property.Name)"/>
-                </util-column>
-                <util-column sm="8" xs="24">
-                    <util-date-picker for="End@(property.Name)"/>
-                </util-column>
-                        continue;
-                    }
-                    if (property.IsBool)
-                    {
-                <util-column sm="8" xs="24">
-                    <util-select for="@property.Name"/>
-                </util-column>
-                        continue;
-                    }
-                <util-column sm="8" xs="24">
-                    <util-input for="@property.Name"/>
-                </util-column>
-                }
-            </util-row>
+<util-form class="search__form mb-sm">
+    <util-row gutter="24">
+        @foreach (var property in Model.Properties)
+        {
+            if (property.IsKey)
+                continue;
+            if (property.IsDeleted)
+                continue;
+            if (property.IsExtraProperties)
+                continue;
+            if (property.IsVersion)
+                continue;
+            if (property.IsSortId)
+                continue;
+            if (property.IsAudited)
+                continue;
+            if (property.IsPinYin)
+                continue;
+            if (property.IsTree)
+                continue;
+            if (property.IsDateTime)
+            {
+        <util-column xxl="4" md="8" xs="24">
+            <util-date-picker for="Begin@(property.Name)"/>
         </util-column>
-        <util-column flex="200px">
-            <util-row justify="End">
-                <util-button id="btnQuery" type="Primary" icon="Search" on-click="query(btnQuery)" text-query="true"></util-button>
-                <util-button id="btnRefresh" icon="Sync" on-click="refresh(btnRefresh)" text-refresh="true"></util-button>
-            </util-row>
+        <util-column xxl="4" md="8" xs="24">
+            <util-date-picker for="End@(property.Name)"/>
+        </util-column>
+                continue;
+            }
+            if (property.IsBool)
+            {
+        <util-column xxl="4" md="8" xs="24">
+            <util-select for="@property.Name"/>
+        </util-column>
+                continue;
+            }
+        <util-column xxl="4" md="8" xs="24">
+            <util-input for="@property.Name"/>
+        </util-column>
+        }
+        <util-column>
+            <util-button id="btnQuery" type="Primary" icon="Search" on-click="query(btnQuery)" text-query="true"></util-button>
+            <util-button id="btnRefresh" icon="Sync" on-click="refresh(btnRefresh)" text-refresh="true"></util-button>
         </util-column>
     </util-row>
 </util-form>

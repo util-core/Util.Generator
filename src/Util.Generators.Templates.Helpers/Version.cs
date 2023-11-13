@@ -9,7 +9,7 @@ public static class Version {
     /// <summary>
     /// Util框架版本号
     /// </summary>
-    public static string Util => "7.1.73";
+    public static string Util => "7.1.75";
     /// <summary>
     /// Microsoft.Extensions.Hosting版本号
     /// </summary>
@@ -33,11 +33,11 @@ public static class Version {
     /// <summary>
     /// Microsoft.NET.Test.Sdk版本号
     /// </summary>
-    public static string TestSdk => "17.7.2";
+    public static string TestSdk => "17.8.0";
     /// <summary>
     /// xunit版本号
     /// </summary>
-    public static string Xunit => "2.5.3";
+    public static string Xunit => "2.6.1";
     /// <summary>
     /// xunit.runner.visualstudio版本号
     /// </summary>

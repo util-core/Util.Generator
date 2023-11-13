@@ -212,6 +212,8 @@ public partial class GenerateService {
         var result = new StringBuilder();
         result.Append( "queryable" );
         foreach ( var property in _context.Properties ) {
+            if( property.IsDeleted )
+                continue;
             if ( property.IsKey )
                 continue;
             if ( property.IsTree )
@@ -222,6 +224,9 @@ public partial class GenerateService {
                 continue;
             if ( property.IsString ) {
                 AppendStringFilter( result, property );
+            }
+            if( property.IsBool ) {
+                AppendBoolFilter( result, property );
             }
             if ( property.IsDateTime ) {
                 AppendDateTimeFilter( result, property );
@@ -237,6 +242,15 @@ public partial class GenerateService {
         var name = property.Name;
         result.AppendLine();
         result.Append( $"            .WhereIfNotEmpty( t => t.{name}.Contains( param.{name} ) )" );
+    }
+
+    /// <summary>
+    /// 添加布尔值查询过滤条件
+    /// </summary>
+    private void AppendBoolFilter( StringBuilder result, Property property ) {
+        var name = property.Name;
+        result.AppendLine();
+        result.Append( $"            .WhereIfNotEmpty( t => t.{name} == param.{name} )" );
     }
 
     /// <summary>
