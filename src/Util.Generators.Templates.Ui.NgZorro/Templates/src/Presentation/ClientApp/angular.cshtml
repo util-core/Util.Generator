@@ -100,18 +100,18 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "@name:build",
+            "buildTarget": "@name:build",
             "publicHost": "https://localhost:@service.GetUiPort()",
             "port": @service.GetUiPort(),
             "extraWebpackConfig": "webpack.config.js"
           },
           "configurations": {
             "production": {
-              "browserTarget": "@name:build:production",
+              "buildTarget": "@name:build:production",
               "extraWebpackConfig": "webpack.config.prod.js"
             },
             "development": {
-              "browserTarget": "@name:build:development",
+              "buildTarget": "@name:build:development",
               "extraWebpackConfig": "webpack.config.js"
             }
           },
@@ -120,7 +120,7 @@
         "extract-i18n": {
           "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "@name:build"
+            "buildTarget": "@name:build"
           }
         },
         "test": {

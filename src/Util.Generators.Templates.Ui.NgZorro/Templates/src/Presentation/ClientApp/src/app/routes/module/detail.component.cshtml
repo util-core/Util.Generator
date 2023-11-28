@@ -17,8 +17,8 @@ import { @service.GetClientViewModelClassName() } from './model/@service.GetClie
 * @description
 */
 @@Component( {
-selector: '@service.GetClientEntityName()-detail',
-templateUrl: environment.production ? './html/detail.component.html' : '@service.GetClientViewTemplateUrl()/detail'
+    selector: '@service.GetClientEntityName()-detail',
+    templateUrl: environment.production ? './html/detail.component.html' : '@service.GetClientViewTemplateUrl()/detail'
 } )
 export class @service.GetClientDetailClassName() extends EditComponentBase<@service.GetClientViewModelClassName()> {
     /**
