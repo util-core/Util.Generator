@@ -23,7 +23,9 @@
                 continue;
             if (property.IsSortId)
                 continue;
-            if (property.IsAudited)
+            if( property.IsCreatorId )
+                continue;
+            if( property.IsLastModifierId )
                 continue;
             if (property.IsPinYin)
                 continue;

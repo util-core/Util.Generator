@@ -42,4 +42,18 @@ export class @service.GetClientListClassName() extends TableQueryComponentBase<@
     getDetailComponent() {
         return @service.GetClientDetailClassName();
     }
+    
+    /**
+    * 获取创建标题
+    */
+    getCreateTitle() {
+        return '@service.GetCreateEntityI18nKey()';
+    }
+
+    /**
+    * 获取更新标题
+    */
+    getEditTitle() {
+        return '@service.GetUpdateEntityI18nKey()';
+    }
 }

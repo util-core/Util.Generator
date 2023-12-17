@@ -33,13 +33,15 @@
             continue;
         if ( property.IsDeleted )
             continue;
-        if ( property.IsAudited )
+        if ( property.IsCreatorId )
+            continue;
+        if( property.IsLastModifierId )
+            continue;
+        if( property.IsLastModificationTime )
             continue;
         if ( property.IsPinYin )
             continue;
         if ( property.IsTree )
-            continue;
-        if ( property.IsDateTime )
             continue;
     <util-td for="@property.Name"></util-td>
     }
