@@ -49,6 +49,7 @@ public static class @fakeService {
         }
         @if ( property.IsTree ) {
             @:.Ignore( t => t.@property.Name )
+            @:.Ignore( t => t.Children )
             continue;
         }
         @if ( property.SystemType == SystemType.String ) {
