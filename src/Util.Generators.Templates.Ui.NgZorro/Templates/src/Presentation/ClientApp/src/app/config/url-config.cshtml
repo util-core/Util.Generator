@@ -8,19 +8,19 @@
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/config";
 }
 /**
-* Url配置
-*/
+ * Url配置
+ */
 export const urlConfig = {
     /**
-    * 认证服务器地址
-    */
+     * 认证服务器地址
+     */
     identityUrl: "https://localhost:@service.GetApiPort()",
     /**
-    * Api端点地址
-    */
+     * Api端点地址
+     */
     apiEndpointUrl: "https://localhost:@service.GetApiPort()",
     /**
-    * 获取应用数据地址
-    */
+     * 获取应用数据地址
+     */
     appDataUrl: "/api/app/appData"
 };

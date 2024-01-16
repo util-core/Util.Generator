@@ -17,6 +17,7 @@ var builder = WebApplication.CreateBuilder( args );
 
 //配置Util服务
 ServiceRegistrarConfig.Instance.DisableDependencyServiceRegistrar();
+ServiceRegistrarConfig.Instance.DisableLocalEventBusServiceRegistrar();
 builder.AsBuild()
     .AddSerilog()
     .AddNgZorro( options => {
