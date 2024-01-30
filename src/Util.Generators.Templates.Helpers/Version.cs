@@ -9,27 +9,27 @@ public static class Version {
     /// <summary>
     /// Util框架版本号
     /// </summary>
-    public static string Util => "7.1.131";
+    public static string Util => "8.0.0";
     /// <summary>
     /// Microsoft.Extensions.Hosting版本号
     /// </summary>
-    public static string Hosting => "7.0.1";
+    public static string Hosting => "8.0.0";
     /// <summary>
     /// Microsoft.AspNetCore.TestHost版本号
     /// </summary>
-    public static string TestHost => "7.0.13";
+    public static string TestHost => "8.0.1";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Tools版本号
     /// </summary>
-    public static string EntityFrameworkCoreTools => "7.0.13";
+    public static string EntityFrameworkCoreTools => "8.0.1";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Design版本号
     /// </summary>
-    public static string EntityFrameworkCoreDesign => "7.0.13";
+    public static string EntityFrameworkCoreDesign => "8.0.1";
     /// <summary>
     /// Microsoft.AspNetCore.Authentication.JwtBearer版本号
     /// </summary>
-    public static string JwtBearer => "7.0.13";
+    public static string JwtBearer => "8.0.1";
     /// <summary>
     /// Microsoft.NET.Test.Sdk版本号
     /// </summary>
@@ -37,11 +37,11 @@ public static class Version {
     /// <summary>
     /// xunit版本号
     /// </summary>
-    public static string Xunit => "2.6.1";
+    public static string Xunit => "2.6.6";
     /// <summary>
     /// xunit.runner.visualstudio版本号
     /// </summary>
-    public static string XunitRunner => "2.5.3";
+    public static string XunitRunner => "2.5.6";
     /// <summary>
     /// coverlet.collector版本号
     /// </summary>
@@ -53,11 +53,11 @@ public static class Version {
     /// <summary>
     /// Moq版本号
     /// </summary>
-    public static string Moq => "4.20.69";
+    public static string Moq => "4.20.70";
     /// <summary>
     /// Xunit.DependencyInjection版本号
     /// </summary>
-    public static string XunitDependencyInjection => "8.9.0";
+    public static string XunitDependencyInjection => "8.9.1";
     /// <summary>
     /// Xunit.DependencyInjection.Logging版本号
     /// </summary>
