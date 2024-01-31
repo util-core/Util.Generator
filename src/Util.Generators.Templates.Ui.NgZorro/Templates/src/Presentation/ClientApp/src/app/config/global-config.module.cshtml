@@ -20,7 +20,7 @@ const alainConfig: AlainConfig = {
     pageHeader: { homeI18n: 'home' }
 };
 const alainModules: any[] = [AlainThemeModule.forRoot(), DelonACLModule];
-const alainProvides = [{ provide: ALAIN_CONFIG, useValue: alainConfig }];
+const alainProvides = [{ provide: ALAIN_CONFIG, useValue: alainConfig },ReuseTabService];
 alainProvides.push({ provide: RouteReuseStrategy,useClass:ReuseTabStrategy,deps: [ReuseTabService] } as any);
 const ngZorroConfig: NzConfig = {};
 const zorroProvides = [{ provide: NZ_CONFIG, useValue: ngZorroConfig }];
