@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     var description = $"{Model.Description}编辑页";
 }
-import { Component, Injector } from '@@angular/core';
+import { Component,ChangeDetectionStrategy, Injector } from '@@angular/core';
 import { environment } from "@@env/environment";
 import { EditComponentBase } from "util-angular";
 import { @service.GetClientViewModelClassName() } from './model/@service.GetClientViewModelFileName()';
@@ -15,6 +15,7 @@ import { @service.GetClientViewModelClassName() } from './model/@service.GetClie
  */
 @@Component( {
     selector: '@service.GetClientEntityFileName()-edit',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: environment.production ? './html/edit.component.html' : '@service.GetClientViewTemplateUrl()/edit'
 } )
 export class @service.GetClientEditClassName() extends EditComponentBase<@service.GetClientViewModelClassName()> {

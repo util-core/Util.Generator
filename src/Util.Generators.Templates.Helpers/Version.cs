@@ -9,7 +9,7 @@ public static class Version {
     /// <summary>
     /// Util框架版本号
     /// </summary>
-    public static string Util => "8.0.0";
+    public static string Util => "8.0.1";
     /// <summary>
     /// Microsoft.Extensions.Hosting版本号
     /// </summary>
@@ -17,31 +17,31 @@ public static class Version {
     /// <summary>
     /// Microsoft.AspNetCore.TestHost版本号
     /// </summary>
-    public static string TestHost => "8.0.1";
+    public static string TestHost => "8.0.2";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Tools版本号
     /// </summary>
-    public static string EntityFrameworkCoreTools => "8.0.1";
+    public static string EntityFrameworkCoreTools => "8.0.2";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Design版本号
     /// </summary>
-    public static string EntityFrameworkCoreDesign => "8.0.1";
+    public static string EntityFrameworkCoreDesign => "8.0.2";
     /// <summary>
     /// Microsoft.AspNetCore.Authentication.JwtBearer版本号
     /// </summary>
-    public static string JwtBearer => "8.0.1";
+    public static string JwtBearer => "8.0.2";
     /// <summary>
     /// Microsoft.NET.Test.Sdk版本号
     /// </summary>
-    public static string TestSdk => "17.8.0";
+    public static string TestSdk => "17.9.0";
     /// <summary>
     /// xunit版本号
     /// </summary>
-    public static string Xunit => "2.6.6";
+    public static string Xunit => "2.7.0";
     /// <summary>
     /// xunit.runner.visualstudio版本号
     /// </summary>
-    public static string XunitRunner => "2.5.6";
+    public static string XunitRunner => "2.5.7";
     /// <summary>
     /// coverlet.collector版本号
     /// </summary>

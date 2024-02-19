@@ -60,7 +60,7 @@ public class MigrationHostedService : IHostedService {
     /// 安装和更新 dotnet-ef 工具
     /// </summary>
     private void InstallEfTool() {
-        _migrationService.InstallEfTool().UpdateEfTool();
+        _migrationService.InstallEfTool("8.0.0");
     }
     
     /// <summary>

@@ -7,36 +7,49 @@
 @("@")page
 @("@")model @service.GetDto()
 <util-page-header2 title="@service.GetEntityI18nKey()"></util-page-header2>
+
+@@*查询表单*@@
+<partial name="Index.Query" />
+
+@@*查询表格*@@
 <util-card borderless="true">
-    @@*查询表单*@@
-    <partial name="Index.Query" />
     @@*工具按钮*@@
-    <util-button type="Primary" icon="Plus" on-click="openCreateDrawer()" text-create="true"></util-button>
-    <util-button type="Primary" Danger="true" icon="Delete" on-click="delete()" text-delete="true"></util-button>
-    @@*提示语*@@
-    <util-alert type="Info" show-icon="true" class="my-md">
-        <util-i18n key="app.rowsSelected" param="length:getCheckedLength()" />
-    </util-alert>
+    <util-flex justify="FlexEnd" align="Center" gap="Middle" class="mb-md">
+        <util-button type="Primary" icon="Plus" on-click="openCreateDrawer()" text-create="true"></util-button>
+        <util-a show-table-settings="@service.GetClientTableId()"></util-a>
+    </util-flex>
+    
+    @@*页脚工具栏*@@
+    <util-footer-toolbar ng-if="isChecked()" bind-extra="footer_info">
+        @@*提示信息*@@
+        <util-template id="footer_info">
+            <util-i18n key="app.rowsSelected" param="length:getCheckedLength()" />
+        </util-template>
+        @@*删除按钮*@@
+        <util-button type="Primary" Danger="true" icon="Delete" on-click="delete()" text-delete="true"></util-button>
+    </util-footer-toolbar>
+
     @@*表格*@@
-    <util-table id="@service.GetClientTableId()" show-checkbox="true" show-line-number="true" query-param="queryParam" url="@service.GetClientEntityName()" @service.GetClientSort()>
-        @foreach ( var property in Model.Properties ) {
-            if ( property.IsKey )
+    <util-table id="@service.GetClientTableId()" show-checkbox="true" show-line-number="true" enable-custom-column="@service.GetClientTableId()"
+                query-param="queryParam" url="@service.GetClientEntityName()" @service.GetClientSort()>
+        @foreach (var property in Model.Properties) {
+            if (property.IsKey)
                 continue;
-            if ( property.IsExtraProperties )
+            if (property.IsExtraProperties)
                 continue;
-            if ( property.IsVersion )
+            if (property.IsVersion)
                 continue;
-            if ( property.IsDeleted )
+            if (property.IsDeleted)
                 continue;
-            if ( property.IsPinYin )
+            if (property.IsPinYin)
                 continue;
-            if ( property.IsCreatorId )
+            if (property.IsCreatorId)
                 continue;
-            if( property.IsLastModifierId )
+            if (property.IsLastModifierId)
                 continue;
-            if( property.IsLastModificationTime )
+            if (property.IsLastModificationTime)
                 continue;
-        <util-td for="@property.Name"></util-td>
+            <util-td for="@property.Name"></util-td>
         }
         <util-td title-operation="true" width="300">
             <util-a on-click="openEditDrawer(row)" text-update="true"></util-a>
