@@ -12,25 +12,25 @@
 <partial name="Index.Query" />
 
 @@*查询表格*@@
-<util-card borderless="true">
+<util-card borderless="true" title="@service.GetEntityI18nKey()" extra="tool">
     @@*工具按钮*@@
-    <util-flex justify="FlexEnd" align="Center" gap="Middle" class="mb-md">
+    <util-template id="tool">
         <util-button type="Primary" icon="Plus" on-click="openCreateDrawer()" text-create="true"></util-button>
-        <util-a show-table-settings="@service.GetClientTableId()"></util-a>
-    </util-flex>
-    
+        <util-a show-table-settings="@service.GetClientTableId()" class="ml-md"></util-a>
+    </util-template>
+
     @@*页脚工具栏*@@
     <util-footer-toolbar ng-if="isChecked()" bind-extra="footer_info">
         @@*提示信息*@@
         <util-template id="footer_info">
-            <util-i18n key="app.rowsSelected" param="length:getCheckedLength()" />
+            <util-i18n key="app.rowsSelected" param="length:getCheckedLength()"/>
         </util-template>
         @@*删除按钮*@@
         <util-button type="Primary" Danger="true" icon="Delete" on-click="delete()" text-delete="true"></util-button>
     </util-footer-toolbar>
 
     @@*表格*@@
-    <util-table id="@service.GetClientTableId()" show-checkbox="true" show-line-number="true" enable-custom-column="@service.GetClientTableId()"
+    <util-table id="@service.GetClientTableId()" show-checkbox="true" show-line-number="true" enable-table-settings="true"
                 query-param="queryParam" url="@service.GetClientEntityName()" @service.GetClientSort()>
         @foreach (var property in Model.Properties) {
             if (property.IsKey)
@@ -47,11 +47,9 @@
                 continue;
             if (property.IsLastModifierId)
                 continue;
-            if (property.IsLastModificationTime)
-                continue;
-            <util-td for="@property.Name"></util-td>
+        <util-td for="@property.Name"></util-td>
         }
-        <util-td title-operation="true" width="300">
+        <util-td title-operation="true">
             <util-a on-click="openEditDrawer(row)" text-update="true"></util-a>
             <util-divider type="Vertical"></util-divider>
             <util-a on-click="openDetailDialog(row)" text-detail="true"></util-a>

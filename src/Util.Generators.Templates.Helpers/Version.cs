@@ -9,7 +9,7 @@ public static class Version {
     /// <summary>
     /// Util框架版本号
     /// </summary>
-    public static string Util => "8.0.1";
+    public static string Util => "8.0.4";
     /// <summary>
     /// Microsoft.Extensions.Hosting版本号
     /// </summary>
@@ -45,7 +45,7 @@ public static class Version {
     /// <summary>
     /// coverlet.collector版本号
     /// </summary>
-    public static string Coverlet => "6.0.0";
+    public static string Coverlet => "6.0.1";
     /// <summary>
     /// AutoBogus版本号
     /// </summary>

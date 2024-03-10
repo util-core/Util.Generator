@@ -17,7 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Util.Generators.Razor" Version="8.0.1" />
+	  <PackageReference Include="Util.Generators.Razor" Version="8.0.4" />
 	</ItemGroup>
 
 </Project>

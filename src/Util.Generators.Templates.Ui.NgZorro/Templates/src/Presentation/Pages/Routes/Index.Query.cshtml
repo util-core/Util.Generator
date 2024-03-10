@@ -9,54 +9,51 @@
 }
 @("@")model @service.GetQuery()
 
-<util-card borderless="true">
-    <util-search-form>
+<util-card borderless="true" class="searchForm">
+    <util-search-form label-width="140">
         <util-row gutter="24">
-            @foreach (var property in Model.Properties)
+        @foreach (var property in Model.Properties)
+        {
+            if (property.IsKey)
+                continue;
+            if (property.IsDeleted)
+                continue;
+            if (property.IsExtraProperties)
+                continue;
+            if (property.IsVersion)
+                continue;
+            if (property.IsSortId)
+                continue;
+            if( property.IsCreatorId )
+                continue;
+            if( property.IsLastModifierId )
+                continue;
+            if (property.IsPinYin)
+                continue;
+            if (property.IsTree)
+                continue;
+            if (property.IsDateTime)
             {
-                if (property.IsKey)
-                    continue;
-                if (property.IsDeleted)
-                    continue;
-                if (property.IsExtraProperties)
-                    continue;
-                if (property.IsVersion)
-                    continue;
-                if (property.IsSortId)
-                    continue;
-                if( property.IsCreatorId )
-                    continue;
-                if( property.IsLastModifierId )
-                    continue;
-                if (property.IsPinYin)
-                    continue;
-                if (property.IsTree)
-                    continue;
-                if (property.IsDateTime)
-                {
-                    <util-column>
-                        <util-date-picker for="Begin@(property.Name)"/>
-                    </util-column>
-                    <util-column>
-                        <util-date-picker for="End@(property.Name)"/>
-                    </util-column>
-                    continue;
-                }
-                if (property.IsBool)
-                {
-                    <util-column>
-                        <util-select for="@property.Name"/>
-                    </util-column>
-                    continue;
-                }
-                <util-column>
-                    <util-input for="@property.Name"/>
-                </util-column>
+            <util-column>
+                <util-range-picker for-begin="Begin@(property.Name)" for-end="End@(property.Name)" />
+            </util-column>
+                continue;
             }
+            if (property.IsBool)
+            {
+            <util-column>
+                <util-select for="@property.Name"/>
+            </util-column>
+                continue;
+            }
+            <util-column>
+                <util-input for="@property.Name"/>
+            </util-column>
+        }
             <util-column class="mb-md">
                 <util-flex justify="FlexEnd" align="Center" gap="Small">
+                    <util-button id="btnRefresh" icon="Sync" on-click="refresh(btnRefresh)" text-reset="true"></util-button>
                     <util-button id="btnQuery" type="Primary" icon="Search" on-click="query(btnQuery)" text-query="true"></util-button>
-                    <util-button id="btnRefresh" icon="Sync" on-click="refresh(btnRefresh)" text-refresh="true"></util-button>
                     <util-a is-search="true" class="ml-sm"></util-a>
                 </util-flex>
             </util-column>
