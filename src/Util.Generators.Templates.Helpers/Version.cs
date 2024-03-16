@@ -9,7 +9,7 @@ public static class Version {
     /// <summary>
     /// Util框架版本号
     /// </summary>
-    public static string Util => "8.0.4";
+    public static string Util => "8.0.6";
     /// <summary>
     /// Microsoft.Extensions.Hosting版本号
     /// </summary>
@@ -17,19 +17,19 @@ public static class Version {
     /// <summary>
     /// Microsoft.AspNetCore.TestHost版本号
     /// </summary>
-    public static string TestHost => "8.0.2";
+    public static string TestHost => "8.0.3";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Tools版本号
     /// </summary>
-    public static string EntityFrameworkCoreTools => "8.0.2";
+    public static string EntityFrameworkCoreTools => "8.0.3";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Design版本号
     /// </summary>
-    public static string EntityFrameworkCoreDesign => "8.0.2";
+    public static string EntityFrameworkCoreDesign => "8.0.3";
     /// <summary>
     /// Microsoft.AspNetCore.Authentication.JwtBearer版本号
     /// </summary>
-    public static string JwtBearer => "8.0.2";
+    public static string JwtBearer => "8.0.3";
     /// <summary>
     /// Microsoft.NET.Test.Sdk版本号
     /// </summary>
@@ -45,7 +45,7 @@ public static class Version {
     /// <summary>
     /// coverlet.collector版本号
     /// </summary>
-    public static string Coverlet => "6.0.1";
+    public static string Coverlet => "6.0.2";
     /// <summary>
     /// AutoBogus版本号
     /// </summary>

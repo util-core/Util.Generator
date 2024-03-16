@@ -13,8 +13,8 @@ import { ReactiveFormsModule, FormsModule } from '@@angular/forms';
 import { RouterModule } from '@@angular/router';
 import { AlainThemeModule } from '@@delon/theme';
 import { DelonACLModule } from '@@delon/acl';
-import { SHARED_DELON_MODULES } from './shared-delon.module';
-import { SHARED_ZORRO_MODULES } from './shared-zorro.module';
+import { Shared_Delon_Modules } from './shared-delon.module';
+import { Shared_Zorro_Modules } from './shared-zorro.module';
 import { UtilModule } from 'util-angular';
 import { NgxTinymceModule } from 'ngx-tinymce';
 
@@ -30,8 +30,8 @@ const DIRECTIVES: Array<Type<void>> = [];
         ReactiveFormsModule,
         AlainThemeModule.forChild(),
         DelonACLModule,        
-        ...SHARED_DELON_MODULES,
-        ...SHARED_ZORRO_MODULES,
+        ...Shared_Delon_Modules,
+        ...Shared_Zorro_Modules,
         ...THIRDMODULES
     ],
     declarations: [
@@ -45,8 +45,8 @@ const DIRECTIVES: Array<Type<void>> = [];
         RouterModule,
         AlainThemeModule,
         DelonACLModule,
-        ...SHARED_DELON_MODULES,
-        ...SHARED_ZORRO_MODULES,
+        ...Shared_Delon_Modules,
+        ...Shared_Zorro_Modules,
         ...THIRDMODULES,
         ...COMPONENTS,
         ...DIRECTIVES

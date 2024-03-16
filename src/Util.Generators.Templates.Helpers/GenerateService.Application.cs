@@ -259,7 +259,7 @@ public partial class GenerateService {
     private void AppendDateTimeFilter( StringBuilder result, Property property ) {
         var name = property.Name;
         result.AppendLine();
-        result.Append( $"            .Between( t => t.{name},param.{GetBeginPropertyName( property )},param.{GetEndPropertyName( property )} )" );
+        result.Append( $"            .Between( t => t.{name},param.{GetBeginPropertyName( property )},param.{GetEndPropertyName( property )},false )" );
     }
 
     #endregion

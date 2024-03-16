@@ -10,30 +10,30 @@
 @("@page")
 @("@model") @(service.EntityName)Dto
 
-@@*标题*@@
-<util-page-header2 title="@service.GetEntityDetailI18nKey()" auto-breadcrumb="false" sync-title="false"></util-page-header2>
 @@*表单*@@
-<util-card borderless="true">
-    <util-descriptions column="2" bordered="true">
-        @foreach (var property in Model.Properties)
-        {
-            if (property.IsKey)
-                continue;
-            if (property.IsDeleted)
-                continue;
-            if (property.IsExtraProperties)
-                continue;
-            if (property.IsVersion)
-                continue;
-            if( property.IsCreatorId )
-                continue;
-            if( property.IsLastModifierId )
-                continue;
-            if (property.IsTree)
-                continue;
-            if ( property.IsPinYin )
-                continue;
-        <util-descriptions-item for="@property.Name"></util-descriptions-item>
-        }
-    </util-descriptions>
-</util-card>
+<util-dialog-container>
+    <util-card borderless="true">
+        <util-descriptions column="2" bordered="true">
+            @foreach (var property in Model.Properties)
+            {
+                if (property.IsKey)
+                    continue;
+                if (property.IsDeleted)
+                    continue;
+                if (property.IsExtraProperties)
+                    continue;
+                if (property.IsVersion)
+                    continue;
+                if( property.IsCreatorId )
+                    continue;
+                if( property.IsLastModifierId )
+                    continue;
+                if (property.IsTree)
+                    continue;
+                if ( property.IsPinYin )
+                    continue;
+            <util-descriptions-item for="@property.Name"></util-descriptions-item>
+            }
+        </util-descriptions>
+    </util-card>
+</util-dialog-container>
