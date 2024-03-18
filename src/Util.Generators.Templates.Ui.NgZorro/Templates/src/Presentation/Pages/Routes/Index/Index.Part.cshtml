@@ -24,9 +24,9 @@
                 query-param="queryParam" url="@service.GetClientEntityName()" @service.GetClientSort()>
         @foreach (var property in Model.Properties) {
             if (property.IsKey)
-                continue;
+                continue;            
             if (property.IsExtraProperties)
-                continue;
+                continue;            
             if (property.IsVersion)
                 continue;
             if (property.IsDeleted)
@@ -36,6 +36,8 @@
             if (property.IsCreatorId)
                 continue;
             if (property.IsLastModifierId)
+                continue;
+            if ( property.IsGuid )
                 continue;
         <util-td for="@property.Name" sort="true"></util-td>
         }

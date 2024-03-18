@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     var description = $"{Model.Description}列表页";
 }
-import { Component, Injector } from '@@angular/core';
+import { Component,ChangeDetectionStrategy,Injector } from '@@angular/core';
 import { environment } from "@@env/environment";
 import { TreeTableQueryComponentBase } from "util-angular";
 import { @service.GetClientQueryClassName() } from './model/@service.GetClientQueryFileName()';
@@ -18,6 +18,7 @@ import { @service.GetClientDetailClassName() } from './@service.GetClientDetailF
  */
 @@Component( {
     selector: '@service.GetClientEntityFileName()-list',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: environment.production ? './html/index.component.html' : '@service.GetClientViewTemplateUrl()',
 })
 export class @service.GetClientListClassName() extends TreeTableQueryComponentBase<@service.GetClientViewModelClassName(), @service.GetClientQueryClassName()> {
@@ -30,18 +31,46 @@ export class @service.GetClientListClassName() extends TreeTableQueryComponentBa
     }
 
     /**
-     * 创建查询参数
-     */
-    protected createQuery() {
-        let result = new @service.GetClientQueryClassName();
-        return result;
-    }
-
-    /**
      * 获取创建组件
      */
     getCreateComponent() {
         return @service.GetClientEditClassName();
+    }
+
+    /**
+     * 获取详情组件
+     */
+    getDetailComponent() {
+        return @service.GetClientDetailClassName();
+    }
+
+    /**
+     * 获取创建标题
+     */
+    getCreateTitle() {
+        return '@service.GetCreateEntityI18nKey()';
+    }
+
+    /**
+     * 获取更新标题
+     */
+    getEditTitle() {
+        return '@service.GetUpdateEntityI18nKey()';
+    }
+
+    /**
+     * 获取详情标题
+     */
+    getDetailTitle() {
+        return '@service.GetEntityDetailI18nKey()';
+    }
+
+    /**
+     * 创建查询参数
+     */
+    protected createQuery() {
+        let result = new @(service.GetClientQueryClassName())();
+        return result;
     }
 
     /**
@@ -63,12 +92,5 @@ export class @service.GetClientListClassName() extends TreeTableQueryComponentBa
             id: data.id,
             data: data
         };
-    }
-
-    /**
-     * 获取详情组件
-     */
-    getDetailComponent() {
-        return @service.GetClientDetailClassName();
     }
 }

@@ -32,6 +32,8 @@
                 continue;
             if (property.IsTree)
                 continue;
+            if ( property.IsGuid )
+                continue;
             if (property.IsDateTime)
             {
             <util-column>

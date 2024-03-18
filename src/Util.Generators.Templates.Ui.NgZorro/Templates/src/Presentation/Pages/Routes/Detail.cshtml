@@ -32,6 +32,8 @@
                     continue;
                 if ( property.IsPinYin )
                     continue;
+                if ( property.IsGuid )
+                    continue;
             <util-descriptions-item for="@property.Name"></util-descriptions-item>
             }
         </util-descriptions>

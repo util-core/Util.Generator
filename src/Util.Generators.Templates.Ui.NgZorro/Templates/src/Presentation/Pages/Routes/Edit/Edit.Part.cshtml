@@ -25,6 +25,8 @@
                     continue;
                 if (property.IsAudited)
                     continue;
+                if ( property.IsGuid )
+                    continue;
                 if (property.IsDateTime)
                 {
             <util-date-picker for="@property.Name" />
