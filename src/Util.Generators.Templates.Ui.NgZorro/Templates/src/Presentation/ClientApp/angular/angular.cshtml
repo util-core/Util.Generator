@@ -1,0 +1,14 @@
+﻿@* Ui层项目 - angular配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "angular";
+    Model.Output.Extension = ".json";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+}
+@if ( service.IsMicrofrontend() ) {
+    @Html.PartialAsync( "~/Templates/src/Presentation/ClientApp/angular/angular.Microfrontend.Part.cshtml", Model )
+} else {
+    @Html.PartialAsync( "~/Templates/src/Presentation/ClientApp/angular/angular.Part.cshtml", Model )
+}

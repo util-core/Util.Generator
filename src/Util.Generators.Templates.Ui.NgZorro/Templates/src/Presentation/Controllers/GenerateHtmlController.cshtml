@@ -1,4 +1,4 @@
-﻿@* Ui层项目Razor页面生成html控制器 *@
+﻿@* Ui层项目 - Razor页面生成html控制器 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
@@ -14,13 +14,13 @@ using Util.Ui.Razor;
 namespace @service.GetUiNamespace("Controllers");
 
 /// <summary>
-/// 查找全部Razor页面生成Html
+/// Razor生成Html控制器
 /// </summary>
 [Route( "api/html" )]
 [ApiController]
 public class GenerateHtmlController : ControllerBase {
     /// <summary>
-    /// 生成Html页面
+    /// 生成所有Razor页面的Html
     /// </summary>
     [HttpGet]
     public async Task<string> GenerateAsync() {
@@ -29,9 +29,8 @@ public class GenerateHtmlController : ControllerBase {
         message.AppendLine( "===================== 开始生成以下Razor页面的html文件 =====================" );
         message.AppendLine();
         message.AppendLine();
-        foreach ( var path in result ){
+        foreach ( var path in result )
             message.AppendLine( path );
-        }
         message.AppendLine();
         message.AppendLine();
         message.Append( "============================ html文件生成完成 ============================" );

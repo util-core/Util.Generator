@@ -19,17 +19,9 @@ import { @service.GetClientViewModelClassName() } from './model/@service.GetClie
 @@Component( {
     selector: '@service.GetClientEntityFileName()-detail',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: environment.production ? './html/detail.component.html' : '@service.GetClientViewTemplateUrl()/detail'
+    templateUrl: './html/detail.component.html'
 } )
 export class @service.GetClientDetailClassName() extends EditComponentBase<@service.GetClientViewModelClassName()> {
-    /**
-     * 初始化@(description)
-     * @@param injector 注入器
-     */
-    constructor( injector: Injector ) {
-        super( injector );
-    }
-
     /**
      * 获取基地址
      */

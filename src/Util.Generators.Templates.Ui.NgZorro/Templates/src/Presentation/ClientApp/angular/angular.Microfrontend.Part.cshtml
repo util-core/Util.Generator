@@ -1,0 +1,148 @@
+﻿@* Ui层项目 - 微前端 - angular配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var name = service.GetClientAppName();
+}
+{
+  "$schema": "./node_modules/@@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "yarn"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "@name": {
+      "projectType": "application",
+      "schematics": {
+        "@@schematics/angular:component": {
+        "style": "less"
+        },
+        "@@schematics/angular:application": {
+        "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.less",
+              "node_modules/ng-zorro-antd/resizable/style/entry.less"
+            ],
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/"
+              ]
+            },
+            "extraWebpackConfig": "webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "webpack.config.prod.js"
+            },
+            "development": {
+              "aot": false,
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "buildTarget": "@(name):build",
+            "publicHost": "https://localhost:@service.GetUiPort()",
+            "port": @service.GetUiPort(),
+            "extraWebpackConfig": "webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "@(name):build:production",
+              "extraWebpackConfig": "webpack.config.prod.js"
+            },
+            "development": {
+              "buildTarget": "@(name):build:development",
+              "extraWebpackConfig": "webpack.config.js"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "buildTarget": "@(name):build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "extraWebpackConfig": "webpack.config.js"
+          }
+        },
+        "lint": {
+          "builder": "@@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

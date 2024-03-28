@@ -19,17 +19,9 @@ import { @service.GetClientDetailClassName() } from './@service.GetClientDetailF
 @@Component( {
     selector: '@service.GetClientEntityFileName()-list',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: environment.production ? './html/index.component.html' : '@service.GetClientViewTemplateUrl()',
+    templateUrl: './html/index.component.html'
 })
 export class @service.GetClientListClassName() extends TreeTableQueryComponentBase<@service.GetClientViewModelClassName(), @service.GetClientQueryClassName()> {
-    /**
-     * 初始化@(description)
-     * @@param injector 注入器
-     */
-    constructor(injector: Injector) {
-        super(injector);
-    }
-
     /**
      * 获取创建组件
      */

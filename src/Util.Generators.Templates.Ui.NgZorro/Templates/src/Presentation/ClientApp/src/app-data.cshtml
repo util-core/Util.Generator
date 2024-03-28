@@ -19,17 +19,37 @@
   },
   "menu": [
     {
-      "text": "@service.GetClientAppName()",
+      "text": "主导航",
+      "i18n": "menu.main",
+      "group": false,
+      "hideInBreadcrumb": true,
       "children": [
-@for ( var i=0; i < service.GetEntities().Count;i++ ) {
-    var entity = service.GetEntities()[i];
-<text>        {
-          "text": "@entity.Description",
-          "link": "/@service.GetClientModuleRoutePath()/@service.GetClientEntityFileName(entity)",
-          "reuse": true
-        }</text> @if ( i < service.GetEntities().Count - 1 ) {<text>,
-</text>}
-}]
+        {
+          "text": "仪表盘",
+          "i18n": "menu.dashboard",
+          "icon": "anticon-dashboard",
+          "children": [          
+            {
+              "text": "监控页",
+              "link": "/dashboard/monitor",
+              "i18n": "menu.dashboard.monitor"
+            }
+          ]
+        },   
+        {
+          "text": "@service.GetClientAppName()",
+          "children": [
+          @for ( var i = 0; i < service.GetEntities().Count; i++ ) {
+            var entity = service.GetEntities()[i];
+            @:{
+              @:"text": "@entity.Description",
+              @:"link": "/@service.GetClientModuleRoutePath()/@service.GetClientEntityFileName( entity )",
+              @:"i18n": "@service.GetEntityI18nKey()",
+              @:"reuse": true
+            @:}@if ( i < service.GetEntities().Count - 1 ) {<text>,</text>}
+}         ]
+        }
+      ]
     }
   ]
 }

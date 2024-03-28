@@ -16,17 +16,9 @@ import { @service.GetClientViewModelClassName() } from './model/@service.GetClie
 @@Component( {
     selector: '@service.GetClientEntityFileName()-edit',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: environment.production ? './html/edit.component.html' : '@service.GetClientViewTemplateUrl()/edit'
+    templateUrl: './html/edit.component.html'
 } )
 export class @service.GetClientEditClassName() extends EditComponentBase<@service.GetClientViewModelClassName()> {
-    /**
-     * 初始化@(description)
-     * @@param injector 注入器
-     */
-    constructor( injector: Injector ) {
-        super( injector );
-    }
-
     /**
      * 创建模型
      */

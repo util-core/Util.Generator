@@ -7,6 +7,17 @@ namespace Util.Generators.Helpers;
 /// </summary>
 public partial class GenerateService {
 
+    #region IsMicrofrontend(是否微前端应用)
+
+    /// <summary>
+    /// 是否微前端应用
+    /// </summary>
+    public bool IsMicrofrontend() {
+        return _context.ProjectContext.Client.Microfrontend;
+    }
+
+    #endregion
+
     #region GetUiProjectId(获取Ui层项目标识)
 
     /// <summary>

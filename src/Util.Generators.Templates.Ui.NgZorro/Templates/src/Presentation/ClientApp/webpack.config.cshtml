@@ -1,8 +1,10 @@
-﻿@* Ui层项目 - webpack配置文件 *@
+﻿@* Ui层项目 - 微前端 - webpack配置文件 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
+    if ( service.IsMicrofrontend() == false )
+        return;
     Model.Output.FileNameNoExtension = "webpack.config";
     Model.Output.Extension = ".js";
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";

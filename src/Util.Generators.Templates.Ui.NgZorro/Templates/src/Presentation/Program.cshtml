@@ -21,18 +21,14 @@ ServiceRegistrarConfig.Instance.DisableDependencyServiceRegistrar();
 ServiceRegistrarConfig.Instance.DisableLocalEventBusServiceRegistrar();
 builder.AsBuild()
     .AddSerilog()
-    .AddNgZorro( options => {
-        options.EnableDefaultOptionText = true;
-        options.EnableI18n = true;
-        options.EnableAllowClear = true;
-    } )
+    .AddNgZorro()
     .AddUtil();
 
 //构建Web应用程序
 var app = builder.Build();
 
 //配置请求管道
-app.UseNgZorro( "http://localhost:@service.GetClientPort()" );
+app.UseNgZorro( @service.GetClientPort() );
 
 //运行应用
 app.Run();

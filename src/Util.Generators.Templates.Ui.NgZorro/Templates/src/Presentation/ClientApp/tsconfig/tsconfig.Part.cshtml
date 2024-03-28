@@ -1,0 +1,55 @@
+﻿@* Ui层项目 - typescript配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+}
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "noImplicitOverride": false,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "useDefineForClassFields": false,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@@shared": [
+        "src/app/shared/index"
+      ],
+      "@@core": [
+        "src/app/core/index"
+      ],
+      "@@env/*": [
+        "src/environments/*"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "strictOutputEventTypes": false,
+    "strictInputTypes": false
+  }
+}

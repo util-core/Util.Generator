@@ -56,7 +56,25 @@
 		<Content Update="Templates\src\Presentation\ClientApp\.stylelintrc.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\url-config.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\angular\angular.Microfrontend.Part.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\angular\angular.Part.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\app.config.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\auth.config.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\url.config.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\startup\startup.service.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\i18n\en-US.cshtml">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\start.cshtml">
@@ -71,22 +89,13 @@
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\app.component.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\auth-module-config.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\auth-config.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\core.module.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\index.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\i18n\i18n.service.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\index.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\app-config.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\basic.component.cshtml">
@@ -104,13 +113,7 @@
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\layout\layout.module.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\startup\startup.service.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\global-config.module.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\app.module.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\util.config.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\dashboard\dashboard.component.ts.cshtml">
@@ -176,16 +179,13 @@
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\view-model\view-model.Part.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\routes-routing.module.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\routes.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\routes.module.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\shared\delon.module.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\shared\shared-delon.module.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\shared\shared-zorro.module.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\shared\zorro.module.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\shared\index.cshtml">
@@ -201,9 +201,6 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\environments\environment.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\i18n\en-US.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\i18n\zh-CN.cshtml">
@@ -230,22 +227,28 @@
 		<Content Update="Templates\src\Presentation\ClientApp\src\index.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\tsconfig\tsconfig.Microfrontend.Part.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\tsconfig\tsconfig.Part.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\webpack.config.prod.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\webpack.config.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\tsconfig.spec.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\tsconfig\tsconfig.spec.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\tsconfig.app.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\tsconfig\tsconfig.app.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\tsconfig.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\tsconfig\tsconfig.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\angular.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\angular\angular.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\package.cshtml">
@@ -287,6 +290,9 @@
 		<Content Update="Templates\src\Presentation\Program.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Update="Templates\src\Presentation\start.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Update="Templates\src\Presentation\Ui.Project.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -299,6 +305,60 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\basic.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\clear-storage.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\fullscreen.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\i18n.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\icon.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\notify.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\rtl.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\search.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\task.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\basic\widgets\user.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\blank\blank.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\layout\index.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\routes\dashboard\monitor\monitor.component.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\routes\dashboard\monitor\monitor.component.less">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\routes\dashboard\monitor\monitor.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\routes\dashboard\routes.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\routes\exception\exception.component.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Templates\src\Presentation\ClientApp\src\app\routes\exception\routes.ts">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Templates\src\Presentation\ClientApp\src\favicon.ico">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

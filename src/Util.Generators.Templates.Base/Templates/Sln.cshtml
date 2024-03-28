@@ -46,14 +46,14 @@ Project("{@VsProjectType.SolutionFolder}") = "04-Infrastructure", "04-Infrastruc
 EndProject
 Project("{@VsProjectType.SolutionFolder}") = "test", "test", "{@VsProjectId.Test}"
 EndProject
+Project("{@VsProjectType.CSharpSdk}") = "@webApiProjectName", "src\@webApiProjectName\@(webApiProjectName).csproj", "{@webApiProjectId}"
+EndProject
 @if ( isGenerateUi ){
 <text>
 Project("{@VsProjectType.CSharpSdk}") = "@uiProjectName", "src\@uiProjectName\@(uiProjectName).csproj", "{@uiProjectId}"
 EndProject
 </text>
 }
-Project("{@VsProjectType.CSharpSdk}") = "@webApiProjectName", "src\@webApiProjectName\@(webApiProjectName).csproj", "{@webApiProjectId}"
-EndProject
 @foreach( var schema in service.GetSchemas() ) {
 <text>Project("{@VsProjectType.CSharpSdk}") = "@service.GetDomainProjectName( schema )", "src\@service.GetDomainProjectName( schema )\@(service.GetDomainProjectName( schema )).csproj", "{@service.GetDomainProjectId( schema )}" 
 EndProject

@@ -1,0 +1,34 @@
+﻿@* Ui层项目 - 业务路由模块文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "routes";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes";
+}
+import { Routes } from '@@angular/router';
+import { AuthGuard } from 'util-angular';
+import { LayoutBasicComponent } from '../layout';
+
+/**
+ * 路由配置
+ */
+export const routes: Routes = [
+    {
+        path: '',
+        component: LayoutBasicComponent,
+        //canActivate: [AuthGuard],
+        //canActivateChild: [AuthGuard],
+        children: [
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            {
+                path: 'dashboard',
+                loadChildren: () => import('./dashboard/routes').then(t => t.routes)
+            },
+            { path: '@service.GetClientModuleRoutePath()', loadChildren: () => import('./@service.GetClientModuleFolderName()/@service.GetClientModuleFileName()').then(t => t.@service.GetClientModuleClassName()) }
+        ]
+    },
+    { path: 'exception', loadChildren: () => import('./exception/routes').then(t => t.routes) },
+    { path: '**', redirectTo: 'exception/404' }
+];

@@ -1,0 +1,91 @@
+﻿@* Ui层项目 - 应用配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "app.config";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/config";
+}
+import { provideHttpClient } from '@@angular/common/http';
+import { default as ngLang } from '@@angular/common/locales/zh';
+import { ApplicationConfig, EnvironmentProviders, Provider, importProvidersFrom } from '@@angular/core';
+import { provideAnimations } from '@@angular/platform-browser/animations';
+import {
+    provideRouter, withComponentInputBinding, withInMemoryScrolling, withHashLocation, RouterFeatures,
+    withViewTransitions, RouteReuseStrategy
+} from '@@angular/router';
+import { I18NService, provideStartup } from '@@core';
+import { AlainProvideLang, provideAlain, zh_CN as delonLang } from '@@delon/theme';
+import { AlainConfig } from '@@delon/util/config';
+import { provideReuseTabConfig } from '@@delon/abc/reuse-tab';
+import { environment } from '@@env/environment';
+import { zhCN as dateLang } from 'date-fns/locale';
+import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
+import { zh_CN as zorroLang } from 'ng-zorro-antd/i18n';
+import { IconDefinition } from '@@ant-design/icons-angular';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import * as AllIcons from '@@ant-design/icons-angular/icons';
+import { NgxTinymceModule, TinymceOptions } from 'ngx-tinymce';
+import { NgEventBus } from 'ng-event-bus';
+import { Util, AppConfig } from 'util-angular';
+import { utilConfig } from './util.config';
+import { routes } from '../routes/routes';
+import { authConfig, authModuleConfig, provideAuth } from '../config';
+
+//默认语言设置
+const defaultLang: AlainProvideLang = {
+    abbr: 'zh-CN',
+    ng: ngLang,
+    zorro: zorroLang,
+    date: dateLang,
+    delon: delonLang
+};
+
+//ng alain设置
+const alainConfig: AlainConfig = {
+    pageHeader: { homeI18n: 'home' }
+};
+
+//ng zorro设置
+const ngZorroConfig: NzConfig = {};
+
+//路由设置
+const routerFeatures: RouterFeatures[] = [
+    withComponentInputBinding(),
+    withViewTransitions(),
+    withInMemoryScrolling({ scrollPositionRestoration: 'top' })
+];
+if (environment.useHash)
+    routerFeatures.push(withHashLocation());
+
+//图标设置
+const antDesignIcons = AllIcons as {
+    [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key]);
+
+//ngx-tinymce富文本设置
+const tinymceOptions: TinymceOptions = {
+    baseURL: '/assets/tinymce/'
+};
+
+/**
+ * 应用配置
+ */
+export const appConfig: ApplicationConfig = {
+    providers: [
+        provideHttpClient(),
+        provideAnimations(),
+        provideRouter(routes, ...routerFeatures),
+        provideAlain({ config: alainConfig, defaultLang, i18nClass: I18NService, icons: icons }),
+        provideNzConfig(ngZorroConfig),        
+        importProvidersFrom(NgxTinymceModule.forRoot(tinymceOptions)),
+        NgEventBus,
+        provideReuseTabConfig(),
+        provideAuth(),
+        { provide: AppConfig, useValue: utilConfig },
+        provideStartup(),
+        ...(environment.providers || [])
+    ]
+};

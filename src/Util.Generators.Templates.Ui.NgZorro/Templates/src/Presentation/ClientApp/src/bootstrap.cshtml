@@ -1,20 +1,17 @@
-﻿@* Ui层项目 - 客户端启动文件 *@
+﻿@* Ui层项目 - 微前端 - 客户端启动文件 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
     var service = new GenerateService( Model );
+    if (service.IsMicrofrontend() == false)
+        return;
     Model.Output.FileNameNoExtension = "bootstrap";
     Model.Output.Extension = ".ts";
     Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src";
 }
-import { enableProdMode, ViewEncapsulation } from '@@angular/core';
-import { platformBrowserDynamic } from '@@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import { bootstrapApplication } from '@@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { appConfig } from './app/config/app.config';
 
-if (environment.production) {
-    enableProdMode();
-}
-platformBrowserDynamic()
-    .bootstrapModule(AppModule)
+bootstrapApplication(AppComponent, appConfig)
     .catch(err => console.error(err));

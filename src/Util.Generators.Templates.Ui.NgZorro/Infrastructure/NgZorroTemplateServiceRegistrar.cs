@@ -37,6 +37,10 @@ namespace Util.Generators.Infrastructure {
         private void AddResources() {
             ResourceManager.AddResource( @"src\Presentation\ClientApp\src\assets", @"src\{Project}.Ui\ClientApp\src\assets" );
             ResourceManager.AddResource( @"src\Presentation\ClientApp\src\favicon.ico", @"src\{Project}.Ui\ClientApp\src\favicon.ico" );
+            ResourceManager.AddResource( @"src\Presentation\ClientApp\src\favicon.ico", @"src\{Project}.Ui\wwwroot\favicon.ico" );
+            ResourceManager.AddResource( @"src\Presentation\ClientApp\src\app\routes\dashboard", @"src\{Project}.Ui\ClientApp\src\app\routes\dashboard" );
+            ResourceManager.AddResource( @"src\Presentation\ClientApp\src\app\routes\exception", @"src\{Project}.Ui\ClientApp\src\app\routes\exception" );
+            ResourceManager.AddResource( @"src\Presentation\ClientApp\src\app\layout", @"src\{Project}.Ui\ClientApp\src\app\layout" );
         }
     }
 }

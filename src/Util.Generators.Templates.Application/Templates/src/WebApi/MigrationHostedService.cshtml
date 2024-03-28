@@ -57,10 +57,10 @@ public class MigrationHostedService : IHostedService {
     }
 
     /// <summary>
-    /// 安装和更新 dotnet-ef 工具
+    /// 安装和更新 dotnet-ef 工具, 注意: 自动安装和更新EF工具可能导致失败,默认注释,需要请自行打开
     /// </summary>
     private void InstallEfTool() {
-        _migrationService.InstallEfTool("8.0.0");
+        //_migrationService.InstallEfTool( "8.0.0" ).UpdateEfTool( "8.0.3" );
     }
     
     /// <summary>
