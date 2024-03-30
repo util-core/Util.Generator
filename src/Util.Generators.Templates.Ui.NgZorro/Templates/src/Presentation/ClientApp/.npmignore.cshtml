@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = ".npmignore";
     Model.Output.Extension = "";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+    Model.Output.RelativeRootPath = service.GetClientRootPath();
 }
 .github
 node_modules

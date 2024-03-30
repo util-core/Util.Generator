@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "delon.module";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/shared";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/shared";
 }
 import { PageHeaderModule } from '@@delon/abc/page-header';
 import { ResultModule } from '@@delon/abc/result';

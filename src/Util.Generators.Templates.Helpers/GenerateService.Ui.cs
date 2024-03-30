@@ -38,7 +38,7 @@ public partial class GenerateService {
         return $"{_context.ProjectContext.Name}.Ui";
     }
 
-    #endregion        
+    #endregion
 
     #region GetUiProjectPath(获取Ui层项目路径)
 
@@ -53,15 +53,15 @@ public partial class GenerateService {
         return $"{GetUiProjectName()}/{module}";
     }
 
-    #endregion        
+    #endregion            
 
-    #region GetUiPagesPath(获取Ui层Pages页面路径)
+    #region GetClientRootPath(获取前端根路径)
 
     /// <summary>
-    /// 获取Ui层Pages页面路径
+    /// 获取前端根路径
     /// </summary>
-    public string GetUiPagesPath() {
-        return $"{GetUiProjectName()}/Pages/Routes/{ClientAppName.Pluralize().Pascalize()}/{EntityName}";
+    public string GetClientRootPath() {
+        return $"src/{GetUiProjectName()}/ClientApp";
     }
 
     #endregion
@@ -281,6 +281,25 @@ public partial class GenerateService {
     /// </summary>
     public string GetClientListFileName() {
         return GetClientListFileName( _context );
+    }
+
+    #endregion
+
+    #region GetClientListPartFileName(获取前端列表页查询分部视图文件名)
+
+    /// <summary>
+    /// 获取前端列表页查询分部视图文件名
+    /// </summary>
+    /// <param name="entity">实体上下文</param>
+    public string GetClientListPartFileName( EntityContext entity ) {
+        return $"{GetClientEntityFileName( entity )}-list-query";
+    }
+
+    /// <summary>
+    /// 获取前端列表页查询分部视图文件名
+    /// </summary>
+    public string GetClientListPartFileName() {
+        return GetClientListPartFileName( _context );
     }
 
     #endregion

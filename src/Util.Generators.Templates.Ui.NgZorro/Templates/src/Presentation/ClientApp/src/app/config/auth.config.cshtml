@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "auth.config";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/config";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/config";
 }
 import { Provider } from '@@angular/core';
 import { AuthConfig, OAuthModuleConfig, OAuthModule } from 'angular-oauth2-oidc';

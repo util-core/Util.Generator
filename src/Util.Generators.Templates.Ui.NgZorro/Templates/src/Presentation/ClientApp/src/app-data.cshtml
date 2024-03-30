@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "app-data";
     Model.Output.Extension = ".json";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/assets";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/assets";
 }
 {
   "app": {

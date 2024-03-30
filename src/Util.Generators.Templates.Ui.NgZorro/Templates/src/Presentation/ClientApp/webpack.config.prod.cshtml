@@ -7,6 +7,6 @@
         return;
     Model.Output.FileNameNoExtension = "webpack.config.prod";
     Model.Output.Extension = ".js";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+    Model.Output.RelativeRootPath = service.GetClientRootPath();
 }
 module.exports = require('./webpack.config');

@@ -7,7 +7,7 @@
         return;
     Model.Output.FileNameNoExtension = "webpack.config";
     Model.Output.Extension = ".js";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+    Model.Output.RelativeRootPath = service.GetClientRootPath();
 }
 const { shareAll, withModuleFederationPlugin } = require('@@angular-architects/module-federation/webpack');
 

@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "ng-alain";
     Model.Output.Extension = ".json";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+    Model.Output.RelativeRootPath = service.GetClientRootPath();
 }
 {
   "$schema": "./node_modules/ng-alain/schema.json",

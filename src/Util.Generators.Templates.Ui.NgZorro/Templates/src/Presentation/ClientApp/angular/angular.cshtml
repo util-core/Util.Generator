@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "angular";
     Model.Output.Extension = ".json";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+    Model.Output.RelativeRootPath = service.GetClientRootPath();
 }
 @if ( service.IsMicrofrontend() ) {
     @Html.PartialAsync( "~/Templates/src/Presentation/ClientApp/angular/angular.Microfrontend.Part.cshtml", Model )

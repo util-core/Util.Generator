@@ -5,6 +5,6 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = ".nvmrc";
     Model.Output.Extension = "";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+    Model.Output.RelativeRootPath = service.GetClientRootPath();
 }
 16.15.0

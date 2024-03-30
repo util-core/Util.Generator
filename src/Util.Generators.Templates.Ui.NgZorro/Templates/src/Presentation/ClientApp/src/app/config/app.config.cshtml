@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "app.config";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/config";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/config";
 }
 import { provideHttpClient } from '@@angular/common/http';
 import { default as ngLang } from '@@angular/common/locales/zh';

@@ -5,17 +5,16 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "index";
     Model.Output.Extension = ".less";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/styles";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/styles";
 }
 //表格选中行背景色
 .table-row-selected {
-    .ant-table-cell {
-        background-color: rgb(230,230,240) !important;
-    }
+    background-color:  #e6e6f0 !important;
+}
 
-    .ant-btn-dangerous {
-        background-color: transparent;
-    }
+//表格勾选行背景色
+.table-row-checked {
+    background-color:  #ebeef2;
 }
 
 //查询表单样式

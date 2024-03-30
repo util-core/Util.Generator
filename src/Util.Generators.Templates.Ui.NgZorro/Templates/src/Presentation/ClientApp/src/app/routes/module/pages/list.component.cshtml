@@ -1,0 +1,15 @@
+﻿@* Ui层项目 - 列表页文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = service.GetClientListFileName();
+    Model.Output.Extension = ".cshtml";
+    Model.Output.RelativeRootPath = $"src/{service.GetClientComponentPath()}";
+}
+@if ( service.IsTreeEntity() ) {
+    @Html.PartialAsync( "~/Templates/src/Presentation/ClientApp/src/app/routes/module/Pages/Index/Index.Tree.Part.cshtml", Model )
+}
+else {
+    @Html.PartialAsync( "~/Templates/src/Presentation/ClientApp/src/app/routes/module/Pages/Index/Index.Part.cshtml", Model )
+}

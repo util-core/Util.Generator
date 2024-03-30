@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "i18n.service";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/core/i18n";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/core/i18n";
 }
 import { Platform } from '@@angular/cdk/platform';
 import { registerLocaleData } from '@@angular/common';

@@ -1,0 +1,23 @@
+﻿@* Ui层项目 - 视图组件导入文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "_ViewImports";
+    Model.Output.Extension = ".cshtml";
+    Model.Output.RelativeRootPath = service.GetClientRootPath();
+}
+@("@")using System.ComponentModel.DataAnnotations
+@@using Microsoft.AspNetCore.Mvc.RazorPages
+@@using @service.GetUiNamespace()
+@foreach ( var item in service.GetDtoNamespaces() ) {
+@:@@using @item
+}
+@foreach ( var item in service.GetQueryNamespaces() ) {
+@:@@using @item
+}
+@@namespace @service.GetUiNamespace( "ClientApp" )
+@@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@@addTagHelper *, Util.Ui.Angular
+@@addTagHelper *, Util.Ui.NgZorro
+@@addTagHelper *, Util.Ui.NgAlain

@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "shared.module";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/shared";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/shared";
 }
 import { NgModule, Type } from '@@angular/core';
 import { CommonModule } from '@@angular/common';

@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "main";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src";
 }
 @if (service.IsMicrofrontend()) {
 @:import('./bootstrap');

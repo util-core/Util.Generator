@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "routes";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/routes";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/routes";
 }
 import { Routes } from '@@angular/router';
 import { AuthGuard } from 'util-angular';

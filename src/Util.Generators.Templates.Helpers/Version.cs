@@ -9,7 +9,7 @@ public static class Version {
     /// <summary>
     /// Util框架版本号
     /// </summary>
-    public static string Util => "8.0.9";
+    public static string Util => "8.0.10";
     /// <summary>
     /// Microsoft.Extensions.Hosting版本号
     /// </summary>
@@ -57,11 +57,11 @@ public static class Version {
     /// <summary>
     /// Xunit.DependencyInjection版本号
     /// </summary>
-    public static string XunitDependencyInjection => "8.9.1";
+    public static string XunitDependencyInjection => "9.0.1";
     /// <summary>
     /// Xunit.DependencyInjection.Logging版本号
     /// </summary>
-    public static string XunitLogging => "8.1.0";
+    public static string XunitLogging => "9.0.0";
     /// <summary>
     /// Swashbuckle.AspNetCore版本号
     /// </summary>

@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "util.config";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/config";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/config";
 }
 import { AppConfig } from 'util-angular';
 import { urlConfig } from './url.config';

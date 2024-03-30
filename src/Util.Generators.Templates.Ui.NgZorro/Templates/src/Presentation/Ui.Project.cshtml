@@ -19,32 +19,37 @@
 		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
 		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
 		<IsPackable>false</IsPackable>
-		<SpaRoot>ClientApp\</SpaRoot>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Util.Logging.Serilog.Exceptionless" Version="@Version.Util" />
-		<PackageReference Include="Util.Ui.NgAlain" Version="@Version.Util" />
-		<PackageReference Include="Util.Ui.NgZorro" Version="@Version.Util" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.4.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Util.Logging.Serilog.Exceptionless" Version="@Version.Util"/>
+        <PackageReference Include="Util.Ui.NgAlain" Version="@Version.Util"/>
+        <PackageReference Include="Util.Ui.NgZorro" Version="@Version.Util"/>
+    </ItemGroup>
 
-	<ItemGroup>
-		<Content Remove="$(SpaRoot)**" />
-		<None Remove="$(SpaRoot)**" />
-		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-        <None Remove="$(SpaRoot).angular\**" />
-        <None Remove="$(SpaRoot)dist\**" />
-        <None Remove="$(SpaRoot).eslintignore" />
-        <None Remove="$(SpaRoot).eslintrc.js" />
-        <None Remove="$(SpaRoot).gitignore" />
-        <None Remove="$(SpaRoot).nvmrc" />
-        <None Remove="$(SpaRoot).stylelintrc" />
-        <None Remove="$(SpaRoot).prettierignore" />
-        <None Remove="$(SpaRoot).prettierrc.js" />
-        <None Remove="$(SpaRoot).npmignore" />
-        <None Remove="$(SpaRoot)clear-node-modules.ps1" />
+    <ItemGroup>
+        <Compile Remove="ClientApp\node_modules\**" />
+        <Content Remove="ClientApp\node_modules\**" />
+        <EmbeddedResource Remove="ClientApp\node_modules\**" />
+        <TypeScriptCompile Remove="ClientApp\node_modules\**" />
+        <None Remove="ClientApp\.angular\**" />
+        <None Remove="ClientApp\dist\**" />
+        <None Remove="ClientApp\.eslintignore" />
+        <None Remove="ClientApp\.eslintrc.js" />
+        <None Remove="ClientApp\.gitignore" />
+        <None Remove="ClientApp\.npmignore" />
+        <None Remove="ClientApp\.nvmrc" />
+        <None Remove="ClientApp\.prettierignore" />
+        <None Remove="ClientApp\.prettierrc.js" />
+        <None Remove="ClientApp\.stylelintrc" />
+        <None Remove="ClientApp\yarn.lock" />
+        <None Remove="ClientApp\clear-node-modules.ps1" />
+        <None Remove="ClientApp\start.ps1" />
         <None Remove="start.ps1" />
-		<None Remove="$(SpaRoot)start.ps1" />
     </ItemGroup>
 	
     <ItemGroup>

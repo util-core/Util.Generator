@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "startup.service";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/core/startup";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/core/startup";
 }
 import { Injectable, inject,Injector, Provider, APP_INITIALIZER } from '@@angular/core';
 import { zip, lastValueFrom } from 'rxjs';

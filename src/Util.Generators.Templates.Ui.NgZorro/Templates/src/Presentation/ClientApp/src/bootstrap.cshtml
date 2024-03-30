@@ -7,7 +7,7 @@
         return;
     Model.Output.FileNameNoExtension = "bootstrap";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src";
 }
 import { bootstrapApplication } from '@@angular/platform-browser';
 import { AppComponent } from './app/app.component';

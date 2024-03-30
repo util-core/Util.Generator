@@ -1,0 +1,62 @@
+﻿@* Ui层项目 - 列表页文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+}
+@("@")page
+@("@")model @service.GetDto()
+<util-page-header2 title="@service.GetEntityI18nKey()"></util-page-header2>
+
+@@*查询表单*@@
+<partial name="part/@service.GetClientListPartFileName()" />
+
+@@*查询表格*@@
+<util-card borderless="true" title="@service.GetEntityI18nKey()" extra="tool">
+    @@*工具按钮*@@
+    <util-template id="tool">
+        <util-button type="Primary" icon="Plus" on-click="openCreateDrawer()" text-create="true"></util-button>
+        <util-a show-table-settings="@service.GetClientTableId()" class="ml-md"></util-a>
+    </util-template>
+
+    @@*表格*@@
+    <util-table id="@service.GetClientTableId()" show-checkbox="true" show-line-number="true" enable-table-settings="true"
+                query-param="queryParam" url="@service.GetClientEntityName()" @service.GetClientSort()>
+        @foreach (var property in Model.Properties) {
+            if (property.IsKey)
+                continue;            
+            if (property.IsExtraProperties)
+                continue;            
+            if (property.IsVersion)
+                continue;
+            if (property.IsDeleted)
+                continue;
+            if (property.IsPinYin)
+                continue;
+            if (property.IsCreatorId)
+                continue;
+            if (property.IsLastModifierId)
+                continue;
+            if ( property.IsGuid )
+                continue;
+        <util-td for="@property.Name" sort="true"></util-td>
+        }
+        <util-td title-operation="true">
+            <util-a on-click="openEditDrawer(row)" text-update="true"></util-a>
+            <util-divider type="Vertical"></util-divider>
+            <util-a on-click="openDetailDialog(row)" text-detail="true"></util-a>
+            <util-divider type="Vertical"></util-divider>
+            <util-a danger="true" on-click="delete(row.id)" text-delete="true"></util-a>
+        </util-td>
+    </util-table>
+</util-card>
+
+@@*页脚工具栏*@@
+<util-footer-toolbar ng-if="isChecked()" bind-extra="footer_info">
+    @@*提示信息*@@
+    <util-template id="footer_info">
+        <util-i18n key="app.rowsSelected" param="length:getCheckedLength()"/>
+    </util-template>
+    @@*删除按钮*@@
+    <util-button type="Primary" danger="true" icon="Delete" on-click="delete()" text-delete="true"></util-button>
+</util-footer-toolbar>

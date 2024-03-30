@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "index";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app/core";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/core";
 }
 export * from './startup/startup.service';
 export * from './i18n/i18n.service';

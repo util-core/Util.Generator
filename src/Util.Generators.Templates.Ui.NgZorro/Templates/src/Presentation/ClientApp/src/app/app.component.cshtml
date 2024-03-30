@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "app.component";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/app";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app";
 }
 import { Component, OnInit, inject,Injector } from '@@angular/core';
 import { NavigationEnd, NavigationError, RouteConfigLoadStart, Router, RouterOutlet } from '@@angular/router';

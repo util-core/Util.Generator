@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "environment.prod";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src/environments";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/environments";
 }
 import { Environment } from '@@delon/theme';
 

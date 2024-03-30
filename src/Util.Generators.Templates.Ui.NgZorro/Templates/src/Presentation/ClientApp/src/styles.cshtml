@@ -5,7 +5,7 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "styles";
     Model.Output.Extension = ".less";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src";
 }
 @*styles.less*@
 @@import '@@delon/theme/system/index';

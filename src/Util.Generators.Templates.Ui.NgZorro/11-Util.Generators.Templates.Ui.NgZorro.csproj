@@ -29,9 +29,6 @@
 		<Content Update="Templates\src\Presentation\appsettings.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\appsettings.Development.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\.eslintignore.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -72,6 +69,30 @@
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\startup\startup.service.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\pages\detail.component.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\pages\edit.component.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\pages\edit\Edit.Part.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\pages\edit\Edit.Tree.Part.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\pages\index\Index.Part.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\pages\index\Index.Tree.Part.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\pages\list.component.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Templates\src\Presentation\ClientApp\src\app\routes\module\pages\list.query.cshtml">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\i18n\en-US.cshtml">
@@ -257,34 +278,7 @@
 		<Content Update="Templates\src\Presentation\launchSettings.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\Controllers\GenerateHtmlController.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\Pages\Routes\Detail.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\Pages\Routes\Edit.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\Pages\Routes\Edit\Edit.Part.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\Pages\Routes\Edit\Edit.Tree.Part.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\Pages\Routes\Index.Query.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\Pages\Routes\Index\Index.Tree.Part.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\Pages\Routes\Index\Index.Part.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\Pages\Routes\Index.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Update="Templates\src\Presentation\Pages\_ViewImports.cshtml">
+		<Content Update="Templates\src\Presentation\ClientApp\_ViewImports.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="Templates\src\Presentation\Program.cshtml">

@@ -1,0 +1,54 @@
+﻿@* UiUi层项目 - 树形编辑页文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    var description = service.EntityDescription;
+}
+@("@page")
+@("@model") @(service.EntityName)Dto
+
+@@*表单*@@
+<util-drawer-container>
+    <util-card borderless="true">
+        <util-form label-span="4" control-span="20" gutter="16">
+            <util-tree-select for="ParentId" query-param="queryParam" url="@service.GetClientEntityName()/tree" @service.GetClientSort() default-expand-all="true" label-text="@service.GetParentIdI18nKey()" control-span="8"></util-tree-select>
+            @foreach (var property in Model.Properties)
+            {
+                if (property.IsParentId)
+                    continue;
+                if (property.IsKey)
+                    continue;
+                if (property.IsDeleted)
+                    continue;
+                if (property.IsExtraProperties)
+                    continue;
+                if (property.IsPinYin)
+                    continue;
+                if (property.IsVersion)
+                    continue;
+                if (property.IsAudited)
+                    continue;
+                if (property.IsTree)
+                    continue;
+                if ( property.IsGuid )
+                    continue;
+                if (property.IsDateTime)
+                {
+            <util-date-picker id="date_picker_@property.Name" for="@property.Name"/>
+                    continue;
+                }
+                if (property.IsBool)
+                {
+            <util-switch id="switch_@property.Name" for="@property.Name"/>
+                    continue;
+                }
+            <util-input id="input_@property.Name" for="@property.Name"/>
+            }
+            <util-modal-footer>
+                <util-button on-click="close()" text-cancel="true"></util-button>
+                <util-button id="btnSubmit" is-submit="true" validate-form="true" type="Primary" on-click="submit(btnSubmit)" text-ok="true"></util-button>
+            </util-modal-footer>
+        </util-form>
+    </util-card>
+</util-drawer-container>

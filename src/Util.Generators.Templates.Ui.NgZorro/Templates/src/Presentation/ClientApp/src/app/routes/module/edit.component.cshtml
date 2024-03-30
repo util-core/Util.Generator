@@ -8,8 +8,8 @@
     Model.Output.RelativeRootPath = $"src/{service.GetClientComponentPath()}";
 }
 @if ( service.IsTreeEntity() ) {
-    @Html.PartialAsync("~/Templates/src/Presentation/ClientApp/src/app/routes/module/edit/edit.tree.component.Part.cshtml", Model);
+    @Html.PartialAsync( "~/Templates/src/Presentation/ClientApp/src/app/routes/module/edit/edit.tree.component.Part.cshtml", Model )
 }
 else {
-    @Html.PartialAsync("~/Templates/src/Presentation/ClientApp/src/app/routes/module/edit/edit.component.Part.cshtml", Model);
+    @Html.PartialAsync( "~/Templates/src/Presentation/ClientApp/src/app/routes/module/edit/edit.component.Part.cshtml", Model )
 }

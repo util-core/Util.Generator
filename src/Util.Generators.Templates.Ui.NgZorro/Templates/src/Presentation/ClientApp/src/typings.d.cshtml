@@ -5,5 +5,5 @@
     var service = new GenerateService( Model );
     Model.Output.FileNameNoExtension = "typings.d";
     Model.Output.Extension = ".ts";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src";
 }

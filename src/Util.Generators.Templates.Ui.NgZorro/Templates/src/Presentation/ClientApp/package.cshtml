@@ -6,7 +6,7 @@
     var name = service.GetClientAppName();
     Model.Output.FileNameNoExtension = "package";
     Model.Output.Extension = ".json";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp";
+    Model.Output.RelativeRootPath = service.GetClientRootPath();
 }
 {
   "name": "@name",
@@ -62,7 +62,7 @@
     "lodash-es": "~4.17.21",
     "date-fns": "~2.30.0",
     "ng-event-bus": "~6.0.0",
-    "util-angular": "^17.3.5"
+    "util-angular": "^17.3.6-pre.1"
   },
   "devDependencies": {
     "@@angular-devkit/build-angular": "^17.2.1",

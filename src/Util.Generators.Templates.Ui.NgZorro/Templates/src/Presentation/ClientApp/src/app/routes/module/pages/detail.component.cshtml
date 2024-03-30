@@ -1,0 +1,41 @@
+﻿@* Ui层项目 - 详情页文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = service.GetClientDetailFileName();
+    Model.Output.Extension = ".cshtml";
+    Model.Output.RelativeRootPath = $"src/{service.GetClientComponentPath()}";
+}
+@("@page")
+@("@model") @(service.EntityName)Dto
+
+@@*表单*@@
+<util-dialog-container>
+    <util-card borderless="true">
+        <util-descriptions column="2" bordered="true">
+            @foreach (var property in Model.Properties)
+            {
+                if (property.IsKey)
+                    continue;
+                if (property.IsDeleted)
+                    continue;
+                if (property.IsExtraProperties)
+                    continue;
+                if (property.IsVersion)
+                    continue;
+                if( property.IsCreatorId )
+                    continue;
+                if( property.IsLastModifierId )
+                    continue;
+                if (property.IsTree)
+                    continue;
+                if ( property.IsPinYin )
+                    continue;
+                if ( property.IsGuid )
+                    continue;
+            <util-descriptions-item for="@property.Name"></util-descriptions-item>
+            }
+        </util-descriptions>
+    </util-card>
+</util-dialog-container>

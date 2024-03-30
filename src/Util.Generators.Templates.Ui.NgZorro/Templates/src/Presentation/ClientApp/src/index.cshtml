@@ -6,7 +6,7 @@
     var name = service.GetClientAppName();
     Model.Output.FileNameNoExtension = "index";
     Model.Output.Extension = ".html";
-    Model.Output.RelativeRootPath = $"src/{service.GetUiProjectName()}/ClientApp/src";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src";
 }
 <!doctype html>
 <html lang="en">
