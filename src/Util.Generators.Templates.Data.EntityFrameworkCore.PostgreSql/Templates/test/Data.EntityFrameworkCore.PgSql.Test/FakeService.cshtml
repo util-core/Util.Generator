@@ -46,7 +46,6 @@ public static class @fakeService {
                 continue;
             }
             @if ( property.IsTree ) {
-            @:.Ignore( t => t.@property.Name )
                 continue;
             }
             @if ( property.IsDeleted ) {
@@ -57,6 +56,9 @@ public static class @fakeService {
             @:.RuleFor( t => t.@property.Name,t => t.Random.String2( 1,@property.GetSafeMaxLength() ) )
                 continue;
             }
+            }
+            @if ( Model.HasTree ) {
+            @:.Ignore( t => t.ParentId )
             }
             .Generate( count );
     }

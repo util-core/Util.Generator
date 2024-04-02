@@ -108,7 +108,8 @@ export class StartupService {
                 }
                 return Promise.reject();
             })
-            .catch(() => {
+            .catch((exception) => {
+                console.error(exception);
                 this.authService.nextIsDoneLoading();
             });
     }

@@ -110,9 +110,6 @@
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\app.component.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="Templates\src\Presentation\ClientApp\src\app\config\index.cshtml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
 		<Content Update="Templates\src\Presentation\ClientApp\src\app\core\i18n\i18n.service.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
