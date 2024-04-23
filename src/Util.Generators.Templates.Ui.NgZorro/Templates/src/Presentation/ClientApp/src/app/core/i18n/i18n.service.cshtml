@@ -56,7 +56,7 @@ export class I18NService extends AlainI18nBaseService {
     private readonly nzI18nService = inject(NzI18nService);
     private readonly delonLocaleService = inject(DelonLocaleService);
     private readonly platform = inject(Platform);
-    private util = new Util(inject(Injector));
+    private util: Util;
 
     protected override _defaultLang = DEFAULT;
     private _langs = Object.keys(LANGS).map(code => {
@@ -66,7 +66,7 @@ export class I18NService extends AlainI18nBaseService {
 
     constructor(cogSrv: AlainConfigService) {
         super(cogSrv);
-
+        this.util = Util.create();
         const defaultLang = this.getDefaultLang();
         this._defaultLang = this._langs.findIndex(w => w.code === defaultLang) === -1 ? DEFAULT : defaultLang;
     }

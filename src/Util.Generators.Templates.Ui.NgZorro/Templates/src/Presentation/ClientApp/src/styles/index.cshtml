@@ -7,6 +7,13 @@
     Model.Output.Extension = ".less";
     Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/styles";
 }
+//覆盖ng-alain表单组件宽度
+.alain-default__content {
+    nz-input-group, .ant-picker {
+        width: 100%!important;
+    }
+}
+
 //表格选中行背景色
 .table-row-selected {
     background-color:  #e6e6f0 !important;
@@ -22,19 +29,30 @@
     .ant-card-body {
         padding-bottom: 0 !important;
     }
-    nz-input-group,.ant-picker {
-        width: 100%;
-    }
 }
 
-//表格设置按钮样式
-.btn-table-settings {
+//卡片工具栏图标按钮样式
+.card-tool-icon-btn {
     font-size: 16px;
     color: rgba(0,0,0,0.85);
 }
     
-//拖动预览按钮
+//拖动预览按钮样式
 .nz-resizable-preview {
     border-width: 0 !important;
     border-right-width: 1px !important;
+}
+
+//对话框样式
+.modal-wrap {
+    .x-dialog-container,.ant-modal-body {
+        background-color: #f5f7fa;
+    }
+}
+
+//详情对话框样式
+.detail-dialog {
+    .x-dialog-container {
+        background-color: #fff !important;
+    }
 }

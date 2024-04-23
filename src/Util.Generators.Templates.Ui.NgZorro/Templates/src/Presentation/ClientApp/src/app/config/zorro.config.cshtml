@@ -1,0 +1,21 @@
+﻿@* Ui层项目 - ng-zorro配置文件 *@
+@using Util.Generators.Helpers
+@model Util.Generators.Contexts.EntityContext
+@{
+    var service = new GenerateService( Model );
+    Model.Output.FileNameNoExtension = "zorro.config";
+    Model.Output.Extension = ".ts";
+    Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/config";
+}
+import { EnvironmentProviders } from '@@angular/core';
+import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
+
+//ng-zorro配置
+const config: NzConfig = {};
+
+/**
+ * ng-zorro配置提供器
+ */
+export const provideNgZorro = (): EnvironmentProviders => {
+    return provideNzConfig(config);
+}

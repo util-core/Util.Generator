@@ -1,4 +1,4 @@
-﻿namespace Util.Generators.Helpers; 
+﻿namespace Util.Generators.Helpers;
 
 /// <summary>
 /// 生成服务 - 应用层相关方法
@@ -57,7 +57,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetApplicationProjectPath( string module, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetApplicationProjectName()}/{module}/{Schema}";
         return $"{GetApplicationProjectName()}/{module}";
     }
@@ -72,7 +72,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetWebApiProjectPath( string module, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetWebApiProjectName()}/{module}/{Schema}";
         return $"{GetWebApiProjectName()}/{module}";
     }
@@ -90,7 +90,7 @@ public partial class GenerateService {
         var projectName = $"{_context.ProjectContext.Name}.Applications";
         if ( module.IsEmpty() )
             return projectName;
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{projectName}.{module}.{Schema}";
         return $"{projectName}.{module}";
     }
@@ -106,9 +106,9 @@ public partial class GenerateService {
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetWebApiNamespace( string module = null, bool isAddSchema = false ) {
         var projectName = $"{_context.ProjectContext.Name}";
-        if( module.IsEmpty() )
+        if ( module.IsEmpty() )
             return projectName;
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{projectName}.{module}.{Schema}";
         return $"{projectName}.{module}";
     }
@@ -196,7 +196,7 @@ public partial class GenerateService {
     /// 获取Crud服务基类
     /// </summary>
     public string GetCrudServiceBase() {
-        if( _context.Key.SystemType == SystemType.Guid )
+        if ( _context.Key.SystemType == SystemType.Guid )
             return $"CrudServiceBase<{EntityName},{EntityName}Dto,{EntityName}Query>";
         return $"CrudServiceBase<{EntityName},{EntityName}Dto,{EntityName}Query,{GetKeyType()}>";
     }
@@ -212,7 +212,7 @@ public partial class GenerateService {
         var result = new StringBuilder();
         result.Append( "queryable" );
         foreach ( var property in _context.Properties ) {
-            if( property.IsDeleted )
+            if ( property.IsDeleted )
                 continue;
             if ( property.IsKey )
                 continue;
@@ -225,7 +225,7 @@ public partial class GenerateService {
             if ( property.IsString ) {
                 AppendStringFilter( result, property );
             }
-            if( property.IsBool ) {
+            if ( property.IsBool ) {
                 AppendBoolFilter( result, property );
             }
             if ( property.IsDateTime ) {
@@ -238,7 +238,7 @@ public partial class GenerateService {
     /// <summary>
     /// 添加字符串查询过滤条件
     /// </summary>
-    private void AppendStringFilter( StringBuilder result,Property property ) {
+    private void AppendStringFilter( StringBuilder result, Property property ) {
         var name = property.Name;
         result.AppendLine();
         result.Append( $"            .WhereIfNotEmpty( t => t.{name}.Contains( param.{name} ) )" );
@@ -270,6 +270,8 @@ public partial class GenerateService {
     /// 获取默认连接字符串
     /// </summary>
     public string GetDefaultConnection() {
+        if ( _context.ProjectContext.TargetDbType == DatabaseType.Sqlite )
+            return GetSqliteConnection();
         if ( IsGenerateConnection() == false )
             return null;
         return _context.ProjectContext.ConnectionString.Replace( Generator, "" ).Replace( "\\", "\\\\" );
@@ -284,6 +286,13 @@ public partial class GenerateService {
         if ( _context.ProjectContext.ConnectionString.Contains( Generator ) == false )
             return false;
         return true;
+    }
+
+    /// <summary>
+    /// 获取Sqlite数据库默认连接字符串
+    /// </summary>
+    private string GetSqliteConnection() {
+        return $"Data Source=../{GetDataProjectName( DatabaseType.Sqlite )}/{ProjectName}.db";
     }
 
     #endregion

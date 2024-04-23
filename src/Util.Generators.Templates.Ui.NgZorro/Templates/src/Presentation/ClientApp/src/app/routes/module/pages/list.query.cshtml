@@ -10,7 +10,7 @@
 @("@")model @service.GetQuery()
 
 <util-card borderless="true" class="searchForm">
-    <util-search-form label-width="140">
+    <util-search-form label-width="120">
         <util-row gutter="24">
         @foreach (var property in Model.Properties)
         {
@@ -37,19 +37,19 @@
             if (property.IsDateTime)
             {
             <util-column>
-                <util-range-picker id="range_picker_@property.Name" for-begin="Begin@(property.Name)" for-end="End@(property.Name)" />
+                <util-range-picker for-begin="Begin@(property.Name)" for-end="End@(property.Name)" />
             </util-column>
                 continue;
             }
             if (property.IsBool)
             {
             <util-column>
-                <util-select id="select_@property.Name" for="@property.Name"/>
+                <util-select for="@property.Name"/>
             </util-column>
                 continue;
             }
             <util-column>
-                <util-input id="input_@property.Name" for="@property.Name" />
+                <util-input for="@property.Name" />
             </util-column>
         }
             <util-column class="mb-md">

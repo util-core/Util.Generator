@@ -1,4 +1,4 @@
-﻿@* Ui层项目 - 授权配置文件 *@
+﻿@* Ui层项目 - 认证配置文件 *@
 @using Util.Generators.Helpers
 @model Util.Generators.Contexts.EntityContext
 @{
@@ -7,14 +7,15 @@
     Model.Output.Extension = ".ts";
     Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/config";
 }
-import { AuthConfig, OAuthModuleConfig } from 'angular-oauth2-oidc';
+import { Provider, EnvironmentProviders, makeEnvironmentProviders } from '@@angular/core';
+import { AuthConfig, OAuthModuleConfig, provideOAuthClient } from 'angular-oauth2-oidc';
 import { urlConfig } from './url.config';
 
 /**
-* 授权配置
+* 认证配置
 */
-export const authConfig: AuthConfig = {
-    /** 
+const authConfig: AuthConfig = {
+    /**
      * 认证服务器地址
      */
     issuer: urlConfig.identityUrl,
@@ -42,11 +43,21 @@ export const authConfig: AuthConfig = {
 
 
 /**
-* 授权模块配置
-*/
-export const authModuleConfig: OAuthModuleConfig = {
+ * 认证模块配置
+ */
+const authModuleConfig: OAuthModuleConfig = {
     resourceServer: {
         allowedUrls: [urlConfig.apiEndpointUrl],
         sendAccessToken: true
     }
 };
+
+/**
+ * 认证配置提供器
+ */
+export const provideAuth = (): EnvironmentProviders => {
+    const provides: Array<Provider | EnvironmentProviders> = [];
+    provides.push({ provide: AuthConfig, useValue: authConfig });
+    provides.push(provideOAuthClient(authModuleConfig));
+    return makeEnvironmentProviders(provides);
+}

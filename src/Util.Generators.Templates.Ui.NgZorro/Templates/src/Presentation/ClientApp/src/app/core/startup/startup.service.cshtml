@@ -63,7 +63,7 @@ export class StartupService {
     /**
      * 操作入口
      */
-    private util = new Util(inject(Injector));
+    private util = Util.create();
 
     /**
      * 启动初始化

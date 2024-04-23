@@ -6,7 +6,9 @@
 }
 @("@")page
 @("@")model @service.GetDto()
-<util-page-header2 title="@service.GetEntityI18nKey()"></util-page-header2>
+
+@@*页标题*@@
+<util-page-header-x title="@service.GetEntityI18nKey()"></util-page-header-x>
 
 @@*查询表单*@@
 <partial name="part/@service.GetClientListPartFileName()" />
@@ -16,12 +18,13 @@
     @@*工具按钮*@@
     <util-template id="tool">
         <util-button type="Primary" icon="Plus" on-click="openCreateDrawer()" text-create="true"></util-button>
-        <util-a show-table-settings="@service.GetClientTableId()" class="ml-md"></util-a>
+        <util-a show-table-settings="tb" class="ml-md"></util-a>
     </util-template>
 
     @@*表格*@@
-    <util-table id="@service.GetClientTableId()" show-checkbox="true" show-line-number="true" enable-table-settings="true"
-                query-param="queryParam" url="@service.GetClientEntityName()" @service.GetClientSort()>
+    <util-table id="tb" key="@service.GetTableKey()" enable-table-settings="true"
+                show-checkbox="true" show-line-number="true"
+                url="@service.GetClientEntityName()" query-param="queryParam" @service.GetClientSort()>
         @foreach (var property in Model.Properties) {
             if (property.IsKey)
                 continue;            

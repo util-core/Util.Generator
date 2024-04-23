@@ -482,4 +482,30 @@ public partial class GenerateService {
     }
 
     #endregion
+
+    #region GetTableKey(获取表格存储名称)
+
+    /// <summary>
+    /// 获取表格存储名称
+    /// </summary>
+    public string GetTableKey() {
+        return GetTableKey( _context );
+    }
+
+    /// <summary>
+    /// 获取表格存储名称
+    /// </summary>
+    public string GetTableKey( EntityContext entity ) {
+        var prefix = _context.Schema.IsEmpty() ? _context.ProjectContext.Client.AppName : _context.Schema;
+        return $"{FormatKebaberize(prefix)}_{FormatKebaberize(entity.Name)}";
+    }
+
+    /// <summary>
+    /// 使用小写加下划线方式格式化名称
+    /// </summary>
+    private string FormatKebaberize( string name ) {
+        return name.SafeString().Kebaberize().Replace("-", "_");
+    }
+
+    #endregion
 }

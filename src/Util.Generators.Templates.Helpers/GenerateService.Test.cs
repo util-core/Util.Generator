@@ -1,4 +1,4 @@
-﻿namespace Util.Generators.Helpers; 
+﻿namespace Util.Generators.Helpers;
 
 /// <summary>
 /// 生成服务 - 测试相关方法
@@ -107,7 +107,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetDomainTestProjectPath( string module, bool isAddSchema = true ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetDomainTestProjectName()}/{module}/{Schema}";
         return $"{GetDomainTestProjectName()}/{module}";
     }
@@ -122,7 +122,7 @@ public partial class GenerateService {
     /// <param name="database">数据库类型</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetDataTestProjectPath( DatabaseType database, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetDataTestProjectName( database )}/{Schema}";
         return GetDataTestProjectName( database );
     }
@@ -134,7 +134,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetDataTestProjectPath( DatabaseType database, string module, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetDataTestProjectName( database )}/{module}/{Schema}";
         return $"{GetDataTestProjectName( database )}/{module}";
     }
@@ -149,7 +149,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetApplicationTestProjectPath( string module, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetApplicationTestProjectName()}/{module}/{Schema}";
         return $"{GetApplicationTestProjectName()}/{module}";
     }
@@ -164,7 +164,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetWebApiTestProjectPath( string module, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetWebApiTestProjectName()}/{module}/{Schema}";
         return $"{GetWebApiTestProjectName()}/{module}";
     }
@@ -179,7 +179,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetDomainTestNamespace( string module, bool isAddSchema = true ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetDomainTestProjectName()}.{module}.{Schema}";
         return $"{GetDomainTestProjectName()}.{module}";
     }
@@ -194,7 +194,7 @@ public partial class GenerateService {
     /// <param name="database">数据库类型</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetDataTestNamespace( DatabaseType database, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetDataTestProjectName( database )}.{Schema}";
         return GetDataTestProjectName( database );
     }
@@ -206,7 +206,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetDataTestNamespace( DatabaseType database, string module, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetDataTestProjectName( database )}.{module}.{Schema}";
         return $"{GetDataTestProjectName( database )}.{module}";
     }
@@ -228,7 +228,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetApplicationTestNamespace( string module, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetApplicationTestNamespace()}.{module}.{Schema}";
         return $"{GetApplicationTestNamespace()}.{module}";
     }
@@ -250,7 +250,7 @@ public partial class GenerateService {
     /// <param name="module">模块</param>
     /// <param name="isAddSchema">是否添加架构</param>
     public string GetWebApiTestNamespace( string module, bool isAddSchema = false ) {
-        if( isAddSchema && IsSupportSchema() )
+        if ( isAddSchema && IsSupportSchema() )
             return $"{GetWebApiTestNamespace()}.{module}.{Schema}";
         return $"{GetWebApiTestNamespace()}.{module}";
     }
@@ -263,7 +263,8 @@ public partial class GenerateService {
     /// 获取数据传输对象模拟数据服务
     /// </summary>
     public string GetDtoFakeService() {
-        return $"{GetDto()}FakeService"; ;
+        return $"{GetDto()}FakeService";
+        ;
     }
 
     #endregion
@@ -274,9 +275,18 @@ public partial class GenerateService {
     /// 获取Web Api测试项目连接字符串
     /// </summary>
     public string GetApiTestConnection() {
+        if ( _context.ProjectContext.TargetDbType == DatabaseType.Sqlite )
+            return GetApiTestSqliteConnection();
         if ( IsGenerateConnection() == false )
             return null;
         return _context.ProjectContext.ConnectionString.Replace( Generator, ".Api.Test" ).Replace( "\\", "\\\\" );
+    }
+
+    /// <summary>
+    /// 获取Web Api测试项目Sqlite数据库连接字符串
+    /// </summary>
+    private string GetApiTestSqliteConnection() {
+        return $"Data Source={GetWebApiTestProjectName()}.db";
     }
 
     #endregion
@@ -287,9 +297,18 @@ public partial class GenerateService {
     /// 获取应用层测试项目连接字符串
     /// </summary>
     public string GetApplicationTestConnection() {
+        if ( _context.ProjectContext.TargetDbType == DatabaseType.Sqlite )
+            return GetApplicationTestSqliteConnection();
         if ( IsGenerateConnection() == false )
             return null;
         return _context.ProjectContext.ConnectionString.Replace( Generator, ".Application.Test" ).Replace( "\\", "\\\\" );
+    }
+
+    /// <summary>
+    /// 获取应用层测试项目Sqlite数据库连接字符串
+    /// </summary>
+    private string GetApplicationTestSqliteConnection() {
+        return $"Data Source={GetApplicationTestProjectName()}.db";
     }
 
     #endregion
@@ -300,9 +319,18 @@ public partial class GenerateService {
     /// 获取数据访问层测试项目连接字符串
     /// </summary>
     public string GetDataTestConnection() {
+        if ( _context.ProjectContext.TargetDbType == DatabaseType.Sqlite )
+            return GetDataTestSqliteConnection();
         if ( IsGenerateConnection() == false )
             return null;
         return _context.ProjectContext.ConnectionString.Replace( Generator, ".Data.Test" ).Replace( "\\", "\\\\" );
+    }
+
+    /// <summary>
+    /// 获取数据访问层测试项目Sqlite数据库连接字符串
+    /// </summary>
+    private string GetDataTestSqliteConnection() {
+        return $"Data Source={GetDataTestProjectName( DatabaseType.Sqlite )}.db";
     }
 
     #endregion

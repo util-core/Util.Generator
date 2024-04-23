@@ -7,17 +7,19 @@
     Model.Output.Extension = ".ts";
     Model.Output.RelativeRootPath = $"{service.GetClientRootPath()}/src/app/shared";
 }
-import { PageHeaderModule } from '@@delon/abc/page-header';
-import { ResultModule } from '@@delon/abc/result';
-import { EllipsisModule } from '@@delon/abc/ellipsis';
-import { FooterToolbarModule } from '@@delon/abc/footer-toolbar';
+import { PageHeaderComponent } from '@@delon/abc/page-header';
+import { EllipsisComponent } from '@@delon/abc/ellipsis';
+import { FooterToolbarComponent } from '@@delon/abc/footer-toolbar';
+import { SGModule } from '@@delon/abc/sg';
+import { SVModule } from '@@delon/abc/sv';
 
 /**
- * Delon模块
- */
+* Delon模块
+*/
 export const Delon_Modules = [
-    PageHeaderModule,
-    ResultModule,
-    EllipsisModule,
-    FooterToolbarModule
+    PageHeaderComponent,
+    EllipsisComponent,
+    FooterToolbarComponent,
+    SGModule,
+    SVModule
 ];
