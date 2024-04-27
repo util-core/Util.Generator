@@ -32,7 +32,6 @@ builder.Services.AddCors( options => options.AddPolicy( "cors", policy => {
 
 //配置Util
 builder.AsBuild()
-    .AddAop()
     @if ( service.Utc() ) {
     @:.AddUtc()
     }

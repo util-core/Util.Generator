@@ -1,6 +1,6 @@
 ﻿using Util.Helpers;
 
-namespace Util.Generators.Helpers; 
+namespace Util.Generators.Helpers;
 
 /// <summary>
 /// 生成服务 - Ui层相关方法
@@ -124,8 +124,14 @@ public partial class GenerateService {
     /// 获取UI项目端口
     /// </summary>
     public string GetUiPort() {
-        var apiPort = Convert.ToInt( GetClientPort() );
-        return ( apiPort + 10000 ).ToString();
+        var result = _context.ProjectContext.UiPort;
+        if ( result.IsEmpty() == false )
+            return result;
+        var clientPort = Convert.ToInt( GetClientPort() );
+        if ( clientPort != 0 )
+            return ( clientPort + 10000 ).ToString();
+        var apiPort = Convert.ToInt( GetApiPort() );
+        return ( apiPort - 10 ).ToString();
     }
 
     #endregion
@@ -136,7 +142,7 @@ public partial class GenerateService {
     /// 获取前端应用端口
     /// </summary>
     public string GetClientPort() {
-        return _context.ProjectContext.Client.Port ?? "5000";
+        return _context.ProjectContext.Client.Port;
     }
 
     #endregion
@@ -221,7 +227,7 @@ public partial class GenerateService {
     /// 获取前端实体名
     /// </summary>
     public string GetClientEntityName() {
-        return GetClientEntityName(_context);
+        return GetClientEntityName( _context );
     }
 
     /// <summary>
@@ -497,14 +503,14 @@ public partial class GenerateService {
     /// </summary>
     public string GetTableKey( EntityContext entity ) {
         var prefix = _context.Schema.IsEmpty() ? _context.ProjectContext.Client.AppName : _context.Schema;
-        return $"{FormatKebaberize(prefix)}_{FormatKebaberize(entity.Name)}";
+        return $"{FormatKebaberize( prefix )}_{FormatKebaberize( entity.Name )}";
     }
 
     /// <summary>
     /// 使用小写加下划线方式格式化名称
     /// </summary>
     private string FormatKebaberize( string name ) {
-        return name.SafeString().Kebaberize().Replace("-", "_");
+        return name.SafeString().Kebaberize().Replace( "-", "_" );
     }
 
     #endregion
