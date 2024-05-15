@@ -9,7 +9,7 @@ public static class Version {
     /// <summary>
     /// Util框架版本号
     /// </summary>
-    public static string Util => "8.0.14";
+    public static string Util => "8.0.15";
     /// <summary>
     /// Microsoft.Extensions.Hosting版本号
     /// </summary>
@@ -17,19 +17,19 @@ public static class Version {
     /// <summary>
     /// Microsoft.AspNetCore.TestHost版本号
     /// </summary>
-    public static string TestHost => "8.0.4";
+    public static string TestHost => "8.0.5";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Tools版本号
     /// </summary>
-    public static string EntityFrameworkCoreTools => "8.0.4";
+    public static string EntityFrameworkCoreTools => "8.0.5";
     /// <summary>
     /// Microsoft.EntityFrameworkCore.Design版本号
     /// </summary>
-    public static string EntityFrameworkCoreDesign => "8.0.4";
+    public static string EntityFrameworkCoreDesign => "8.0.5";
     /// <summary>
     /// Microsoft.AspNetCore.Authentication.JwtBearer版本号
     /// </summary>
-    public static string JwtBearer => "8.0.4";
+    public static string JwtBearer => "8.0.5";
     /// <summary>
     /// Microsoft.NET.Test.Sdk版本号
     /// </summary>
@@ -37,11 +37,11 @@ public static class Version {
     /// <summary>
     /// xunit版本号
     /// </summary>
-    public static string Xunit => "2.7.1";
+    public static string Xunit => "2.8.0";
     /// <summary>
     /// xunit.runner.visualstudio版本号
     /// </summary>
-    public static string XunitRunner => "2.5.8";
+    public static string XunitRunner => "2.8.0";
     /// <summary>
     /// coverlet.collector版本号
     /// </summary>
@@ -57,7 +57,7 @@ public static class Version {
     /// <summary>
     /// Xunit.DependencyInjection版本号
     /// </summary>
-    public static string XunitDependencyInjection => "9.1.0";
+    public static string XunitDependencyInjection => "9.3.0";
     /// <summary>
     /// Xunit.DependencyInjection.Logging版本号
     /// </summary>
@@ -65,7 +65,7 @@ public static class Version {
     /// <summary>
     /// Swashbuckle.AspNetCore版本号
     /// </summary>
-    public static string Swashbuckle => "6.5.0";
+    public static string Swashbuckle => "6.6.1";
     /// <summary>
     /// Microsoft.TypeScript.MSBuild版本号
     /// </summary>
