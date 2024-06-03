@@ -9,7 +9,7 @@
 @("@model") @(service.EntityName)Dto
 
 @@*表单*@@
-<util-card borderless="true">
+<util-card bordered="false">
     <util-form label-span="6" control-span="18" gutter="24">
         <util-tree-select for="ParentId" query-param="queryParam" url="@service.GetClientEntityName()/tree" @service.GetClientSort() default-expand-all="true" label-text="@service.GetParentIdI18nKey()" control-span="8"></util-tree-select>
         @foreach (var property in Model.Properties)
